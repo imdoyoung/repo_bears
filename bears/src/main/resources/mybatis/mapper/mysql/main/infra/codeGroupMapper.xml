@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.baseball.infra.codegroup.CodeGroupDao">
+	  <resultMap type="com.baseball.infra.codegroup.CodeGroupDto" id="resultMapObj"></resultMap>
+	  <select id="selectList" resultMap="resultMapObj">
+	  		SELECT
+				a.ifcgSeq,
+				a.ifcgName,
+				a.ifcgUseNy,
+				a.ifcgOrder,
+				a.ifcgDesc,
+			    a.ifcgDelNy,
+			    a.ifcgRegist,
+			    a.ifcgEdit,
+			    (SELECT count(ifcdSeq) FROM B_code AS b WHERE 1 = 1 AND b.B_codegroup_ifcgSeq = a.ifcgSeq) AS xifcdSeqCount
+			FROM 
+				bears.B_codegroup a
+			ORDER BY
+				a.ifcgSeq desc
+	  </select>
+	  
+	  <insert id="insert">
+	  		INSERT INTO B_codegroup (
+				ifcgName,
+				ifcgUseNy,
+				ifcgOrder,
+				ifcgDesc,
+			    ifcgDelNy,
+			    ifcgRegist,
+			    ifcgEdit
+			    ) VALUES(
+			    #{ifcgName},
+				#{ifcgUseNy},
+				#{ifcgOrder},
+				#{ifcgDesc},
+			    0,
+				now(), 
+				now()
+			)
+	  </insert>
+	  
+	  <select id="selectOne" resultMap="resultMapObj">
+	  		SELECT
+				a.ifcgSeq,
+				a.ifcgName,
+				a.ifcgUseNy,
+				a.ifcgOrder,
+				a.ifcgDesc,
+			    a.ifcgDelNy,
+			    a.ifcgRegist,
+			    a.ifcgEdit
+			FROM 
+				bears.B_codegroup a
+			WHERE 1=1
+				AND a.ifcgSeq = #{ifcgSeq}
+	  </select>
+	  
+	  <update id="update">
+	  		UPDATE bears.B_codegroup
+	  		SET
+	  			ifcgName = #{ifcgName},
+				ifcgUseNy = #{ifcgUseNy},
+				ifcgOrder = #{ifcgOrder},
+				ifcgDesc = #{ifcgDesc},
+			    ifcgDelNy = #{ifcgDelNy},
+			    ifcgEdit = now()
+			WHERE 1 = 1
+				AND ifcgSeq = #{ifcgSeq}
+	  </update>
+	  
+	  <update id="uelete">
+	  		UPDATE bears.B_codegroup
+	  		SET
+	  			ifcgDelNy = 1
+	  		WHERE 1 = 1
+	  			AND ifcgSeq = #{ifcgSeq}
+	  </update>
+	  
+	  <delete id="delete">
+	  		DELETE FROM B_codegroup
+			WHERE 1 = 1
+				AND ifcgSeq = #{ifcgSeq}
+	  </delete>
+	  
+	  
+</mapper>

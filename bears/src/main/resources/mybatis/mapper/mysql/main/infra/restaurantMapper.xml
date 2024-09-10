@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.baseball.infra.restaurant.RestaurantDao">
+	  <resultMap type="com.baseball.infra.restaurant.RestaurantDto" id="resultMapObj"></resultMap>
+	  <select id="selectRestaurant" resultMap="resultMapObj">
+	  		SELECT 
+				e.resSeq,
+			    e.resType,
+			    e.resName,
+			    e.resOpen,
+			    e.resClose,
+			    e.resTel,
+			    e.resEAdress,
+			    e.resParkingNy,
+			    e.resReservationNy,
+			    e.resColchageNy,
+			    e.resAbout,
+			    e.resDelNy,
+			    e.resRegist,
+			    e.resEdit
+			FROM 
+				bears.restaurant e
+			ORDER BY
+				e.resSeq desc
+	  </select>
+	  <insert id="insert">
+	  		INSERT INTO restaurant (
+	  			resType,
+			    resName,
+			    resOpen,
+			    resClose,
+			    resTel,
+			    resEAdress,
+			    resParkingNy,
+			    resReservationNy,
+			    resColchageNy,
+			    resAbout,
+			    resDelNy,
+			    resRegist,
+			    resEdit
+	  		) values (
+	  			#{resType},
+	  			#{resName},
+	  			#{resOpen},
+	  			#{resClose},
+	  			#{resTel},
+	  			#{resEAdress},
+	  			#{resParkingNy},
+	  			#{resReservationNy},
+	  			#{resColchageNy},
+	  			#{resAbout},
+	  			#{resDelNy},
+			    now(),
+			    now()
+	  		)
+	  </insert>
+	  
+	  <select id="selectOne" resultMap="resultMapObj">
+	  		SELECT 
+				e.resSeq,
+			    e.resType,
+			    e.resName,
+			    e.resOpen,
+			    e.resClose,
+			    e.resTel,
+			    e.resEAdress,
+			    e.resParkingNy,
+			    e.resReservationNy,
+			    e.resColchageNy,
+			    e.resAbout,
+			    e.resDelNy,
+			    e.resRegist,
+			    e.resEdit
+			FROM 
+				bears.restaurant e
+			WHERE 1 = 1
+				AND e.resSeq = #{resSeq}
+	  </select>
+	  
+</mapper>
