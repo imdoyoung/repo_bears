@@ -17,9 +17,12 @@
 			b.ifcdDelNy,
 			b.ifcdRegist,
 			b.ifcdEdit,
-			b.B_codegroup_ifcgSeq
+			b.B_codegroup_ifcgSeq,
+			a.ifcgName
 		FROM
-			bears.B_code b
+			bears.B_code AS b
+			JOIN B_codegroup AS a
+				ON a.ifcgSeq = b.B_codegroup_ifcgSeq
 		ORDER BY
 			b.ifcdSeq DESC
 	</select>

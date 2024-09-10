@@ -601,6 +601,8 @@
                         <input class="form-check-input" type="checkbox" id="gridCheck1">
                       </th>
                       <th>No</th>
+                      <th>코드그룹 코드</th>
+                      <th>코드그룹 이름</th>
                       <th>코드 번호</th>
                       <th>코드이름</th>
                       <th>사용</th>
@@ -608,7 +610,6 @@
                       <th>삭제 여부</th>
                       <th>등록일</th>
                       <th>수정일</th>
-                      <th>코드그룹 코드</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -622,6 +623,8 @@
                         <input class="form-check-input" type="checkbox" id="gridCheck1">
                       </td>
                       <td></td>
+                      <td th:text="${list.B_codegroup_ifcgSeq}"></td>
+                      <td th:text="${list.ifcgName}"></td>
                       <td th:text="${list.ifcdSeq}"></td>
                       <td>
                       	<a th:href="@{/xdm/v1/infra/code/codeXdmMfom(ifcdSeq=${list.ifcdSeq})}" th:text="${list.ifcdName}"></a>
@@ -633,8 +636,6 @@
                       <td th:unless="${list.ifcdDelNy eq 0}">Y</td>
                       <td th:text="${#dates.format(list.ifcdRegist, 'yyyy-MM-dd HH:mm:ss')}"></td>
                       <td th:text="${#dates.format(list.ifcdEdit, 'yyyy-MM-dd HH:mm:ss')}"></td>
-                      <td th:text="${list.B_codegroup_ifcgSeq}"></td>
-<!--                       <td th:text="${list.ifcgName}"></td> -->
                     </tr>
                   </tbody>
                 </table>
