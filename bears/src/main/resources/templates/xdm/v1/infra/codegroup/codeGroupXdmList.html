@@ -617,41 +617,13 @@
 								<!--pagination end-->
 								<div class="row mb-3">
 									<div class="col-md-6">
-										<a href="#">
-											<button type="button" class="btn btn-danger">
-												<i class="bi bi-x-lg icon_color_change"></i>
-											</button>
-										</a> 
-										<a href="#">
-											<button type="button" class="btn btn-danger" 
-												data-bs-toggle="modal" data-bs-target="#verticalycentered">
-												<i class="bi bi-trash-fill icon_color_change"></i>
-											</button>
-										</a>
-										<div class="modal fade" id="verticalycentered" tabindex="-1">
-											<div class="modal-dialog modal-dialog-centered">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h5 class="modal-title">삭제버튼 눌렀을 때 나오는 모달창 제목</h5>
-														<button type="button" class="btn-close"
-															data-bs-dismiss="modal" aria-label="Close"></button>
-													</div>
-													<div class="modal-body">
-														모달창 안에 내용
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-secondary"
-															data-bs-dismiss="modal">
-															닫기
-														</button>
-														<button type="button" class="btn btn-primary">
-															확인
-														</button>
-													</div>
-												</div>
-											</div>
-										</div>
-
+										<button type="button" class="btn btn-danger" id="btnDelete">
+											<i class="bi bi-x-lg icon_color_change"></i>
+										</button>
+										<button type="button" class="btn btn-danger" id="btnUelete"
+											data-bs-toggle="modal" data-bs-target="#verticalycentered">
+											<i class="bi bi-trash-fill icon_color_change"></i>
+										</button>
 									</div>
 									<div class="col-md-6" align="Right">
 										<a href="#">
@@ -709,6 +681,26 @@
 	<!-- Template Main JS File -->
 	<script src="/xdm/v1/template/Lonely/assets/js/main.js"></script>
 
+	<script>
+		// uelete
+		document.getElementById("btnUelete").onclick = function(){
+			alert("UELETE 확인");
+			// name이 form인 것을 불러와서 저장
+			let form = document.querySelector("form[name=form]");
+			// 데이터가 전송될 주소
+			form.action = "/xdm/v1/infra/codegroup/codeGroupXdmUelete";
+			// 전송버튼과 동일
+			form.submit();
+		}
+		
+		// delete
+		document.getElementById("btnDelete").onclick = function() {
+			 alert("DELETE 확인");
+			 let form = document.querySelector("form[name=form]");
+			 form.action = "/xdm/v1/infra/codegroup/codeGroupXdmDel";
+			 form.submit();
+		 }
+	</script>
 </body>
 
 </html>
