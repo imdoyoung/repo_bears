@@ -5,6 +5,9 @@ public class CodeVo {
 	private Integer shcdUseNy;
 	private Integer shcdOption;
 	private String shcdValue;
+	private Integer shcdOptionDate;
+	private String shcdDateStart;
+	private String shcdDateEnd;
 	
 //	----- getter / setter -----
 	
@@ -31,6 +34,24 @@ public class CodeVo {
 	}
 	public void setShcdValue(String shcdValue) {
 		this.shcdValue = shcdValue;
+	}
+	public Integer getShcdOptionDate() {
+		return shcdOptionDate;
+	}
+	public void setShcdOptionDate(Integer shcdOptionDate) {
+		this.shcdOptionDate = shcdOptionDate;
+	}
+	public String getShcdDateStart() {
+		return shcdDateStart;
+	}
+	public void setShcdDateStart(String shcdDateStart) {
+		this.shcdDateStart = shcdDateStart;
+	}
+	public String getShcdDateEnd() {
+		return shcdDateEnd;
+	}
+	public void setShcdDateEnd(String shcdDateEnd) {
+		this.shcdDateEnd = shcdDateEnd;
 	}
 
 }

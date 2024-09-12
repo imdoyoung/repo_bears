@@ -27,10 +27,14 @@
 			<if test="shcdDelNy != null and !shcdDelNy.equals('')">AND ifcdDelNy = #{shcdDelNy}</if>
 			<if test="shcdUseNy != null and !shcdUseNy.equals('')">AND ifcdUseNy = #{shcdUseNy}</if>
 			<choose>
-				<when test="shcdOption == 1">AND ifcgSeq = #{shcdValue}</when>
-				<when test="shcdOption == 2">AND ifcgName LIKE CONCAT('%',#{shcdValue},'%')</when>
-				<when test="shcdOption == 3">AND ifcdSeq = #{shcdValue}</when>
-				<when test="shcdOption == 4">AND ifcdName LIKE CONCAT('%',#{shcdValue},'%')</when>
+				<when test="shcdOptionDate == 1">AND b.ifcdRegist BETWEEN #{shcdDateStart} AND #{shcdDateEnd}</when>
+				<when test="shcdOptionDate == 2">AND b.ifcdEdit BETWEEN #{shcdDateStart} AND #{shcdDateEnd}</when>
+			</choose>
+			<choose>
+				<when test="shcdOption == 1">AND ifcdSeq = #{shcdValue}</when>
+				<when test="shcdOption == 2">AND ifcdName LIKE CONCAT('%',#{shcdValue},'%')</when>
+				<when test="shcdOption == 3">AND ifcgSeq = #{shcdValue}</when>
+				<when test="shcdOption == 4">AND ifcgName LIKE CONCAT('%',#{shcdValue},'%')</when>
 			</choose>
 		ORDER BY
 			b.ifcdSeq DESC

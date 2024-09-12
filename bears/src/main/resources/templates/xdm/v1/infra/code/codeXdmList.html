@@ -46,6 +46,10 @@
 <link href="/xdm/v1/template/Lonely/assets/css/style.css"
 	rel="stylesheet">
 
+
+<!-- by developer -->
+<link rel="stylesheet" href="/xdm/v1/css/datetimepicker/jquery.datetimepicker.min.css" />
+
 <!-- =======================================================
   * Template Name: NiceAdmin
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -92,8 +96,7 @@
 				<li class="nav-item dropdown"><a class="nav-link nav-icon"
 					href="#" data-bs-toggle="dropdown"> <i class="bi bi-bell"></i>
 						<span class="badge bg-primary badge-number">4</span>
-				</a>
-				<!-- End Notification Icon -->
+				</a> <!-- End Notification Icon -->
 
 					<ul
 						class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
@@ -155,16 +158,14 @@
 						<li class="dropdown-footer"><a href="#">Show all
 								notifications</a></li>
 
-					</ul>
-					<!-- End Notification Dropdown Items --></li>
+					</ul> <!-- End Notification Dropdown Items --></li>
 				<!-- End Notification Nav -->
 
 				<li class="nav-item dropdown"><a class="nav-link nav-icon"
 					href="#" data-bs-toggle="dropdown"> <i
 						class="bi bi-chat-left-text"></i> <span
 						class="badge bg-success badge-number">3</span>
-				</a>
-				<!-- End Messages Icon -->
+				</a> <!-- End Messages Icon -->
 
 					<ul
 						class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
@@ -221,8 +222,7 @@
 						<li class="dropdown-footer"><a href="#">Show all messages</a>
 						</li>
 
-					</ul>
-					<!-- End Messages Dropdown Items --></li>
+					</ul> <!-- End Messages Dropdown Items --></li>
 				<!-- End Messages Nav -->
 
 				<li class="nav-item dropdown pe-3"><a
@@ -231,8 +231,7 @@
 						src="/xdm/v1/template/Lonely/assets/img/kkomi.jpg" alt="Profile"
 						class="rounded-circle"> <span
 						class="d-none d-md-block dropdown-toggle ps-2">YOUNGII</span>
-				</a>
-				<!-- End Profile Iamge Icon -->
+				</a> <!-- End Profile Iamge Icon -->
 
 					<ul
 						class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -272,8 +271,7 @@
 									Out</span>
 						</a></li>
 
-					</ul>
-					<!-- End Profile Dropdown Items --></li>
+					</ul> <!-- End Profile Dropdown Items --></li>
 				<!-- End Profile Nav -->
 
 			</ul>
@@ -501,19 +499,18 @@
 										</select>
 									</div>
 									<div class="col-md-2">
-										<select class="form-select"
+										<select class="form-select" name="shcdOptionDate"
 											aria-label="Default select example">
-											<option value="">수정일</option>
-											<option value="1">One</option>
-											<option value="2">Two</option>
-											<option value="3">Three</option>
+											<option value="">날짜 선택</option>
+											<option value="1">등록 날짜</option>
+											<option value="2">수정 날짜</option>
 										</select>
 									</div>
 									<div class="col-md-2">
-										<input type="date" class="form-control">
+										<input type="text" class="form-control" name="shcdDateStart" id="shcdDateStart" autocomplete="off">
 									</div>
 									<div class="col-md-2">
-										<input type="date" class="form-control">
+										<input type="text" class="form-control" name="shcdDateEnd" id="shcdDateEnd" autocomplete="off">
 									</div>
 								</div>
 								<div class="row mb-3">
@@ -528,7 +525,8 @@
 										</select>
 									</div>
 									<div class="col-md-2">
-										<input type="text" class="form-control" name="shcdValue" placeholder="검색어">
+										<input type="text" class="form-control" name="shcdValue"
+											placeholder="검색어">
 									</div>
 									<div class="col-md-2">
 										<button type="submit" class="btn btn-outline-dark">
@@ -685,8 +683,29 @@
 
 	<!-- Template Main JS File -->
 	<script src="/xdm/v1/template/Lonely/assets/js/main.js"></script>
+	
+	
+	
+	<!-- by developer -->
+	<script src="/xdm/v1/jquery/jquery-3.7.1.min.js"></script>
+	<script src="/xdm/v1/js/datetimepicker/jquery.datetimepicker.full.min.js"></script>
 
-	<script>
+
+
+
+
+	<script type="text/javascript">
+		window.addEventListener('load', function(){
+		
+			$.datetimepicker.setLocale('ko'); // 한국어를 쓰겠다는 뜻이다.
+		
+			$("#shcdDateStart, #shcdDateEnd").datetimepicker({
+				timepicker:false,
+				format:'Y-m-d'
+			});
+		});
+	
+	
 		// uelete
 		document.getElementById("btnUelete").onclick = function() {
 			alert("UELETE 확인");

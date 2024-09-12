@@ -19,8 +19,16 @@
 			FROM 
 				bears.B_codegroup a
 			WHERE 1 = 1
+				<!-- 삭제 여부 -->
 				<if test="shDelNy != null and !shDelNy.equals('')">AND ifcgDelNy = #{shDelNy}</if>
+				<!-- 사용 여부 -->
 				<if test="shUseNy != null and !shUseNy.equals('')">AND ifcgUseNy = #{shUseNy}</if>
+				<!-- 날짜 검색 -->
+				<choose>
+					<when test="shOptionDate == 1">AND a.ifcgRegist BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2">AND a.ifcgEdit BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				</choose>
+				<!-- 조건&검색어 검색 -->				
 				<choose>
 					<when test="shOption == 1">AND ifcgSeq = #{shValue}</when>
 					<when test="shOption == 2">AND ifcgName LIKE CONCAT('%',#{shValue},'%')</when>
