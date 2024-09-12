@@ -1,0 +1,21 @@
+2024-09-12T17:09:49.594 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+151. SELECT
+			b.ifcdSeq,
+			b.ifcdName,
+			b.ifcdUseNy,
+			b.ifcdOrder,
+			b.ifcdDesc,
+			b.ifcdDelNy,
+			b.ifcdRegist,
+			b.ifcdEdit,
+			b.B_codegroup_ifcgSeq,
+			a.ifcgName
+		FROM
+			bears.B_code AS b
+			JOIN B_codegroup AS a
+				ON a.ifcgSeq = b.B_codegroup_ifcgSeq
+		WHERE 1 = 1
+
+		ORDER BY
+			b.ifcdSeq DESC
+ {executed in 1 msec} 
