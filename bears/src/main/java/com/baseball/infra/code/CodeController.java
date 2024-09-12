@@ -20,13 +20,8 @@ public class CodeController {
 	
 	// selectList
 	@RequestMapping(value="/xdm/v1/infra/code/codeXdmList")
-	public String codeXdmList(Model model, CodeDto codeDto) {
-		model.addAttribute("list", codeService.selectList());
-		
-		// List 페이지에서 코드그룹코드 부분 seq가 아닌 name 출력하기
-//		List<CodeDto> codeGroups = codeService.selectListCodeGroup();
-//		model.addAttribute("listCodeGroup", codeService.selectListCodeGroup());
-		
+	public String codeXdmList(Model model, CodeVo codeVo) {
+		model.addAttribute("list", codeService.selectList(codeVo));
 		return "/xdm/v1/infra/code/codeXdmList";
 	}
 

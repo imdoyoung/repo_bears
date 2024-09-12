@@ -9,7 +9,7 @@ public interface CodeGroupDao {
 	
 	//추상메서드
 	//selectList
-	public List<CodeGroupDto> selectList();
+	public List<CodeGroupDto> selectList(CodeGroupVo codeGroupVo);
 	
 	// insert
 	// int인 이유 : 데이터가 몇 건이 처리됐는지 확인하기 위해서

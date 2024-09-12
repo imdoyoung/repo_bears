@@ -17,8 +17,8 @@ public class CodeGroupService {
 //	}
 	
 	// 함수 안에 내용이 없을 경우 아래와 같이 줄여서 쓴다.
-	public List<CodeGroupDto> selectList(){
-		return codeGroupDao.selectList();
+	public List<CodeGroupDto> selectList(CodeGroupVo codeGroupVo){
+		return codeGroupDao.selectList(codeGroupVo);
 	}
 	
 	// insert

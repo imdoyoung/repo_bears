@@ -48,9 +48,9 @@ public class CodeGroupController {
 	// 방법3
 	//LIST
 	@RequestMapping(value="/xdm/v1/infra/codegroup/codeGroupXdmList")
-	public String codeGroupXdmList(Model model) {
+	public String codeGroupXdmList(CodeGroupVo codeGroupVo, Model model) {
 		
-		model.addAttribute("list", codeGroupService.selectList());
+		model.addAttribute("list", codeGroupService.selectList(codeGroupVo));
 
 		return "/xdm/v1/infra/codegroup/codeGroupXdmList";
 	}

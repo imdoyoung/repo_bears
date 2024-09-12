@@ -12,8 +12,8 @@ public class CodeService {
 	private CodeDao codeDao;
 	
 	// selectList
-	public List<CodeDto> selectList(){
-		return codeDao.selectList();
+	public List<CodeDto> selectList(CodeVo codeVo){
+		return codeDao.selectList(codeVo);
 	}
 	
 	// selectListCode

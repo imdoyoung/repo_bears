@@ -9,7 +9,7 @@ public interface CodeDao {
 
 	// 추상메소드
 	// selectList
-	public List<CodeDto> selectList();
+	public List<CodeDto> selectList(CodeVo codeVo);
 	
 	// selectListCodeGroup
 	// code - codegroup 연결

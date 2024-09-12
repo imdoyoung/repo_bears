@@ -92,8 +92,7 @@
 				<li class="nav-item dropdown"><a class="nav-link nav-icon"
 					href="#" data-bs-toggle="dropdown"> <i class="bi bi-bell"></i>
 						<span class="badge bg-primary badge-number">4</span>
-				</a>
-				<!-- End Notification Icon -->
+				</a> <!-- End Notification Icon -->
 
 					<ul
 						class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
@@ -155,16 +154,14 @@
 						<li class="dropdown-footer"><a href="#">Show all
 								notifications</a></li>
 
-					</ul>
-					<!-- End Notification Dropdown Items --></li>
+					</ul> <!-- End Notification Dropdown Items --></li>
 				<!-- End Notification Nav -->
 
 				<li class="nav-item dropdown"><a class="nav-link nav-icon"
 					href="#" data-bs-toggle="dropdown"> <i
 						class="bi bi-chat-left-text"></i> <span
 						class="badge bg-success badge-number">3</span>
-				</a>
-				<!-- End Messages Icon -->
+				</a> <!-- End Messages Icon -->
 
 					<ul
 						class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
@@ -221,8 +218,7 @@
 						<li class="dropdown-footer"><a href="#">Show all messages</a>
 						</li>
 
-					</ul>
-					<!-- End Messages Dropdown Items --></li>
+					</ul> <!-- End Messages Dropdown Items --></li>
 				<!-- End Messages Nav -->
 
 				<li class="nav-item dropdown pe-3"><a
@@ -231,8 +227,7 @@
 						src="/xdm/v1/template/Lonely/assets/img/kkomi.jpg" alt="Profile"
 						class="rounded-circle"> <span
 						class="d-none d-md-block dropdown-toggle ps-2">YOUNGII</span>
-				</a>
-				<!-- End Profile Iamge Icon -->
+				</a> <!-- End Profile Iamge Icon -->
 
 					<ul
 						class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -272,8 +267,7 @@
 									Out</span>
 						</a></li>
 
-					</ul>
-					<!-- End Profile Dropdown Items --></li>
+					</ul> <!-- End Profile Dropdown Items --></li>
 				<!-- End Profile Nav -->
 
 			</ul>
@@ -480,31 +474,29 @@
 				<div class="col-lg-12">
 					<div class="card">
 						<div class="card-body">
-							<h1 class="card-title">Member</h1>
-							<form>
+							<h1 class="card-title">CODE GROUP</h1>
+							<form name="form" method="post" action="/xdm/v1/infra/codegroup/codeGroupXdmList">
 								<div class="row mb-3">
 									<div class="col-md-2">
-										<select class="form-select"
+										<select class="form-select" name="shDelNy" 
 											aria-label="Default select example">
-											<option selected>N</option>
-											<option value="1">One</option>
-											<option value="2">Two</option>
-											<option value="3">Three</option>
+											<option value="">삭제 여부</option>
+											<option value="1">Y</option>
+											<option value="0">N</option>
+										</select>
+									</div>
+									<div class="col-md-2">
+										<select class="form-select" name="shUseNy"
+											aria-label="Default select example">
+											<option value="">사용 여부</option>
+											<option value="1">Y</option>
+											<option value="0">N</option>
 										</select>
 									</div>
 									<div class="col-md-2">
 										<select class="form-select"
 											aria-label="Default select example">
-											<option selected>Y</option>
-											<option value="1">One</option>
-											<option value="2">Two</option>
-											<option value="3">Three</option>
-										</select>
-									</div>
-									<div class="col-md-2">
-										<select class="form-select"
-											aria-label="Default select example">
-											<option selected>수정일</option>
+											<option value="">수정일</option>
 											<option value="1">One</option>
 											<option value="2">Two</option>
 											<option value="3">Three</option>
@@ -519,19 +511,18 @@
 								</div>
 								<div class="row mb-3">
 									<div class="col-md-2">
-										<select class="form-select"
+										<select class="form-select" name="shOption"
 											aria-label="Default select example">
-											<option selected>검색구분</option>
-											<option value="1">One</option>
-											<option value="2">Two</option>
-											<option value="3">Three</option>
+											<option value="">검색구분</option>
+											<option value="1">코드그룹코드</option>
+											<option value="2">코드그룹이름</option>
 										</select>
 									</div>
 									<div class="col-md-2">
-										<input type="text" class="form-control" placeholder="검색어">
+										<input type="text" class="form-control" name="shValue" placeholder="검색어">
 									</div>
 									<div class="col-md-2">
-										<button type="button" class="btn btn-outline-dark">
+										<button type="submit" class="btn btn-outline-dark">
 											<i class="bi bi-search"></i>
 										</button>
 										<button type="button" class="btn btn-outline-dark">
@@ -539,110 +530,109 @@
 										</button>
 									</div>
 								</div>
-							</form>
-
-							<div class="row mb-3">
-								<div class="col-md-2">
-									<a>Total : 171</a>
-								</div>
-								<div class="col-md-8"></div>
-								<div class="col-md-2">
-									<select class="form-select" aria-label="Default select example">
-										<option selected>5</option>
-										<option value="1">10</option>
-										<option value="2">15</option>
-										<option value="3">20</option>
-									</select>
-								</div>
-
-								<!-- Table with stripped rows -->
-								<!-- Default Table -->
-								<table class="table">
-									<thead>
-										<tr>
-											<th><input class="form-check-input" type="checkbox"
-												id="gridCheck1"></th>
-											<th>No</th>
-											<th>코드그룹 번호</th>
-											<th>코드그룹 이름</th>
-											<th>사용</th>
-											<th>순서</th>
-											<th>개수</th>
-											<th>삭제 여부</th>
-											<th>등록일</th>
-											<th>수정일</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr th:if="${#lists.isEmpty(list)}">
-											<td colspan="10" align="center">no data!</td>
-										</tr>
-										<tr th:if="!${#lists.isEmpty(list)}" th:each="list : ${list}">
-											<td><input class="form-check-input" type="checkbox"
-												id="gridCheck1"></td>
-											<td></td>
-											<td th:text="${list.ifcgSeq}"></td>
-											<td><a
-												th:href="@{/xdm/v1/infra/codegroup/codeGroupXdmMfom(ifcgSeq=${list.ifcgSeq})}"
-												th:text="${list.ifcgName}"></a></td>
-											<td th:if="${list.ifcgUseNy eq 0}">N</td>
-											<td th:unless="${list.ifcgUseNy eq 0}">Y</td>
-											<td th:text="${list.ifcgOrder}"></td>
-											<td th:text="${list.xifcdSeqCount}"></td>
-											<td th:if="${list.ifcgDelNy eq 0}">N</td>
-											<td th:unless="${list.ifcgDelNy eq 0}">Y</td>
-											<td
-												th:text="${#dates.format(list?.ifcgRegist, 'yyyy-MM-dd HH:mm:ss')}"></td>
-											<td
-												th:text="${#dates.format(list?.ifcgEdit, 'yyyy-MM-dd HH:mm:ss')}"></td>
-										</tr>
-									</tbody>
-								</table>
-								<!-- End Table with stripped rows -->
-
-								<!--pagination start-->
-								<nav aria-label="Page navigation example">
-									<ul class="pagination justify-content-center">
-										<li class="page-item disabled"><a class="page-link"
-											href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-										</a></li>
-										<li class="page-item"><a class="page-link" href="#">1</a></li>
-										<li class="page-item"><a class="page-link" href="#">2</a></li>
-										<li class="page-item"><a class="page-link" href="#">3</a></li>
-										<li class="page-item"><a class="page-link" href="#"
-											aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-										</a></li>
-									</ul>
-								</nav>
-								<!--pagination end-->
 								<div class="row mb-3">
-									<div class="col-md-6">
-										<button type="button" class="btn btn-danger" id="btnDelete">
-											<i class="bi bi-x-lg icon_color_change"></i>
-										</button>
-										<button type="button" class="btn btn-danger" id="btnUelete"
-											data-bs-toggle="modal" data-bs-target="#verticalycentered">
-											<i class="bi bi-trash-fill icon_color_change"></i>
-										</button>
+									<div class="col-md-2">
+										<a>Total : 171</a>
 									</div>
-									<div class="col-md-6" align="Right">
-										<a href="#">
-											<button type="button" class="btn btn-success">
-												<i class="bi bi-file-earmark-x icon_color_change"></i>
-											</button>
-										</a> 
-										<a href="/xdm/v1/infra/codegroup/codeGroupXdmForm">
-											<button type="button" class="btn btn-primary">
-												<i class="bi bi-plus-lg icon_color_change"></i>
-											</button>
-										</a>
+									<div class="col-md-8"></div>
+									<div class="col-md-2">
+										<select class="form-select"
+											aria-label="Default select example">
+											<option selected>5</option>
+											<option value="1">10</option>
+											<option value="2">15</option>
+											<option value="3">20</option>
+										</select>
 									</div>
+
+									<!-- Table with stripped rows -->
+									<!-- Default Table -->
+									<table class="table">
+										<thead>
+											<tr>
+												<th><input class="form-check-input" type="checkbox"
+													id="gridCheck1"></th>
+												<th>No</th>
+												<th>코드그룹 번호</th>
+												<th>코드그룹 이름</th>
+												<th>사용</th>
+												<th>순서</th>
+												<th>개수</th>
+												<th>삭제 여부</th>
+												<th>등록일</th>
+												<th>수정일</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:if="${#lists.isEmpty(list)}">
+												<td colspan="10" align="center">no data!</td>
+											</tr>
+											<tr th:if="!${#lists.isEmpty(list)}" th:each="list : ${list}">
+												<td><input class="form-check-input" type="checkbox"
+													id="gridCheck1"></td>
+												<td></td>
+												<td th:text="${list.ifcgSeq}"></td>
+												<td><a
+													th:href="@{/xdm/v1/infra/codegroup/codeGroupXdmMfom(ifcgSeq=${list.ifcgSeq})}"
+													th:text="${list.ifcgName}"></a></td>
+												<td th:if="${list.ifcgUseNy eq 0}">N</td>
+												<td th:unless="${list.ifcgUseNy eq 0}">Y</td>
+												<td th:text="${list.ifcgOrder}"></td>
+												<td th:text="${list.xifcdSeqCount}"></td>
+												<td th:if="${list.ifcgDelNy eq 0}">N</td>
+												<td th:unless="${list.ifcgDelNy eq 0}">Y</td>
+												<td
+													th:text="${#dates.format(list?.ifcgRegist, 'yyyy-MM-dd HH:mm:ss')}"></td>
+												<td
+													th:text="${#dates.format(list?.ifcgEdit, 'yyyy-MM-dd HH:mm:ss')}"></td>
+											</tr>
+										</tbody>
+									</table>
+									<!-- End Table with stripped rows -->
+
+									<!--pagination start-->
+									<nav aria-label="Page navigation example">
+										<ul class="pagination justify-content-center">
+											<li class="page-item disabled"><a class="page-link"
+												href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+											</a></li>
+											<li class="page-item"><a class="page-link" href="#">1</a></li>
+											<li class="page-item"><a class="page-link" href="#">2</a></li>
+											<li class="page-item"><a class="page-link" href="#">3</a></li>
+											<li class="page-item"><a class="page-link" href="#"
+												aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+											</a></li>
+										</ul>
+									</nav>
+							</form>
+							<!--pagination end-->
+							<div class="row mb-3">
+								<div class="col-md-6">
+									<button type="button" class="btn btn-danger" id="btnDelete">
+										<i class="bi bi-x-lg icon_color_change"></i>
+									</button>
+									<button type="button" class="btn btn-danger" id="btnUelete"
+										data-bs-toggle="modal" data-bs-target="#verticalycentered">
+										<i class="bi bi-trash-fill icon_color_change"></i>
+									</button>
+								</div>
+								<div class="col-md-6" align="Right">
+									<a href="#">
+										<button type="button" class="btn btn-success">
+											<i class="bi bi-file-earmark-x icon_color_change"></i>
+										</button>
+									</a> <a href="/xdm/v1/infra/codegroup/codeGroupXdmForm">
+										<button type="button" class="btn btn-primary">
+											<i class="bi bi-plus-lg icon_color_change"></i>
+										</button>
+									</a>
 								</div>
 							</div>
 						</div>
-
 					</div>
+
 				</div>
+			</div>
 		</section>
 
 	</main>
@@ -683,7 +673,7 @@
 
 	<script>
 		// uelete
-		document.getElementById("btnUelete").onclick = function(){
+		document.getElementById("btnUelete").onclick = function() {
 			alert("UELETE 확인");
 			// name이 form인 것을 불러와서 저장
 			let form = document.querySelector("form[name=form]");
@@ -692,14 +682,14 @@
 			// 전송버튼과 동일
 			form.submit();
 		}
-		
+
 		// delete
 		document.getElementById("btnDelete").onclick = function() {
-			 alert("DELETE 확인");
-			 let form = document.querySelector("form[name=form]");
-			 form.action = "/xdm/v1/infra/codegroup/codeGroupXdmDel";
-			 form.submit();
-		 }
+			alert("DELETE 확인");
+			let form = document.querySelector("form[name=form]");
+			form.action = "/xdm/v1/infra/codegroup/codeGroupXdmDel";
+			form.submit();
+		}
 	</script>
 </body>
 
