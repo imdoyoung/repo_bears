@@ -1,0 +1,301 @@
+2024-09-20T10:41:18.599 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-20T10:41:18.613 [Thread-7] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-20T10:41:18.902 [restartedMain] INFO c.b.BearsApplication - Starting BearsApplication using Java 17.0.11 with PID 9420 (C:\factory\ws_sts4_4240\repo_bears\bears\bin\main started by user in C:\factory\ws_sts4_4240\repo_bears\bears) 
+2024-09-20T10:41:18.906 [restartedMain] INFO c.b.BearsApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-20T10:41:19.077 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-20T10:41:19.077 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-20T10:41:19.077 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-20T10:41:19.077 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-20T10:41:19.087 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-20T10:41:19.087 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 180 ms 
+2024-09-20T10:41:19.222 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-20T10:41:19.227 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-20T10:41:19.229 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-20T10:41:19.236 [restartedMain] INFO c.b.BearsApplication - Started BearsApplication in 0.373 seconds (process running for 4710.973) 
+2024-09-20T10:41:19.238 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-20T10:41:20.733 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-20T10:41:20.735 [Thread-11] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-20T10:41:20.859 [restartedMain] INFO c.b.BearsApplication - Starting BearsApplication using Java 17.0.11 with PID 9420 (C:\factory\ws_sts4_4240\repo_bears\bears\bin\main started by user in C:\factory\ws_sts4_4240\repo_bears\bears) 
+2024-09-20T10:41:20.860 [restartedMain] INFO c.b.BearsApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-20T10:41:21.008 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-20T10:41:21.009 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-20T10:41:21.009 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-20T10:41:21.009 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-20T10:41:21.021 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-20T10:41:21.021 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 159 ms 
+2024-09-20T10:41:21.141 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-20T10:41:21.146 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-20T10:41:21.149 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-20T10:41:21.156 [restartedMain] INFO c.b.BearsApplication - Started BearsApplication in 0.316 seconds (process running for 4712.894) 
+2024-09-20T10:41:21.157 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2024-09-20T10:41:25.236 [http-nio-8080-exec-2] INFO o.a.c.c.C.[.[.[/] - Initializing Spring DispatcherServlet 'dispatcherServlet' 
+2024-09-20T10:41:25.236 [http-nio-8080-exec-2] INFO o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet' 
+2024-09-20T10:41:25.237 [http-nio-8080-exec-2] INFO o.s.w.s.DispatcherServlet - Completed initialization in 1 ms 
+2024-09-20T10:41:25.239 [http-nio-8080-exec-2] INFO c.z.h.HikariDataSource - HikariPool-2 - Starting... 
+2024-09-20T10:41:25.255 [http-nio-8080-exec-2] INFO c.z.h.p.HikariPool - HikariPool-2 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@5705c97b 
+2024-09-20T10:41:25.255 [http-nio-8080-exec-2] INFO c.z.h.HikariDataSource - HikariPool-2 - Start completed. 
+2024-09-20T10:41:25.256 [http-nio-8080-exec-2] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+				a.usrSeq,
+				a.usrXdmNy,
+				a.usrName,
+				a.usrId,
+				a.usrPw,
+				a.usrGender,
+				a.usrBirth,
+				a.usrEmail,
+				a.usrPhone,
+				a.usrGrade,
+				a.usrRegDate,
+				a.usrEditdate,
+				a.usrTosNy,
+				a.usrMktNy,
+				a.usrDelNy
+			FROM
+				bears.B_user a
+			WHERE 1 = 1
+				AND a.usrSeq = 1
+ {executed in 1 msec} 
+2024-09-20T10:41:30.098 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+				a.usrSeq,
+				a.usrXdmNy,
+				a.usrName,
+				a.usrId,
+				a.usrPw,
+				a.usrGender,
+				a.usrBirth,
+				a.usrEmail,
+				a.usrPhone,
+				a.usrGrade,
+				a.usrRegDate,
+				a.usrEditdate,
+				a.usrTosNy,
+				a.usrMktNy,
+				a.usrDelNy
+			FROM
+				bears.B_user a
+			ORDER BY
+				a.usrSeq DESC
+ {executed in 1 msec} 
+2024-09-20T10:41:34.214 [http-nio-8080-exec-9] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+				a.usrSeq,
+				a.usrXdmNy,
+				a.usrName,
+				a.usrId,
+				a.usrPw,
+				a.usrGender,
+				a.usrBirth,
+				a.usrEmail,
+				a.usrPhone,
+				a.usrGrade,
+				a.usrRegDate,
+				a.usrEditdate,
+				a.usrTosNy,
+				a.usrMktNy,
+				a.usrDelNy
+			FROM
+				bears.B_user a
+			WHERE 1 = 1
+				AND a.usrSeq = 1
+ {executed in 0 msec} 
+2024-09-20T10:41:36.125 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. UPDATE bears.B_user
+			SET
+				usrXdmNy = 1,
+				usrName = '임도영',
+				usrId =  'doyoung0908',
+				usrPw = 'doyoung0908!@',
+				usrGender = 2,
+				usrBirth = '09/08/2000 00:00:00.000',
+				usrEmail = 'bear2008@naver.com',
+				usrPhone = '010-1111-2222',
+				usrGrade = 3,
+				usrTosNy = 1,
+				usrMktNy = 1,
+				usrDelNy = 0
+			WHERE 1 = 1
+				AND usrSeq = 1
+ {executed in 0 msec} 
+2024-09-20T10:41:36.141 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+				a.usrSeq,
+				a.usrXdmNy,
+				a.usrName,
+				a.usrId,
+				a.usrPw,
+				a.usrGender,
+				a.usrBirth,
+				a.usrEmail,
+				a.usrPhone,
+				a.usrGrade,
+				a.usrRegDate,
+				a.usrEditdate,
+				a.usrTosNy,
+				a.usrMktNy,
+				a.usrDelNy
+			FROM
+				bears.B_user a
+			ORDER BY
+				a.usrSeq DESC
+ {executed in 0 msec} 
+2024-09-20T10:45:37.910 [http-nio-8080-exec-8] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+				a.usrSeq,
+				a.usrXdmNy,
+				a.usrName,
+				a.usrId,
+				a.usrPw,
+				a.usrGender,
+				a.usrBirth,
+				a.usrEmail,
+				a.usrPhone,
+				a.usrGrade,
+				a.usrRegDate,
+				a.usrEditdate,
+				a.usrTosNy,
+				a.usrMktNy,
+				a.usrDelNy
+			FROM
+				bears.B_user a
+			ORDER BY
+				a.usrSeq DESC
+ {executed in 1 msec} 
+2024-09-20T10:45:47.480 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. INSERT INTO B_user(
+				usrXdmNy,
+				usrName,
+				usrId,
+				usrPw,
+				usrGender,
+				usrBirth,
+				usrEmail,
+				usrPhone,
+				usrGrade,
+				usrRegDate,
+				usrEditdate,
+				usrTosNy,
+				usrMktNy,
+				usrDelNy
+			) VALUES (
+			    NULL,
+			    '테스트',
+			    '',
+			    '',
+			    NULL,
+			    NULL,
+			    '',
+			    '',
+			    NULL,
+			    now(),
+			    now(),
+			    NULL,
+			    NULL,
+			    NULL
+			)
+ {executed in 0 msec} 
+2024-09-20T10:45:47.490 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+				a.usrSeq,
+				a.usrXdmNy,
+				a.usrName,
+				a.usrId,
+				a.usrPw,
+				a.usrGender,
+				a.usrBirth,
+				a.usrEmail,
+				a.usrPhone,
+				a.usrGrade,
+				a.usrRegDate,
+				a.usrEditdate,
+				a.usrTosNy,
+				a.usrMktNy,
+				a.usrDelNy
+			FROM
+				bears.B_user a
+			ORDER BY
+				a.usrSeq DESC
+ {executed in 0 msec} 
+2024-09-20T10:49:27.371 [http-nio-8080-exec-6] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+			b.ifcdSeq,
+			b.ifcdName,
+			b.ifcdUseNy,
+			b.ifcdOrder,
+			b.ifcdDesc,
+			b.ifcdDelNy,
+			b.ifcdRegist,
+			b.ifcdEdit,
+			b.B_codegroup_ifcgSeq,
+			a.ifcgName
+		FROM
+			bears.B_code AS b
+			JOIN B_codegroup AS a
+				ON a.ifcgSeq = b.B_codegroup_ifcgSeq
+		WHERE 1 = 1
+
+		ORDER BY
+			b.ifcdSeq DESC
+ {executed in 8 msec} 
+2024-09-20T10:49:29.137 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+			a.ifcgSeq,
+			a.ifcgName
+		FROM
+			B_codegroup a
+		WHERE 1 = 1
+			AND a.ifcgDelNy = 0
+		ORDER BY
+			a.ifcgOrder DESC
+ {executed in 3 msec} 
+2024-09-20T10:49:29.137 [http-nio-8080-exec-1] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+			a.ifcgSeq,
+			a.ifcgName
+		FROM
+			B_codegroup a
+		WHERE 1 = 1
+			AND a.ifcgDelNy = 0
+		ORDER BY
+			a.ifcgOrder DESC
+ {executed in 0 msec} 
+2024-09-20T10:49:43.280 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+			a.ifcgSeq,
+			a.ifcgName
+		FROM
+			B_codegroup a
+		WHERE 1 = 1
+			AND a.ifcgDelNy = 0
+		ORDER BY
+			a.ifcgOrder DESC
+ {executed in 5 msec} 
+2024-09-20T10:49:43.282 [http-nio-8080-exec-7] DEBUG j.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT
+			a.ifcgSeq,
+			a.ifcgName
+		FROM
+			B_codegroup a
+		WHERE 1 = 1
+			AND a.ifcgDelNy = 0
+		ORDER BY
+			a.ifcgOrder DESC
+ {executed in 0 msec} 
+2024-09-20T10:52:42.257 [File Watcher] INFO o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) 
+2024-09-20T10:52:42.259 [Thread-15] INFO o.a.c.h.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"] 
+2024-09-20T10:52:42.339 [Thread-15] INFO c.z.h.HikariDataSource - HikariPool-2 - Shutdown initiated... 
+2024-09-20T10:52:42.343 [Thread-15] INFO c.z.h.HikariDataSource - HikariPool-2 - Shutdown completed. 
+2024-09-20T10:52:42.400 [restartedMain] INFO c.b.BearsApplication - Starting BearsApplication using Java 17.0.11 with PID 9420 (C:\factory\ws_sts4_4240\repo_bears\bears\bin\main started by user in C:\factory\ws_sts4_4240\repo_bears\bears) 
+2024-09-20T10:52:42.400 [restartedMain] INFO c.b.BearsApplication - No active profile set, falling back to 1 default profile: "default" 
+2024-09-20T10:52:42.555 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+2024-09-20T10:52:42.556 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2024-09-20T10:52:42.556 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2024-09-20T10:52:42.556 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+2024-09-20T10:52:42.567 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2024-09-20T10:52:42.568 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 166 ms 
+2024-09-20T10:52:42.687 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2024-09-20T10:52:42.693 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2024-09-20T10:52:42.696 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+2024-09-20T10:52:42.702 [restartedMain] INFO c.b.BearsApplication - Started BearsApplication in 0.32 seconds (process running for 5394.44) 
+2024-09-20T10:52:42.704 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 

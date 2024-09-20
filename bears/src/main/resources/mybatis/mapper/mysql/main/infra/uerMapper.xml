@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.baseball.infra.user.UserDao">
+
+	<resultMap type="com.baseball.infra.user.UserDto" id="resultMapObj"></resultMap>
+	
+		<select id="usrSelectList" resultMap="resultMapObj">
+			SELECT
+				a.usrSeq,
+				a.usrXdmNy,
+				a.usrName,
+				a.usrId,
+				a.usrPw,
+				a.usrGender,
+				a.usrBirth,
+				a.usrEmail,
+				a.usrPhone,
+				a.usrGrade,
+				a.usrRegDate,
+				a.usrEditdate,
+				a.usrTosNy,
+				a.usrMktNy,
+				a.usrDelNy
+			FROM
+				bears.B_user a
+			WHERE 1 = 1
+				<if test="shDelNy != null and !shDelNy.equals('')">AND usrDelNy = #{shDelNy}</if>
+				<if test="shXdmNy != null and !shXdmNy.equals('')">AND usrXdmNy = #{shXdmNy}</if>
+				<if test="shTosNy != null and !shTosNy.equals('')">AND usrTosNy = #{shTosNy}</if>
+				<if test="shMktNy != null and !shMktNy.equals('')">AND usrMktNy = #{shMktNy}</if>
+				<choose>
+					<when test="shGrade == 0">AND usrGrade = 0</when>
+					<when test="shGrade == 1">AND usrGrade = 1</when>
+					<when test="shGrade == 2">AND usrGrade = 2</when>
+					<when test="shGrade == 3">AND usrGrade = 3</when>
+					<when test="shGrade == 4">AND usrGrade = 4</when>
+				</choose>
+				<choose>
+					<when test="shOption == 1">AND usrSeq = #{shValue}</when>
+					<when test="shOption == 2">AND usrName LIKE CONCAT('%',#{shValue},'%')</when>
+					<when test="shOption == 3">AND usrId LIKE CONCAT('%',#{shValue},'%')</when>
+					<when test="shOption == 4">AND usrGender LIKE CONCAT('%',#{shValue},'%')</when>
+					<when test="shOption == 5">AND usrBirth LIKE CONCAT('%',#{shValue},'%')</when>
+					<when test="shOption == 6">AND usrPhone LIKE CONCAT('%',#{shValue},'%')</when>
+				</choose>
+				<choose>
+					<when test="shDateOption == 1">AND usrRegDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
+					<when test="shDateOption == 1">AND usrEditdate BETWEEN #{shStartDate} AND #{shEndDate}</when>
+				</choose>
+			ORDER BY
+				a.usrSeq DESC
+		</select>
+		
+		<insert id="usrInsert">
+			INSERT INTO B_user(
+				usrXdmNy,
+				usrName,
+				usrId,
+				usrPw,
+				usrGender,
+				usrBirth,
+				usrEmail,
+				usrPhone,
+				usrGrade,
+				usrRegDate,
+				usrEditdate,
+				usrTosNy,
+				usrMktNy,
+				usrDelNy
+			) VALUES (
+			    #{usrXdmNy},
+			    #{usrName},
+			    #{usrId},
+			    #{usrPw},
+			    #{usrGender},
+			    #{usrBirth},
+			    #{usrEmail},
+			    #{usrPhone},
+			    #{usrGrade},
+			    now(),
+			    now(),
+			    #{usrTosNy},
+			    #{usrMktNy},
+			    0
+			)
+		</insert>
+		
+		<select id="usrSelectOne" resultMap="resultMapObj">
+			SELECT
+				a.usrSeq,
+				a.usrXdmNy,
+				a.usrName,
+				a.usrId,
+				a.usrPw,
+				a.usrGender,
+				a.usrBirth,
+				a.usrEmail,
+				a.usrPhone,
+				a.usrGrade,
+				a.usrRegDate,
+				a.usrEditdate,
+				a.usrTosNy,
+				a.usrMktNy,
+				a.usrDelNy
+			FROM
+				bears.B_user a
+			WHERE 1 = 1
+				AND a.usrSeq = #{usrSeq}
+		</select>
+		
+		<update id="usrUpdate">
+			UPDATE bears.B_user
+			SET
+				usrXdmNy = #{usrXdmNy},
+				usrName = #{usrName},
+				usrId =  #{usrId},
+				usrPw = #{usrPw},
+				usrGender = #{usrGender},
+				usrBirth = #{usrBirth},
+				usrEmail = #{usrEmail},
+				usrPhone = #{usrPhone},
+				usrGrade = #{usrGrade},
+				usrTosNy = #{usrTosNy},
+				usrMktNy = #{usrMktNy},
+				usrEditdate = now(),
+				usrDelNy = #{usrDelNy}
+			WHERE 1 = 1
+				AND usrSeq = #{usrSeq}
+		</update>
+		
+		<update id="usrUelete">
+			UPDATE bears.B_user
+			SET
+				usrDelNy = 1
+			WHERE 1 = 1
+				AND usrSeq = #{usrSeq}
+		</update>
+		
+		<delete id="usrDelete">
+			DELETE FROM bears.B_user
+			WHERE 1 = 1
+				AND usrSeq = #{usrSeq}
+		</delete>
+
+</mapper>

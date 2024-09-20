@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>Forms / Validation - NiceAdmin Bootstrap Template</title>
+<title>Tables / Data - NiceAdmin Bootstrap Template</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
 
@@ -45,6 +45,10 @@
 <!-- Template Main CSS File -->
 <link href="/xdm/v1/template/Lonely/assets/css/style.css"
 	rel="stylesheet">
+
+<!-- by developer -->
+<link rel="stylesheet"
+	href="/xdm/v1/css/datetimepicker/jquery.datetimepicker.min.css" />
 
 <!-- =======================================================
   * Template Name: NiceAdmin
@@ -92,8 +96,7 @@
 				<li class="nav-item dropdown"><a class="nav-link nav-icon"
 					href="#" data-bs-toggle="dropdown"> <i class="bi bi-bell"></i>
 						<span class="badge bg-primary badge-number">4</span>
-				</a>
-				<!-- End Notification Icon -->
+				</a> <!-- End Notification Icon -->
 
 					<ul
 						class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
@@ -155,16 +158,14 @@
 						<li class="dropdown-footer"><a href="#">Show all
 								notifications</a></li>
 
-					</ul>
-					<!-- End Notification Dropdown Items --></li>
+					</ul> <!-- End Notification Dropdown Items --></li>
 				<!-- End Notification Nav -->
 
 				<li class="nav-item dropdown"><a class="nav-link nav-icon"
 					href="#" data-bs-toggle="dropdown"> <i
 						class="bi bi-chat-left-text"></i> <span
 						class="badge bg-success badge-number">3</span>
-				</a>
-				<!-- End Messages Icon -->
+				</a> <!-- End Messages Icon -->
 
 					<ul
 						class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
@@ -221,8 +222,7 @@
 						<li class="dropdown-footer"><a href="#">Show all messages</a>
 						</li>
 
-					</ul>
-					<!-- End Messages Dropdown Items --></li>
+					</ul> <!-- End Messages Dropdown Items --></li>
 				<!-- End Messages Nav -->
 
 				<li class="nav-item dropdown pe-3"><a
@@ -231,8 +231,7 @@
 						src="/xdm/v1/template/Lonely/assets/img/kkomi.jpg" alt="Profile"
 						class="rounded-circle"> <span
 						class="d-none d-md-block dropdown-toggle ps-2">YOUNGII</span>
-				</a>
-				<!-- End Profile Iamge Icon -->
+				</a> <!-- End Profile Iamge Icon -->
 
 					<ul
 						class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -272,8 +271,7 @@
 									Out</span>
 						</a></li>
 
-					</ul>
-					<!-- End Profile Dropdown Items --></li>
+					</ul> <!-- End Profile Dropdown Items --></li>
 				<!-- End Profile Nav -->
 
 			</ul>
@@ -345,12 +343,12 @@
 				</ul></li>
 			<!-- End Components Nav -->
 
-			<li class="nav-item"><a class="nav-link "
+			<li class="nav-item"><a class="nav-link collapsed"
 				data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
 					<i class="bi bi-journal-text"></i><span>Forms</span><i
 					class="bi bi-chevron-down ms-auto"></i>
 			</a>
-				<ul id="forms-nav" class="nav-content collapse show"
+				<ul id="forms-nav" class="nav-content collapse "
 					data-bs-parent="#sidebar-nav">
 					<li><a href="forms-elements.html"> <i class="bi bi-circle"></i><span>Form
 								Elements</span>
@@ -361,24 +359,24 @@
 					<li><a href="forms-editors.html"> <i class="bi bi-circle"></i><span>Form
 								Editors</span>
 					</a></li>
-					<li><a href="forms-validation.html" class="active"> <i
+					<li><a href="forms-validation.html"> <i
 							class="bi bi-circle"></i><span>Form Validation</span>
 					</a></li>
 				</ul></li>
 			<!-- End Forms Nav -->
 
-			<li class="nav-item"><a class="nav-link collapsed"
+			<li class="nav-item"><a class="nav-link "
 				data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
 					<i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i
 					class="bi bi-chevron-down ms-auto"></i>
 			</a>
-				<ul id="tables-nav" class="nav-content collapse "
+				<ul id="tables-nav" class="nav-content collapse show"
 					data-bs-parent="#sidebar-nav">
 					<li><a href="tables-general.html"> <i class="bi bi-circle"></i><span>General
 								Tables</span>
 					</a></li>
-					<li><a href="tables-data.html"> <i class="bi bi-circle"></i><span>Data
-								Tables</span>
+					<li><a href="tables-data.html" class="active"> <i
+							class="bi bi-circle"></i><span>Data Tables</span>
 					</a></li>
 				</ul></li>
 			<!-- End Tables Nav -->
@@ -471,7 +469,7 @@
 					<li class="breadcrumb-item active">Default</li>
 				</ol>
 			</nav>
-			<h1>Code Group</h1>
+			<h1>USER</h1>
 		</div>
 		<!-- End Page Title -->
 
@@ -480,120 +478,220 @@
 				<div class="col-lg-12">
 					<div class="card">
 						<div class="card-body">
-							<h5 class="card-title">기본정보</h5>
+							<h1 class="card-title">회원정보</h1>
+							<form name="form" method="post"
+								action="/xdm/v1/infra/user/userXdmList">
+								<div class="row mb-3">
+									<div class="col-md-2">
+										<select class="form-select" name="shDelNy"
+											aria-label="Default select example">
+											<option value="">삭제 여부</option>
+											<option value="1">Y</option>
+											<option value="0">N</option>
+										</select>
+									</div>
+									<div class="col-md-2">
+										<select class="form-select" name="shXdmNy"
+											aria-label="Default select example">
+											<option value="">관리자 여부</option>
+											<option value="1">Y</option>
+											<option value="0">N</option>
+										</select>
+									</div>
+									<div class="col-md-2">
+										<select class="form-select" name="shTosNy"
+											aria-label="Default select example">
+											<option value="">약관동의 여부</option>
+											<option value="1">Y</option>
+											<option value="0">N</option>
+										</select>
+									</div>
+									<div class="col-md-2">
+										<select class="form-select" name="shMktNy"
+											aria-label="Default select example">
+											<option value="">마케팅동의 여부</option>
+											<option value="1">Y</option>
+											<option value="0">N</option>
+										</select>
+									</div>
+									<div class="col-md-2">
+										<select class="form-select" name="shGrade"
+											aria-label="Default select example">
+											<option value="">등급</option>
+											<option value="0">관리자</option>
+											<option value="1">씨앗</option>
+											<option value="2">새싹</option>
+											<option value="3">나무</option>
+											<option value="4">숲</option>
+										</select>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<div class="col-md-2">
+										<select class="form-select" name="shDateOption"
+											aria-label="Default select example">
+											<option value="">날짜 구분</option>
+											<option value="1">등록날짜</option>
+											<option value="2">수정날짜</option>
+										</select>
+									</div>
+									<div class="col-md-2">
+										<input type="text" class="form-control" id="shStartDate" name="shStartDate" autocomplete="off">
+									</div>
+									<div class="col-md-2">
+										<input type="text" class="form-control" id="shEndDate" name="shEndDate" autocomplete="off">
+									</div>
+									<div class="col-md-2">
+										<select class="form-select" name="shOption"
+										aria-label="Default select example">
+											<option value="">검색구분</option>
+											<option value="1">회원번호</option>
+											<option value="2">이름</option>
+											<option value="3">아이디</option>
+											<option value="4">성별</option>
+											<option value="5">생년월일</option>
+											<option value="6">전화번호</option>
+										</select>
+									</div>
+									<div class="col-md-2">
+										<input type="text" class="form-control" placeholder="검색어" name="shValue">
+									</div>
+									<div class="col-md-2">
+										<button type="submit" class="btn btn-outline-dark">
+											<i class="bi bi-search"></i>
+										</button>
+										<button type="reset" class="btn btn-outline-dark">
+											<i class="bi bi-arrow-clockwise"></i>
+										</button>
+									</div>
+								</div>
 
-							<!-- Custom Styled Validation -->
-							<form name="form" method="post" action="/xdm/v1/infra/codegroup/codeGroupXdmUpdt">
 								<div class="row mb-3">
-									<div class="col-md-3">
-										<label class="form-label">
-											코드그룹 번호
-											<a style="color: red;">*</a>
-										</label> 
-										<input type="text" class="form-control" name="ifcgSeq" th:value="${item?.ifcgSeq}"
-											placeholder="자동생성" style="background-color: #E9ECEF;" readonly>
+									<div class="col-md-2">
+										<a>Total : 171</a>
 									</div>
-									<div class="col-md-3">
-										<label class="form-label">
-											코드그룹 이름
-											<a style="color: red;">*</a>
-											</label> 
-											<input type="text" class="form-control" name="ifcgName" th:value="${item?.ifcgName}"
-											placeholder="코드그룹 이름">
-									</div>
-								</div>
-								<div class="row mb-3">
-									<div class="col-md-3">
-										<label class="form-label">
-											사용 여부
-											<a style="color: red;">*</a>
-										</label> 
-										<select class="form-select" name="ifcgUseNy">
-											<option selected disabled>사용 여부</option>
-											<option value="1" th:selected="${item?.ifcgUseNy == 1}">Y</option>
-											<option value="0" th:selected="${item?.ifcgUseNy == 0}">N</option>
+									<div class="col-md-8"></div>
+									<div class="col-md-2">
+										<select class="form-select"
+											aria-label="Default select example">
+											<option selected>5</option>
+											<option value="1">10</option>
+											<option value="2">15</option>
+											<option value="3">20</option>
 										</select>
 									</div>
-									<div class="col-md-3">
-										<label class="form-label">
-											순서
-											<a style="color: red;">*</a>
-										</label> 
-										<select class="form-select" name="ifcgOrder">
-											<option selected disabled>순서</option>
-											<option value="1" th:selected="${item?.ifcgOrder == 1}">1</option>
-											<option value="2" th:selected="${item?.ifcgOrder == 2}">2</option>
-											<option value="3" th:selected="${item?.ifcgOrder == 3}">3</option>
-											<option value="4" th:selected="${item?.ifcgOrder == 4}">4</option>
-											<option value="5" th:selected="${item?.ifcgOrder == 5}">5</option>
-											<option value="6" th:selected="${item?.ifcgOrder == 6}">6</option>
-											<option value="7" th:selected="${item?.ifcgOrder == 7}">7</option>
-											<option value="8" th:selected="${item?.ifcgOrder == 8}">8</option>
-											<option value="9" th:selected="${item?.ifcgOrder == 9}">9</option>
-											<option value="10" th:selected="${item?.ifcgOrder == 10}">10</option>
-										</select>
+
+									<!-- Table with stripped rows -->
+									<!-- Default Table -->
+									<div style="overflow-x: auto;">
+										<table class="table">
+											<thead>
+												<tr>
+													<th>
+														<input class="form-check-input" type="checkbox" id="gridCheck1">
+													</th>
+													<th>No</th>
+													<th>회원번호</th>
+													<th>관리자여부</th>
+													<th>이름</th>
+													<th>아이디</th>
+													<th>비밀번호</th>
+													<th>성별</th>
+													<th>생년월일</th>
+													<th>이메일</th>
+													<th>전화번호</th>
+													<th>등급</th>
+													<th>등록일</th>
+													<th>수정일</th>
+													<th>약관동의여부</th>
+													<th>마케팅동의여부</th>
+													<th>삭제여부</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:if="${#lists.isEmpty(usrList)}">
+													<td colspan="17" align="center">No Data!</td>
+												</tr>
+												<tr th:if="!${#lists.isEmpty(usrList)}"
+													th:each="list:${usrList}">
+													<td>
+														<input class="form-check-input" type="checkbox" id="gridCheck1">
+													</td>
+													<td></td>
+													<td th:text="${list.usrSeq}"></td>
+													<td th:if="${list.usrXdmNy eq 0}">N</td>
+													<td th:unless="${list.usrXdmNy eq 0}">Y</td>
+													<td>
+														<a th:href="@{/xdm/v1/infra/user/userXdmMfom(usrSeq=${list?.usrSeq})}" th:text="${list.usrName}"></a>
+													</td>
+													<td th:text="${list.usrId}"></td>
+													<td th:text="${list.usrPw}"></td>
+													<td th:if="${list.usrGender eq 1}">남자</td>
+													<td th:unless="${list.usrGender eq 1}">여자</td>
+													<td th:text="${#dates.format(list?.usrBirth, 'yyyy-MM-dd')}"></td>
+													<td th:text="${list.usrEmail}"></td>
+													<td th:text="${list.usrPhone}"></td>
+													<td th:text="${list.usrGrade}"></td>
+<!-- 													<td th:if="${list.usrGrade eq 1}">씨앗</td> -->
+<!-- 													<td th:if="${list.usrGrade eq 2}">새싹</td> -->
+<!-- 													<td th:if="${list.usrGrade eq 3}">나무</td> -->
+<!-- 													<td th:if="${list.usrGrade eq 4}">숲</td> -->
+													<td th:text="${#dates.format(list?.usrRegDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+													<td th:text="${#dates.format(list?.usrEditdate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+													<td th:if="${list.usrTosNy eq 0}">N</td>
+													<td th:unless="${list.usrTosNy eq 0}">Y</td>
+													<td th:if="${list.usrMktNy eq 0}">N</td>
+													<td th:unless="${list.usrMktNy eq 0}">Y</td>
+													<td th:if="${list.usrDelNy eq 0}">N</td>
+													<td th:unless="${list.usrDelNy eq 0}">Y</td>
+												</tr>
+											</tbody>
+										</table>
 									</div>
-								</div>
-								<div class="row mb-3">
-									<div class="col-md-6">
-										<label class="form-label">설명</label>
-										<textarea class="form-control" name="ifcgDesc" th:text="${item?.ifcgDesc}"
-											 style="height: 100px">
-										</textarea>
-									</div>
-								</div>
-								<div class="row mb-3">
-									<div class="col-md-3">
-										<label class="form-label">
-											삭제 여부
-											<a style="color: red;">*</a>
-										</label>
-										<select class="form-select" name="ifcgDelNy" disabled>
-											<option value="0" th:selected="${item?.ifcgDelNy == 0}">N</option>
-											<option value="1" th:selected="${item?.ifcgDelNy == 1}">Y</option>
-										</select>
-									</div>
-									<div class="col-md-3">
-										<label class="form-label">
-											등록날짜
-											<a style="color: red;">*</a>
-										</label>
-										<input type="datetime" class="form-control" name="ifcgRegist" 
-											 th:value="${#dates.format(item?.ifcgRegist, 'yyyy-MM-dd HH:mm:ss')}" disabled>
-									</div>
-									<div class="col-md-3">
-										<label class="form-label">
-											수정날짜
-										</label>
-										<input type="datetime" class="form-control" name="ifcgEdit"
-											 th:value="${#dates.format(item?.ifcgEdit, 'yyyy-MM-dd HH:mm:ss')}" disabled>
-									</div>
-								</div>
-								<div class="row mb-3">
-									<div class="col-md-4">
-										<a href="/xdm/v1/infra/codegroup/codeGroupXdmList"> 
-											<button type="button" class="btn btn-outline-dark" id="btnList">
-												<i class="bi bi-list-ul"></i>
-											</button>
-										</a>
-										<button type="button" class="btn btn-danger" id="btnDelete">
-											<i class="bi bi-x-lg icon_color_change"></i>
-										</button>
-										<button type="button" class="btn btn-danger" id="btnUelete"
-											data-bs-toggle="modal" data-bs-target="#verticalycentered">
-											<i class="bi bi-trash-fill icon_color_change"></i>
-										</button>
-									</div>
-									<div class="col-md-8" align="Right">
-										<button type="submit" class="btn btn-primary">
-											<i class="bi bi-server"></i>
-										</button>
-									</div>
-								</div>
+									<!-- End Table with stripped rows -->
+
+									<!--pagination start-->
+									<nav aria-label="Page navigation example">
+										<ul class="pagination justify-content-center">
+											<li class="page-item disabled"><a class="page-link"
+												href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+											</a></li>
+											<li class="page-item"><a class="page-link" href="#">1</a></li>
+											<li class="page-item"><a class="page-link" href="#">2</a></li>
+											<li class="page-item"><a class="page-link" href="#">3</a></li>
+											<li class="page-item"><a class="page-link" href="#"
+												aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+											</a></li>
+										</ul>
+									</nav>
 							</form>
-							<!-- End Custom Styled Validation -->
+							<!--pagination end-->
+							<div class="row mb-3">
+								<div class="col-md-6">
+									<button type="button" class="btn btn-danger">
+										<a href="#"> <i class="bi bi-x-lg icon_color_change"></i>
+										</a>
+									</button>
+									<button type="button" class="btn btn-danger">
+										<a href="#"> <i class="bi bi-trash-fill icon_color_change"></i>
+										</a>
+									</button>
+								</div>
+								<div class="col-md-6" align="Right">
+									<a href="#">
+										<button type="button" class="btn btn-success">
+											<i class="bi bi-file-earmark-x icon_color_change"></i>
+										</button>
+									</a> <a href="/xdm/v1/infra/user/userXdmForm">
+										<button type="button" class="btn btn-primary">
+											<i class="bi bi-plus-lg icon_color_change"></i>
+										</button>
+									</a>
+								</div>
+							</div>
 						</div>
 					</div>
+
 				</div>
 			</div>
 		</section>
@@ -604,15 +702,8 @@
 	<!-- ======= Footer ======= -->
 	<footer id="footer" class="footer">
 		<div class="copyright">
-			&copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights
+			&copy; Copyright <strong><span>ImDoyoung</span></strong>. All Rights
 			Reserved
-		</div>
-		<div class="credits">
-			<!-- All the links in the footer should remain intact. -->
-			<!-- You can delete the links only if you purchased the pro version. -->
-			<!-- Licensing information: https://bootstrapmade.com/license/ -->
-			<!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-			Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
 		</div>
 	</footer>
 	<!-- End Footer -->
@@ -635,34 +726,28 @@
 		src="/xdm/v1/template/Lonely/assets/vendor/simple-datatables/simple-datatables.js"></script>
 	<script
 		src="/xdm/v1/template/Lonely/assets/vendor/tinymce/tinymce.min.js"></script>
-<!-- 	<script -->
-<!-- 		src="/xdm/v1/template/Lonely/assets/vendor/php-email-form/validate.js"></script> -->
+	<script
+		src="/xdm/v1/template/Lonely/assets/vendor/php-email-form/validate.js"></script>
 
 	<!-- Template Main JS File -->
 	<script src="/xdm/v1/template/Lonely/assets/js/main.js"></script>
 
+	<!-- by developer -->
+	<script src="/xdm/v1/jquery/jquery-3.7.1.min.js"></script>
+	<script
+		src="/xdm/v1/js/datetimepicker/jquery.datetimepicker.full.min.js"></script>
+
 	<script>
-		// uelete
-		document.getElementById("btnUelete").onclick = function(){
-			alert("UELETE 확인");
-			// name이 form인 것을 불러와서 저장
-			let form = document.querySelector("form[name=form]");
-			// 데이터가 전송될 주소
-			form.action = "/xdm/v1/infra/codegroup/codeGroupXdmUelete";
-			// 전송버튼과 동일
-			form.submit();
-		}
-		
-		// delete
-		document.getElementById("btnDelete").onclick = function() {
-			 alert("DELETE 확인");
-			 let form = document.querySelector("form[name=form]");
-			 form.action = "/xdm/v1/infra/codegroup/codeGroupXdmDel";
-			 form.submit();
-		 }
+		window.addEventListener('load', function() {
+
+			$.datetimepicker.setLocale('ko');
+
+			$("#shStartDate, #shEndDate").datetimepicker({
+				timepicker : false,
+				format : 'Y-m-d'
+			});
+		});
 	</script>
-
 </body>
-
 
 </html>
