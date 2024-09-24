@@ -48,7 +48,8 @@
 
 
 <!-- by developer -->
-<link rel="stylesheet" href="/xdm/v1/css/datetimepicker/jquery.datetimepicker.min.css" />
+<link rel="stylesheet"
+	href="/xdm/v1/css/datetimepicker/jquery.datetimepicker.min.css" />
 
 <!-- =======================================================
   * Template Name: NiceAdmin
@@ -479,8 +480,9 @@
 					<div class="card">
 						<div class="card-body">
 							<h1 class="card-title">Code</h1>
-							<form name="form" method="post"
-								action="/xdm/v1/infra/code/codeXdmList">
+							<form name="form" method="post" action="/xdm/v1/infra/code/codeXdmList">
+								<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1" /> 
+								<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}" />
 								<div class="row mb-3">
 									<div class="col-md-2">
 										<select class="form-select" name="shcdDelNy"
@@ -507,10 +509,12 @@
 										</select>
 									</div>
 									<div class="col-md-2">
-										<input type="text" class="form-control" name="shcdDateStart" id="shcdDateStart" autocomplete="off">
+										<input type="text" class="form-control" name="shcdDateStart"
+											id="shcdDateStart" autocomplete="off">
 									</div>
 									<div class="col-md-2">
-										<input type="text" class="form-control" name="shcdDateEnd" id="shcdDateEnd" autocomplete="off">
+										<input type="text" class="form-control" name="shcdDateEnd"
+											id="shcdDateEnd" autocomplete="off">
 									</div>
 								</div>
 								<div class="row mb-3">
@@ -541,16 +545,18 @@
 
 								<div class="row mb-3">
 									<div class="col-md-2">
-										<a>Total : 171</a>
+										<a th:text="'Total: ' + ${vo.totalRows}"></a>
 									</div>
 									<div class="col-md-8"></div>
 									<div class="col-md-2">
 										<select class="form-select"
 											aria-label="Default select example">
-											<option selected>5</option>
-											<option value="1">10</option>
-											<option value="2">15</option>
-											<option value="3">20</option>
+											<option value="5" th:selected="${vo.rowNumToShow eq 5}">5</option>
+											<option value="10" th:selected="${vo.rowNumToShow eq 10}">10</option>
+											<option value="30" th:selected="${vo.rowNumToShow eq 30}">30</option>
+											<option value="50" th:selected="${vo.rowNumToShow eq 50}">50</option>
+											<option value="80" th:selected="${vo.rowNumToShow eq 80}">80</option>
+											<option value="100" th:selected="${vo.rowNumToShow eq 100}">100</option>
 										</select>
 									</div>
 
@@ -604,19 +610,25 @@
 									<!--pagination start-->
 									<nav aria-label="Page navigation example">
 										<ul class="pagination justify-content-center">
-											<li class="page-item disabled"><a class="page-link"
-												href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-											</a></li>
-											<li class="page-item"><a class="page-link" href="#">1</a></li>
-											<li class="page-item"><a class="page-link" href="#">2</a></li>
-											<li class="page-item"><a class="page-link" href="#">3</a></li>
-											<li class="page-item"><a class="page-link" href="#"
-												aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-											</a></li>
+											<li class="page-item disabled" th:if="${vo.startPage gt vo.pageNumToShow}" style="cursor: pointer;">
+												<a class="page-link" aria-label="Previous" href="javascript:goList(${vo.startPage - 1})"
+													th:attr="onclick=|goList('${vo.startPage - 1}')|"> 
+													<span aria-hidden="true">&laquo;</span>
+												</a>
+											</li>
+											<li class="page-item" th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}"
+												th:classappend="${num eq vo.thisPage} ? active : ''" style="cursor: pointer;">
+												<a class="page-link" th:attr="onclick=|goList('${num}')|" th:text="${num}"></a>
+											</li>
+											<li class="page-item" th:if="${vo.endPage ne vo.totalPages}" style="cursor: pointer;">
+												<a class="page-link" aria-label="Next" th:attr="onclick=|goList('${vo.endPage + 1}')|"> 
+													<span aria-hidden="true">&raquo;</span>
+												</a>
+											</li>
 										</ul>
 									</nav>
+									<!--pagination end-->
 							</form>
-							<!--pagination end-->
 							<div class="row mb-3">
 								<div class="col-md-6">
 									<a href="#">
@@ -683,29 +695,29 @@
 
 	<!-- Template Main JS File -->
 	<script src="/xdm/v1/template/Lonely/assets/js/main.js"></script>
-	
-	
-	
+
+
+
 	<!-- by developer -->
 	<script src="/xdm/v1/jquery/jquery-3.7.1.min.js"></script>
-	<script src="/xdm/v1/js/datetimepicker/jquery.datetimepicker.full.min.js"></script>
+	<script
+		src="/xdm/v1/js/datetimepicker/jquery.datetimepicker.full.min.js"></script>
 
 
 
 
 
 	<script type="text/javascript">
-		window.addEventListener('load', function(){
-		
+		window.addEventListener('load', function() {
+
 			$.datetimepicker.setLocale('ko'); // 한국어를 쓰겠다는 뜻이다.
-		
+
 			$("#shcdDateStart, #shcdDateEnd").datetimepicker({
-				timepicker:false,
-				format:'Y-m-d'
+				timepicker : false,
+				format : 'Y-m-d'
 			});
 		});
-	
-	
+
 		// uelete
 		document.getElementById("btnUelete").onclick = function() {
 			alert("UELETE 확인");
@@ -723,6 +735,13 @@
 			let form = document.querySelector("form[name=form]");
 			form.action = "/xdm/v1/infra/code/codeXdmDel";
 			form.submit();
+		}
+
+		// paging
+		goList = function(thisPage) {
+			document.querySelector("input[name=thisPage]").value = thisPage;
+			document.querySelector("form[name=form]").action = "/xdm/v1/infra/code/codeXdmList";
+			document.querySelector("form[name=form]").submit();
 		}
 	</script>
 </body>

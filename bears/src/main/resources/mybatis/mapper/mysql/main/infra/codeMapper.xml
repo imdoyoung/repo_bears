@@ -3,22 +3,9 @@
 
 <mapper namespace="com.baseball.infra.code.CodeDao">
 
-	<resultMap type="com.baseball.infra.code.CodeDto"
-		id="resultMapObj"></resultMap>
-
-	<!-- 데이터 여러개 출력(List) -->
-	<select id="selectList" resultMap="resultMapObj">
-		SELECT
-			b.ifcdSeq,
-			b.ifcdName,
-			b.ifcdUseNy,
-			b.ifcdOrder,
-			b.ifcdDesc,
-			b.ifcdDelNy,
-			b.ifcdRegist,
-			b.ifcdEdit,
-			b.B_codegroup_ifcgSeq,
-			a.ifcgName
+	<resultMap type="com.baseball.infra.code.CodeDto" id="resultMapObj"></resultMap>
+	
+	<sql id="selectCommon">
 		FROM
 			bears.B_code AS b
 			JOIN B_codegroup AS a
@@ -36,8 +23,31 @@
 				<when test="shcdOption == 3">AND ifcgSeq = #{shcdValue}</when>
 				<when test="shcdOption == 4">AND ifcgName LIKE CONCAT('%',#{shcdValue},'%')</when>
 			</choose>
-		ORDER BY
-			b.ifcdSeq DESC
+	</sql>
+	
+	<select id="selectOneCount">
+		SELECT COUNT(*)
+		<include refid="selectCommon"/>
+	</select>
+		
+	<!-- 데이터 여러개 출력(List) -->
+	<select id="selectList" resultMap="resultMapObj">
+		SELECT aa.* FROM(
+			SELECT
+				b.ifcdSeq,
+				b.ifcdName,
+				b.ifcdUseNy,
+				b.ifcdOrder,
+				b.ifcdDesc,
+				b.ifcdDelNy,
+				b.ifcdRegist,
+				b.ifcdEdit,
+				b.B_codegroup_ifcgSeq,
+				a.ifcgName
+				<include refid="selectCommon"></include>
+			ORDER BY
+				b.ifcdSeq DESC
+		) aa limit #{rowNumToShow} offset #{startRnumForMySql}
 	</select>
 
 	<!-- code에 codegroup 연결 -->

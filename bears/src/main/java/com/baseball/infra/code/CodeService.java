@@ -47,4 +47,9 @@ public class CodeService {
 	public int delet(CodeDto codeDto) {
 		return codeDao.delete(codeDto);
 	}
+	
+	// paging
+	public int selectOneCount(CodeVo codeVo) {
+		return codeDao.selectOneCount(codeVo);
+	}
 }

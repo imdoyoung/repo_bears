@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.baseball.infra.codegroup.CodeGroupDto;
@@ -25,7 +26,12 @@ public class CodeController {
 		codeVo.setShcdDateStart(codeVo.getShcdDateStart() + " 00:00:00");
 		codeVo.setShcdDateEnd(codeVo.getShcdDateEnd() + " 23:59:59");
 		
-		model.addAttribute("list", codeService.selectList(codeVo));
+		codeVo.setParamsPaging(codeService.selectOneCount(codeVo));
+		if(codeVo.getTotalRows() > 0) {
+			model.addAttribute("list", codeService.selectList(codeVo));
+			model.addAttribute("vo", codeVo);
+		}
+		
 		return "/xdm/v1/infra/code/codeXdmList";
 	}
 
