@@ -66,4 +66,9 @@ public class CodeGroupService {
 		return codeGroupDao.delete(codeGroupDto);
 	}
 	
+	// paging
+	public int selectOneCount(CodeGroupVo codeGroupVo) {
+		return codeGroupDao.selectOneCount(codeGroupVo);
+	}
+	
 }

@@ -5,18 +5,8 @@
 
 	  <resultMap type="com.baseball.infra.codegroup.CodeGroupDto" id="resultMapObj"></resultMap>
 	  
-	  <select id="selectList" resultMap="resultMapObj">
-	  		SELECT
-				a.ifcgSeq,
-				a.ifcgName,
-				a.ifcgUseNy,
-				a.ifcgOrder,
-				a.ifcgDesc,
-			    a.ifcgDelNy,
-			    a.ifcgRegist,
-			    a.ifcgEdit,
-			    (SELECT count(ifcdSeq) FROM B_code AS b WHERE 1 = 1 AND b.B_codegroup_ifcgSeq = a.ifcgSeq) AS xifcdSeqCount
-			FROM 
+	  <sql id="selectCommon">
+	  		FROM 
 				bears.B_codegroup a
 			WHERE 1 = 1
 				<!-- 삭제 여부 -->
@@ -33,8 +23,30 @@
 					<when test="shOption == 1">AND ifcgSeq = #{shValue}</when>
 					<when test="shOption == 2">AND ifcgName LIKE CONCAT('%',#{shValue},'%')</when>
 				</choose>
-			ORDER BY
-				a.ifcgSeq desc
+	  </sql>
+	  
+	  <select id="selectOneCount">
+	  		SELECT COUNT(*)
+	  		<include refid="selectCommon"/>
+	  </select>
+	  
+	  <select id="selectList" resultMap="resultMapObj">
+	  		SELECT aa.* FROM(
+		  		SELECT
+					a.ifcgSeq,
+					a.ifcgName,
+					a.ifcgUseNy,
+					a.ifcgOrder,
+					a.ifcgDesc,
+				    a.ifcgDelNy,
+				    a.ifcgRegist,
+				    a.ifcgEdit,
+				    (SELECT count(ifcdSeq) FROM B_code AS b WHERE 1 = 1 AND b.B_codegroup_ifcgSeq = a.ifcgSeq) AS xifcdSeqCount
+					<include refid="selectCommon"/>
+					ORDER BY
+						a.ifcgSeq desc
+				) aa limit #{rowNumToShow} offset #{startRnumForMySql}
+					
 	  </select>
 	  
 	  <insert id="insert">

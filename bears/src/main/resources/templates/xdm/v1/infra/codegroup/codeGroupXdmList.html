@@ -45,11 +45,12 @@
 <!-- Template Main CSS File -->
 <link href="/xdm/v1/template/Lonely/assets/css/style.css"
 	rel="stylesheet">
-	
-	
-	
+
+
+
 <!-- by developer -->
-<link rel="stylesheet" href="/xdm/v1/css/datetimepicker/jquery.datetimepicker.min.css" />
+<link rel="stylesheet"
+	href="/xdm/v1/css/datetimepicker/jquery.datetimepicker.min.css" />
 
 
 <!-- =======================================================
@@ -482,9 +483,11 @@
 						<div class="card-body">
 							<h1 class="card-title">CODE GROUP</h1>
 							<form name="form" method="post" action="/xdm/v1/infra/codegroup/codeGroupXdmList">
+								<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1" /> 
+								<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}" />
 								<div class="row mb-3">
 									<div class="col-md-2">
-										<select class="form-select" name="shDelNy" 
+										<select class="form-select" name="shDelNy"
 											aria-label="Default select example">
 											<option value="">삭제 여부</option>
 											<option value="1">Y</option>
@@ -508,10 +511,12 @@
 										</select>
 									</div>
 									<div class="col-md-2">
-										<input type="text" class="form-control" id="shDateStart" name="shDateStart" autocomplete="off">
+										<input type="text" class="form-control" id="shDateStart"
+											name="shDateStart" autocomplete="off">
 									</div>
 									<div class="col-md-2">
-										<input type="text" class="form-control" id="shDateEnd" name="shDateEnd" autocomplete="off">
+										<input type="text" class="form-control" id="shDateEnd"
+											name="shDateEnd" autocomplete="off">
 									</div>
 								</div>
 								<div class="row mb-3">
@@ -524,7 +529,8 @@
 										</select>
 									</div>
 									<div class="col-md-2">
-										<input type="text" class="form-control" name="shValue" placeholder="검색어">
+										<input type="text" class="form-control" name="shValue"
+											placeholder="검색어">
 									</div>
 									<div class="col-md-2">
 										<button type="submit" class="btn btn-outline-dark">
@@ -537,16 +543,18 @@
 								</div>
 								<div class="row mb-3">
 									<div class="col-md-2">
-										<a>Total : 171</a>
+										<a th:text="'Total: ' + ${vo.totalRows}"></a>
 									</div>
 									<div class="col-md-8"></div>
 									<div class="col-md-2">
 										<select class="form-select"
 											aria-label="Default select example">
-											<option selected>5</option>
-											<option value="1">10</option>
-											<option value="2">15</option>
-											<option value="3">20</option>
+											<option value="5" th:selected="${vo.rowNumToShow eq 5}">5</option>
+											<option value="10" th:selected="${vo.rowNumToShow eq 10}">10</option>
+											<option value="30" th:selected="${vo.rowNumToShow eq 30}">30</option>
+											<option value="50" th:selected="${vo.rowNumToShow eq 50}">50</option>
+											<option value="80" th:selected="${vo.rowNumToShow eq 80}">80</option>
+											<option value="100" th:selected="${vo.rowNumToShow eq 100}">100</option>
 										</select>
 									</div>
 
@@ -573,9 +581,8 @@
 												<td colspan="10" align="center">no data!</td>
 											</tr>
 											<tr th:if="!${#lists.isEmpty(list)}" th:each="list : ${list}">
-												<td>
-													<input class="form-check-input" type="checkbox" id="gridCheck1">
-												</td>
+												<td><input class="form-check-input" type="checkbox"
+													id="gridCheck1"></td>
 												<td></td>
 												<td th:text="${list.ifcgSeq}"></td>
 												<td><a
@@ -599,19 +606,25 @@
 									<!--pagination start-->
 									<nav aria-label="Page navigation example">
 										<ul class="pagination justify-content-center">
-											<li class="page-item disabled"><a class="page-link"
-												href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-											</a></li>
-											<li class="page-item"><a class="page-link" href="#">1</a></li>
-											<li class="page-item"><a class="page-link" href="#">2</a></li>
-											<li class="page-item"><a class="page-link" href="#">3</a></li>
-											<li class="page-item"><a class="page-link" href="#"
-												aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-											</a></li>
+											<li class="page-item disabled" th:if="${vo.startPage gt vo.pageNumToShow}" style="cursor: pointer;">
+												<a class="page-link" aria-label="Previous" href="javascript:goList(${vo.startPage - 1})" 
+													th:attr="onclick=|goList('${vo.startPage - 1}')|"> 
+													<span aria-hidden="true">&laquo;</span>
+												</a>
+											</li>
+											<li class="page-item" th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" 
+												th:classappend="${num eq vo.thisPage} ? active : ''" style="cursor: pointer;">
+												<a class="page-link" th:attr="onclick=|goList('${num}')|" th:text="${num}"></a>
+											</li>
+											<li class="page-item" th:if="${vo.endPage ne vo.totalPages}" style="cursor: pointer;">
+												<a class="page-link" aria-label="Next" th:attr="onclick=|goList('${vo.endPage + 1}')|"> 
+													<span aria-hidden="true">&raquo;</span>
+												</a>
+											</li>
 										</ul>
 									</nav>
+									<!--pagination end-->
 							</form>
-							<!--pagination end-->
 							<div class="row mb-3">
 								<div class="col-md-6">
 									<button type="button" class="btn btn-danger" id="btnDelete">
@@ -627,8 +640,7 @@
 										<button type="button" class="btn btn-success">
 											<i class="bi bi-file-earmark-x icon_color_change"></i>
 										</button>
-									</a> 
-									<a href="/xdm/v1/infra/codegroup/codeGroupXdmForm">
+									</a> <a href="/xdm/v1/infra/codegroup/codeGroupXdmForm">
 										<button type="button" class="btn btn-primary">
 											<i class="bi bi-plus-lg icon_color_change"></i>
 										</button>
@@ -677,26 +689,25 @@
 
 	<!-- Template Main JS File -->
 	<script src="/xdm/v1/template/Lonely/assets/js/main.js"></script>
-		
+
 	<!-- by developer -->
 	<script src="/xdm/v1/jquery/jquery-3.7.1.min.js"></script>
-	<script src="/xdm/v1/js/datetimepicker/jquery.datetimepicker.full.min.js"></script>
+	<script
+		src="/xdm/v1/js/datetimepicker/jquery.datetimepicker.full.min.js"></script>
 
-	
+
 
 	<script type="text/javascript">
-	
-	window.addEventListener('load', function(){
-		
-		$.datetimepicker.setLocale('ko'); // 한국어를 쓰겠다는 뜻이다.
-		
-		$("#shDateStart, #shDateEnd").datetimepicker({
-			timepicker:false,
-			format:'Y-m-d'
+		window.addEventListener('load', function() {
+
+			$.datetimepicker.setLocale('ko'); // 한국어를 쓰겠다는 뜻이다.
+
+			$("#shDateStart, #shDateEnd").datetimepicker({
+				timepicker : false,
+				format : 'Y-m-d'
+			});
 		});
-	});
-	
-	
+
 		// uelete
 		document.getElementById("btnUelete").onclick = function() {
 			alert("UELETE 확인");
@@ -714,6 +725,13 @@
 			let form = document.querySelector("form[name=form]");
 			form.action = "/xdm/v1/infra/codegroup/codeGroupXdmDel";
 			form.submit();
+		}
+
+		// paging
+		goList = function(thisPage) {
+			document.querySelector("input[name=thisPage]").value = thisPage;
+			document.querySelector("form[name=form]").action = "/xdm/v1/infra/codegroup/codeGroupXdmList";
+			document.querySelector("form[name=form]").submit();
 		}
 	</script>
 </body>

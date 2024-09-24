@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -48,14 +50,20 @@ public class CodeGroupController {
 	// 방법3
 	//LIST
 	@RequestMapping(value="/xdm/v1/infra/codegroup/codeGroupXdmList")
-	public String codeGroupXdmList(CodeGroupVo codeGroupVo, Model model) {
+	public String codeGroupXdmList(@ModelAttribute("vo") CodeGroupVo codeGroupVo, Model model) {
 		
 		// 날짜 필드에 시간 추가
 		codeGroupVo.setShDateStart(codeGroupVo.getShDateStart()+" 00:00:00");			
 		codeGroupVo.setShDateEnd(codeGroupVo.getShDateEnd()+" 23:59:59");			
 		
+		// paging
+		codeGroupVo.setParamsPaging(codeGroupService.selectOneCount(codeGroupVo));
+		System.out.println("StartRnumForMySql22: " + codeGroupVo.getStartRnumForMySql());
 		
-		model.addAttribute("list", codeGroupService.selectList(codeGroupVo));
+		if (codeGroupVo.getTotalRows() > 0) {
+			model.addAttribute("list", codeGroupService.selectList(codeGroupVo));
+//			model.addAttribute("vo", codeGroupVo);
+		}
 		
 		return "/xdm/v1/infra/codegroup/codeGroupXdmList";
 	}
