@@ -34,5 +34,9 @@ public class UserService {
 	public int usrDelete(UserDto userDto) {
 		return userDao.usrDelete(userDto);
 	}
+	
+	public int selectOneCount(UserVo userVo) {
+		return userDao.selectOneCount(userVo);
+	}
 
 }

@@ -18,4 +18,6 @@ public interface UserDao {
 	public int usrUelete(UserDto userDto);
 	
 	public int usrDelete(UserDto userDto);
+	
+	public int selectOneCount(UserVo userVo);
 }

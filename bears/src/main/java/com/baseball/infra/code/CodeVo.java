@@ -1,6 +1,6 @@
 package com.baseball.infra.code;
 
-import com.baseball.infra.codegroup.Constants;
+import com.baseball.infra.constants.Constants;
 
 public class CodeVo {
 	// search

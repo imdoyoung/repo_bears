@@ -4,6 +4,7 @@ package com.baseball.infra.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -17,7 +18,11 @@ public class UserController {
 	public String userXdmList(Model model, UserVo userVo) {
 		userVo.setShStartDate(userVo.getShStartDate() + " 00:00:00");
 		userVo.setShEndDate(userVo.getShEndDate() + " 23:59:59");
-		model.addAttribute("usrList", userService.usrSelectList(userVo));
+		userVo.setParamsPaging(userService.selectOneCount(userVo));
+		if(userVo.getTotalRows() > 0) {
+			model.addAttribute("usrList", userService.usrSelectList(userVo));
+			model.addAttribute("vo", userVo);
+		}
 		return "/xdm/v1/infra/user/userXdmList";
 	}
 	

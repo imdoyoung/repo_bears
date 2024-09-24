@@ -4,24 +4,8 @@
 <mapper namespace="com.baseball.infra.user.UserDao">
 
 	<resultMap type="com.baseball.infra.user.UserDto" id="resultMapObj"></resultMap>
-	
-		<select id="usrSelectList" resultMap="resultMapObj">
-			SELECT
-				a.usrSeq,
-				a.usrXdmNy,
-				a.usrName,
-				a.usrId,
-				a.usrPw,
-				a.usrGender,
-				a.usrBirth,
-				a.usrEmail,
-				a.usrPhone,
-				a.usrGrade,
-				a.usrRegDate,
-				a.usrEditdate,
-				a.usrTosNy,
-				a.usrMktNy,
-				a.usrDelNy
+		
+		<sql id="selectCommon">
 			FROM
 				bears.B_user a
 			WHERE 1 = 1
@@ -48,8 +32,35 @@
 					<when test="shDateOption == 1">AND usrRegDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
 					<when test="shDateOption == 1">AND usrEditdate BETWEEN #{shStartDate} AND #{shEndDate}</when>
 				</choose>
-			ORDER BY
-				a.usrSeq DESC
+		</sql>
+		
+		<select id="selectOneCount">
+			SELECT COUNT(*)
+			<include refid="selectCommon"></include>
+		</select>
+	
+		<select id="usrSelectList" resultMap="resultMapObj">
+			SELECT aa.* FROM(
+				SELECT
+					a.usrSeq,
+					a.usrXdmNy,
+					a.usrName,
+					a.usrId,
+					a.usrPw,
+					a.usrGender,
+					a.usrBirth,
+					a.usrEmail,
+					a.usrPhone,
+					a.usrGrade,
+					a.usrRegDate,
+					a.usrEditdate,
+					a.usrTosNy,
+					a.usrMktNy,
+					a.usrDelNy
+					<include refid="selectCommon"></include>
+				ORDER BY
+					a.usrSeq DESC
+			) aa limit #{rowNumToShow} offset #{startRnumForMySql}
 		</select>
 		
 		<insert id="usrInsert">

@@ -1,5 +1,7 @@
 package com.baseball.infra.codegroup;
 
+import com.baseball.infra.constants.Constants;
+
 public class CodeGroupVo {
 	
 	// search
