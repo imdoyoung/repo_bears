@@ -487,53 +487,48 @@
 								<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}" />
 								<div class="row mb-3">
 									<div class="col-md-2">
-										<select class="form-select" name="shDelNy"
-											aria-label="Default select example">
-											<option value="">삭제 여부</option>
-											<option value="1">Y</option>
-											<option value="0">N</option>
+										<select class="form-select" id="shDelNy" name="shDelNy" aria-label="Default select example">
+											<option value="" th:selected="${vo.shDelNy == null}">삭제 여부</option>
+											<option value="1" th:selected="${vo.shDelNy == 1}">Y</option>
+											<option value="0" th:selected="${vo.shDelNy == 0}">N</option>
 										</select>
 									</div>
 									<div class="col-md-2">
-										<select class="form-select" name="shUseNy"
-											aria-label="Default select example">
-											<option value="">사용 여부</option>
-											<option value="1">Y</option>
-											<option value="0">N</option>
+										<select class="form-select" id="shUseNy" name="shUseNy" aria-label="Default select example">
+											<option value="" th:selected="${vo.shUseNy == null}">사용 여부</option>
+											<option value="1" th:selected="${vo.shUseNy == 1}">Y</option>
+											<option value="0" th:selected="${vo.shUseNy == 0}">N</option>
 										</select>
 									</div>
 									<div class="col-md-2">
-										<select class="form-select" name="shOptionDate"
-											aria-label="Default select example">
-											<option value="">날짜 선택</option>
-											<option value="1">등록날짜</option>
-											<option value="2">수정날짜</option>
+										<select class="form-select" id="shOptionDate" name="shOptionDate" aria-label="Default select example">
+											<option value="" th:selected="${vo.shOptionDate == null}">날짜 선택</option>
+											<option value="1" th:selected="${vo.shOptionDate == 1}">등록날짜</option>
+											<option value="2" th:selected="${vo.shOptionDate == 2}">수정날짜</option>
 										</select>
 									</div>
 									<div class="col-md-2">
-										<input type="text" class="form-control" id="shDateStart"
-											name="shDateStart" autocomplete="off">
+										<input type="text" class="form-control" placeholder="시작일"
+											id="shDateStart" name="shDateStart" th:value="${#strings.substring(vo.shDateStart, 0, 10)}" autocomplete="off" >
 									</div>
 									<div class="col-md-2">
-										<input type="text" class="form-control" id="shDateEnd"
-											name="shDateEnd" autocomplete="off">
+										<input type="text" class="form-control" placeholder="종료일"
+											id="shDateEnd" name="shDateEnd" th:value="${#strings.substring(vo.shDateEnd, 0, 10)}" autocomplete="off">
 									</div>
 								</div>
 								<div class="row mb-3">
 									<div class="col-md-2">
-										<select class="form-select" name="shOption"
-											aria-label="Default select example">
-											<option value="">검색구분</option>
-											<option value="1">코드그룹코드</option>
-											<option value="2">코드그룹이름</option>
+										<select class="form-select" id="shOption" name="shOption" aria-label="Default select example">
+											<option value="" th:selected="${vo.shOption == null}">검색구분</option>
+											<option value="1" th:selected="${vo.shOption == 1}">코드그룹코드</option>
+											<option value="2" th:selected="${vo.shOption == 2}">코드그룹이름</option>
 										</select>
 									</div>
 									<div class="col-md-2">
-										<input type="text" class="form-control" name="shValue"
-											placeholder="검색어">
+										<input type="text" class="form-control" id="shValue" name="shValue" th:value="${vo.shValue}" onkeyup="enterkey()" placeholder="검색어">
 									</div>
 									<div class="col-md-2">
-										<button type="submit" class="btn btn-outline-dark">
+										<button type="submit" class="btn btn-outline-dark" >
 											<i class="bi bi-search"></i>
 										</button>
 										<button type="button" class="btn btn-outline-dark">
@@ -547,8 +542,7 @@
 									</div>
 									<div class="col-md-8"></div>
 									<div class="col-md-2">
-										<select class="form-select"
-											aria-label="Default select example">
+										<select class="form-select" aria-label="Default select example" id="changeRowNum" name="changeRowNum">
 											<option value="5" th:selected="${vo.rowNumToShow eq 5}">5</option>
 											<option value="10" th:selected="${vo.rowNumToShow eq 10}">10</option>
 											<option value="30" th:selected="${vo.rowNumToShow eq 30}">30</option>
@@ -733,6 +727,14 @@
 			document.querySelector("form[name=form]").action = "/xdm/v1/infra/codegroup/codeGroupXdmList";
 			document.querySelector("form[name=form]").submit();
 		}
+		
+		// search
+		document.getElementById("changeRowNum").onchange = function () {
+	    document.getElementById("rowNumToShow").value = document.getElementById("changeRowNum").value;
+	    form.action = "/xdm/v1/infra/codegroup/codeGroupXdmList";
+	    form.submit();
+		}
+		
 	</script>
 </body>
 

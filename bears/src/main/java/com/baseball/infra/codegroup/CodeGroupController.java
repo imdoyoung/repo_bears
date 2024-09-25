@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.baseball.common.util.UtilDateTime;
+
 @Controller
 public class CodeGroupController {
 	
@@ -53,8 +55,12 @@ public class CodeGroupController {
 	public String codeGroupXdmList(@ModelAttribute("vo") CodeGroupVo codeGroupVo, Model model) {
 		
 		// 날짜 필드에 시간 추가
-		codeGroupVo.setShDateStart(codeGroupVo.getShDateStart()+" 00:00:00");			
-		codeGroupVo.setShDateEnd(codeGroupVo.getShDateEnd()+" 23:59:59");			
+//		codeGroupVo.setShDateStart(codeGroupVo.getShDateStart()+" 00:00:00");			
+//		codeGroupVo.setShDateEnd(codeGroupVo.getShDateEnd()+" 23:59:59");			
+		
+		// 초기값 세팅이 없는 경우 사용
+		codeGroupVo.setShDateStart(codeGroupVo.getShDateStart() == null || codeGroupVo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(codeGroupVo.getShDateStart()));
+		codeGroupVo.setShDateEnd(codeGroupVo.getShDateEnd() == null || codeGroupVo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(codeGroupVo.getShDateEnd()));
 		
 		// paging
 		codeGroupVo.setParamsPaging(codeGroupService.selectOneCount(codeGroupVo));
