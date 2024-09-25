@@ -4,8 +4,9 @@ package com.baseball.infra.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.baseball.common.util.UtilDateTime;
 
 @Controller
 public class UserController {
@@ -16,8 +17,11 @@ public class UserController {
 	// SELECTLIST
 	@RequestMapping(value="/xdm/v1/infra/user/userXdmList")
 	public String userXdmList(Model model, UserVo userVo) {
-		userVo.setShStartDate(userVo.getShStartDate() + " 00:00:00");
-		userVo.setShEndDate(userVo.getShEndDate() + " 23:59:59");
+//		userVo.setShStartDate(userVo.getShStartDate() + " 00:00:00");
+//		userVo.setShEndDate(userVo.getShEndDate() + " 23:59:59");
+		// 초기값 세팅이 없는 경우 사용
+		userVo.setShStartDate(userVo.getShStartDate() == null || userVo.getShStartDate() == "" ? null : UtilDateTime.add00TimeString(userVo.getShStartDate()));
+		userVo.setShEndDate(userVo.getShEndDate() == null || userVo.getShEndDate() == "" ? null : UtilDateTime.add59TimeString(userVo.getShEndDate()));
 		userVo.setParamsPaging(userService.selectOneCount(userVo));
 		if(userVo.getTotalRows() > 0) {
 			model.addAttribute("usrList", userService.usrSelectList(userVo));
