@@ -1,6 +1,8 @@
 package com.baseball.infra.code;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class CodeDto {
 	private String ifcdSeq;
@@ -15,6 +17,8 @@ public class CodeDto {
 	// codegroup에서 가져올 데이터 추가 & getter/setter 다시 하기
 	private String ifcgSeq;
 	private String ifcgName;
+	// for cache
+	public static List<CodeDto> cachedCodeArrayList = new ArrayList<CodeDto>();
 	
 //	----- getter / setter -----
 
@@ -83,6 +87,12 @@ public class CodeDto {
 	}
 	public void setIfcgName(String ifcgName) {
 		this.ifcgName = ifcgName;
+	}
+	public static List<CodeDto> getCachedCodeArrayList() {
+		return cachedCodeArrayList;
+	}
+	public static void setCachedCodeArrayList(List<CodeDto> cachedCodeArrayList) {
+		CodeDto.cachedCodeArrayList = cachedCodeArrayList;
 	}
 	
 

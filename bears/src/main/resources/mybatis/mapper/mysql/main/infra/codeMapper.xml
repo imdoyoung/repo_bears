@@ -135,5 +135,18 @@
 		WHERE 1 = 1
 			AND ifcdSeq = #{ifcdSeq}
 	</delete>
+	
+	<!-- for cache -->
+	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
+		SELECT 
+			ifcdSeq,
+			ifcdName,
+			B_codegroup_ifcgSeq
+		FROM
+			bears.B_code
+		WHERE 1=1
+			AND ifcdDelNy = 0
+		    AND ifcdUseNy = 1
+    </select>
 
 </mapper>

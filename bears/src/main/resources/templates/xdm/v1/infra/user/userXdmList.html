@@ -629,8 +629,13 @@
 													</td>
 													<td th:text="${list.usrId}"></td>
 													<td th:text="${list.usrPw}"></td>
-													<td th:if="${list.usrGender eq 1}">남자</td>
-													<td th:unless="${list.usrGender eq 1}">여자</td>
+													
+<!-- 													<td th:if="${list.usrGender eq 1}"></td> -->
+<!-- 													<td th:unless="${list.usrGender eq 1}"></td> -->
+													
+													<td th:if="${list.usrGender != null}" th:text="${@codeService.selectOneCachedCode(list.usrGender)}"></td>
+													<td th:unless="${list.usrGender != null}"></td>
+													
 													<td th:text="${#dates.format(list?.usrBirth, 'yyyy-MM-dd')}"></td>
 													<td th:text="${list.usrEmail}"></td>
 													<td th:text="${list.usrPhone}"></td>

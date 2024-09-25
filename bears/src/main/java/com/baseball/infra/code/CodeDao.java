@@ -33,4 +33,9 @@ public interface CodeDao {
 	
 	// paging
 	public int selectOneCount(CodeVo codeVo);
+	
+	// for cache
+	public List<CodeDto> selectListCachedCodeArrayList();
+
+
 }

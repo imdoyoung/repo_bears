@@ -504,17 +504,21 @@
 										</label> 
 										<input type="text" class="form-control" name="usrPw" placeholder="비밀번호">
 									</div>
+									
 									<div class="col-md-3">
 										<label class="form-label">
 										 	성별 
 										 	<a style="color: red;">*</a>
 										</label> 
-										<select class="form-select" name="usrGender">
+										<select class="form-select" id="usrGender" name="usrGender">
 											<option value="">성별</option>
-											<option value="1">남성</option>
-											<option value="2">여성</option>
+											<option th:each="list : ${@codeService.selectListCachedCode(1)}"
+												th:value="${list.ifcdSeq}" th:text="${list.ifcdName}"
+												th:selected="${list.ifcdSeq} == ${usrItem?.usrGender}">
+											</option>
 										</select>
 									</div>
+									
 								</div>
 								<div class="row mb-3">
 									<div class="col-md-3">
