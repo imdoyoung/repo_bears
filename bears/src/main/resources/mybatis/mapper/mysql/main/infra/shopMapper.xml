@@ -4,5 +4,37 @@
 <mapper namespace="com.baseball.infra.shop.ShopDao">
 
 	<resultMap type="com.baseball.infra.shop.ShopDto" id="resultMapObj"></resultMap>
+	
+	<select id="shopSelectList" resultMap="resultMapObj">
+		SELECT
+			a.nsSeq,
+			a.nsName,
+			a.nsOpenTime,
+			a.nsClosTime,
+			a.nsMulti,
+			a.nsLogo,
+			a.nsGallery,
+			a.nsInfoText,
+			a.nsZipCode,
+			a.nsAddr,
+			a.nsAddDetail,
+			a.nsInfoWalk,
+			a.nsInfoPrice,
+			a.nsInfoEvent,
+			a.nsInfoDetail,
+			a.naAddParkingNy,
+			a.nsAddDogNy,
+			a.nsAddArtOfMonthNy,
+			a.nsAddDrillcareNy,
+			a.nsAddWetcareNy,
+			a.nsStar,
+			a.nsRegDate,
+			a.nsEditDate,
+			a.nsDelNy
+		FROM
+			bears.B_shop a
+		ORDER BY
+			a.nsSeq DESC
+	</select>
 
 </mapper>
