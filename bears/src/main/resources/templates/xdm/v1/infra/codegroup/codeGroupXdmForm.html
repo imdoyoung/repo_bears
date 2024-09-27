@@ -483,7 +483,7 @@
 							<h5 class="card-title">기본정보</h5>
 
 							<!-- Custom Styled Validation -->
-							<form name="form" method="post" action="/xdm/v1/infra/codegroup/codeGroupXdmInst">
+							<form name="form" method="post" action="/xdm/v1/infra/codegroup/codeGroupXdmInst" class="needs-validation" novalidate>
 								<div class="row mb-3">
 									<div class="col-md-3">
 										<label class="form-label">
@@ -498,8 +498,8 @@
 											코드그룹 이름
 											<a style="color: red;">*</a>
 											</label> 
-											<input type="text" class="form-control" name="ifcgName" id="ifcgName"
-											placeholder="코드그룹 이름">
+											<input type="text" class="form-control" name="ifcgName" id="ifcgName" placeholder="코드그룹 이름" required>
+											<div class="invalid-feedback"> 코드그룹이름을 입력해 주세요.</div>
 									</div>
 								</div>
 								<div class="row mb-3">
@@ -508,18 +508,19 @@
 											사용 여부
 											<a style="color: red;">*</a>
 										</label> 
-										<select class="form-select" name="ifcgUseNy" id="ifcgUseNy">
+										<select class="form-select" name="ifcgUseNy" id="ifcgUseNy" required>
 											<option value="">사용 여부</option>
 											<option value="1">Y</option>
 											<option value="0">N</option>
 										</select>
+										<div class="invalid-feedback"> 사용여부를 선택해 주세요.</div>
 									</div>
 									<div class="col-md-3">
 										<label class="form-label">
 											순서
 											<a style="color: red;">*</a>
 										</label> 
-										<select class="form-select" name="ifcgOrder" id="ifcgOrder">
+										<select class="form-select" name="ifcgOrder" id="ifcgOrder" required>
 											<option value="">순서</option>
 											<option value="1">1</option>
 											<option value="2">2</option>
@@ -532,13 +533,13 @@
 											<option value="9">9</option>
 											<option value="10">10</option>
 										</select>
+										<div class="invalid-feedback"> 삭제여부를 선택해 주세요.</div>
 									</div>
 								</div>
 								<div class="row mb-3">
 									<div class="col-md-6">
 										<label class="form-label">설명</label>
-										<textarea class="form-control" name="ifcgDesc"
-											 style="height: 100px">
+										<textarea class="form-control" name="ifcgDesc" style="height: 100px">
 										</textarea>
 									</div>
 								</div>
@@ -628,29 +629,32 @@
 	<script src="/xdm/v1/template/Lonely/assets/js/main.js"></script>
 	
 	<script type="text/javascript">
-	
+	 
 		// validation
 			document.getElementById("btnSubmit").onclick = function (){
-			
+		  		
+		  		
 				// ifcgName 
-			    var ifcgName = document.getElementById("ifcgName");						// 객체를 만들고
-			    var ifcgNameValue = document.getElementById("ifcgName").value.trim();	// 객체의 값을 받는 객체 생성
-				
-			    if (ifcgNameValue == "" || ifcgNameValue == null) {
-					alert("이름을 입력해 주세요");
-					ifcgName.focus();	// 객체로 마우스 커서 포커스
-					return false;	// 함수를 탈출
-			    } else {
-// 					by pass
-			    }
-				
+				    var ifcgName = document.getElementById("ifcgName");						// 객체를 만들고
+				    var ifcgNameValue = document.getElementById("ifcgName").value.trim();	// 객체의 값을 받는 객체 생성
+					
+				    if (ifcgNameValue == "" || ifcgNameValue == null) {
+// 						alert("이름을 입력해 주세요");
+						form.classList.add('was-validated');
+						ifcgName.focus();	// 객체로 마우스 커서 포커스
+						return false;	// 함수를 탈출
+				    } else {
+		//				by pass
+				    }
+		  
 			    
 				// ifcgUseNy
 				var ifcgUseNy = document.getElementById("ifcgUseNy");
 				var ifcgUseNyValue = document.getElementById("ifcgUseNy").value.trim();
 				
 				if(ifcgUseNyValue == "" || ifcgUseNyValue == null){
-					alert("사용여부를 선택해 주세요");
+// 					alert("사용여부를 선택해 주세요");
+					form.classList.add('was-validated');
 					ifcgUseNy.focus();
 					return false;
 				} else {
@@ -663,12 +667,26 @@
 				var ifcgOrderValue = document.getElementById("ifcgOrder").value.trim();
 				
 				if(ifcgOrderValue == "" || ifcgOrderValue == null){
-					alert("순서를 선택해 주세요");
+// 					alert("순서를 선택해 주세요");
+					form.classList.add('was-validated');
 					ifcgOrder.focus();
 					return false;
 				} else {
 // 					by pass
 				}
+				
+				// ifcgDesc
+// 				var ifcgDesc = document.getElementById("ifcgDesc");
+// 				var ifcgDescValue = document.getElementById("ifcgDesc").value.trim();
+				
+// 				if(ifcgDescValue == "" || ifcgDescValue == null){
+// // 					alert("설명을 입력해 주세요");
+// 					form.classList.add('was-validated');
+// 					ifcgDesc.focus();
+// 					return false;
+// 				} else {
+// // 					by pass
+// 				}
 				
 				form.action = "/xdm/v1/infra/codegroup/codeGroupXdmInst";
 				form.submit();
