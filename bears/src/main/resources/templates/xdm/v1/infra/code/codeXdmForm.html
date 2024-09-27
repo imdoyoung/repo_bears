@@ -483,7 +483,7 @@
 							<h5 class="card-title">기본정보</h5>
 
 							<!-- Custom Styled Validation -->
-							<form name="form" method="post" action="/xdm/v1/infra/code/codeXdmInst">
+							<form name="form" id="form" method="post" action="/xdm/v1/infra/code/codeXdmInst">
 								<div class="row mb-3">
 									<div class="col-md-3">
 										<label class="form-label">
@@ -498,7 +498,7 @@
 											코드 그룹 번호
 											<a style="color: red;">*</a>
 										</label> 
-										<select class="form-select" name="B_codegroup_ifcgSeq"
+										<select class="form-select" name="B_codegroup_ifcgSeq" id="B_codegroup_ifcgSeq"
 											style="padding: .375rem .75rem;">
 											<option value="">코드 그룹 번호</option>
 											<option th:each = "list:${listCodeGroup}"
@@ -513,7 +513,7 @@
 											코드 이름
 											<a style="color: red;">*</a>
 											</label> 
-											<input type="text" class="form-control" name="ifcdName" 
+											<input type="text" class="form-control" name="ifcdName" id="ifcdName"
 											placeholder="코드 이름">
 									</div>
 									<div class="col-md-3">
@@ -521,8 +521,8 @@
 											사용 여부
 											<a style="color: red;">*</a>
 										</label> 
-										<select class="form-select" name="ifcdUseNy">
-											<option selected disabled>사용 여부</option>
+										<select class="form-select" name="ifcdUseNy" id="ifcdUseNy">
+											<option value="">사용 여부</option>
 											<option value="1">Y</option>
 											<option value="0">N</option>
 										</select>
@@ -532,8 +532,8 @@
 											순서
 											<a style="color: red;">*</a>
 										</label> 
-										<select class="form-select" name="ifcdOrder">
-											<option selected disabled>순서</option>
+										<select class="form-select" name="ifcdOrder" id="ifcdOrder">
+											<option value="">순서</option>
 											<option value="1">1</option>
 											<option value="2">2</option>
 											<option value="3">3</option>
@@ -550,7 +550,7 @@
 								<div class="row mb-3">
 									<div class="col-md-6">
 										<label class="form-label">설명</label>
-										<textarea class="form-control" name="ifcdDesc" 
+										<textarea class="form-control" name="ifcdDesc"
 											 style="height: 100px">
 										</textarea>
 									</div>
@@ -581,9 +581,8 @@
 									</div>
 									<div class="col-md-10"></div>
 									<div class="col-md-1" align="Right">
-										<button type="submit" class="btn btn-primary">
-											<a> <i class="bi bi-server"></i>
-											</a>
+										<button type="button" id="btnSubmit" class="btn btn-primary">
+											<i class="bi bi-server"></i>
 										</button>
 									</div>
 								</div>
@@ -639,6 +638,64 @@
 
 	<!-- Template Main JS File -->
 	<script src="/xdm/v1/template/Lonely/assets/js/main.js"></script>
+	
+	<script type="text/javascript">
+	
+		// validation
+		document.getElementById("btnSubmit").onclick = function(){
+			
+			// B_codegroup_ifcgSeq
+			var B_codegroup_ifcgSeq = document.getElementById("B_codegroup_ifcgSeq");
+			var B_codegroup_ifcgSeqValue = document.getElementById("B_codegroup_ifcgSeq").value.trim();
+			
+			if(B_codegroup_ifcgSeqValue == "" || B_codegroup_ifcgSeqValue == null){
+				alert("코드그룹번호를 선택해 주세요");
+				B_codegroup_ifcgSeq.focus();
+				return false;
+			} else {
+				// by pass
+			}
+			
+			// ifcdName
+			var ifcdName = document.getElementById("ifcdName");
+			var ifcdNameValue = document.getElementById("ifcdName").value.trim();
+			
+			if(ifcdNameValue == "" || ifcdNameValue == null){
+				alert("코드이름을 입력해 주세요");
+				ifcdName.focus();
+				return false;
+			} else {
+				// by pass
+			}
+			
+			// ifcdUseNy
+			var ifcdUseNy = document.getElementById("ifcdUseNy");
+			var ifcdUseNyValue = document.getElementById("ifcdUseNy").value.trim();
+			
+			if(ifcdUseNyValue == "" || ifcdUseNyValue == null){
+				alert("사용여부를 선택해 주세요");
+				ifcdUseNy.focus();
+				return false;
+			} else {
+				// by pass
+			}
+			
+			// ifcdOrder
+			var ifcdOrder = document.getElementById("ifcdOrder");
+			var ifcdOrderValue = document.getElementById("ifcdOrder").value.trim();
+			
+			if(ifcdOrderValue == "" || ifcdOrderValue == null){
+				alert("순서를 선택해 주세요");
+				ifcdOrder.focus();
+				return false;
+			} else {
+				// by pass
+			}
+			
+			form.action="/xdm/v1/infra/code/codeXdmInst";
+			form.submit();
+		}
+	</script>
 
 </body>
 
