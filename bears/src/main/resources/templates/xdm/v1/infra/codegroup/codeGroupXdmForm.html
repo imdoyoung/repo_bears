@@ -498,7 +498,7 @@
 											코드그룹 이름
 											<a style="color: red;">*</a>
 											</label> 
-											<input type="text" class="form-control" name="ifcgName" 
+											<input type="text" class="form-control" name="ifcgName" id="ifcgName"
 											placeholder="코드그룹 이름">
 									</div>
 								</div>
@@ -508,8 +508,8 @@
 											사용 여부
 											<a style="color: red;">*</a>
 										</label> 
-										<select class="form-select" name="ifcgUseNy">
-											<option selected disabled>사용 여부</option>
+										<select class="form-select" name="ifcgUseNy" id="ifcgUseNy">
+											<option value="">사용 여부</option>
 											<option value="1">Y</option>
 											<option value="0">N</option>
 										</select>
@@ -519,8 +519,8 @@
 											순서
 											<a style="color: red;">*</a>
 										</label> 
-										<select class="form-select" name="ifcgOrder">
-											<option selected disabled>순서</option>
+										<select class="form-select" name="ifcgOrder" id="ifcgOrder">
+											<option value="">순서</option>
 											<option value="1">1</option>
 											<option value="2">2</option>
 											<option value="3">3</option>
@@ -537,7 +537,7 @@
 								<div class="row mb-3">
 									<div class="col-md-6">
 										<label class="form-label">설명</label>
-										<textarea class="form-control" name="ifcgDesc" 
+										<textarea class="form-control" name="ifcgDesc"
 											 style="height: 100px">
 										</textarea>
 									</div>
@@ -568,7 +568,7 @@
 									</div>
 									<div class="col-md-10"></div>
 									<div class="col-md-1" align="Right">
-										<button type="submit" class="btn btn-primary">
+										<button type="button" id="btnSubmit" class="btn btn-primary">
 											<a> <i class="bi bi-server"></i>
 											</a>
 										</button>
@@ -622,10 +622,60 @@
 	<script
 		src="/xdm/v1/template/Lonely/assets/vendor/tinymce/tinymce.min.js"></script>
 <!-- 	<script -->
-<!-- 		src="/xdm/v1/template/Lonely/assets/vendor/php-email-form/validate.js"></script> -->
+<!-- 		src="/xdm/v1/template/Lonely/assets/vendor/php-email-form/validate.js"></script> -->                                                                                                   
 
 	<!-- Template Main JS File -->
 	<script src="/xdm/v1/template/Lonely/assets/js/main.js"></script>
+	
+	<script type="text/javascript">
+	
+		// validation
+			document.getElementById("btnSubmit").onclick = function (){
+			
+				// ifcgName 
+			    var ifcgName = document.getElementById("ifcgName");						// 객체를 만들고
+			    var ifcgNameValue = document.getElementById("ifcgName").value.trim();	// 객체의 값을 받는 객체 생성
+				
+			    if (ifcgNameValue == "" || ifcgNameValue == null) {
+					alert("이름을 입력해 주세요");
+					ifcgName.focus();	// 객체로 마우스 커서 포커스
+					return false;	// 함수를 탈출
+			    } else {
+// 					by pass
+			    }
+				
+			    
+				// ifcgUseNy
+				var ifcgUseNy = document.getElementById("ifcgUseNy");
+				var ifcgUseNyValue = document.getElementById("ifcgUseNy").value.trim();
+				
+				if(ifcgUseNyValue == "" || ifcgUseNyValue == null){
+					alert("사용여부를 선택해 주세요");
+					ifcgUseNy.focus();
+					return false;
+				} else {
+// 					by pass
+				}
+
+				
+				// ifcgOrder
+				var ifcgOrder = document.getElementById("ifcgOrder");
+				var ifcgOrderValue = document.getElementById("ifcgOrder").value.trim();
+				
+				if(ifcgOrderValue == "" || ifcgOrderValue == null){
+					alert("순서를 선택해 주세요");
+					ifcgOrder.focus();
+					return false;
+				} else {
+// 					by pass
+				}
+				
+				form.action = "/xdm/v1/infra/codegroup/codeGroupXdmInst";
+				form.submit();
+				
+			}
+	
+	</script>
 
 </body>
 
