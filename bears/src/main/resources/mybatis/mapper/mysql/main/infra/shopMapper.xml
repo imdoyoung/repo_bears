@@ -9,6 +9,9 @@
 		SELECT
 			a.nsSeq,
 			a.nsName,
+		    a.nsTel,
+		    a.nsOwnerName,
+			a.nsOwnerTel,
 			a.nsOpenTime,
 			a.nsClosTime,
 			a.nsMulti,
@@ -17,12 +20,13 @@
 			a.nsInfoText,
 			a.nsZipCode,
 			a.nsAddr,
-			a.nsAddDetail,
+			a.nsAddrDetail,
+		    a.nsAddrCode,
 			a.nsInfoWalk,
 			a.nsInfoPrice,
 			a.nsInfoEvent,
 			a.nsInfoDetail,
-			a.naAddParkingNy,
+			a.nsAddParkingNy,
 			a.nsAddDogNy,
 			a.nsAddArtOfMonthNy,
 			a.nsAddDrillcareNy,
@@ -35,6 +39,101 @@
 			bears.B_shop a
 		ORDER BY
 			a.nsSeq DESC
+	</select>
+	
+	<insert id="shopInsert">
+		INSERT INTO B_shop (
+			nsName,
+		    nsTel,
+		    nsOwnerName,
+			nsOwnerTel,
+			nsOpenTime,
+			nsClosTime,
+			nsMulti,
+			nsInfoText,
+			nsZipCode,
+			nsAddr,
+			nsAddrDetail,
+		    nsAddrCode,
+			nsInfoWalk,
+			nsInfoPrice,
+			nsInfoEvent,
+			nsInfoDetail,
+			nsAddParkingNy,
+			nsAddDogNy,
+			nsAddArtOfMonthNy,
+			nsAddDrillcareNy,
+			nsAddWetcareNy,
+			nsStar,
+			nsRegDate,
+			nsEditDate,
+			nsDelNy
+		) values (
+		    #{nsName},
+		    #{nsTel},
+		    #{nsOwnerName},
+			#{nsOwnerTel},
+			#{nsOpenTime},
+			#{nsClosTime},
+			#{nsMulti},
+			#{nsInfoText},
+			#{nsZipCode},
+			#{nsAddr},
+			#{nsAddrDetail},
+		    #{nsAddrCode},
+			#{nsInfoWalk},
+			#{nsInfoPrice},
+			#{nsInfoEvent},
+			#{nsInfoDetail},
+			#{nsAddParkingNy},
+			#{nsAddDogNy},
+			#{nsAddArtOfMonthNy},
+			#{nsAddDrillcareNy},
+			#{nsAddWetcareNy},
+			0,
+			now(),
+		    now(),
+		    0
+		)
+		<selectKey resultType="String" keyProperty="ifcgSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<select id="shopSelectOne" resultMap="resultMapObj">
+		SELECT
+			a.nsSeq,
+			a.nsName,
+		    a.nsTel,
+		    a.nsOwnerName,
+			a.nsOwnerTel,
+			a.nsOpenTime,
+			a.nsClosTime,
+			a.nsMulti,
+			a.nsLogo,
+			a.nsGallery,
+			a.nsInfoText,
+			a.nsZipCode,
+			a.nsAddr,
+			a.nsAddrDetail,
+		    a.nsAddrCode,
+			a.nsInfoWalk,
+			a.nsInfoPrice,
+			a.nsInfoEvent,
+			a.nsInfoDetail,
+			a.nsAddParkingNy,
+			a.nsAddDogNy,
+			a.nsAddArtOfMonthNy,
+			a.nsAddDrillcareNy,
+			a.nsAddWetcareNy,
+			a.nsStar,
+			a.nsRegDate,
+			a.nsEditDate,
+			a.nsDelNy
+		FROM
+			bears.B_shop a
+		WHERE 1 = 1
+			AND a.nsSeq = #{nsSeq}
 	</select>
 
 </mapper>

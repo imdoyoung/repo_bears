@@ -525,7 +525,7 @@
         <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
-              <h1 class="card-title">기본정보</h1>
+              <h1 class="card-title">Shop 정보</h1>
               <form>
                 <div class="row mb-3">
                   <div class="col-md-2">
@@ -572,112 +572,127 @@
                     <input type="text" class="form-control" placeholder="검색어">
                   </div>
                   <div class="col-md-2">
-                    <button type="button" class="btn btn-outline-dark"><i class="bi bi-search"></i></button>
-                    <button type="button" class="btn btn-outline-dark"><i class="bi bi-arrow-clockwise"></i></button>
+                    <button type="button" class="btn btn-outline-dark">
+                    	<i class="bi bi-search"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-dark">
+                    	<i class="bi bi-arrow-clockwise"></i>
+                    </button>
                   </div>
                 </div>
-              </form>
-
-              <div class="row mb-3">
-                <div class="col-md-2">
-                  <a>Total : 171</a>
-                </div>
-                <div class="col-md-8"></div>
-                <div class="col-md-2">
-                  <select class="form-select" aria-label="Default select example">
-                    <option selected>5</option>
-                    <option value="1">10</option>
-                    <option value="2">15</option>
-                    <option value="3">20</option>
-                  </select>
-                </div>
-
-                <!-- Table with stripped rows -->
-                <!-- Default Table -->
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>
-                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                      </th>
-                      <th>No</th>
-                      <th>코드그룹번호</th>
-                      <th>관리자여부</th>
-                      <th>이름</th>
-                      <th>아이디</th>
-                      <th>비밀번호</th>
-                      <th>성별</th>
-                      <th>생년월일</th>
-                      <th>이메일</th>
-                      <th>전화번호</th>
-                      <th>삭제여부</th>
-                      <th>등록일</th>
-                      <th>수정일</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  	<tr th:if="${#lists.isEmpty(list)}">
-                  		<td colspan="14" align="center">
-                  			no data!
-                  		</td>
-                  	</tr>
-                    <tr th:if="!${#lists.isEmpty(list)}" th:each="list : ${list}">
-                      <td>
-                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                      </td>
-                      <td th:text="${list.memSeq}"></td>
-                      <td th:if="${list.memXdmNy eq 0}">N</td>
-                      <td th:unless="${list.memXdmNy eq 0}">Y</td>
-                      <td>
-                      	<a th:href="@{/xdm/v1/infra/member/memberXdmMfom(memSeq=${list.memSeq})}" th:text="${list.memName}"></a>
-                      </td>
-                      <td th:text="${list.memId}"></td>
-                      <td th:text="${list.memPassword}"></td>
-                      <td th:if="${list.memGender eq 1}">남성</td>
-                      <td th:unless="${list.memGender eq 1}">여성</td>
-                      <td th:text="${#dates.format(list.memBirth, 'yyyy-mm-dd')}"></td>
-                      <td th:text="${list.memEmail}"></td>
-                      <td th:text="${list.memPhone}"></td>
-                      <td th:if="${list.memDelNy eq 0}">N</td>
-                      <td th:unless="${list.memDelNy eq 0}">Y</td>
-                      <td th:text="${#dates.format(list.memRegist, 'yyyy-MM-dd HH:mm:ss')}"></td>
-                      <td th:text="${#dates.format(list.memEdit, 'yyyy-MM-dd HH:mm:ss')}"></td>
-                    </tr>
-                  </tbody>
-                </table>
-                <!-- End Table with stripped rows -->
-
-                <!--pagination start-->
-                <nav aria-label="Page navigation example">
-                  <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                      <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                      </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-                <!--pagination end-->
+	              <div class="row mb-3">
+	                <div class="col-md-2">
+	                  <a>Total : 171</a>
+	                </div>
+	                <div class="col-md-8"></div>
+	                <div class="col-md-2">
+	                  <select class="form-select" aria-label="Default select example">
+	                    <option selected>5</option>
+	                    <option value="1">10</option>
+	                    <option value="2">15</option>
+	                    <option value="3">20</option>
+	                  </select>
+	                </div>
+	
+	                <!-- Table with stripped rows -->
+	                <!-- Default Table -->
+	                <table class="table">
+	                  <thead>
+	                    <tr>
+	                      <th>
+	                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+	                      </th>
+	                      <th>No</th>
+	                      <th>Seq</th>
+	                      <th>샵이름</th>
+	                      <th>샵전화번호</th>
+	                      <th>사장이름</th>
+	                      <th>동시시술인원</th>
+	                      <th>지역구</th>
+	                      <th>기본가격</th>
+	                      <th>주차가능</th>
+	                      <th>반려동물동반가능</th>
+	                      <th>이달의아트유무</th>
+	                      <th>드릴케어</th>
+	                      <th>습식케어</th>
+	                      <th>별점</th>
+	                      <th>등록일</th>
+	                      <th>수정일</th>
+	                      <th>삭제여부</th>
+	                    </tr>
+	                  </thead>
+	                  <tbody>
+	                  	<tr th:if="${#lists.isEmpty(shopList)}">
+	                  		<td colspan="14" align="center">
+	                  			No Data!!
+	                  		</td>
+	                  	</tr>
+	                  	<tr th:if="!${#lists.isEmpty(shopList)}" th:each="list : ${shopList}">
+	                  		<td>
+	                  			<input class="form-check-input" type="checkbox" id="gridCheck1">
+	                  		</td>
+	                  		<td></td>
+	                  		<td th:text="${list.nsSeq}"></td>
+	                  		<td>
+	                  			<a th:href="@{/xdm/v1/infra/shop/shopXdmMfom(nsSeq=${list?.nsSeq})}" th:text="${list.nsName}"></a>
+	                  		</td>
+	                  		<td th:text="${list.nsTel}"></td>
+	                  		<td th:text="${list.nsOwnerName}"></td>
+	                  		<td th:text="${list.nsMulti}"></td>
+	                  		<td th:text="${list.nsAddrCode}"></td>
+	                  		<td th:text="${list.nsInfoPrice}"></td>
+	                  		<td th:if="${list.nsAddParkingNy eq 0}">N</td>
+	                  		<td th:unless="${list.nsAddParkingNy eq 0}">Y</td>
+	                  		<td th:if="${list.nsAddDogNy eq 0}">N</td>
+	                  		<td th:unless="${list.nsAddDogNy eq 0}">Y</td>
+	                  		<td th:if="${list.nsAddArtOfMonthNy eq 0}">N</td>
+	                  		<td th:unless="${list.nsAddArtOfMonthNy eq 0}">Y</td>
+	                  		<td th:if="${list.nsAddDrillcareNy eq 0}">N</td>
+	                  		<td th:unless="${list.nsAddDrillcareNy eq 0}">Y</td>
+	                  		<td th:if="${list.nsAddWetcareNy eq 0}">N</td>
+	                  		<td th:unless="${list.nsAddWetcareNy eq 0}">Y</td>
+	                  		<td th:text="${list.nsStar}"></td>
+	                  		<td th:text="${#dates.format(list?.nsRegDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+	                  		<td th:text="${#dates.format(list?.nsEditDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+	                  		<td th:if="${list.nsDelNy eq 0}">N</td>
+	                  		<td th:unless="${list.nsDelNy eq 0}">Y</td>
+	                  	</tr>
+	                  </tbody>
+	                </table>
+	                <!-- End Table with stripped rows -->
+	
+	                <!--pagination start-->
+	                <nav aria-label="Page navigation example">
+	                  <ul class="pagination justify-content-center">
+	                    <li class="page-item disabled">
+	                      <a class="page-link" href="#" aria-label="Previous">
+	                        <span aria-hidden="true">&laquo;</span>
+	                      </a>
+	                    </li>
+	                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+	                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+	                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+	                    <li class="page-item">
+	                      <a class="page-link" href="#" aria-label="Next">
+	                        <span aria-hidden="true">&raquo;</span>
+	                      </a>
+	                    </li>
+	                  </ul>
+	                </nav>
+	                <!--pagination end-->
+                </form>
                 <div class="row mb-3">
                   <div class="col-md-6">
-                    <button type="button" class="btn btn-danger">
-                      <a href="#">
-                        <i class="bi bi-x-lg icon_color_change"></i>
-                      </a>
-                    </button>
-                    <button type="button" class="btn btn-danger">
-                      <a href="#">
-                        <i class="bi bi-trash-fill icon_color_change"></i>
-                      </a>
-                    </button>
+                    <a href="#">
+	                    <button type="button" class="btn btn-danger">
+    	                    <i class="bi bi-x-lg icon_color_change"></i>
+        	            </button>
+                    </a>
+                    <a href="#">
+	                    <button type="button" class="btn btn-danger">
+    	                    <i class="bi bi-trash-fill icon_color_change"></i>
+	                    </button>
+                    </a>
                   </div>
                   <div class="col-md-6" align="Right">
                     <button type="button" class="btn btn-success">
@@ -685,11 +700,11 @@
                         <i class="bi bi-file-earmark-x icon_color_change"></i>
                       </a>
                     </button>
-                    <button type="button" class="btn btn-primary">
-                      <a href="./0_form.html">
-                        <i class="bi bi-plus-lg icon_color_change"></i>
-                      </a>
-                    </button>
+                    <a href="/xdm/v1/infra/shop/shopXdmForm">
+        	            <button type="button" class="btn btn-primary">
+    	                    <i class="bi bi-plus-lg icon_color_change"></i>
+	                    </button>
+                    </a>
                   </div>
                 </div>
               </div>

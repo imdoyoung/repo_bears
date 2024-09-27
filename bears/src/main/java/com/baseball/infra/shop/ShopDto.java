@@ -6,15 +6,19 @@ public class ShopDto {
 //	----- feild -----
 	private String nsSeq;
 	private String nsName;
+	private String nsTel;
+	private String nsOwnerName;
+	private String nsOwnerTel;
 	private Date nsOpenTime;
 	private Date nsClosTime;
-	private String nsMulti;
+	private Integer nsMulti;
 	private String nsLogo;
 	private String nsGallery;
 	private String nsInfoText;
 	private Integer nsZipCode;
 	private String nsAddr;
-	private String nsAddDetail;
+	private String nsAddrDetail;
+	private String nsAddrCode;
 	private String nsInfoWalk;
 	private Integer nsInfoPrice;
 	private String nsInfoEvent;
@@ -28,9 +32,10 @@ public class ShopDto {
 	private Date nsRegDate;
 	private Date nsEditDate;
 	private Integer nsDelNy;
+	
 
 //	----- getter/setter -----
-	
+
 	public String getNsSeq() {
 		return nsSeq;
 	}
@@ -42,6 +47,24 @@ public class ShopDto {
 	}
 	public void setNsName(String nsName) {
 		this.nsName = nsName;
+	}
+	public String getNsTel() {
+		return nsTel;
+	}
+	public void setNsTel(String nsTel) {
+		this.nsTel = nsTel;
+	}
+	public String getNsOwnerName() {
+		return nsOwnerName;
+	}
+	public void setNsOwnerName(String nsOwnerName) {
+		this.nsOwnerName = nsOwnerName;
+	}
+	public String getNsOwnerTel() {
+		return nsOwnerTel;
+	}
+	public void setNsOwnerTel(String nsOwnerTel) {
+		this.nsOwnerTel = nsOwnerTel;
 	}
 	public Date getNsOpenTime() {
 		return nsOpenTime;
@@ -55,10 +78,10 @@ public class ShopDto {
 	public void setNsClosTime(Date nsClosTime) {
 		this.nsClosTime = nsClosTime;
 	}
-	public String getNsMulti() {
+	public Integer getNsMulti() {
 		return nsMulti;
 	}
-	public void setNsMulti(String nsMulti) {
+	public void setNsMulti(Integer nsMulti) {
 		this.nsMulti = nsMulti;
 	}
 	public String getNsLogo() {
@@ -91,11 +114,17 @@ public class ShopDto {
 	public void setNsAddr(String nsAddr) {
 		this.nsAddr = nsAddr;
 	}
-	public String getNsAddDetail() {
-		return nsAddDetail;
+	public String getNsAddrDetail() {
+		return nsAddrDetail;
 	}
-	public void setNsAddDetail(String nsAddDetail) {
-		this.nsAddDetail = nsAddDetail;
+	public void setNsAddrDetail(String nsAddrDetail) {
+		this.nsAddrDetail = nsAddrDetail;
+	}
+	public String getNsAddrCode() {
+		return nsAddrCode;
+	}
+	public void setNsAddrCode(String nsAddrCode) {
+		this.nsAddrCode = nsAddrCode;
 	}
 	public String getNsInfoWalk() {
 		return nsInfoWalk;
@@ -175,5 +204,5 @@ public class ShopDto {
 	public void setNsDelNy(Integer nsDelNy) {
 		this.nsDelNy = nsDelNy;
 	}
-	
+
 }
