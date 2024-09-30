@@ -153,5 +153,17 @@
 			WHERE 1 = 1
 				AND usrSeq = #{usrSeq}
 		</delete>
+		
+		<select id="usrSelectOneLogin" resultMap="resultMapObj">
+			SELECT 
+				a.usrId,
+				a.usrPw
+			FROM
+				bears.B_user a
+			WHERE 
+				1 = 1
+				AND a.usrId = #{usrId}
+				AND a.usrPw = #{usrPw}
+		</select>
 
 </mapper>

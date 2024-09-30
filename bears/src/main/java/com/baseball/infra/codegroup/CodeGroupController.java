@@ -129,6 +129,4 @@ public class CodeGroupController {
 		return "redirect:/xdm/v1/infra/codegroup/codeGroupXdmList";
 	}
 	
-
-	
 }

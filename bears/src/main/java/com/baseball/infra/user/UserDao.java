@@ -1,6 +1,7 @@
 package com.baseball.infra.user;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -20,4 +21,6 @@ public interface UserDao {
 	public int usrDelete(UserDto userDto);
 	
 	public int selectOneCount(UserVo userVo);
+	
+	public UserDto usrSelectOneLogin(UserDto userDto);
 }

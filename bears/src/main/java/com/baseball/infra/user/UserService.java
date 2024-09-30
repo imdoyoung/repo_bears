@@ -1,6 +1,7 @@
 package com.baseball.infra.user;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,10 @@ public class UserService {
 	
 	public int selectOneCount(UserVo userVo) {
 		return userDao.selectOneCount(userVo);
+	}
+	
+	public UserDto usrSelectOneLogin(UserDto userDto){
+		return userDao.usrSelectOneLogin(userDto);
 	}
 
 }
