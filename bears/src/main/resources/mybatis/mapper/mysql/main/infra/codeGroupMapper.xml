@@ -95,7 +95,7 @@
 				ifcgUseNy = #{ifcgUseNy},
 				ifcgOrder = #{ifcgOrder},
 				ifcgDesc = #{ifcgDesc},
-			    ifcgDelNy = #{ifcgDelNy},
+			    ifcgDelNy = 0,
 			    ifcgEdit = now()
 			WHERE 1 = 1
 				AND ifcgSeq = #{ifcgSeq}

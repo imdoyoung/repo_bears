@@ -483,7 +483,7 @@
 							<h5 class="card-title">기본정보</h5>
 
 							<!-- Custom Styled Validation -->
-							<form name="form" method="post" action="/xdm/v1/infra/codegroup/codeGroupXdmUpdt">
+							<form name="form" method="post" action="/xdm/v1/infra/codegroup/codeGroupXdmUpdt" novalidate>
 								<div class="row mb-3">
 									<div class="col-md-3">
 										<label class="form-label">
@@ -498,8 +498,10 @@
 											코드그룹 이름
 											<a style="color: red;">*</a>
 											</label> 
-											<input type="text" class="form-control" name="ifcgName" th:value="${item?.ifcgName}"
-											placeholder="코드그룹 이름">
+											<input type="text" class="form-control" name="ifcgName" id="ifcgName"
+											th:value="${item?.ifcgName}" placeholder="코드그룹 이름" required>
+											<div class="invalid-feedback" id="ifcgNameFeedback"> 코드그룹이름을 입력해 주세요.</div>
+											<div class="invalid-feedback" id="ifcgNameRegExpFeedback"> 코드그룹이름은 한글, 영대소문자, 숫자만 입력해 주세요.</div>
 									</div>
 								</div>
 								<div class="row mb-3">
@@ -508,18 +510,19 @@
 											사용 여부
 											<a style="color: red;">*</a>
 										</label> 
-										<select class="form-select" name="ifcgUseNy">
+										<select class="form-select" name="ifcgUseNy" id="ifcgUseNy" required>
 											<option selected disabled>사용 여부</option>
 											<option value="1" th:selected="${item?.ifcgUseNy == 1}">Y</option>
 											<option value="0" th:selected="${item?.ifcgUseNy == 0}">N</option>
 										</select>
+										<div class="invalid-feedback"> 사용여부를 선택해 주세요.</div>
 									</div>
 									<div class="col-md-3">
 										<label class="form-label">
 											순서
 											<a style="color: red;">*</a>
 										</label> 
-										<select class="form-select" name="ifcgOrder">
+										<select class="form-select" name="ifcgOrder" id="ifcgOrder" required>
 											<option selected disabled>순서</option>
 											<option value="1" th:selected="${item?.ifcgOrder == 1}">1</option>
 											<option value="2" th:selected="${item?.ifcgOrder == 2}">2</option>
@@ -532,6 +535,7 @@
 											<option value="9" th:selected="${item?.ifcgOrder == 9}">9</option>
 											<option value="10" th:selected="${item?.ifcgOrder == 10}">10</option>
 										</select>
+										<div class="invalid-feedback"> 삭제여부를 선택해 주세요.</div>
 									</div>
 								</div>
 								<div class="row mb-3">
@@ -585,7 +589,7 @@
 										</button>
 									</div>
 									<div class="col-md-8" align="Right">
-										<button type="submit" class="btn btn-primary">
+										<button type="button" id="btnSubmit" class="btn btn-primary">
 											<i class="bi bi-server"></i>
 										</button>
 									</div>
@@ -660,6 +664,70 @@
 			 form.action = "/xdm/v1/infra/codegroup/codeGroupXdmDel";
 			 form.submit();
 		 }
+		
+		// validation
+		document.getElementById("btnSubmit").onclick = function(){
+			// ifcgName
+			var ifcgName = document.getElementById("ifcgName");						// 객체를 만들고
+		    var ifcgNameValue = document.getElementById("ifcgName").value.trim();	// 객체의 값을 받는 객체 생성
+		    var ifcgNameRegExp = /^[ㄱ-ㅎ가-힣A-Za-z0-9]+$/;
+		    var ifcgNameFeedback = document.getElementById("ifcgNameFeedback");
+		    var ifcgNameRegExpFeedback = document.getElementById("ifcgNameRegExpFeedback");
+		 	// 기존의 validation 초기화
+			ifcgName.classList.remove('is-valid', 'is-invalid');
+			ifcgNameFeedback.style.display='none';
+			ifcgNameRegExpFeedback.style.display='none';
+			// 빈칸일때
+		    if (ifcgNameValue == "" || ifcgNameValue == null) {
+				ifcgNameFeedback.style.display='block';		// 에러 메세지 표시
+				ifcgName.classList.add('is-invalid');		// 유효성 검사 실패 처리 - 빨간 테두리
+				ifcgName.focus();	// 객체로 마우스 커서 포커스
+				return false;	// 함수를 탈출
+		    } else {
+				// by pass
+		    }
+			// 정규표현식
+		    if(!ifcgNameRegExp.test(ifcgNameValue)){
+		    	ifcgNameRegExpFeedback.style.display='block';		// 에러 메세지 표시
+		    	ifcgName.classList.add('is-invalid');		// 유효성 검사 실패 처리 - 빨간 테두리
+		    	ifcgName.focus();	// 객체로 마우스 커서 포커스
+		    	return false;	// 함수를 탈출
+		    } else {
+				// by pass
+				ifcgName.classList.add('is-valid');		// 유효성 검사 성공 처리 - 초록 테두리
+			}
+			
+		 // ifcgUseNy
+			var ifcgUseNy = document.getElementById("ifcgUseNy");
+			var ifcgUseNyValue = document.getElementById("ifcgUseNy").value.trim();
+			
+			if(ifcgUseNyValue == "" || ifcgUseNyValue == null){	// 선택 안했을 경우
+				ifcgUseNy.classList.add('is-invalid');		// 유효성 검사 실패 처리 - 빨간 테두리
+				ifcgUseNy.focus();
+				return false;
+			} else {
+//					by pass
+				ifcgUseNy.classList.remove('is-invalid');	// 빨간 테두리 삭제
+				ifcgUseNy.classList.add('is-valid');		// 유효성 검사 성공 처리 - 초록 테두리
+			}
+			
+			// ifcgOrder
+			var ifcgOrder = document.getElementById("ifcgOrder");
+			var ifcgOrderValue = document.getElementById("ifcgOrder").value.trim();
+			
+			if(ifcgOrderValue == "" || ifcgOrderValue == null){	// 선택 안했을 경우
+				ifcgOrder.classList.add('is-invalid');		// 유효성 검사 실패 처리 - 빨간 테두리
+				ifcgOrder.focus();
+				return false;
+			} else {
+//					by pass
+				ifcgOrder.classList.remove('is-invalid');	// 빨간 테두리 삭제
+				ifcgOrder.classList.add('is-valid');		// 유효성 검사 성공 처리 - 초록 테두리
+			}
+			
+			form.action = "/xdm/v1/infra/codegroup/codeGroupXdmUpdt";
+			form.submit();
+		}
 	</script>
 
 </body>
