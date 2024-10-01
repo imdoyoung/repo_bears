@@ -43,5 +43,9 @@ public class UserService {
 	public UserDto usrSelectOneLogin(UserDto userDto){
 		return userDao.usrSelectOneLogin(userDto);
 	}
+	
+	public UserDto usrSelectOneId(UserDto userDto) {
+		return userDao.usrSelectOneId(userDto);
+	}
 
 }

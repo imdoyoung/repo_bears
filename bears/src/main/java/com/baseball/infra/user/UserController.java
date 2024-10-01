@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baseball.common.util.UtilDateTime;
+import com.baseball.infra.constants.Constants;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -78,6 +79,12 @@ public class UserController {
 		return "redirect:/xdm/v1/infra/user/userXdmList";
 	}
 	
+	// Main
+	@RequestMapping(value="/xdm/v1/infra/user/userXdmMain")
+	public String userXdmMain() {
+		return "/xdm/v1/infra/user/userXdmMain";
+	}
+	
 	// LOGIN
 	@RequestMapping(value="/xdm/v1/infra/user/userXdmLogin")
 	public String userXdmLogin(UserDto userDto) {
@@ -85,20 +92,38 @@ public class UserController {
 		return "/xdm/v1/infra/user/userXdmLogin";
 	}
 	
+	// LoginProc
 	@ResponseBody
 	@RequestMapping(value="/xdm/v1/infra/user/userXdmLoginProc")
-	public Map<String, Object> userXdmLoginProc(UserDto userDto) {
+	public Map<String, Object> userXdmLoginProc(UserDto userDto, HttpSession httpSession) {
 			
 		Map<String, Object> returnMap = new HashMap<String, Object>();	// 결과를 담기 위한 맵 생성
 			
 		UserDto rtUser = userService.usrSelectOneLogin(userDto);	// 사용자 정보 조회
 		
-		if(rtUser != null) {
-			returnMap.put("rt", "success");	// 성공 응답 설정
+		
+		if(rtUser != null) {	// 객체를 대상으로 null을 검사
+			
+			UserDto rtUser2 = userService.usrSelectOneId(userDto);	// 로그인 후 세션 정보 저장
+			
+			if(rtUser2 != null) {
+				// 세션값 저장
+				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
+				httpSession.setAttribute("sessSeqXdm", rtUser2.getUsrSeq());
+				httpSession.setAttribute("sessIdXdm", rtUser2.getUsrId());
+				httpSession.setAttribute("sessNameXdm", rtUser2.getUsrName());
+				
+				returnMap.put("rt", "success");	// 성공 응답 설정
+				
+				// 저장된 세션값 확인
+				System.out.println("sessSeqXdm: " + httpSession.getAttribute("sessSeqXdm"));
+				System.out.println("sessIdXdm: " + httpSession.getAttribute("sessIdXdm"));
+				System.out.println("sessNameXdm: " + httpSession.getAttribute("sessNameXdm"));
+			}
+			
 		} else {
 			returnMap.put("rt", "fail");	// 실패 응답 설정
 		}
-		
 		return returnMap;
 	}
 

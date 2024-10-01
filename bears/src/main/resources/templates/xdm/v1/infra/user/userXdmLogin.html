@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="utf-8">
@@ -127,39 +127,38 @@
   <script type="text/javascript">
 	 
 	// validation
-		document.getElementById("btnSubmit").onclick = function (){
+// 		document.getElementById("btnSubmit").onclick = function (){
 		
-		// ID
-			var usrId = document.getElementById("usrId");
-			var usrIdValue = document.getElementById("usrIdValue").value.trim();
-			var usrIdRegExp = /^[A-Za-z0-9]+$/;
-			var idFeedback = document.getElementById("idFeedback");
-			var idRegExpFeedback = document.getElementById("idRegExpFeedback");
+// 		// ID
+// 			var usrId = document.getElementById("usrId");
+// 			var usrIdValue = document.getElementById("usrIdValue").value.trim();
+// 			var usrIdRegExp = /^[A-Za-z0-9]+$/;
+// 			var idFeedback = document.getElementById("idFeedback");
+// 			var idRegExpFeedback = document.getElementById("idRegExpFeedback");
 			
-			// 기존의 validation 초기화
-			usrId.classList.remove('is-valid', 'is-invalid');
-			idFeedback.style.display = 'none';
-			idRegExpFeedback.style.display = 'none';
+// 			// 기존의 validation 초기화
+// 			usrId.classList.remove('is-valid', 'is-invalid');
+// 			idFeedback.style.display = 'none';
+// 			idRegExpFeedback.style.display = 'none';
 			
-			if (usrIdValue == "" || usrIdValue == null) {
-				idFeedback.style.display='block';		// 에러 메세지 표시
-				usrId.classList.add('is-invalid');		// 유효성 검사 실패 처리 - 빨간 테두리
-				usrId.focus();	// 객체로 마우스 커서 포커스
-				return false;	// 함수를 탈출
-		    } else {
-				// by pass
-		    }
-		    if(!usrIdRegExp.test(ifcgNameValue)){
-		    	idRegExpFeedback.style.display='block';		// 에러 메세지 표시
-		    	usrId.classList.add('is-invalid');		// 유효성 검사 실패 처리 - 빨간 테두리
-		    	usrId.focus();	// 객체로 마우스 커서 포커스
-		    	return false;	// 함수를 탈출
-		    } else {
-				// by pass
-				usrId.classList.add('is-valid');
-			}
-	}
-  
+// 			if (usrIdValue == "" || usrIdValue == null) {
+// 				idFeedback.style.display='block';		// 에러 메세지 표시
+// 				usrId.classList.add('is-invalid');		// 유효성 검사 실패 처리 - 빨간 테두리
+// 				usrId.focus();	// 객체로 마우스 커서 포커스
+// 				return false;	// 함수를 탈출
+// 		    } else {
+// 				// by pass
+// 		    }
+// 		    if(!usrIdRegExp.test(ifcgNameValue)){
+// 		    	idRegExpFeedback.style.display='block';		// 에러 메세지 표시
+// 		    	usrId.classList.add('is-invalid');		// 유효성 검사 실패 처리 - 빨간 테두리
+// 		    	usrId.focus();	// 객체로 마우스 커서 포커스
+// 		    	return false;	// 함수를 탈출
+// 		    } else {
+// 				// by pass
+// 				usrId.classList.add('is-valid');
+// 			}
+// 	}
 	document.getElementById("btnSubmit").onclick = function (){
 	  $.ajax({	// AJAX 요청을 시작하는 jQuery 메서드
 			async: true 	// 요청을 비동기로 처리 (기본값이 true라 생략 가능)
@@ -174,10 +173,10 @@
 				}
 			,success: function(response) {	// 요청이 성공적으로 완료되면 실행될 함수
 				if(response.rt == "success") {	// 응답의 rt 속성이 "success"일 경우
-					alert(response.rt);
-					location.href = "/xdm/v1/infra/user/userXdmList"; // 메인 페이지로 리다이렉션
+					alert("성공");
+					location.href = "/xdm/v1/infra/user/userXdmMain"; // 메인 페이지로 리다이렉션
 				} else {	// 로그인 실패 시 모달 창을 띄움
-					alert("로그인 실패");
+					alert("실패");
 // 			 		document.getElementById("modalAlertTitle").innerText = "확 인";	// 모달 제목 설정
 // 			 		document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";	// 모달 내용 설정
 // 			 		$("#modalAlert").modal("show");

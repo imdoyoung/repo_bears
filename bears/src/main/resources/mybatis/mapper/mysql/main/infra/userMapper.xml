@@ -120,6 +120,7 @@
 				AND a.usrSeq = #{usrSeq}
 		</select>
 		
+		<!-- 수정 -->
 		<update id="usrUpdate">
 			UPDATE bears.B_user
 			SET
@@ -140,6 +141,7 @@
 				AND usrSeq = #{usrSeq}
 		</update>
 		
+		<!-- 수정삭제 -->
 		<update id="usrUelete">
 			UPDATE bears.B_user
 			SET
@@ -148,12 +150,14 @@
 				AND usrSeq = #{usrSeq}
 		</update>
 		
+		<!-- 삭제 -->
 		<delete id="usrDelete">
 			DELETE FROM bears.B_user
 			WHERE 1 = 1
 				AND usrSeq = #{usrSeq}
 		</delete>
 		
+		<!-- 로그인 -->
 		<select id="usrSelectOneLogin" resultMap="resultMapObj">
 			SELECT 
 				a.usrId,
@@ -164,6 +168,19 @@
 				1 = 1
 				AND a.usrId = #{usrId}
 				AND a.usrPw = #{usrPw}
+		</select>
+		
+		<!-- 로그인 세션 유지 -->
+		<select id="usrSelectOneId" resultMap="resultMapObj">
+			SELECT
+				a.usrSeq,
+				a.usrId,
+				a.usrName
+			FROM
+				bears.B_user a
+			WHERE 
+				1 = 1
+				AND a.usrId = #{usrId}
 		</select>
 
 </mapper>
