@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 <meta charset="utf-8">
@@ -483,7 +483,7 @@
 							<h5 class="card-title">기본정보</h5>
 
 							<!-- Custom Styled Validation -->
-							<form name="form" id="form" method="post" action="/xdm/v1/infra/code/codeXdmInst">
+							<form name="form" id="form" method="post" action="/xdm/v1/infra/code/codeXdmInst" novalidate>
 								<div class="row mb-3">
 									<div class="col-md-3">
 										<label class="form-label">
@@ -499,12 +499,13 @@
 											<a style="color: red;">*</a>
 										</label> 
 										<select class="form-select" name="B_codegroup_ifcgSeq" id="B_codegroup_ifcgSeq"
-											style="padding: .375rem .75rem;">
+											style="padding: .375rem .75rem;" required>
 											<option value="">코드 그룹 번호</option>
 											<option th:each = "list:${listCodeGroup}"
 												th:value="${list.ifcgSeq}" th:text="${list.ifcgName}">
 											</option>
 										</select>
+										<div class="invalid-feedback">코드그룹번호를 선택해 주세요.</div>
 									</div>
 								</div>
 								<div class="row mb-3">
@@ -514,25 +515,28 @@
 											<a style="color: red;">*</a>
 											</label> 
 											<input type="text" class="form-control" name="ifcdName" id="ifcdName"
-											placeholder="코드 이름">
+												placeholder="코드 이름" required>
+											<div class="invalid-feedback" id="ifcdNameFeedback"> 코드이름을 입력해 주세요.</div>
+											<div class="invalid-feedback" id="ifcdNameRegExpFeedback"> 코드이름은 한글, 영대소문자, 숫자만 입력해 주세요.</div>
 									</div>
 									<div class="col-md-3">
 										<label class="form-label">
 											사용 여부
 											<a style="color: red;">*</a>
 										</label> 
-										<select class="form-select" name="ifcdUseNy" id="ifcdUseNy">
+										<select class="form-select" name="ifcdUseNy" id="ifcdUseNy" required>
 											<option value="">사용 여부</option>
 											<option value="1">Y</option>
 											<option value="0">N</option>
 										</select>
+										<div class="invalid-feedback">사용여부를 선택해 주세요.</div>
 									</div>
 									<div class="col-md-3">
 										<label class="form-label">
 											순서
 											<a style="color: red;">*</a>
 										</label> 
-										<select class="form-select" name="ifcdOrder" id="ifcdOrder">
+										<select class="form-select" name="ifcdOrder" id="ifcdOrder" required>
 											<option value="">순서</option>
 											<option value="1">1</option>
 											<option value="2">2</option>
@@ -545,6 +549,7 @@
 											<option value="9">9</option>
 											<option value="10">10</option>
 										</select>
+										<div class="invalid-feedback">순서를 선택해 주세요.</div>
 									</div>
 								</div>
 								<div class="row mb-3">
@@ -644,28 +649,50 @@
 		// validation
 		document.getElementById("btnSubmit").onclick = function(){
 			
+			
 			// B_codegroup_ifcgSeq
 			var B_codegroup_ifcgSeq = document.getElementById("B_codegroup_ifcgSeq");
 			var B_codegroup_ifcgSeqValue = document.getElementById("B_codegroup_ifcgSeq").value.trim();
 			
 			if(B_codegroup_ifcgSeqValue == "" || B_codegroup_ifcgSeqValue == null){
-				alert("코드그룹번호를 선택해 주세요");
+				B_codegroup_ifcgSeq.classList.add('is-invalid');
 				B_codegroup_ifcgSeq.focus();
 				return false;
 			} else {
 				// by pass
+				B_codegroup_ifcgSeq.classList.remove('is-invalid');
+				B_codegroup_ifcgSeq.classList.add('is-valid');
 			}
+			
 			
 			// ifcdName
 			var ifcdName = document.getElementById("ifcdName");
 			var ifcdNameValue = document.getElementById("ifcdName").value.trim();
+			var ifcdNameRegExp = /^[ㄱ-ㅎ가-힣A-Za-z0-9]+$/;
+			var ifcdNameFeedback = document.getElementById("ifcdNameFeedback");
+		    var ifcdNameRegExpFeedback = document.getElementById("ifcdNameRegExpFeedback");
 			
+			// 기존의 validation 초기화
+			ifcdName.classList.remove('is-valid', 'is-invalid');
+			ifcdNameFeedback.style.display='none';
+			ifcdNameRegExpFeedback.style.display='none';
+
 			if(ifcdNameValue == "" || ifcdNameValue == null){
-				alert("코드이름을 입력해 주세요");
+				ifcdNameFeedback.style.display='block';
+				ifcdName.classList.add('is-invalid');
 				ifcdName.focus();
 				return false;
 			} else {
 				// by pass
+			}
+			if(!ifcdNameRegExp.test(ifcdNameValue)){
+				ifcdNameRegExpFeedback.style.display='block';
+				ifcdName.classList.add('is-invalid');
+				ifcdName.focus();
+				return false;
+			} else {
+				// by pass
+				ifcdName.classList.add('is-valid');
 			}
 			
 			// ifcdUseNy
@@ -673,11 +700,13 @@
 			var ifcdUseNyValue = document.getElementById("ifcdUseNy").value.trim();
 			
 			if(ifcdUseNyValue == "" || ifcdUseNyValue == null){
-				alert("사용여부를 선택해 주세요");
+				ifcdUseNy.classList.add('is-invalid');
 				ifcdUseNy.focus();
 				return false;
 			} else {
 				// by pass
+				ifcdUseNy.classList.remove('is-invalid');
+				ifcdUseNy.classList.add('is-valid');
 			}
 			
 			// ifcdOrder
@@ -685,11 +714,13 @@
 			var ifcdOrderValue = document.getElementById("ifcdOrder").value.trim();
 			
 			if(ifcdOrderValue == "" || ifcdOrderValue == null){
-				alert("순서를 선택해 주세요");
+				ifcdOrder.classList.add('is-invalid');
 				ifcdOrder.focus();
 				return false;
 			} else {
 				// by pass
+				ifcdOrder.classList.remove('is-invalid');
+				ifcdOrder.classList.add('is-valid');
 			}
 			
 			form.action="/xdm/v1/infra/code/codeXdmInst";

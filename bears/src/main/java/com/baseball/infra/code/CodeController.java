@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.baseball.common.util.UtilDateTime;
 import com.baseball.infra.codegroup.CodeGroupDto;
 import com.baseball.infra.codegroup.CodeGroupService;
 
@@ -23,8 +24,12 @@ public class CodeController {
 	@RequestMapping(value="/xdm/v1/infra/code/codeXdmList")
 	public String codeXdmList(Model model, CodeVo codeVo) {
 		
-		codeVo.setShcdDateStart(codeVo.getShcdDateStart() + " 00:00:00");
-		codeVo.setShcdDateEnd(codeVo.getShcdDateEnd() + " 23:59:59");
+		// 날짜
+//		codeVo.setShcdDateStart(codeVo.getShcdDateStart() + " 00:00:00");
+//		codeVo.setShcdDateEnd(codeVo.getShcdDateEnd() + " 23:59:59");
+		// 초기값 세팅이 없는 경우 사용
+		codeVo.setShcdDateStart(codeVo.getShcdDateStart() == null || codeVo.getShcdDateStart() == "" ? null : UtilDateTime.add00TimeString(codeVo.getShcdDateStart()));
+		codeVo.setShcdDateEnd(codeVo.getShcdDateEnd() == null || codeVo.getShcdDateEnd() == "" ? null : UtilDateTime.add59TimeString(codeVo.getShcdDateEnd()));
 		
 		codeVo.setParamsPaging(codeService.selectOneCount(codeVo));
 		if(codeVo.getTotalRows() > 0) {

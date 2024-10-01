@@ -487,45 +487,45 @@
 									<div class="col-md-2">
 										<select class="form-select" name="shcdDelNy"
 											aria-label="Default select example">
-											<option value="">삭제여부</option>
-											<option value="1">Y</option>
-											<option value="0">N</option>
+											<option value="" th:selected="${vo.shcdDelNy == null}">삭제여부</option>
+											<option value="1" th:selected="${vo.shcdDelNy == 1}">Y</option>
+											<option value="0" th:selected="${vo.shcdDelNy == 0}">N</option>
 										</select>
 									</div>
 									<div class="col-md-2">
 										<select class="form-select" name="shcdUseNy"
 											aria-label="Default select example">
-											<option value="">사용여부</option>
-											<option value="1">Y</option>
-											<option value="0">N</option>
+											<option value="" th:selected="${vo.shcdUseNy == null}">사용여부</option>
+											<option value="1" th:selected="${vo.shcdUseNy == 1}">Y</option>
+											<option value="0" th:selected="${vo.shcdUseNy == 0}">N</option>
 										</select>
 									</div>
 									<div class="col-md-2">
 										<select class="form-select" name="shcdOptionDate"
 											aria-label="Default select example">
-											<option value="">날짜 선택</option>
-											<option value="1">등록 날짜</option>
-											<option value="2">수정 날짜</option>
+											<option value="" th:selected="${vo.shcdOptionDate == null}">날짜 선택</option>
+											<option value="1" th:selected="${vo.shcdOptionDate == 1}">등록 날짜</option>
+											<option value="2" th:selected="${vo.shcdOptionDate == 2}">수정 날짜</option>
 										</select>
 									</div>
 									<div class="col-md-2">
-										<input type="text" class="form-control" name="shcdDateStart"
-											id="shcdDateStart" autocomplete="off">
+										<input type="text" class="form-control" name="shcdDateStart" id="shcdDateStart" placeholder="시작일"
+											th:value="${#strings.substring(vo.shcdDateStart, 0, 10)}" autocomplete="off">
 									</div>
 									<div class="col-md-2">
-										<input type="text" class="form-control" name="shcdDateEnd"
-											id="shcdDateEnd" autocomplete="off">
+										<input type="text" class="form-control" name="shcdDateEnd" id="shcdDateEnd" placeholder="종료일"
+											th:value="${#strings.substring(vo.shcdDateEnd, 0, 10)}" autocomplete="off">
 									</div>
 								</div>
 								<div class="row mb-3">
 									<div class="col-md-2">
 										<select class="form-select" name="shcdOption"
 											aria-label="Default select example">
-											<option value="">검색구분</option>
-											<option value="1">코드 번호</option>
-											<option value="2">코드 이름</option>
-											<option value="3">코드그룹 번호</option>
-											<option value="4">코드그룹 이름</option>
+											<option value="" th:selected="${vo.shcdOption == null}">검색구분</option>
+											<option value="1" th:selected="${vo.shcdOption == 1}">코드 번호</option>
+											<option value="2" th:selected="${vo.shcdOption == 2}">코드 이름</option>
+											<option value="3" th:selected="${vo.shcdOption == 3}">코드그룹 번호</option>
+											<option value="4" th:selected="${vo.shcdOption == 4}">코드그룹 이름</option>
 										</select>
 									</div>
 									<div class="col-md-2">
@@ -549,8 +549,7 @@
 									</div>
 									<div class="col-md-8"></div>
 									<div class="col-md-2">
-										<select class="form-select"
-											aria-label="Default select example">
+										<select class="form-select" id="changeRowNum" name="changeRowNum" aria-label="Default select example">
 											<option value="5" th:selected="${vo.rowNumToShow eq 5}">5</option>
 											<option value="10" th:selected="${vo.rowNumToShow eq 10}">10</option>
 											<option value="30" th:selected="${vo.rowNumToShow eq 30}">30</option>
@@ -586,7 +585,7 @@
 											<tr th:if="!${#lists.isEmpty(list)}" th:each="list : ${list}">
 												<td><input class="form-check-input" type="checkbox"
 													id="gridCheck1"></td>
-												<td></td>
+												<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
 												<td th:text="${list.B_codegroup_ifcgSeq}"></td>
 												<td th:text="${list.ifcgName}"></td>
 												<td th:text="${list.ifcdSeq}"></td>
@@ -708,6 +707,8 @@
 
 
 	<script type="text/javascript">
+	
+		// datetimepicker
 		window.addEventListener('load', function() {
 
 			$.datetimepicker.setLocale('ko'); // 한국어를 쓰겠다는 뜻이다.
@@ -743,6 +744,14 @@
 			document.querySelector("form[name=form]").action = "/xdm/v1/infra/code/codeXdmList";
 			document.querySelector("form[name=form]").submit();
 		}
+		
+		// changeRowNum
+		document.getElementById("changeRowNum").onchange = function(){
+			document.getElementById("rowNumToShow").value = document.getElementById("changeRowNum").value;
+			form.action = "/xdm/v1/infra/code/codeXdmList";
+			form.submit();
+		}
+		
 	</script>
 </body>
 

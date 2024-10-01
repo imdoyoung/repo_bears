@@ -84,6 +84,9 @@
 			now(),
 			#{B_codegroup_ifcgSeq}
 		)
+		<selectKey resultType="String" keyProperty="ifcdSeq" order="AFTER">
+				SELECT last_insert_id()
+		</selectKey>
 	</insert>
 
 	<!-- 데이터 한개 출력(select) -->
