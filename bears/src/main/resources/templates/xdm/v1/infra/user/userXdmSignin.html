@@ -86,39 +86,32 @@
 											sign in</p>
 									</div>
 
-									<form class="row g-3 needs-validation" name="form" id="form"
-										novalidate>
+									<form class="row g-3 needs-validation needs-invalidation" name="form" id="form" novalidate>
 
 										<div class="col-12">
-											<label for="yourUsername" class="form-label">ID</label> <input
-												type="text" name="usrId" class="form-control" id="usrId"
-												required>
-											<div class="invalid-feedback" id="usrIdFeedback">아이디를
-												입력해 주세요.</div>
-											<div class="invalid-feedback" id="usrIdRegExpFeedback">아이디는
-												영대소문자, 숫자조합 6~15자로 입력해 주세요.</div>
+											<label for="yourUsername" class="form-label">ID</label> 
+											<input type="text" name="usrId" class="form-control" id="usrId" placeholder="영대소문자, 숫자조합 6~15자" required>
+											<div class="invalid-feedback" id="usrIdFeedback">아이디를 입력해 주세요.</div>
+											<div class="invalid-feedback" id="usrIdRegExpFeedback">아이디는 영문자, 숫자조합 6~15자로 입력해 주세요.</div>
 										</div>
 
 										<div class="col-12">
-											<label for="yourPassword" class="form-label">PW</label> <input
-												type="password" name="usrPw" class="form-control" id="usrPw"
-												required>
-											<div class="invalid-feedback" id="pwFeedback">PW를
-												입력해주세요!</div>
-											<div class="invalid-feedback" id="pwRegExpFeedback">PW는
-												영대소문자 입력해주세요!</div>
+											<label for="yourPassword" class="form-label">PW</label> 
+											<input type="password" name="usrPw" class="form-control" id="usrPw" placeholder="영대소문자, 숫자, 특수문자!@#$%^*+=-조합 8~15자" required>
+											<div class="invalid-feedback" id="usrPwFeedback">비밀번호를 입력해주세요!</div>
+											<div class="invalid-feedback" id="usrPwRegExpFeedback">비밀번호는 영문자, 숫자, 특수문자!@#$%^*+=-조합 8~15자로 입력해주세요!</div>
 										</div>
 
 										<div class="col-12">
 											<div class="form-check">
-												<input class="form-check-input" type="checkbox"
-													name="remember" value="true" id="rememberMe"> <label
-													class="form-check-label" for="rememberMe">ID 저장하기</label>
+												<input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe"> 
+													<label class="form-check-label" for="rememberMe">ID 저장하기</label>
 											</div>
 										</div>
 										<div class="col-12">
-											<button class="btn btn-primary w-100" type="button"
-												id="btnSubmit">Login</button>
+											<button class="btn btn-primary w-100" type="button" id="btnSubmit">
+												Sign in
+											</button>
 										</div>
 										<div class="col-12">
 											<p class="small mb-0">
@@ -126,7 +119,25 @@
 											</p>
 										</div>
 									</form>
-
+									<!-- Vertically centered Modal -->
+						              <div class="modal fade" id="verticalycentered" tabindex="-1">
+						                <div class="modal-dialog modal-dialog-centered">
+						                  <div class="modal-content">
+						                    <div class="modal-header">
+						                      <h5 class="modal-title">확인</h5>
+						                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						                    </div>
+						                    <div class="modal-body">
+						                      일치하는 회원이 존재하지 않습니다.
+						                    </div>
+						                    <div class="modal-footer">
+						                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+						                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal">확인</button>
+						                    </div>
+						                  </div>
+						                </div>
+						              </div>
+						             <!-- End Vertically centered Modal-->
 								</div>
 							</div>
 						</div>
@@ -171,6 +182,65 @@
 
 		document.getElementById("btnSubmit").onclick = function() {
 			// validation
+			// usrId
+			var usrId = document.getElementById("usrId");
+			var usrIdValue = document.getElementById("usrId").value.trim();
+			var usrIdRegExp = /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,15}$/;		// 영대소문자, 숫자포함 6~15자
+			var usrIdFeedback = document.getElementById("usrIdFeedback");
+			var usrIdRegExpFeedback = document.getElementById("usrIdRegExpFeedback");
+			
+			// 기존 validation 초기화
+			usrId.classList.remove('is-valid', 'is-invalid');
+			usrIdFeedback.style.display='none';
+			usrIdRegExpFeedback.style.display='none';
+			
+			if(usrIdValue == "" || usrIdValue == null){
+				usrIdFeedback.style.display='block';
+				usrId.classList.add('is-invalid');
+				usrId.focus();
+				return false;
+			} else {
+// 				by pass
+			}
+			if(!usrIdRegExp.test(usrIdValue)){
+				usrIdRegExpFeedback.style.display='block';
+				usrId.classList.add('is-invalid');
+				usrId.focus();
+				return false;
+			} else {
+// 				by pass
+				usrId.classList.add('is-valid');
+			}
+			
+			// usrPw
+			var usrPw = document.getElementById("usrPw");
+			var usrPwValue = document.getElementById("usrPw").value.trim();
+			var usrPwRegExp = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^*+=-]).{8,15}$/;	// 영대소문자, 숫자, 특수문자!@#$%^*+=- 포함 8~15자
+			var usrPwFeedback = document.getElementById("usrPwFeedback");
+			var usrPwRegExpFeedback = document.getElementById("usrPwRegExpFeedback");
+			
+			// 기존 validation 초기화
+			usrPw.classList.remove('is-valid', 'is-invalid');
+			usrPwFeedback.style.display='none';
+			usrPwRegExpFeedback.style.display='none';
+			
+			if(usrPwValue == "" || usrPwValue == null){
+				usrPwFeedback.style.display='block';
+				usrPw.classList.add('is-invalid');
+				usrPw.focus();
+				return false;
+			} else {
+// 				by pass
+			}
+			if(!usrPwRegExp.test(usrPwValue)){
+				usrPwRegExpFeedback.style.display='block';
+				usrPw.classList.add('is-invalid');
+				usrpw.focus();
+				return false;
+			} else {
+// 				by pass
+				usrPw.classList.add('is-valid');
+			}
 			
 			
 			// Login Ajax
@@ -189,18 +259,17 @@
 				},
 				success : function(response) { // 요청이 성공적으로 완료되면 실행될 함수
 					if (response.rt == "success") { // 응답의 rt 속성이 "success"일 경우
-						alert("성공");
+						usrPw.classList.add('is-valid');
 						location.href = "/xdm/v1/infra/user/userXdmMain"; // 메인 페이지로 리다이렉션
 					} else { // 로그인 실패 시 모달 창을 띄움
-						alert("실패");
-						// 			 		document.getElementById("modalAlertTitle").innerText = "확 인";	// 모달 제목 설정
-						// 			 		document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";	// 모달 내용 설정
-						// 			 		$("#modalAlert").modal("show");
+						$("#verticalycentered").modal("show");  // 모달을 표시
+						usrPwRegExpFeedback.style.display='block';
+						usrPw.classList.add('is-invalid');
 					}
 				}
-			// 			,error : function(jqXHR, textStatus, errorThrown){	// 요청이 실패할 경우 실행될 함수
-			// 				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);	// 오류 메시지 표시
-			// 			}
+			 	,error : function(jqXHR, textStatus, errorThrown){	// 요청이 실패할 경우 실행될 함수
+			 		alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);	// 오류 메시지 표시
+			 	}
 			});
 		}
 	</script>
