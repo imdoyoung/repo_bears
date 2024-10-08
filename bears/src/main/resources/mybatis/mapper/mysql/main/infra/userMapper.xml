@@ -165,6 +165,7 @@
 		<!-- 로그인 -->
 		<select id="usrSelectOneSignin" resultMap="resultMapObj">
 			SELECT 
+				a.usrSeq,
 				a.usrId,
 				a.usrPw
 			FROM
