@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,16 +24,20 @@ public class UserController {
 	
 	// SELECTLIST
 	@RequestMapping(value="/xdm/v1/infra/user/userXdmList")
-	public String userXdmList(Model model, UserVo userVo) {
+	public String userXdmList(@ModelAttribute("vo") UserVo userVo, Model model) {
+//		System.out.println(userVo.getThisPage());
+		
+		// 날짜
 //		userVo.setShStartDate(userVo.getShStartDate() + " 00:00:00");
 //		userVo.setShEndDate(userVo.getShEndDate() + " 23:59:59");
 		// 초기값 세팅이 없는 경우 사용
 		userVo.setShStartDate(userVo.getShStartDate() == null || userVo.getShStartDate() == "" ? null : UtilDateTime.add00TimeString(userVo.getShStartDate()));
 		userVo.setShEndDate(userVo.getShEndDate() == null || userVo.getShEndDate() == "" ? null : UtilDateTime.add59TimeString(userVo.getShEndDate()));
+		
 		userVo.setParamsPaging(userService.selectOneCount(userVo));
 		if(userVo.getTotalRows() > 0) {
 			model.addAttribute("usrList", userService.usrSelectList(userVo));
-			model.addAttribute("vo", userVo);
+//			model.addAttribute("vo", userVo);
 		}
 		return "/xdm/v1/infra/user/userXdmList";
 	}
@@ -86,20 +91,20 @@ public class UserController {
 	}
 	
 	// LOGIN
-	@RequestMapping(value="/xdm/v1/infra/user/userXdmLogin")
-	public String userXdmLogin(UserDto userDto) {
-		userService.usrSelectOneLogin(userDto);
-		return "/xdm/v1/infra/user/userXdmLogin";
+	@RequestMapping(value="/xdm/v1/infra/user/userXdmSignin")
+	public String userXdmSignin(UserDto userDto) {
+		userService.usrSelectOneSignin(userDto);
+		return "/xdm/v1/infra/user/userXdmSignin";
 	}
 	
 	// LoginProc
 	@ResponseBody
-	@RequestMapping(value="/xdm/v1/infra/user/userXdmLoginProc")
-	public Map<String, Object> userXdmLoginProc(UserDto userDto, HttpSession httpSession) {
+	@RequestMapping(value="/xdm/v1/infra/user/userXdmSigninProc")
+	public Map<String, Object> userXdmSigninProc(UserDto userDto, HttpSession httpSession) {
 			
 		Map<String, Object> returnMap = new HashMap<String, Object>();	// 결과를 담기 위한 맵 생성
 			
-		UserDto rtUser = userService.usrSelectOneLogin(userDto);	// 사용자 정보 조회
+		UserDto rtUser = userService.usrSelectOneSignin(userDto);	// 사용자 정보 조회
 		
 		
 		if(rtUser != null) {	// 객체를 대상으로 null을 검사
@@ -112,18 +117,26 @@ public class UserController {
 				httpSession.setAttribute("sessSeqXdm", rtUser2.getUsrSeq());
 				httpSession.setAttribute("sessIdXdm", rtUser2.getUsrId());
 				httpSession.setAttribute("sessNameXdm", rtUser2.getUsrName());
-				
-				returnMap.put("rt", "success");	// 성공 응답 설정
-				
+				// 성공 응답 설정
+				returnMap.put("rt", "success");	
 				// 저장된 세션값 확인
 				System.out.println("sessSeqXdm: " + httpSession.getAttribute("sessSeqXdm"));
 				System.out.println("sessIdXdm: " + httpSession.getAttribute("sessIdXdm"));
 				System.out.println("sessNameXdm: " + httpSession.getAttribute("sessNameXdm"));
 			}
-			
 		} else {
 			returnMap.put("rt", "fail");	// 실패 응답 설정
 		}
+		return returnMap;
+	}
+	
+	// LogoutProc
+	@ResponseBody
+	@RequestMapping(value="/xdm/v1/infra/user/userXdmSignoutProc")
+	public Map<String, Object> signoutXdmProc(HttpSession httpSession) {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		httpSession.invalidate();
+		returnMap.put("rt", "success");
 		return returnMap;
 	}
 

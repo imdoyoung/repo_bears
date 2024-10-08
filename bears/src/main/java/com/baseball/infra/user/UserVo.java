@@ -27,8 +27,8 @@ public class UserVo {
 	private int startRnumForMySql;	// 쿼리 시작 row
 	
 //	----- paging 계산 -----
-	public void setParamsPaging(int totalRows) {
-		
+	public void setParamsPaging(int totalRows) {	// 파라미터 세팅
+
 		setTotalRows(totalRows);
 		
 		if(getTotalRows() == 0) {	// 입력받은 전체 데이터 갯수가 0이면
@@ -70,7 +70,7 @@ public class UserVo {
 		System.out.println("startPage : " + getStartPage());
 		System.out.println("endPage : " + getEndPage());
 		System.out.println("startRnumForMySql : " + getStartRnumForMySql());
-			
+		
 	}
 	
 //	----- getter / setter -----

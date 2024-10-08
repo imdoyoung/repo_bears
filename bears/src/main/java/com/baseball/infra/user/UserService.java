@@ -40,8 +40,8 @@ public class UserService {
 		return userDao.selectOneCount(userVo);
 	}
 	
-	public UserDto usrSelectOneLogin(UserDto userDto){
-		return userDao.usrSelectOneLogin(userDto);
+	public UserDto usrSelectOneSignin(UserDto userDto){
+		return userDao.usrSelectOneSignin(userDto);
 	}
 	
 	public UserDto usrSelectOneId(UserDto userDto) {

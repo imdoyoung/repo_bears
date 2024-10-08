@@ -460,7 +460,7 @@
 							<h5 class="card-title">Form</h5>
 
 							<!-- Custom Styled Validation -->
-							<form name="form" method="post" action="/xdm/v1/infra/user/userXdmUpdt">
+							<form name="form" method="post" action="/xdm/v1/infra/user/userXdmUpdt" class="needs-invalidation" novalidate>
 								<div class="row mb-3">
 									<div class="col-md-3">
 										<label class="form-label"> 
@@ -475,8 +475,7 @@
 										 	관리자여부 
 										 	<a style="color: red;">*</a>
 										</label> 
-										<select class="form-select" name="usrXdmNy" disabled>
-											<option value="">관리자 여부</option>
+										<select class="form-select" name="usrXdmNy" id="usrXdmNy" disabled>
 											<option value="1" th:selected="${usrItem?.usrXdmNy == 1}">Y</option>
 											<option value="0" th:selected="${usrItem?.usrXdmNy == 0}">N</option>
 										</select>
@@ -486,7 +485,9 @@
 										 	이름 
 										 	<a style="color: red;">*</a>
 										</label> 
-										<input type="text" class="form-control" name="usrName" th:value="${usrItem?.usrName}" placeholder="이름">
+										<input type="text" class="form-control" name="usrName" id="usrName" th:value="${usrItem?.usrName}" placeholder="이름" required>
+										<div class="invalid-feedback" id="usrNameFeedback">이름을 입력해 주세요.</div>
+										<div class="invalid-feedback" id="usrNameRegExpFeedback">이름은 한글만 입력해 주세요.</div>
 									</div>
 								</div>
 								<div class="row mb-3">
@@ -495,25 +496,32 @@
 											아이디 
 											<a style="color: red;">*</a>
 										</label> 
-										<input type="text" class="form-control" name="usrId" th:value="${usrItem?.usrId}" placeholder="아이디">
+										<input type="text" class="form-control" name="usrId" id="usrId" th:value="${usrItem?.usrId}" placeholder="영대소문자, 숫자조합 6~15자" required>
+										<div class="invalid-feedback" id="usrIdFeedback">아이디를 입력해 주세요.</div>
+										<div class="invalid-feedback" id="usrIdRegExpFeedback">아이디는 영대소문자, 숫자조합 6~15자로 입력해 주세요.</div>
 									</div>
 									<div class="col-md-3">
 										<label class="form-label">
 											비밀번호 
 											<a style="color: red;">*</a>
 										</label> 
-										<input type="text" class="form-control" name="usrPw" th:value="${usrItem?.usrPw}" placeholder="비밀번호">
+										<input type="text" class="form-control" name="usrPw" id="usrPw" th:value="${usrItem?.usrPw}" placeholder="영대소문자, 숫자, 특수문자조합 8~15자" required>
+										<div class="invalid-feedback" id="usrPwFeedback">비밀번호를 입력해 주세요.</div>
+										<div class="invalid-feedback" id="usrPwRegExpFeedback">비밀번호는 영대소문자, 숫자, 특수문자!@#$%^*+=-조합 8~15자로 입력해 주세요.</div>
 									</div>
 									<div class="col-md-3">
 										<label class="form-label">
 										 	성별 
 										 	<a style="color: red;">*</a>
 										</label> 
-										<select class="form-select" name="usrGender">
+										<select class="form-select" name="usrGender" id="usrGender" required>
 											<option value="">성별</option>
-											<option value="1" th:selected="${usrItem?.usrGender == 1}">남성</option>
-											<option value="2" th:selected="${usrItem?.usrGender == 2}">여성</option>
+											<option th:each="list : ${@codeService.selectListCachedCode(1)}"
+												th:value="${list.ifcdSeq}" th:text="${list.ifcdName}"
+												th:selected="${list.ifcdSeq} == ${usrItem?.usrGender}">
+											</option>
 										</select>
+										<div class="invalid-feedback">성별을 선택해 주세요.</div>
 									</div>
 								</div>
 								<div class="row mb-3">
@@ -522,20 +530,27 @@
 											생년월일
 											<a style="color: red;">*</a>
 										</label> 
-										<input type="datetime" class="form-control" name="usrBirth" th:value="${#dates.format(usrItem?.usrBirth, 'yyyy-MM-dd')}" placeholder="생년월일">
+										<input type="datetime" class="form-control" name="usrBirth" id="usrBirth" th:value="${#dates.format(usrItem?.usrBirth, 'yyyy-MM-dd')}" placeholder="YYYY-MM-DD" required>
+										<div class="invalid-feedback" id="usrBirthFeedback">생년월일을 입력해 주세요.</div>
+										<div class="invalid-feedback" id="usrBirthRegExpFeedback">YYYY-MM-DD형식으로 입력해 주세요.</div>
 									</div>
 									<div class="col-md-3">
 										<label class="form-label">
 											이메일 
 											<a style="color: red;">*</a>
-										</label> <input type="text" class="form-control" name="usrEmail" th:value="${usrItem?.usrEmail}" placeholder="이메일">
+										</label> 
+										<input type="text" class="form-control" name="usrEmail" id="usrEmail" th:value="${usrItem?.usrEmail}" placeholder="이메일" required>
+										<div class="invalid-feedback" id="usrEmailFeedback">이메일을 입력해 주세요.</div>
+										<div class="invalid-feedback" id="usrEmailRegExpFeedback">이메일을 형식에 맞게 입력해 주세요.</div>
 									</div>
 									<div class="col-md-3">
 										<label class="form-label"> 
 											전화번호 
 											<a style="color: red;">*</a>
 										</label> 
-										<input type="text" class="form-control" name="usrPhone" th:value="${usrItem?.usrPhone}" placeholder="전화번호">
+										<input type="text" class="form-control" name="usrPhone" id="usrPhone" th:value="${usrItem?.usrPhone}" placeholder="'-'빼고 입력해 주세요." required>
+										<div class="invalid-feedback" id="usrPhoneFeedback">전화번호를 입력해 주세요.</div>
+										<div class="invalid-feedback" id="usrPhoneRegExpFeedback">'-'빼고 입력해 주세요.</div>
 									</div>
 								</div>
 								<div class="row mb-3">
@@ -544,14 +559,13 @@
 											등급
 											<a style="color: red;">*</a>
 										</label> 
-										<select class="form-select" name="usrGrade">
-											<option value="">등급</option>
-											<option value="0" th:selected="${usrItem?.usrGrade == 0}">관리자</option>
-											<option value="1" th:selected="${usrItem?.usrGrade == 1}">씨앗</option>
-											<option value="2" th:selected="${usrItem?.usrGrade == 2}">새싹</option>
-											<option value="3" th:selected="${usrItem?.usrGrade == 3}">나무</option>
-											<option value="4" th:selected="${usrItem?.usrGrade == 4}">숲</option>
+										<select class="form-select" name="usrGrade" id="usrGrade" required>
+											<option value="">등급을 선택하세요</option>
+											<option th:each="list : ${@codeService.selectListCachedCode(3)}"
+												th:value="${list.ifcdSeq}" th:text="${list.ifcdName}"
+												th:selected="${list.ifcdSeq} == ${usrItem?.usrGrade}">
 										</select>
+										<div class="invalid-feedback">등급을 선택해 주세요.</div>
 									</div>
 									<div class="col-md-3">
 										<label class="form-label">
@@ -574,20 +588,22 @@
 										 	약관동의여부 
 										 	<a style="color: red;">*</a>
 										</label> 
-										<select class="form-select" name="usrTosNy" disabled>
+										<select class="form-select" name="usrTosNy" id="usrTosNy" disabled>
 											<option value="1" th:selected="${usrItem?.usrTosNy == 1}">Y</option>
 											<option value="0" th:selected="${usrItem?.usrTosNy == 0}">N</option>
 										</select>
+										<div class="invalid-feedback">약관동의여부를 선택해 주세요.</div>
 									</div>
 									<div class="col-md-3">
 										<label class="form-label">
 										 	마케팅동의여부 
 										 	<a style="color: red;">*</a>
 										</label> 
-										<select class="form-select" name="usrMktNy" disabled>
+										<select class="form-select" name="usrMktNy" id="usrMktNy" disabled>
 											<option value="1" th:selected="${usrItem?.usrMktNy == 1}">Y</option>
 											<option value="0" th:selected="${usrItem?.usrMktNy == 0}">N</option>
 										</select>
+										<div class="invalid-feedback">마케팅동의여부를 선택해 주세요.</div>
 									</div>
 									<div class="col-md-3">
 										<label class="form-label">
@@ -616,7 +632,7 @@
 										</button>
 									</div>
 									<div class="col-md-8" align="Right">
-										<button type="submit" class="btn btn-primary">
+										<button type="button" id="btnSubmit" class="btn btn-primary">
 											<i class="bi bi-server"></i>
 										</button>
 									</div>
@@ -688,6 +704,269 @@
 			alert("DELETE 확인");
 			let form = document.querySelector("form[name=form]");
 			form.action = "/xdm/v1/infra/user/userXdmDel";
+			form.submit();
+		}
+		
+		// validation
+		document.getElementById("btnSubmit").onclick = function(){
+			
+			// usrXdmNy
+			var usrXdmNy = document.getElementById("usrXdmNy");
+			var usrXdmNyValue = document.getElementById("usrXdmNy").value.trim();
+			
+			if(usrXdmNyValue == "" || usrXdmNyValue == null){
+				usrXdmNy.classList.add('is-invalid');
+				usrXdmNy.focus();
+				return false;
+			} else {
+// 				by pass
+				usrXdmNy.classList.remove('is-invalid');
+				usrXdmNy.classList.add('is-valid');
+			}
+			
+			// usrName
+			var usrName = document.getElementById("usrName");
+			var usrNameValue = document.getElementById("usrName").value.trim();
+			var usrNameRegExp = /^[가-힣]+$/;		// 한글로만
+			var usrNameFeedback = document.getElementById("usrNameFeedback");
+			var usrNameRegExpFeedback = document.getElementById("usrNameRegExpFeedback");
+			
+			// 기존 validation 초기화
+			usrName.classList.remove('is-valid', 'is-invalid');
+			usrNameFeedback.style.display='none';
+			usrNameRegExpFeedback.style.display='none';
+			
+			if(usrNameValue == "" || usrNameValue == null){
+				usrNameFeedback.style.display='block';
+				usrName.classList.add('is-invalid');
+				usrName.focus();
+				return false;
+			} else {
+// 				by pass
+			}
+			if(!usrNameRegExp.test(usrNameValue)){
+				usrNameRegExpFeedback.style.display='block';
+				usrName.classList.add('is-invalid');
+				usrName.focus();
+				return false;
+			} else {
+// 				by pass
+				usrName.classList.add('is-valid');
+			}
+			
+			
+			// usrId
+			var usrId = document.getElementById("usrId");
+			var usrIdValue = document.getElementById("usrId").value.trim();
+			var usrIdRegExp = /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,15}$/;		// 영대소문자, 숫자포함 6~15자
+			var usrIdFeedback = document.getElementById("usrIdFeedback");
+			var usrIdRegExpFeedback = document.getElementById("usrIdRegExpFeedback");
+			
+			// 기존 validation 초기화
+			usrId.classList.remove('is-valid', 'is-invalid');
+			usrIdFeedback.style.display='none';
+			usrIdRegExpFeedback.style.display='none';
+			
+			if(usrIdValue == "" || usrIdValue == null){
+				usrIdFeedback.style.display='block';
+				usrId.classList.add('is-invalid');
+				usrId.focus();
+				return false;
+			} else {
+// 				by pass
+			}
+			if(!usrIdRegExp.test(usrIdValue)){
+				usrIdRegExpFeedback.style.display='block';
+				usrId.classList.add('is-invalid');
+				usrId.focus();
+				return false;
+			} else {
+// 				by pass
+				usrId.classList.add('is-valid');
+			}
+			
+			// usrPw
+			var usrPw = document.getElementById("usrPw");
+			var usrPwValue = document.getElementById("usrPw").value.trim();
+			var usrPwRegExp = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^*+=-]).{8,15}$/;	// 영대소문자, 숫자, 특수문자!@#$%^*+=- 포함 8~15자
+			var usrPwFeedback = document.getElementById("usrPwFeedback");
+			var usrPwRegExpFeedback = document.getElementById("usrPwRegExpFeedback");
+			
+			// 기존 validation 초기화
+			usrPw.classList.remove('is-valid', 'is-invalid');
+			usrPwFeedback.style.display='none';
+			usrPwRegExpFeedback.style.display='none';
+			
+			if(usrPwValue == "" || usrPwValue == null){
+				usrPwFeedback.style.display='block';
+				usrPw.classList.add('is-invalid');
+				usrPw.focus();
+				return false;
+			} else {
+// 				by pass
+			}
+			if(!usrPwRegExp.test(usrPwValue)){
+				usrPwRegExpFeedback.style.display='block';
+				usrPw.classList.add('is-invalid');
+				usrpw.focus();
+				return false;
+			} else {
+// 				by pass
+				usrPw.classList.add('is-valid');
+			}
+			
+			// usrGender
+			var usrGender = document.getElementById("usrGender");
+			var usrGenderValue = document.getElementById("usrGender").value.trim();
+			
+			// 기존 validation 초기화
+			usrGender.classList.remove('is-valid', 'is-invalid');
+			
+			if(usrGenderValue == "" || usrGenderValue == null){
+				usrGender.classList.add('is-invalid');
+				usrGender.focus();
+				return false;
+			} else {
+// 				by pass
+				usrGender.classList.remove('is-invalid');
+				usrGender.classList.add('is-valid');
+			}
+			
+			// usrBirth
+			var usrBirth = document.getElementById("usrBirth");
+			var usrBirthValue = document.getElementById("usrBirth").value.trim();
+			var usrBirthRegExp = /^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+			var usrBirthFeedback = document.getElementById("usrBirthFeedback");
+			var usrBirthRegExpFeedback = document.getElementById("usrBirthRegExpFeedback");
+			
+			// 기존 validation 초기화
+			usrBirth.classList.remove('is-valid', 'is-invalid');
+			usrBirthFeedback.style.display='none';
+			usrBirthRegExpFeedback.style.display='none';
+			
+			if(usrBirthValue == "" || usrBirthValue == null){
+				usrBirthFeedback.style.display='block';
+				usrBirth.classList.add('is-invalid');
+				usrBirth.focus();
+				return false;
+			} else {
+// 				by pass
+			}
+			if(!usrBirthRegExp.test(usrBirthValue)){
+				usrBirthRegExpFeedback.style.display='block';
+				usrBirth.classList.add('is-invalid');
+				usrBirth.focus();
+				return false;
+			} else {
+// 				by pass
+				usrBirth.classList.add('is-valid');
+			}
+			
+			// usrEmail
+			var usrEmail = document.getElementById("usrEmail");
+			var usrEmailValue = document.getElementById("usrEmail").value.trim();
+			var	usrEmailRegExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+			var usrEmailFeedback = document.getElementById("usrEmailFeedback");
+			var usrEmailRegExpFeedback = document.getElementById("usrEmailRegExpFeedback");
+			
+			// 기존 validation 초기화
+			usrEmail.classList.remove('is-valid', 'is-invalid');
+			usrEmailFeedback.style.display='none';
+			usrEmailRegExpFeedback.style.display='none';
+			
+			if(usrEmailValue == "" || usrEmailValue == null){
+				usrEmailFeedback.style.display='block';
+				usrEmail.classList.add('is-invalid');
+				usrEmail.focus();
+				return false;
+			} else {
+// 				by pass
+			}
+			if(!usrEmailRegExp.test(usrEmailValue)){
+				usrEmailRegExpFeedback.style.display='block';
+				usrEmail.classList.add('is-invalid');
+				usrEmail.focus();
+				return false;
+			} else {
+// 				by pass
+				usrEmail.classList.add('is-valid');
+			}
+			
+			// usrPhone
+			var usrPhone = document.getElementById("usrPhone");
+			var usrPhoneValue = document.getElementById("usrPhone").value.trim();
+			var usrPhoneRegExp = /^01([0|1|6|7|8|9]?)([0-9]{3,4})([0-9]{4})$/;
+			var usrPhoneFeedback = document.getElementById("usrPhoneFeedback");
+			var usrPhoneRegExpFeedback = document.getElementById("usrPhoneRegExpFeedback");
+			
+			// 기존 validation 초기화
+			usrPhone.classList.remove('is-valid', 'is-invalid');
+			usrPhoneFeedback.style.display='none';
+			usrPhoneRegExpFeedback.style.display='none';
+			
+			if(usrPhoneValue == "" || usrPhoneValue == null){
+				usrPhoneFeedback.style.display='block';
+				usrPhone.classList.add('is-invalid');
+				usrPhone.focus();
+				return false;
+			} else {
+// 				by pass
+			}
+			if(!usrPhoneRegExp.test(usrPhoneValue)){
+				usrPhoneRegExpFeedback.style.display='block';
+				usrPhone.classList.add('is-invalid');
+				usrPhone.focus();
+				return false;
+			} else {
+// 				by pass
+				usrPhone.classList.add('is-valid');
+			}
+			
+			// usrGrade
+			var usrGrade = document.getElementById("usrGrade");
+			var usrGradeValue = document.getElementById("usrGrade").value.trim();
+			
+			if(usrGradeValue == "" || usrGradeValue == null){
+				usrGrade.classList.add('is-invalid');
+				usrGrade.focus();
+				return false;
+			} else {
+// 				by pass
+				usrGrade.classList.remove('is-invalid');
+				usrGrade.classList.add('is-valid');
+			}
+			
+			// usrTosNy
+			var usrTosNy = document.getElementById("usrTosNy");
+			var usrTosNyValue = document.getElementById("usrTosNy").value.trim();
+			
+			if(usrTosNyValue == "" || usrTosNyValue == null){
+				usrTosNy.classList.add('is-invalid');
+				usrTosNy.focus();
+				return false;
+			} else {
+// 				by pass
+				usrTosNy.classList.remove('is-invalid');
+				usrTosNy.classList.add('is-valid');
+			}
+			
+			// usrMktNy
+			var usrMktNy = document.getElementById("usrMktNy");
+			var usrMktNyValue = document.getElementById("usrMktNy").value.trim();
+			
+			if(usrMktNyValue == "" || usrMktNyValue == null){
+				usrMktNy.classList.add('is-invalid');
+				usrMktNy.focus();
+				return false;
+			} else {
+// 				by pass
+				usrMktNy.classList.remove('is-invalid');
+				usrMktNy.classList.add('is-valid');
+			}
+			
+			
+			
+			form.action = "/xdm/v1/infra/user/userXdmUpdt";
 			form.submit();
 		}
 	</script>

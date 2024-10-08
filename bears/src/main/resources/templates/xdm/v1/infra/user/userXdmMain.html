@@ -256,7 +256,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" id="SignoutBtn">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -1183,6 +1183,31 @@
 
   <!-- Template Main JS File -->
   <script src="/xdm/v1/template/Lonely/assets/js/main.js"></script>
+  
+  <!-- by developer -->
+  <script src="/xdm/v1/jquery/jquery-3.7.1.min.js"></script>
+  
+  <script type="text/javascript">
+	// LogoutProc
+	  document.getElementById("SifnoutBtn").onclick = function (){
+		   alert("로그아웃 성공");
+		   $.ajax({
+		      async: true 
+		      ,cache: false
+		      ,type: "post"
+		      /* ,dataType:"json" */
+		      ,url: "/xdm/v1/infra/user/userXdmSignoutProc"
+		      /* ,data : $("#formLogin").serialize() */
+		      ,success: function(response) {
+		         if(response.rt == "success") {
+		               location.href = "/xdm/v1/infra/user/userXdmSignin";
+		         } else {
+		            // by pass
+		         }
+		      }
+		   });
+		}
+  </script>
 
 </body>
 

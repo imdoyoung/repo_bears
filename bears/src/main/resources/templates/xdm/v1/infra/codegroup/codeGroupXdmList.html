@@ -702,24 +702,6 @@
 			});
 		});
 
-		// uelete
-		document.getElementById("btnUelete").onclick = function() {
-			alert("UELETE 확인");
-			// name이 form인 것을 불러와서 저장
-			let form = document.querySelector("form[name=form]");
-			// 데이터가 전송될 주소
-			form.action = "/xdm/v1/infra/codegroup/codeGroupXdmUelete";
-			// 전송버튼과 동일
-			form.submit();
-		}
-
-		// delete
-		document.getElementById("btnDelete").onclick = function() {
-			alert("DELETE 확인");
-			let form = document.querySelector("form[name=form]");
-			form.action = "/xdm/v1/infra/codegroup/codeGroupXdmDel";
-			form.submit();
-		}
 
 		// paging
 		goList = function(thisPage) {

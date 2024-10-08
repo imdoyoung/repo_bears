@@ -5,6 +5,7 @@
 
 	<resultMap type="com.baseball.infra.user.UserDto" id="resultMapObj"></resultMap>
 		
+		<!-- 검색 -->
 		<sql id="selectCommon">
 			FROM
 				bears.B_user a
@@ -21,6 +22,10 @@
 					<when test="shGrade == 4">AND usrGrade = 4</when>
 				</choose>
 				<choose>
+					<when test="shDateOption == 1">AND usrRegDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
+					<when test="shDateOption == 2">AND usrEditdate BETWEEN #{shStartDate} AND #{shEndDate}</when>
+				</choose>
+				<choose>
 					<when test="shOption == 1">AND usrSeq = #{shValue}</when>
 					<when test="shOption == 2">AND usrName LIKE CONCAT('%',#{shValue},'%')</when>
 					<when test="shOption == 3">AND usrId LIKE CONCAT('%',#{shValue},'%')</when>
@@ -28,17 +33,15 @@
 					<when test="shOption == 5">AND usrBirth LIKE CONCAT('%',#{shValue},'%')</when>
 					<when test="shOption == 6">AND usrPhone LIKE CONCAT('%',#{shValue},'%')</when>
 				</choose>
-				<choose>
-					<when test="shDateOption == 1">AND usrRegDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
-					<when test="shDateOption == 1">AND usrEditdate BETWEEN #{shStartDate} AND #{shEndDate}</when>
-				</choose>
 		</sql>
 		
+		<!-- 개수 카운트 -->
 		<select id="selectOneCount">
 			SELECT COUNT(*)
-			<include refid="selectCommon"></include>
+			<include refid="selectCommon"/>
 		</select>
 	
+		<!-- 리스트페이지 데이터 가져오기 -->
 		<select id="usrSelectList" resultMap="resultMapObj">
 			SELECT aa.* FROM(
 				SELECT
@@ -57,12 +60,13 @@
 					a.usrTosNy,
 					a.usrMktNy,
 					a.usrDelNy
-					<include refid="selectCommon"></include>
+					<include refid="selectCommon"/>
 				ORDER BY
 					a.usrSeq DESC
 			) aa limit #{rowNumToShow} offset #{startRnumForMySql}
 		</select>
 		
+		<!-- insert 정보 등록 -->
 		<insert id="usrInsert">
 			INSERT INTO B_user(
 				usrXdmNy,
@@ -97,6 +101,7 @@
 			)
 		</insert>
 		
+		<!-- 수정페이지 정보 가져오기 -->
 		<select id="usrSelectOne" resultMap="resultMapObj">
 			SELECT
 				a.usrSeq,
@@ -136,7 +141,7 @@
 				usrTosNy = #{usrTosNy},
 				usrMktNy = #{usrMktNy},
 				usrEditdate = now(),
-				usrDelNy = #{usrDelNy}
+				usrDelNy = 0
 			WHERE 1 = 1
 				AND usrSeq = #{usrSeq}
 		</update>
@@ -158,7 +163,7 @@
 		</delete>
 		
 		<!-- 로그인 -->
-		<select id="usrSelectOneLogin" resultMap="resultMapObj">
+		<select id="usrSelectOneSignin" resultMap="resultMapObj">
 			SELECT 
 				a.usrId,
 				a.usrPw

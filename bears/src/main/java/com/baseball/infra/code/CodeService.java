@@ -55,7 +55,8 @@ public class CodeService {
 	public int selectOneCount(CodeVo codeVo) {
 		return codeDao.selectOneCount(codeVo);
 	}
-	
+
+// ----- ceche start ----- //
 	// for cache
 	@PostConstruct
 	public void selectListCachedCodeArrayList() {
@@ -98,4 +99,7 @@ public class CodeService {
 		}
 		return rt;
 	}
+	
+// ----- ceche end ----- //
+	
 }

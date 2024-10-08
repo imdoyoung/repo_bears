@@ -22,7 +22,7 @@ public interface UserDao {
 	
 	public int selectOneCount(UserVo userVo);
 	
-	public UserDto usrSelectOneLogin(UserDto userDto);
+	public UserDto usrSelectOneSignin(UserDto userDto);
 	
 	public UserDto usrSelectOneId(UserDto userDto);
 }

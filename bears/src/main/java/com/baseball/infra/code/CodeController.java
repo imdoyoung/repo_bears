@@ -22,7 +22,7 @@ public class CodeController {
 	
 	// selectList
 	@RequestMapping(value="/xdm/v1/infra/code/codeXdmList")
-	public String codeXdmList(Model model, CodeVo codeVo) {
+	public String codeXdmList(@ModelAttribute("vo") CodeVo codeVo, Model model) {
 		
 		// 날짜
 //		codeVo.setShcdDateStart(codeVo.getShcdDateStart() + " 00:00:00");
@@ -34,7 +34,7 @@ public class CodeController {
 		codeVo.setParamsPaging(codeService.selectOneCount(codeVo));
 		if(codeVo.getTotalRows() > 0) {
 			model.addAttribute("list", codeService.selectList(codeVo));
-			model.addAttribute("vo", codeVo);
+//			model.addAttribute("vo", codeVo);
 		}
 		
 		return "/xdm/v1/infra/code/codeXdmList";
