@@ -117,12 +117,14 @@ public class UserController {
 				httpSession.setAttribute("sessSeqXdm", rtUser2.getUsrSeq());
 				httpSession.setAttribute("sessIdXdm", rtUser2.getUsrId());
 				httpSession.setAttribute("sessNameXdm", rtUser2.getUsrName());
+				httpSession.setAttribute("sessGradeXdm", rtUser2.getUsrGrade());
 				// 성공 응답 설정
 				returnMap.put("rt", "success");	
 				// 저장된 세션값 확인
 				System.out.println("sessSeqXdm: " + httpSession.getAttribute("sessSeqXdm"));
 				System.out.println("sessIdXdm: " + httpSession.getAttribute("sessIdXdm"));
 				System.out.println("sessNameXdm: " + httpSession.getAttribute("sessNameXdm"));
+				System.out.println("sessGradeXdm: " + httpSession.getAttribute("sessGradeXdm"));
 			}
 		} else {
 			returnMap.put("rt", "fail");	// 실패 응답 설정

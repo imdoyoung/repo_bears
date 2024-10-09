@@ -181,7 +181,8 @@
 			SELECT
 				a.usrSeq,
 				a.usrId,
-				a.usrName
+				a.usrName,
+				a.usrGrade
 			FROM
 				bears.B_user a
 			WHERE 
