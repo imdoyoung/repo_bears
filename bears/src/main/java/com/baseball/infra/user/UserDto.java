@@ -6,7 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class UserDto {
 //	----- field -----
-	private Integer usrSeq;
+	private String usrSeq;
 	private Integer usrXdmNy;
 	private String usrName;
 	private String usrId;
@@ -26,11 +26,10 @@ public class UserDto {
 	private Integer usrDelNy;
 
 //	----- getter / setter -----
-	
-	public Integer getUsrSeq() {
+	public String getUsrSeq() {
 		return usrSeq;
 	}
-	public void setUsrSeq(Integer usrSeq) {
+	public void setUsrSeq(String usrSeq) {
 		this.usrSeq = usrSeq;
 	}
 	public Integer getUsrXdmNy() {

@@ -13,9 +13,12 @@ public class ShopController {
 	
 	// 목록 - selectList
 	@RequestMapping(value="/xdm/v1/infra/shop/shopXdmList")
-	public String shopXdmList(Model model) {
+	public String shopXdmList(ShopVo shopVo, Model model) {
 		
-		model.addAttribute("shopList", shopService.shopSelectList());
+		shopVo.setShStartDate(shopVo.getShStartDate()+" 00:00:00");
+		shopVo.setShEndDate(shopVo.getShEndDate()+" 23:59:59");
+		
+		model.addAttribute("shopList", shopService.shopSelectList(shopVo));
 		
 		return "/xdm/v1/infra/shop/shopXdmList";
 	}
@@ -42,6 +45,26 @@ public class ShopController {
 		return "/xdm/v1/infra/shop/shopXdmMfom";
 	}
 	
-	//
+	// 수정 - update
+	@RequestMapping(value="/xdm/v1/infra/shop/shopXdmUpdt")
+	public String shopXdmUpdt(ShopDto shopDto) {
+		shopService.shopUpdate(shopDto);
+		System.out.println("/// shopMfom - update 실행 ///");
+		return "redirect:/xdm/v1/infra/shop/shopXdmList";
+	}
+	
+	// 삭제 - uelete
+	@RequestMapping(value="/xdm/v1/infra/shop/shopXdmUel")
+	public String shopXdmUel(ShopDto shopDto) {
+		shopService.shopUelete(shopDto);
+		return "redirect:/xdm/v1/infra/shop/shopXdmList";
+	}
+	
+	// 삭제 - delete
+	@RequestMapping(value="/xdm/v1/infra/shop/shopXdmDel")
+	public String shopXdmDel(ShopDto shopDto) {
+		shopService.shopDelete(shopDto);
+		return "redirect:/xdm/v1/infra/shop/shopXdmList";
+	}
 
 }

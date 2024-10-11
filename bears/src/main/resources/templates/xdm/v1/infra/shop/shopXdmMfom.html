@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 <meta charset="utf-8">
@@ -483,7 +483,7 @@
 							<h5 class="card-title">Shop 수정</h5>
 
 							<!-- Custom Styled Validation -->
-							<form name="form" method="post" action="/xdm/v1/infra/shop/shopXdmInst">
+							<form name="form" method="post" action="/xdm/v1/infra/shop/shopXdmUpdt">
 								<div class="row mb-3">
 									<div class="col-md-3">
 										<label class="form-label">
@@ -491,7 +491,7 @@
 											<a style="color: red;">*</a>
 										</label> 
 										<input type="text" class="form-control" name="nsSeq" id="nsSeq" th:value="${shopItem?.nsSeq}"
-											placeholder="자동생성" style="background-color: lightgray;" readonly>
+											placeholder="자동생성" style="background-color: #E9ECEF;" readonly>
 									</div>
 									<div class="col-md-3">
 										<label class="form-label">
@@ -527,22 +527,22 @@
 										<input type="text" class="form-control" name="nsOwnerTel" id="nsOwnerTel" th:value="${shopItem?.nsOwnerTel}"
 										placeholder="'-'없이 입력해주세요">
 									</div>
-<!-- 									<div class="col-md-3"> -->
-<!-- 										<label class="form-label"> -->
-<!-- 											오픈시간 -->
-<!-- 											<a style="color: red;">*</a> -->
-<!-- 										</label>  -->
-<!-- 										<input type="text" class="form-control" name="nsOpenTime" id="nsOpenTime" -->
-<!-- 										placeholder="오픈시간"> -->
-<!-- 									</div> -->
-<!-- 									<div class="col-md-3"> -->
-<!-- 										<label class="form-label"> -->
-<!-- 											마감시간 -->
-<!-- 											<a style="color: red;">*</a> -->
-<!-- 										</label>  -->
-<!-- 										<input type="text" class="form-control" name="nsClosTime" id="nsClosTime" -->
-<!-- 										placeholder="마감시간"> -->
-<!-- 									</div> -->
+									<div class="col-md-3">
+										<label class="form-label">
+											오픈시간
+											<a style="color: red;">*</a>
+										</label> 
+										<input type="text" class="form-control" name="nsOpenTime" id="nsOpenTime"
+											th:value="${#dates.format(shopItem?.nsOpenTime, 'HH:mm')}">
+									</div>
+									<div class="col-md-3">
+										<label class="form-label">
+											마감시간
+											<a style="color: red;">*</a>
+										</label> 
+										<input type="text" class="form-control" name="nsClosTime" id="nsClosTime"
+											th:value="${#dates.format(shopItem?.nsOpenTime, 'HH:mm')}">
+									</div>
 								</div>
 								<div class="row mb-3">
 									<div class="col-md-3">
@@ -603,8 +603,16 @@
 											지역구
 											<a style="color: red;">*</a>
 										</label> 
-										<input type="text" class="form-control" name="nsAddrCode" id="nsAddrCode" th:value="${shopItem?.nsAddrCode}"
-										placeholder="지역구">
+										<select class="form-select" name="nsAddrCode" id="nsAddrCode">
+											<option value="">지역구</option>
+											<option value="1" th:selected="${shopItem?.nsAddrCode == 1}">서울특별시_강남구</option>
+											<option value="2" th:selected="${shopItem?.nsAddrCode == 2}">서울특별시_노원구</option>
+											<option value="3" th:selected="${shopItem?.nsAddrCode == 3}">서울특별시_도봉구</option>
+											<option value="4" th:selected="${shopItem?.nsAddrCode == 4}">서울특별시_마포구</option>
+											<option value="5" th:selected="${shopItem?.nsAddrCode == 5}">서울특별시_송파구</option>
+											<option value="6" th:selected="${shopItem?.nsAddrCode == 6}">의정부시_의정부동</option>
+											<option value="7" th:selected="${shopItem?.nsAddrCode == 7}">의정부시_호원동</option>
+										</select>
 									</div>
 								</div>
 								<div class="row mb-3">
@@ -701,40 +709,65 @@
 									</div>
 									<div class="col-md-3">
 										<label class="form-label">
+											별점
+											<a style="color: red;">*</a>
+										</label> 
+										<select class="form-select" name="nsStar" id="nsStar">
+											<option value="">별점</option>
+											<option value="1" th:selected="${shopItem?.nsStar == 1}">1</option>
+											<option value="2" th:selected="${shopItem?.nsStar == 2}">2</option>
+											<option value="3" th:selected="${shopItem?.nsStar == 3}">3</option>
+											<option value="4" th:selected="${shopItem?.nsStar == 4}">4</option>
+											<option value="5" th:selected="${shopItem?.nsStar == 5}">5</option>
+										</select>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<div class="col-md-3">
+										<label class="form-label">
 											삭제 여부
 											<a style="color: red;">*</a>
 										</label> 
-										<select class="form-select" name="nsDelNy" id="nsDelNy">
+										<select class="form-select" name="nsDelNy" id="nsDelNy" disabled>
 											<option value="">삭제 여부</option>
 											<option value="1" th:selected="${shopItem?.nsDelNy == 1}">Y</option>
 											<option value="0" th:selected="${shopItem?.nsDelNy == 0}">N</option>
 										</select>
 									</div>
-<!-- 									<div class="col-md-3"> -->
-<!-- 										<label class="form-label"> -->
-<!-- 											등록날짜 -->
-<!-- 											<a style="color: red;">*</a> -->
-<!-- 										</label> -->
-<!-- 										<input type="datetime" class="form-control" name="memRegist" placeholder="등록날짜"> -->
-<!-- 									</div> -->
-<!-- 									<div class="col-md-3"> -->
-<!-- 									<label class="form-label"> -->
-<!-- 											수정날짜 -->
-<!-- 										</label> -->
-<!-- 										<input type="datetime" class="form-control" name="memEdit" placeholder="수정날짜"> -->
-<!-- 									</div> -->
+									<div class="col-md-3">
+										<label class="form-label">
+											등록날짜
+											<a style="color: red;">*</a>
+										</label>
+										<input type="datetime" class="form-control" name="nsRegDate"
+											th:value="${#dates.format(shopItem?.nsRegDate, 'yyyy-MM-dd HH:mm:ss')}" disabled>
+									</div>
+									<div class="col-md-3">
+									<label class="form-label">
+											수정날짜
+										</label>
+										<input type="datetime" class="form-control" name="nsEditDate"
+											th:value="${#dates.format(shopItem?.nsEditDate, 'yyyy-MM-dd HH:mm:ss')}" disabled>
+									</div>
 								</div>
 
 								<div class="row mb-3">
 									<div class="col-md-4">
-										<a href=""> 
-											<button type="button" class="btn btn-outline-dark">
+										<a href="/xdm/v1/infra/shop/shopXdmList"> 
+											<button type="button" class="btn btn-outline-dark" id="btnList">
 												<i class="bi bi-list-ul"></i>
 											</button>
 										</a>
+										<button type="button" class="btn btn-danger" id="btnDelete">
+											<i class="bi bi-x-lg icon_color_change"></i>
+										</button>
+										<button type="button" class="btn btn-danger" id="btnUelete"
+											data-bs-toggle="modal" data-bs-target="#verticalycentered">
+											<i class="bi bi-trash-fill icon_color_change"></i>
+										</button>
 									</div>
 									<div class="col-md-8" align="Right">
-										<button type="submit" class="btn btn-primary">
+										<button type="submit" id="btnSubmit" class="btn btn-primary">
 											<i class="bi bi-server"></i>
 										</button>
 									</div>
@@ -789,6 +822,26 @@
 
 	<!-- Template Main JS File -->
 	<script src="/xdm/v1/template/Lonely/assets/js/main.js"></script>
+	
+	<script type="text/javascript">
+	
+		// uelete 버튼
+		document.getElementById("btnUelete").onclick = function(){
+			alert("UELETE 확인");
+			let form = document.querySelector("form[name=form]");
+			form.action = "/xdm/v1/infra/shop/shopXdmUel";
+			form.submit();
+		}
+		
+		// delete 버튼
+		document.getElementById("btnDelete").onclick = function(){
+			alert("DELETE 확인");
+			let form = document.querySelector("form[name=form]");
+			form.action = "/xdm/v1/infra/shop/shopXdmDel";
+			form.submit();
+		}
+		
+	</script>
 
 </body>
 

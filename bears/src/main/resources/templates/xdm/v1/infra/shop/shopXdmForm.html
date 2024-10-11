@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 <meta charset="utf-8">
@@ -527,22 +527,22 @@
 										<input type="text" class="form-control" name="nsOwnerTel" id="nsOwnerTel"
 										placeholder="'-'없이 입력해주세요">
 									</div>
-<!-- 									<div class="col-md-3"> -->
-<!-- 										<label class="form-label"> -->
-<!-- 											오픈시간 -->
-<!-- 											<a style="color: red;">*</a> -->
-<!-- 										</label>  -->
-<!-- 										<input type="text" class="form-control" name="nsOpenTime" id="nsOpenTime" -->
-<!-- 										placeholder="오픈시간"> -->
-<!-- 									</div> -->
-<!-- 									<div class="col-md-3"> -->
-<!-- 										<label class="form-label"> -->
-<!-- 											마감시간 -->
-<!-- 											<a style="color: red;">*</a> -->
-<!-- 										</label>  -->
-<!-- 										<input type="text" class="form-control" name="nsClosTime" id="nsClosTime" -->
-<!-- 										placeholder="마감시간"> -->
-<!-- 									</div> -->
+									<div class="col-md-3">
+										<label class="form-label">
+											오픈시간
+											<a style="color: red;">*</a>
+										</label> 
+										<input type="text" class="form-control" name="nsOpenTime" id="nsOpenTime"
+										placeholder="오픈시간">
+									</div>
+									<div class="col-md-3">
+										<label class="form-label">
+											마감시간
+											<a style="color: red;">*</a>
+										</label> 
+										<input type="text" class="form-control" name="nsClosTime" id="nsClosTime"
+										placeholder="마감시간">
+									</div>
 								</div>
 								<div class="row mb-3">
 									<div class="col-md-3">
@@ -603,8 +603,16 @@
 											지역구
 											<a style="color: red;">*</a>
 										</label> 
-										<input type="text" class="form-control" name="nsAddrCode" id="nsAddrCode"
-										placeholder="지역구">
+										<select class="form-select" name="nsAddrCode" id="nsAddrCode">
+											<option value="">지역구</option>
+											<option value="1">서울특별시_강남구</option>
+											<option value="2">서울특별시_노원구</option>
+											<option value="3">서울특별시_도봉구</option>
+											<option value="4">서울특별시_마포구</option>
+											<option value="5">서울특별시_송파구</option>
+											<option value="6">의정부시_의정부동</option>
+											<option value="7">의정부시_호원동</option>
+										</select>
 									</div>
 								</div>
 								<div class="row mb-3">
@@ -699,36 +707,11 @@
 											<option value="0">N</option>
 										</select>
 									</div>
-									<div class="col-md-3">
-										<label class="form-label">
-											삭제 여부
-											<a style="color: red;">*</a>
-										</label> 
-										<select class="form-select" name="nsDelNy" id="nsDelNy">
-											<option value="">삭제 여부</option>
-											<option value="1">Y</option>
-											<option value="0">N</option>
-										</select>
-									</div>
-<!-- 									<div class="col-md-3"> -->
-<!-- 										<label class="form-label"> -->
-<!-- 											등록날짜 -->
-<!-- 											<a style="color: red;">*</a> -->
-<!-- 										</label> -->
-<!-- 										<input type="datetime" class="form-control" name="memRegist" placeholder="등록날짜"> -->
-<!-- 									</div> -->
-<!-- 									<div class="col-md-3"> -->
-<!-- 									<label class="form-label"> -->
-<!-- 											수정날짜 -->
-<!-- 										</label> -->
-<!-- 										<input type="datetime" class="form-control" name="memEdit" placeholder="수정날짜"> -->
-<!-- 									</div> -->
 								</div>
-
 								<div class="row mb-3">
 									<div class="col-md-4">
-										<a href=""> 
-											<button type="button" class="btn btn-outline-dark">
+										<a href="/xdm/v1/infra/shop/shopXdmList"> 
+											<button type="button" class="btn btn-outline-dark" id="btnList">
 												<i class="bi bi-list-ul"></i>
 											</button>
 										</a>

@@ -2,6 +2,8 @@ package com.baseball.infra.shop;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class ShopDto {
 //	----- feild -----
 	private String nsSeq;
@@ -9,7 +11,9 @@ public class ShopDto {
 	private String nsTel;
 	private String nsOwnerName;
 	private String nsOwnerTel;
+	@DateTimeFormat(pattern="HH:mm")
 	private Date nsOpenTime;
+	@DateTimeFormat(pattern="HH:mm")
 	private Date nsClosTime;
 	private Integer nsMulti;
 	private String nsLogo;
@@ -18,7 +22,7 @@ public class ShopDto {
 	private Integer nsZipCode;
 	private String nsAddr;
 	private String nsAddrDetail;
-	private String nsAddrCode;
+	private Integer nsAddrCode;
 	private String nsInfoWalk;
 	private Integer nsInfoPrice;
 	private String nsInfoEvent;
@@ -29,7 +33,9 @@ public class ShopDto {
 	private Integer nsAddDrillcareNy;
 	private Integer nsAddWetcareNy;
 	private Integer nsStar;
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date nsRegDate;
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date nsEditDate;
 	private Integer nsDelNy;
 	
@@ -120,10 +126,10 @@ public class ShopDto {
 	public void setNsAddrDetail(String nsAddrDetail) {
 		this.nsAddrDetail = nsAddrDetail;
 	}
-	public String getNsAddrCode() {
+	public Integer getNsAddrCode() {
 		return nsAddrCode;
 	}
-	public void setNsAddrCode(String nsAddrCode) {
+	public void setNsAddrCode(Integer nsAddrCode) {
 		this.nsAddrCode = nsAddrCode;
 	}
 	public String getNsInfoWalk() {

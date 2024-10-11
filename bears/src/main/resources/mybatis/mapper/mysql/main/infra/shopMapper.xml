@@ -5,6 +5,7 @@
 
 	<resultMap type="com.baseball.infra.shop.ShopDto" id="resultMapObj"></resultMap>
 	
+	<!-- shopSelectList - list 페이지 데이터 불러오기 -->
 	<select id="shopSelectList" resultMap="resultMapObj">
 		SELECT
 			a.nsSeq,
@@ -37,10 +38,70 @@
 			a.nsDelNy
 		FROM
 			bears.B_shop a
+		WHERE 1 = 1
+			<!-- 삭제여부 -->
+			<if test="shDelNy != null and !shDelNy.equals('')">AND nsDelNy = #{shDelNy}</if>
+			<!-- 동시시술인원 -->
+			<choose>
+				<when test="shMulti == 1">AND nsMulti = 1</when>
+				<when test="shMulti == 2">AND nsMulti = 2</when>
+				<when test="shMulti == 3">AND nsMulti = 3</when>
+				<when test="shMulti == 4">AND nsMulti = 4</when>
+				<when test="shMulti == 5">AND nsMulti = 5</when>
+				<when test="shMulti == 6">AND nsMulti = 6</when>
+				<when test="shMulti == 7">AND nsMulti = 7</when>
+				<when test="shMulti == 8">AND nsMulti = 8</when>
+				<when test="shMulti == 9">AND nsMulti = 9</when>
+				<when test="shMulti == 10">AND nsMulti = 10</when>
+			</choose>
+			<!-- 지역구 -->
+			<choose>
+				<when test="shAddrCode == 1">AND nsAddrCode = 1</when>
+				<when test="shAddrCode == 2">AND nsAddrCode = 2</when>
+				<when test="shAddrCode == 3">AND nsAddrCode = 3</when>
+				<when test="shAddrCode == 4">AND nsAddrCode = 4</when>
+				<when test="shAddrCode == 5">AND nsAddrCode = 5</when>
+				<when test="shAddrCode == 6">AND nsAddrCode = 6</when>
+				<when test="shAddrCode == 7">AND nsAddrCode = 7</when>
+			</choose>
+			<!-- 별점 -->
+			<choose>
+				<when test="shStar == 1">AND nsStar = 1</when>
+				<when test="shStar == 2">AND nsStar = 2</when>
+				<when test="shStar == 3">AND nsStar = 3</when>
+				<when test="shStar == 4">AND nsStar = 4</when>
+				<when test="shStar == 5">AND nsStar = 5</when>
+			</choose>
+			<!-- 주차가능여부 -->
+			<if test="shAddParkingNy != null and !shAddParkingNy.equals('')">AND nsAddParkingNy = #{shAddParkingNy}</if>
+			<!-- 반려동물 동반가능여부 -->
+			<if test="shAddDogNy != null and !shAddDogNy.equals('')">AND nsAddDogNy = #{shAddDogNy}</if>
+			<!-- 이달의아트 가능여부 -->
+			<if test="shAddArtOfMonthNy != null and !shAddArtOfMonthNy.equals('')">AND nsAddArtOfMonthNy = #{shAddArtOfMonthNy}</if>
+			<!-- 드릴케어 가능여부 -->
+			<if test="shAddDrillcareNy != null and !shAddDrillcareNy.equals('')">AND nsAddDrillcareNy = #{shAddDrillcareNy}</if>
+			<!-- 습식케어 가능여부 -->
+			<if test="shAddWetcareNy != null and !shAddWetcareNy.equals('')">AND nsAddWetcareNy = #{shAddWetcareNy}</if>
+			<!-- 날짜 검색 -->
+			<choose>
+				<when test="shDateOption == 1">AND nsRegDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
+				<when test="shDateOption == 2">AND nsEditDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
+			</choose>
+			<!-- 키워드검색 -->
+			<choose>
+				<when test="shOption == 1">AND nsSeq = #{shValue}</when>
+				<when test="shOption == 2">AND nsName LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND nsTel LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 4">AND nsOwnerName LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 5">AND nsOwnerTel LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 6">AND nsInfoPrice LIKE CONCAT('%',#{shValue},'%')</when>
+			</choose>
+			
 		ORDER BY
 			a.nsSeq DESC
 	</select>
 	
+	<!-- shopInsert - form 페이지 데이터 입력하기 -->
 	<insert id="shopInsert">
 		INSERT INTO B_shop (
 			nsName,
@@ -95,11 +156,12 @@
 		    now(),
 		    0
 		)
-		<selectKey resultType="String" keyProperty="ifcgSeq" order="AFTER">
+		<selectKey resultType="String" keyProperty="nsSeq" order="AFTER">
 			SELECT last_insert_id()
 		</selectKey>
 	</insert>
 	
+	<!-- shopSelectOne - Mfom 페이지에서 데이터 불러오기 -->
 	<select id="shopSelectOne" resultMap="resultMapObj">
 		SELECT
 			a.nsSeq,
@@ -135,5 +197,53 @@
 		WHERE 1 = 1
 			AND a.nsSeq = #{nsSeq}
 	</select>
+	
+	<!-- shopUpdate - Mfom 페이지에서 데이터 수정하기 -->
+	<update id="shopUpdate">
+		UPDATE bears.B_shop
+		SET
+			nsName = #{nsName},
+		    nsTel = #{nsTel},
+		    nsOwnerName = #{nsOwnerName},
+			nsOwnerTel = #{nsOwnerTel},
+			nsOpenTime = #{nsOpenTime},
+			nsClosTime = #{nsClosTime},
+			nsMulti = #{nsMulti},
+			nsInfoText = #{nsInfoText},
+			nsZipCode = #{nsZipCode},
+			nsAddr = #{nsAddr},
+			nsAddrDetail = #{nsAddrDetail},
+		    nsAddrCode = #{nsAddrCode},
+			nsInfoWalk = #{nsInfoWalk},
+			nsInfoPrice = #{nsInfoPrice},
+			nsInfoEvent = #{nsInfoEvent},
+			nsInfoDetail = #{nsInfoDetail},
+			nsAddParkingNy = #{nsAddParkingNy},
+			nsAddDogNy = #{nsAddDogNy},
+			nsAddArtOfMonthNy = #{nsAddArtOfMonthNy},
+			nsAddDrillcareNy = #{nsAddDrillcareNy},
+			nsAddWetcareNy = #{nsAddWetcareNy},
+			nsStar = #{nsStar},
+			nsDelNy = 0
+		WHERE 1 = 1
+			AND nsSeq = #{nsSeq}
+	</update>
+	
+	<!-- shopUelete - Mfom 페이지에서 삭제여부 수정하기(수정삭제) -->
+	<update id="shopUelete">
+		UPDATE bears.B_shop
+		SET
+			nsDelNy = 1
+		WHERE 1 = 1
+			AND nsSeq = #{nsSeq}
+	</update>
+	
+	<!-- shopDelete - Mfom 페이지에서 삭제 -->
+	<delete id="shopDelete">
+		DELETE FROM bears.B_shop
+		WHERE 1 = 1
+			AND nsSeq = #{nsSeq}
+	</delete>
+	
 
 </mapper>

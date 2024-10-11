@@ -12,8 +12,8 @@ public class ShopService {
 	ShopDao shopDao;
 	
 	// 목록 - selectList
-	public List<ShopDto> shopSelectList(){
-		return shopDao.shopSelectList();
+	public List<ShopDto> shopSelectList(ShopVo shopVo){
+		return shopDao.shopSelectList(shopVo);
 	}
 	
 	// 등록 - insert
@@ -24,6 +24,21 @@ public class ShopService {
 	// 수정 - selectOne
 	public ShopDto shopSelectOne(ShopDto shopDto) {
 		return shopDao.shopSelectOne(shopDto);
+	}
+	
+	// 수정 - update
+	public int shopUpdate(ShopDto shopDto) {
+		return shopDao.shopUpdate(shopDto);
+	}
+	
+	// 삭제 - uelete
+	public int shopUelete(ShopDto shopDto) {
+		return shopDao.shopUelete(shopDto);
+	}
+	
+	// 삭제 - delete
+	public int shopDelete(ShopDto shopDto) {
+		return shopDao.shopDelete(shopDto);
 	}
 	
 }
