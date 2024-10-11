@@ -3,7 +3,10 @@ package com.baseball.infra.shop;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.baseball.common.util.UtilDateTime;
 
 @Controller
 public class ShopController {
@@ -13,12 +16,20 @@ public class ShopController {
 	
 	// 목록 - selectList
 	@RequestMapping(value="/xdm/v1/infra/shop/shopXdmList")
-	public String shopXdmList(ShopVo shopVo, Model model) {
+	public String shopXdmList(@ModelAttribute("vo") ShopVo shopVo, Model model) {
 		
-		shopVo.setShStartDate(shopVo.getShStartDate()+" 00:00:00");
-		shopVo.setShEndDate(shopVo.getShEndDate()+" 23:59:59");
+//		shopVo.setShStartDate(shopVo.getShStartDate()+" 00:00:00");
+//		shopVo.setShEndDate(shopVo.getShEndDate()+" 23:59:59");
+		// 초기값 세팅이 없는 경우 사용
+		shopVo.setShStartDate(shopVo.getShStartDate() == null || shopVo.getShStartDate() == "" ? null : UtilDateTime.add00TimeString(shopVo.getShStartDate()));
+		shopVo.setShEndDate(shopVo.getShEndDate() == null || shopVo.getShEndDate() == "" ? null : UtilDateTime.add59TimeString(shopVo.getShEndDate()));
 		
-		model.addAttribute("shopList", shopService.shopSelectList(shopVo));
+		// 페이징 - selectOneCount
+		shopVo.setParamsPaging(shopService.shopSelectOneCount(shopVo));
+
+		if(shopVo.getTotalRows() > 0) {
+			model.addAttribute("shopList", shopService.shopSelectList(shopVo));
+		}
 		
 		return "/xdm/v1/infra/shop/shopXdmList";
 	}
@@ -66,5 +77,6 @@ public class ShopController {
 		shopService.shopDelete(shopDto);
 		return "redirect:/xdm/v1/infra/shop/shopXdmList";
 	}
+	
 
 }

@@ -5,37 +5,8 @@
 
 	<resultMap type="com.baseball.infra.shop.ShopDto" id="resultMapObj"></resultMap>
 	
-	<!-- shopSelectList - list 페이지 데이터 불러오기 -->
-	<select id="shopSelectList" resultMap="resultMapObj">
-		SELECT
-			a.nsSeq,
-			a.nsName,
-		    a.nsTel,
-		    a.nsOwnerName,
-			a.nsOwnerTel,
-			a.nsOpenTime,
-			a.nsClosTime,
-			a.nsMulti,
-			a.nsLogo,
-			a.nsGallery,
-			a.nsInfoText,
-			a.nsZipCode,
-			a.nsAddr,
-			a.nsAddrDetail,
-		    a.nsAddrCode,
-			a.nsInfoWalk,
-			a.nsInfoPrice,
-			a.nsInfoEvent,
-			a.nsInfoDetail,
-			a.nsAddParkingNy,
-			a.nsAddDogNy,
-			a.nsAddArtOfMonthNy,
-			a.nsAddDrillcareNy,
-			a.nsAddWetcareNy,
-			a.nsStar,
-			a.nsRegDate,
-			a.nsEditDate,
-			a.nsDelNy
+	<!-- paging -->
+	<sql id="shopSelectCommon">
 		FROM
 			bears.B_shop a
 		WHERE 1 = 1
@@ -96,9 +67,50 @@
 				<when test="shOption == 5">AND nsOwnerTel LIKE CONCAT('%',#{shValue},'%')</when>
 				<when test="shOption == 6">AND nsInfoPrice LIKE CONCAT('%',#{shValue},'%')</when>
 			</choose>
-			
-		ORDER BY
-			a.nsSeq DESC
+	</sql>
+	
+	<select id="shopSelectOneCount">
+		SELECT COUNT(*)
+		<include refid="shopSelectCommon"/>
+	</select>
+	
+	
+	<!-- shopSelectList - list 페이지 데이터 불러오기 -->
+	<select id="shopSelectList" resultMap="resultMapObj">
+		SELECT aa.* FROM(
+			SELECT
+				a.nsSeq,
+				a.nsName,
+			    a.nsTel,
+			    a.nsOwnerName,
+				a.nsOwnerTel,
+				a.nsOpenTime,
+				a.nsClosTime,
+				a.nsMulti,
+				a.nsLogo,
+				a.nsGallery,
+				a.nsInfoText,
+				a.nsZipCode,
+				a.nsAddr,
+				a.nsAddrDetail,
+			    a.nsAddrCode,
+				a.nsInfoWalk,
+				a.nsInfoPrice,
+				a.nsInfoEvent,
+				a.nsInfoDetail,
+				a.nsAddParkingNy,
+				a.nsAddDogNy,
+				a.nsAddArtOfMonthNy,
+				a.nsAddDrillcareNy,
+				a.nsAddWetcareNy,
+				a.nsStar,
+				a.nsRegDate,
+				a.nsEditDate,
+				a.nsDelNy
+			<include refid="shopSelectCommon"/>
+			ORDER BY
+				a.nsSeq DESC
+		) aa limit #{rowNumToShow} offset #{startRnumForMySql}
 	</select>
 	
 	<!-- shopInsert - form 페이지 데이터 입력하기 -->

@@ -484,52 +484,53 @@
 					<div class="card">
 						<div class="card-body">
 							<h1 class="card-title">Shop 정보</h1>
-							<form name="form" method="post"
-								action="/xdm/v1/infra/shop/shopXdmList">
+							<form name="form" method="post" action="/xdm/v1/infra/shop/shopXdmList">
+								<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1" /> 
+								<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}" />
 								<div class="row mb-3">
 									<div class="col-md-2">
 										<select class="form-select" aria-label="Default select example" name="shDelNy">
-											<option value="">삭제 여부</option>
-											<option value="1">Y</option>
-											<option value="0">N</option>
+											<option value="" th:selected="${vo.shDelNy == null}">삭제 여부</option>
+											<option value="1" th:selected="${vo.shDelNy == 1}">Y</option>
+											<option value="0" th:selected="${vo.shDelNy == 0}">N</option>
 										</select>
 									</div>
 									<div class="col-md-2">
 										<select class="form-select" aria-label="Default select example" name="shMulti">
-											<option value="">동시시술인원</option>
-											<option value="1">1</option>
-											<option value="2">2</option>
-											<option value="3">3</option>
-											<option value="4">4</option>
-											<option value="5">5</option>
-											<option value="6">6</option>
-											<option value="7">7</option>
-											<option value="8">8</option>
-											<option value="9">9</option>
-											<option value="10">10</option>
+											<option value="" th:selected="${vo.shMulti == null}">동시시술인원</option>
+											<option value="1" th:selected="${vo.shMulti == 1}">1</option>
+											<option value="2" th:selected="${vo.shMulti == 2}">2</option>
+											<option value="3" th:selected="${vo.shMulti == 3}">3</option>
+											<option value="4" th:selected="${vo.shMulti == 4}">4</option>
+											<option value="5" th:selected="${vo.shMulti == 5}">5</option>
+											<option value="6" th:selected="${vo.shMulti == 6}">6</option>
+											<option value="7" th:selected="${vo.shMulti == 7}">7</option>
+											<option value="8" th:selected="${vo.shMulti == 8}">8</option>
+											<option value="9" th:selected="${vo.shMulti == 9}">9</option>
+											<option value="10" th:selected="${vo.shMulti == 10}">10</option>
 										</select>
 									</div>
 									<div class="col-md-2">
 										<select class="form-select" aria-label="Default select example" name="nsAddrCode">
-											<option value="">지역구</option>
-											<option value="1">서울특별시_강남구</option>
-											<option value="2">서울특별시_노원구</option>
-											<option value="3">서울특별시_도봉구</option>
-											<option value="4">서울특별시_마포구</option>
-											<option value="5">서울특별시_송파구</option>
-											<option value="6">의정부시_의정부동</option>
-											<option value="7">의정부시_호원동</option>
+											<option value="" th:selected="${vo.nsAddrCode == null}">지역구</option>
+											<option value="1" th:selected="${vo.nsAddrCode == 1}">서울특별시_강남구</option>
+											<option value="2" th:selected="${vo.nsAddrCode == 2}">서울특별시_노원구</option>
+											<option value="3" th:selected="${vo.nsAddrCode == 3}">서울특별시_도봉구</option>
+											<option value="4" th:selected="${vo.nsAddrCode == 4}">서울특별시_마포구</option>
+											<option value="5" th:selected="${vo.nsAddrCode == 5}">서울특별시_송파구</option>
+											<option value="6" th:selected="${vo.nsAddrCode == 6}">의정부시_의정부동</option>
+											<option value="7" th:selected="${vo.nsAddrCode == 7}">의정부시_호원동</option>
 										</select>
 									</div>
 									<div class="col-md-2">
 										<select class="form-select"
 											aria-label="Default select example" name="shStar">
-											<option value="">별점</option>
-											<option value="1">1</option>
-											<option value="2">2</option>
-											<option value="3">3</option>
-											<option value="4">4</option>
-											<option value="5">5</option>
+											<option value="" th:selected="${vo.shStar == null}">별점</option>
+											<option value="1" th:selected="${vo.shStar == 1}">1</option>
+											<option value="2" th:selected="${vo.shStar == 2}">2</option>
+											<option value="3" th:selected="${vo.shStar == 3}">3</option>
+											<option value="4" th:selected="${vo.shStar == 4}">4</option>
+											<option value="5" th:selected="${vo.shStar == 5}">5</option>
 										</select>
 									</div>
 								</div>
@@ -537,67 +538,67 @@
 									<div class="col-md-2">
 										<select class="form-select"
 											aria-label="Default select example" name="shnsAddParkingNyDelNy">
-											<option value="">주차가능 여부</option>
-											<option value="1">Y</option>
-											<option value="0">N</option>
+											<option value="" th:selected="${vo.shnsAddParkingNyDelNy == null}">주차가능 여부</option>
+											<option value="1" th:selected="${vo.shnsAddParkingNyDelNy == 1}">Y</option>
+											<option value="0" th:selected="${vo.shnsAddParkingNyDelNy == 0}">N</option>
 										</select>
 									</div>
 									<div class="col-md-2">
 										<select class="form-select"
 											aria-label="Default select example" name="shAddDogNy">
-											<option value="">반려동물 동반가능 여부</option>
-											<option value="1">Y</option>
-											<option value="0">N</option>
+											<option value="" th:selected="${vo.shAddDogNy == null}">반려동물 동반가능 여부</option>
+											<option value="1" th:selected="${vo.shAddDogNy == 1}">Y</option>
+											<option value="0" th:selected="${vo.shAddDogNy == 0}">N</option>
 										</select>
 									</div>
 									<div class="col-md-2">
 										<select class="form-select"
 											aria-label="Default select example" name="shAddArtOfMonthNy">
-											<option value="">이달의아트 여부</option>
-											<option value="1">Y</option>
-											<option value="0">N</option>
+											<option value="" th:selected="${vo.shAddArtOfMonthNy == null}">이달의아트 여부</option>
+											<option value="1" th:selected="${vo.shAddArtOfMonthNy == 1}">Y</option>
+											<option value="0" th:selected="${vo.shAddArtOfMonthNy == 0}">N</option>
 										</select>
 									</div>
 									<div class="col-md-2">
 										<select class="form-select"
 											aria-label="Default select example" name="shAddDrillcareNy">
-											<option value="">드릴케어 여부</option>
-											<option value="1">Y</option>
-											<option value="0">N</option>
+											<option value="" th:selected="${vo.shAddDrillcareNy == null}">드릴케어 여부</option>
+											<option value="1" th:selected="${vo.shAddDrillcareNy == 1}">Y</option>
+											<option value="0" th:selected="${vo.shAddDrillcareNy == 0}">N</option>
 										</select>
 									</div>
 									<div class="col-md-2">
 										<select class="form-select"
 											aria-label="Default select example" name="shAddWetcareNy">
-											<option value="">습식케어 여부</option>
-											<option value="1">Y</option>
-											<option value="0">N</option>
+											<option value="" th:selected="${vo.shAddWetcareNy == null}">습식케어 여부</option>
+											<option value="1" th:selected="${vo.shAddWetcareNy == 1}">Y</option>
+											<option value="0" th:selected="${vo.shAddWetcareNy == 0}">N</option>
 										</select>
 									</div>
 								</div>
 								<div class="row mb-3">
 									<div class="col-md-2">
 										<select class="form-select" id="shDateOption" name="shDateOption" aria-label="Default select example">
-											<option value="">날짜 선택</option>
-											<option value="1">등록날짜</option>
-											<option value="2">수정날짜</option>
+											<option value="" th:selected="${vo.shDateOption == null}">날짜 선택</option>
+											<option value="1" th:selected="${vo.shDateOption == 1}">등록날짜</option>
+											<option value="2" th:selected="${vo.shDateOption == 2}">수정날짜</option>
 										</select>
 									</div>
 									<div class="col-md-2">
-										<input type="text" class="form-control" placeholder="시작일" id="shStartDate" name="shStartDate" autocomplete="off" >
+										<input type="text" class="form-control" placeholder="시작일" id="shStartDate" name="shStartDate" th:value="${#strings.substring(vo.shStartDate, 0, 10)}" autocomplete="off" >
 									</div>
 									<div class="col-md-2">
-										<input type="text" class="form-control" placeholder="종료일" id="shEndDate" name="shEndDate" autocomplete="off">
+										<input type="text" class="form-control" placeholder="종료일" id="shEndDate" name="shEndDate" th:value="${#strings.substring(vo.shEndDate, 0, 10)}" autocomplete="off">
 									</div>
 									<div class="col-md-2">
 										<select class="form-select" id="shOption" name="shOption" aria-label="Default select example">
-											<option value="">검색구분</option>
-											<option value="1">샵번호</option>
-											<option value="2">샵이름</option>
-											<option value="3">샵전화번호</option>
-											<option value="4">사장이름</option>
-											<option value="5">사장전화번호</option>
-											<option value="6">기본가격</option>
+											<option value="" th:selected="${vo.shOption == null}">검색구분</option>
+											<option value="1" th:selected="${vo.shOption == 1}">샵번호</option>
+											<option value="2" th:selected="${vo.shOption == 2}">샵이름</option>
+											<option value="3" th:selected="${vo.shOption == 3}">샵전화번호</option>
+											<option value="4" th:selected="${vo.shOption == 4}">사장이름</option>
+											<option value="5" th:selected="${vo.shOption == 5}">사장전화번호</option>
+											<option value="6" th:selected="${vo.shOption == 6}">기본가격</option>
 										</select>
 									</div>
 									<div class="col-md-2">
@@ -614,16 +615,17 @@
 								</div>
 								<div class="row mb-3">
 									<div class="col-md-2">
-										<a>Total : 171</a>
+										<a th:text="'Total: ' + ${vo.totalRows}"></a>
 									</div>
 									<div class="col-md-8"></div>
 									<div class="col-md-2">
-										<select class="form-select"
-											aria-label="Default select example">
-											<option selected>5</option>
-											<option value="1">10</option>
-											<option value="2">15</option>
-											<option value="3">20</option>
+										<select class="form-select form-select-sm" id="changeRowNum" name="changeRowNum">
+											<option value="5" th:selected="${vo.rowNumToShow eq 5}">5</option>
+											<option value="10" th:selected="${vo.rowNumToShow eq 10}">10</option>
+											<option value="15" th:selected="${vo.rowNumToShow eq 15}">15</option>
+											<option value="20" th:selected="${vo.rowNumToShow eq 20}">20</option>
+											<option value="25" th:selected="${vo.rowNumToShow eq 25}">25</option>
+											<option value="30" th:selected="${vo.rowNumToShow eq 30}">30</option>
 										</select>
 									</div>
 
@@ -694,19 +696,25 @@
 									<!-- End Table with stripped rows -->
 
 									<!--pagination start-->
-									<nav aria-label="Page navigation example">
-										<ul class="pagination justify-content-center">
-											<li class="page-item disabled"><a class="page-link"
-												href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-											</a></li>
-											<li class="page-item"><a class="page-link" href="#">1</a></li>
-											<li class="page-item"><a class="page-link" href="#">2</a></li>
-											<li class="page-item"><a class="page-link" href="#">3</a></li>
-											<li class="page-item"><a class="page-link" href="#"
-												aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-											</a></li>
-										</ul>
-									</nav>
+										<nav aria-label="Page navigation example">
+											<ul class="pagination justify-content-center">
+												<li class="page-item disabled" th:if="${vo.startPage gt vo.pageNumToShow}" style="cursor: pointer;">
+													<a class="page-link" aria-label="Previous" href="javascript:goList(${vo.startPage - 1})" 
+														th:attr="onclick=|goList('${vo.startPage - 1}')|"> 
+														<span aria-hidden="true">&laquo;</span>
+													</a>
+												</li>
+												<li class="page-item" th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" 
+									    			th:classappend="${num eq vo.thisPage} ? active : ''" style="cursor: pointer;">
+												<a class="page-link" th:attr="onclick=|goList('${num}')|" th:text="${num}"></a>
+												</li>
+												<li class="page-item" th:if="${vo.endPage ne vo.totalPages}" style="cursor: pointer;">
+													<a class="page-link" aria-label="Next" th:attr="onclick=|goList('${vo.endPage + 1}')|"> 
+														<span aria-hidden="true">&raquo;</span>
+													</a>
+												</li>
+											</ul>
+										</nav>
 									<!--pagination end-->
 							</form>
 							<div class="row mb-3">
@@ -782,6 +790,8 @@
 	<script src="/xdm/v1/js/datetimepicker/jquery.datetimepicker.full.min.js"></script>
 	
 	<script type="text/javascript">
+	
+		// 날짜 검색 - datetimepicker
 		window.addEventListener('load', function(){
 			$.datetimepicker.setLocale('ko');
 			$("#shStartDate, #shEndDate").datetimepicker({ 
@@ -789,6 +799,20 @@
 				format:'Y-m-d'
 			});
 		});
+		
+		// 페이징 - paging
+		goList = function(thisPage) {
+			document.querySelector("input[name=thisPage]").value = thisPage;
+			document.querySelector("form[name=form]").action = "/xdm/v1/infra/shop/shopXdmList";
+			document.querySelector("form[name=form]").submit();
+		}
+		
+		// 리스트 개수 조절 - changeRowNum
+		document.getElementById("changeRowNum").onchange = function () {
+		    document.getElementById("rowNumToShow").value = document.getElementById("changeRowNum").value;
+		    form.action = "/xdm/v1/infra/shop/shopXdmList";
+		    form.submit();
+		}
 	</script>
 
 </body>

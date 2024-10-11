@@ -41,4 +41,9 @@ public class ShopService {
 		return shopDao.shopDelete(shopDto);
 	}
 	
+	// 페이징 - selectOneCount
+	public int shopSelectOneCount(ShopVo shopVo) {
+		return shopDao.shopSelectOneCount(shopVo);
+	}
+	
 }

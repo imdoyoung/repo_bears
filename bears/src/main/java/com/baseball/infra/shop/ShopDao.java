@@ -25,5 +25,8 @@ public interface ShopDao {
 	// 삭제 - delete
 	public int shopDelete(ShopDto shopDto);
 	
+	// 페이징 - selectOneCount
+	public int shopSelectOneCount(ShopVo shopVo);
+	
 
 }
