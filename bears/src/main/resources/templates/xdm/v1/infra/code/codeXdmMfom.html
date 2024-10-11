@@ -483,7 +483,7 @@
 							<h5 class="card-title">기본정보</h5>
 
 							<!-- Custom Styled Validation -->
-							<form name="form" method="post" action="/xdm/v1/infra/code/codeXdmUpdt">
+							<form name="form" method="post" action="/xdm/v1/infra/code/codeXdmUpdt" novalidate>
 								<div class="row mb-3">
 									<div class="col-md-3">
 										<label class="form-label">
@@ -506,6 +506,7 @@
 												th:selected="${list.ifcgSeq == item?.B_codegroup_ifcgSeq}">
 											</option>
 										</select>
+										<div class="invalid-feedback">코드그룹번호를 선택해 주세요.</div>
 									</div>
 								</div>
 								<div class="row mb-3">
@@ -516,6 +517,8 @@
 											</label> 
 											<input type="text" class="form-control" name="ifcdName" th:value="${item?.ifcdName}"
 											placeholder="코드 이름">
+											<div class="invalid-feedback" id="ifcdNameFeedback"> 코드이름을 입력해 주세요.</div>
+											<div class="invalid-feedback" id="ifcdNameRegExpFeedback"> 코드이름은 한글, 영대소문자, 숫자, 특수기호-_&만 입력해 주세요.</div>
 									</div>
 									<div class="col-md-3">
 										<label class="form-label">
@@ -527,6 +530,7 @@
 											<option value="1" th:selected="${item?.ifcdUseNy == 1}">Y</option>
 											<option value="0" th:selected="${item?.ifcdUseNy == 0}">N</option>
 										</select>
+										<div class="invalid-feedback">사용여부를 선택해 주세요.</div>
 									</div>
 									<div class="col-md-3">
 										<label class="form-label">
@@ -546,6 +550,7 @@
 											<option value="9" th:selected="${item?.ifcdOrder == 9}">9</option>
 											<option value="10" th:selected="${item?.ifcdOrder == 10}">10</option>
 										</select>
+										<div class="invalid-feedback">순서를 선택해 주세요.</div>
 									</div>
 								</div>
 								<div class="row mb-3">
@@ -674,6 +679,87 @@
 			alert("DELETE 확인");
 			let form = document.querySelector("form[name=form]");
 			form.action = "/xdm/v1/infra/code/codeXdmDel";
+			form.submit();
+		}
+		
+		// validation
+		document.getElementById("btnSubmit").onclick = function(){
+			
+			
+			// B_codegroup_ifcgSeq
+			var B_codegroup_ifcgSeq = document.getElementById("B_codegroup_ifcgSeq");
+			var B_codegroup_ifcgSeqValue = document.getElementById("B_codegroup_ifcgSeq").value.trim();
+			
+			if(B_codegroup_ifcgSeqValue == "" || B_codegroup_ifcgSeqValue == null){
+				B_codegroup_ifcgSeq.classList.add('is-invalid');
+				B_codegroup_ifcgSeq.focus();
+				return false;
+			} else {
+				// by pass
+				B_codegroup_ifcgSeq.classList.remove('is-invalid');
+				B_codegroup_ifcgSeq.classList.add('is-valid');
+			}
+			
+			
+			// ifcdName
+			var ifcdName = document.getElementById("ifcdName");
+			var ifcdNameValue = document.getElementById("ifcdName").value.trim();
+			var ifcdNameRegExp = /^[ㄱ-ㅎ가-힣A-Za-z0-9\-_&]+$/;
+			var ifcdNameFeedback = document.getElementById("ifcdNameFeedback");
+		    var ifcdNameRegExpFeedback = document.getElementById("ifcdNameRegExpFeedback");
+			
+			// 기존의 validation 초기화
+			ifcdName.classList.remove('is-valid', 'is-invalid');
+			ifcdNameFeedback.style.display='none';
+			ifcdNameRegExpFeedback.style.display='none';
+
+			if(ifcdNameValue == "" || ifcdNameValue == null){
+				ifcdNameFeedback.style.display='block';
+				ifcdName.classList.add('is-invalid');
+				ifcdName.focus();
+				return false;
+			} else {
+				// by pass
+			}
+			if(!ifcdNameRegExp.test(ifcdNameValue)){
+				ifcdNameRegExpFeedback.style.display='block';
+				ifcdName.classList.add('is-invalid');
+				ifcdName.focus();
+				return false;
+			} else {
+				// by pass
+				ifcdName.classList.add('is-valid');
+			}
+			
+			// ifcdUseNy
+			var ifcdUseNy = document.getElementById("ifcdUseNy");
+			var ifcdUseNyValue = document.getElementById("ifcdUseNy").value.trim();
+			
+			if(ifcdUseNyValue == "" || ifcdUseNyValue == null){
+				ifcdUseNy.classList.add('is-invalid');
+				ifcdUseNy.focus();
+				return false;
+			} else {
+				// by pass
+				ifcdUseNy.classList.remove('is-invalid');
+				ifcdUseNy.classList.add('is-valid');
+			}
+			
+			// ifcdOrder
+			var ifcdOrder = document.getElementById("ifcdOrder");
+			var ifcdOrderValue = document.getElementById("ifcdOrder").value.trim();
+			
+			if(ifcdOrderValue == "" || ifcdOrderValue == null){
+				ifcdOrder.classList.add('is-invalid');
+				ifcdOrder.focus();
+				return false;
+			} else {
+				// by pass
+				ifcdOrder.classList.remove('is-invalid');
+				ifcdOrder.classList.add('is-valid');
+			}
+			
+			form.action="/xdm/v1/infra/code/codeXdmInst";
 			form.submit();
 		}
 	</script>

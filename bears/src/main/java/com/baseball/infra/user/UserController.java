@@ -86,7 +86,8 @@ public class UserController {
 	
 	// Main
 	@RequestMapping(value="/xdm/v1/infra/user/userXdmMain")
-	public String userXdmMain() {
+	public String userXdmMain(UserVo userVo, Model model) {
+		model.addAttribute("usrList", userService.usrSelectList(userVo));
 		return "/xdm/v1/infra/user/userXdmMain";
 	}
 	
