@@ -16,6 +16,9 @@ public class UserDto {
 	private Date usrBirth;
 	private String usrEmail;
 	private String usrPhone;
+	private Integer usrZipCode;
+	private String usrAddr;
+	private String usrAddrDetail;
 	private Integer usrGrade;
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date usrRegDate;
@@ -26,6 +29,7 @@ public class UserDto {
 	private Integer usrDelNy;
 
 //	----- getter / setter -----
+	
 	public String getUsrSeq() {
 		return usrSeq;
 	}
@@ -79,6 +83,24 @@ public class UserDto {
 	}
 	public void setUsrPhone(String usrPhone) {
 		this.usrPhone = usrPhone;
+	}
+	public Integer getUsrZipCode() {
+		return usrZipCode;
+	}
+	public void setUsrZipCode(Integer usrZipCode) {
+		this.usrZipCode = usrZipCode;
+	}
+	public String getUsrAddr() {
+		return usrAddr;
+	}
+	public void setUsrAddr(String usrAddr) {
+		this.usrAddr = usrAddr;
+	}
+	public String getUsrAddrDetail() {
+		return usrAddrDetail;
+	}
+	public void setUsrAddrDetail(String usrAddrDetail) {
+		this.usrAddrDetail = usrAddrDetail;
 	}
 	public Integer getUsrGrade() {
 		return usrGrade;
