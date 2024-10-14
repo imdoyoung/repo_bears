@@ -564,6 +564,7 @@
 											<option th:each="list : ${@codeService.selectListCachedCode(3)}"
 												th:value="${list.ifcdSeq}" th:text="${list.ifcdName}"
 												th:selected="${list.ifcdSeq} == ${usrItem?.usrGrade}">
+											</option>
 										</select>
 										<div class="invalid-feedback">등급을 선택해 주세요.</div>
 									</div>

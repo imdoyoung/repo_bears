@@ -585,10 +585,12 @@
 										</select>
 									</div>
 									<div class="col-md-2">
-										<input type="text" class="form-control" placeholder="시작일" id="shStartDate" name="shStartDate" th:value="${#strings.substring(vo.shStartDate, 0, 10)}" autocomplete="off" >
+										<input type="text" class="form-control" placeholder="시작일" id="shStartDate" name="shStartDate" 
+											th:value="${#strings.substring(vo.shStartDate, 0, 10)}" autocomplete="off" readonly>
 									</div>
 									<div class="col-md-2">
-										<input type="text" class="form-control" placeholder="종료일" id="shEndDate" name="shEndDate" th:value="${#strings.substring(vo.shEndDate, 0, 10)}" autocomplete="off">
+										<input type="text" class="form-control" placeholder="종료일" id="shEndDate" name="shEndDate" 
+											th:value="${#strings.substring(vo.shEndDate, 0, 10)}" autocomplete="off" readonly>
 									</div>
 									<div class="col-md-2">
 										<select class="form-select" id="shOption" name="shOption" aria-label="Default select example">
@@ -659,11 +661,10 @@
 											<tr th:if="${#lists.isEmpty(shopList)}">
 												<td colspan="18" align="center">No Data!!</td>
 											</tr>
-											<tr th:if="!${#lists.isEmpty(shopList)}"
-												th:each="list : ${shopList}">
+											<tr th:if="!${#lists.isEmpty(shopList)}" th:each="list : ${shopList}">
 												<td><input class="form-check-input" type="checkbox"
 													id="gridCheck1"></td>
-												<td></td>
+												<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
 												<td th:text="${list.nsSeq}"></td>
 												<td><a
 													th:href="@{/xdm/v1/infra/shop/shopXdmMfom(nsSeq=${list?.nsSeq})}"
@@ -671,7 +672,13 @@
 												<td th:text="${list.nsTel}"></td>
 												<td th:text="${list.nsOwnerName}"></td>
 												<td th:text="${list.nsMulti}"></td>
-												<td th:text="${list.nsAddrCode}"></td>
+												
+<!-- 												<td th:text="${list.nsAddrCode}"></td> -->
+												<td th:if="${list.nsAddrCode != null}" th:text="${@codeService.selectOneCachedCode(list.nsAddrCode)}"></td>
+												<td th:unless="${list.nsAddrCode != null}" ></td>
+<!-- 												<td th:if="${list.usrGrade != null}" th:text="${@codeService.selectOneCachedCode(list.usrGrade)}"></td> -->
+<!-- 													<td th:unless="${list.usrGrade != null}"></td> -->
+												
 												<td th:text="${list.nsInfoPrice}"></td>
 												<td th:if="${list.nsAddParkingNy eq 0}">N</td>
 												<td th:unless="${list.nsAddParkingNy eq 0}">Y</td>

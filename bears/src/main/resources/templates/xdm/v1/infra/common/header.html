@@ -176,7 +176,8 @@
             <li class="dropdown-header">
               <!-- <h6>[[${session.sessNameXdm}]]</h6> -->
               <h6 th:text="${session.sessNameXdm}"></h6>
-              <h6 th:text="${session.sessGradeXdm}"></h6>
+              <span th:text="${@codeService.selectOneCachedCode(session.sessGradeXdm)}"></span>
+<!--               <h6 th:text="${session.sessGradeXdm}"></h6> -->
 <!--               <h6 th:if="${list != null and list.usrGrade != null}" th:text="${@codeService.selectOneCachedCode(list.usrGrade)}"></h6> -->
             </li>
             <li>
