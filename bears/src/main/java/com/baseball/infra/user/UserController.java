@@ -21,6 +21,9 @@ public class UserController {
 	
 	@Autowired
 	UserService userService;
+
+	
+//=================== XDM ===================//
 	
 	// SELECTLIST
 	@RequestMapping(value="/xdm/v1/infra/user/userXdmList")
@@ -142,5 +145,35 @@ public class UserController {
 		returnMap.put("rt", "success");
 		return returnMap;
 	}
+	
+	
+	
+//=================== USR ===================//
+	
+	// Main
+	@RequestMapping(value="/usr/v1/infra/user/userUsrMain")
+	public String userUsrMain() {
+		return "/usr/v1/infra/user/userUsrMain";
+	}
+	
+	// Sign up
+	@RequestMapping(value="/usr/v1/infra/user/userUsrSignup")
+	public String userUsrSignup() {
+		return "/usr/v1/infra/user/userUsrSignup";
+	}
+
+	// Sign in
+	@RequestMapping(value="/usr/v1/infra/user/userUsrSignin")
+	public String userUsrSignin(UserDto userDto) {
+		userService.usrSelectOneSignin(userDto);
+		return "/usr/v1/infra/user/userUsrSignin";
+	}
+	
+	// List
+	@RequestMapping(value="/usr/v1/infra/user/userUsrList")
+	public String userUsrList() {
+		return "/usr/v1/infra/user/userUsrList";
+	}
+	
 
 }

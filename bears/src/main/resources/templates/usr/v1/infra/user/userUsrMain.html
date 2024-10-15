@@ -1,0 +1,1387 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Rentkit - Directory & Listings Bootstrap 5 Template.">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/usr/v1/template/NailForest/assets/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/usr/v1/template/NailForest/assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/usr/v1/template/NailForest/assets/images/favicon-16x16.png">
+
+
+  <!-- Libs CSS -->
+
+  <link href="/usr/v1/template/NailForest/assets/libs/magnific-popup/dist/magnific-popup.css" rel="stylesheet" />
+  <link href="/usr/v1/template/NailForest/assets/libs/animate.css/animate.min.css" rel="stylesheet">
+  <link href="/usr/v1/template/NailForest/assets/libs/nouislider/dist/nouislider.min.css" rel="stylesheet">
+  <link href="/usr/v1/template/NailForest/assets/libs/uppy/dist/uppy.min.css" rel="stylesheet">
+  <link href="/usr/v1/template/NailForest/assets/libs/litepicker/dist/css/litepicker.css" rel="stylesheet">
+  <link href="/usr/v1/template/NailForest/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="/usr/v1/template/NailForest/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
+  <link href="/usr/v1/template/NailForest/assets/libs/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+
+
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="/usr/v1/template/NailForest/assets/css/theme.min.css">
+  <title> 네일숲 </title>
+
+</head>
+
+<body>
+  <!-- main wrapper  -->
+  <div class="main-wrapper">
+    <!-- navbar  -->
+    <!-- navbar -->
+    -------------------------------
+    <!-- ======= Header ======= -->
+	  <div th:replace="~{/usr/v1/infra/common/header :: header}"></div>
+	<!-- End Header -->
+    -------------------------------
+    <!-- mainpage header start -->
+    <div class="py-lg-11 py-7">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5 col-12">
+            <div class="mb-md-10 mb-6">
+              <h2 class="mb-4 display-5 fw-bolder">Make
+                <span class="position-relative text-primary">Nails
+                  <span class="position-absolute start-0 bottom-0 mb-n5">
+                    <svg width="138" height="15" viewBox="0 0 168 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0 0H168V3L0 14.5V0Z" fill="#FFC107" />
+                    </svg>
+                  </span>
+                </span> Beautiful
+              </h2>
+              <p class="mb-4 lead">
+                나만의 특별한 네일 스타일을 찾고 계신가요? <br>
+                수많은 네일샵을 한눈에 비교하며, 당신의 취향에 꼭 맞는 곳을 발견하세요. <br>
+                편리한 예약 시스템으로 손쉽게 원하는 서비스를 받아보세요. <br>
+                이제 당신만의 아름다움을 더 간편하게 완성해보세요.<br>
+                (폰트 변경 필요)
+              </p>
+              <!-- <a href="#" class="btn btn-primary">Explore more</a> -->
+              <!-- <a href="#" class="ms-3 fs-2 align-middle"><i class="bi bi-play-circle"></i></a> -->
+            </div>
+          </div>
+          <div class="col-lg-7 col-12 d-none d-md-block ">
+            <div class="row g-1 ">
+              <div class="col-md-6 d-flex align-items-end">
+                <img src="/usr/v1/template/NailForest/assets/images/nail/nail32.jpg" alt="" class="img-fluid rounded-3">
+              </div>
+              <div class="col-md-6">
+                <img src="/usr/v1/template/NailForest/assets/images/nail/nail31.jpg" alt="" class="img-fluid rounded-3">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- mainpage header end -->
+      <!-- mainpage reservation form start -->
+      <div class="mt-md-n15 mt-lg-n10 ">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-10 col-lg-11 col-12">
+              <div class="mb-4" role="group" aria-label="Basic radio toggle button group">
+              </div>
+              <!-- form start -->
+              <div class="card border-0 p-2 search-form rounded-md-pill smooth-shadow-md">
+                <div class="row align-items-center">
+                  <div class="col-sm">
+                    <div class="form-floating">
+                      <select class="select2">
+                        <option>지역 선택</option>
+                        <option value="Gangnam">강남구</option>
+                        <option value="Nowon">노원구</option>
+                        <option value="Dobong">도봉구</option>
+                        <option value="Mapo">마포구</option>
+                        <option value="Songpa">송파구</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm form-group border-start-md border-end-md">
+                    <input type="text" id="dateSelect" class="form-control border-0" placeholder="날짜 선택">
+                  </div>
+                  <div class="col-sm">
+                    <select class="select2">
+                      <option>인원</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-1">
+                    <div class="d-md-flex justify-content-end ms-md-n3 ms-lg-0 text-end  d-none d-md-block">
+                      <a href="#" class="btn btn-primary rounded-circle btn-icon btn-icon-lg">
+                        <i class="fas fa-search"></i>
+                      </a>
+                    </div>
+                    <div class="d-md-flex justify-content-end ms-md-n3 ms-lg-0 text-end  d-block d-md-none">
+                      <a href="#" class="btn btn-primary d-grid  "> Search </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- form end -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- mainpage reservation form start -->
+    </div>
+  </div>
+  <!-- 인기 Shop List start -->
+  <div class="py-7 bg-light">
+    <div class="container">
+      <div class="row ">
+        <div class="col-12">
+          <div class="mb-8">
+            <h2 class="mb-1">Popular Shop</h2>
+            <p class="mb-0">한달동안 가장 예약 건수가 많은 샵 TOP4</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab"
+              tabindex="0">
+              <div class="row g-4">
+                <!-- 인기네일샵 - 팔색조네일 start -->
+                <div class="col-lg-6">
+                  <div class="card border-0 shadow-sm img-hover">
+                    <a href="#" class="text-body">
+                      <div class="row g-0">
+                        <!-- thumbnail -->
+                        <div class="col-12 col-md-5 rounded-start "
+                          style="background-image: url(/usr/v1/template/NailForest/assets/images/nail/gangnamShop2.png); background-repeat: no-repeat; background-size: cover;">
+                          <img src="/usr/v1/template/NailForest/assets/images/nail/gangnamShop2.png" class="img-fluid d-md-none invisible"
+                            alt="">
+                        </div>
+                        <div class="col-md-7 ">
+                          <div class="card-body p-4">
+                            <div class="">
+                              <div class="d-flex justify-content-between mb-3">
+                                <span class="badge bg-light-success text-success">1위</span>
+                                <span class="icon-shape icon-xs bg-light rounded text-muted" data-bs-toggle="tooltip"
+                                  data-bs-placement="top" data-bs-title="add to wishlist"><i
+                                    class="bi bi-heart fs-6"></i></span>
+                              </div>
+                              <div class="lh-1">
+                                <h4 class="mb-0 h5">팔색조네일</h4>
+                                <br>
+                                <p class="mb-0 fs-6">논현역 2번출구에서 도보 1분</p>
+                                <br>
+                                <p class="mb-0 fs-6">네일 기본 원컬러 50,000 ~</p>
+                              </div>
+                              <div class="fs-6 mt-6 lh-1">
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
+                                  </span>
+                                  <span>11:00</span>
+                                </span>
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
+                                  </span>
+                                  <span>21:00</span>
+                                </span>
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/personIcon.png">
+                                  </span>
+                                  <span>5인 동시</span>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <!-- 인기네일샵 - 팔색조네일 end -->
+                <!-- 인기네일샵 - 유후네일 start -->
+                <div class="col-lg-6">
+                  <div class="card border-0 shadow-sm img-hover">
+                    <a href="#" class="text-body">
+                      <div class="row g-0">
+                        <!-- thumbnail -->
+                        <div class="col-12 col-md-5 rounded-start "
+                          style="background-image: url(/usr/v1/template/NailForest/assets/images/nail/dobongShop1.png); background-repeat: no-repeat; background-size: cover;">
+                          <img src="/usr/v1/template/NailForest/assets/images/nail/dobongShop1.png" class="img-fluid d-md-none invisible" alt="">
+                        </div>
+                        <div class="col-md-7 ">
+                          <div class="card-body p-4">
+                            <div class="">
+                              <div class="d-flex justify-content-between mb-3">
+                                <span class="badge bg-light-info text-info">2위</span>
+                                <span class="icon-shape icon-xs bg-light rounded text-muted" data-bs-toggle="tooltip"
+                                  data-bs-placement="top" data-bs-title="add to wishlist"><i
+                                    class="bi bi-heart fs-6"></i></span>
+                              </div>
+                              <div class="lh-1">
+                                <h4 class="mb-0 h5">유후네일</h4>
+                                <br>
+                                <p class="mb-0 fs-6">노원역 2,4번출구 도보 10분</p>
+                                <br>
+                                <p class="mb-0 fs-6">젤네일 기본 원컬러 40,000 ~</p>
+                              </div>
+                              <div class="fs-6 mt-6 lh-1">
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
+                                  </span>
+                                  <span>10:00</span>
+                                </span>
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
+                                  </span>
+                                  <span>22:00</span>
+                                </span>
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/personIcon.png">
+                                  </span>
+                                  <span>8인 동시</span>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <!-- 인기네일샵 - 유후네일 start -->
+                <!-- 인기네일샵 - 여느네일 start -->
+                <div class="col-lg-6">
+                  <div class="card border-0 shadow-sm img-hover">
+                    <a href="#" class="text-body">
+                      <div class="row g-0">
+                        <!-- thumbnail -->
+                        <div class="col-12 col-md-5 rounded-start "
+                          style="background-image: url(/usr/v1/template/NailForest/assets/images/nail/mapoShop2.png); background-repeat: no-repeat; background-size: cover;">
+                          <img src="/usr/v1/template/NailForest/assets/images/nail/mapoShop2.png" class="img-fluid d-md-none invisible" alt="">
+                        </div>
+                        <div class="col-md-7 ">
+                          <div class="card-body p-4">
+                            <div class="">
+                              <div class="d-flex justify-content-between mb-3">
+                                <span class="badge bg-light-danger text-danger">3위</span>
+                                <span class="icon-shape icon-xs bg-light rounded text-muted" data-bs-toggle="tooltip"
+                                  data-bs-placement="top" data-bs-title="add to wishlist"><i
+                                    class="bi bi-heart fs-6"></i></span>
+                              </div>
+                              <div class="lh-1">
+                                <h4 class="mb-0 h5">여느네일</h4>
+                                <br>
+                                <p class="mb-0 fs-6">홍대입구역 8번출구에서 도보 2분</p>
+                                <br>
+                                <p class="mb-0 fs-6">젤네일 기본 원컬러 20,000 ~</p>
+                              </div>
+                              <div class="fs-6 mt-6 lh-1">
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
+                                  </span>
+                                  <span>10:00</span>
+                                </span>
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
+                                  </span>
+                                  <span>22:00</span>
+                                </span>
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/personIcon.png">
+                                  </span>
+                                  <span>2인 동시</span>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <!-- 인기네일샵 - 여느네일 start -->
+                <!-- 인기네일샵 - 니드썸네일 start -->
+                <div class="col-lg-6">
+                  <div class="card border-0 shadow-sm img-hover">
+                    <a href="#" class="text-body">
+                      <div class="row g-0">
+                        <!-- thumbnail -->
+                        <div class="col-12 col-md-5 rounded-start "
+                          style="background-image: url(/usr/v1/template/NailForest/assets/images/nail/dobongShop2.png); background-repeat: no-repeat; background-size: cover;">
+                          <img src="/usr/v1/template/NailForest/assets/images/nail/dobongShop2.png" class="img-fluid d-md-none invisible" alt="">
+                        </div>
+                        <div class="col-md-7 ">
+                          <div class="card-body p-4">
+                            <div class="">
+                              <div class="d-flex justify-content-between mb-3">
+                                <span class="badge bg-light-warning text-warning">4위</span>
+                                <span class="icon-shape icon-xs bg-light rounded text-muted" data-bs-toggle="tooltip"
+                                  data-bs-placement="top" data-bs-title="add to wishlist"><i
+                                    class="bi bi-heart fs-6"></i></span>
+                              </div>
+                              <div class="lh-1">
+                                <h4 class="mb-0 h5">니드썸네일 </h4>
+                                <br>
+                                <p class="mb-0 fs-6">4호선 노원역 10번출구에서 도보 7분</p>
+                                <br>
+                                <p class="mb-0 fs-6">젤네일 기본 원컬러 40,000 ~</p>
+                              </div>
+                              <div class="fs-6 mt-6 lh-1">
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
+                                  </span>
+                                  <span>11:00</span>
+                                </span>
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
+                                  </span>
+                                  <span>21:00</span>
+                                </span>
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/personIcon.png">
+                                  </span>
+                                  <span>3인 동시</span>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <!-- 인기네일샵 - 니드썸네일 end -->
+              </div>
+            </div>
+          </div>
+          <div class="mt-4">
+            <a href="#" class="btn btn-primary">Show more listing</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 인기 Shop List end -->
+  <!-- 이벤트 Shop List start -->
+  <div class="py-7 bg-light" style="padding-top: 0;">
+    <div class="container">
+      <div class="row ">
+        <div class="col-12">
+          <div class="mb-8">
+            <br><br><br>
+            <h2 class="mb-1">Event Shop</h2>
+            <p class="mb-0">이벤트 진행중인 샵</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab"
+              tabindex="0">
+              <div class="row g-4">
+                <!-- 이벤트네일샵 - 팔색조네일 start -->
+                <div class="col-lg-6">
+                  <div class="card border-0 shadow-sm img-hover">
+                    <a href="#" class="text-body">
+                      <div class="row g-0">
+                        <!-- thumbnail -->
+                        <div class="col-12 col-md-5 rounded-start "
+                          style="background-image: url(/usr/v1/template/NailForest/assets/images/nail/gangnamShop1.png); background-repeat: no-repeat; background-size: cover;">
+                          <img src="/usr/v1/template/NailForest/assets/images/nail/gangnamShop1.png" class="img-fluid d-md-none invisible"
+                            alt="">
+                        </div>
+                        <div class="col-md-7 ">
+                          <div class="card-body p-4">
+                            <div class="">
+                              <div class="lh-1">
+                                <h4 class="mb-0 h5">팔색조네일</h4>
+                                <br>
+                                <p class="mb-0 fs-6">논현역 2번출구에서 도보 1분</p>
+                                <br>
+                                <p class="mb-0 fs-6">네일 기본 원컬러 50,000 ~</p>
+                              </div>
+                              <div class="fs-6 mt-6 lh-1">
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
+                                  </span>
+                                  <span>11:00</span>
+                                </span>
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
+                                  </span>
+                                  <span>21:00</span>
+                                </span>
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/personIcon.png">
+                                  </span>
+                                  <span>5인 동시</span>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <!-- 이벤트네일샵 - 팔색조네일 end -->
+                <!-- 이벤트네일샵 - 유후네일 start -->
+                <div class="col-lg-6">
+                  <div class="card border-0 shadow-sm img-hover">
+                    <a href="#" class="text-body">
+                      <div class="row g-0">
+                        <!-- thumbnail -->
+                        <div class="col-12 col-md-5 rounded-start "
+                          style="background-image: url(/usr/v1/template/NailForest/assets/images/nail/nowonShop1.png); background-repeat: no-repeat; background-size: cover;">
+                          <img src="/usr/v1/template/NailForest/assets/images/nail/nowonShop1.png" class="img-fluid d-md-none invisible" alt="">
+                        </div>
+                        <div class="col-md-7 ">
+                          <div class="card-body p-4">
+                            <div class="">
+                              <div class="lh-1">
+                                <h4 class="mb-0 h5">유후네일</h4>
+                                <br>
+                                <p class="mb-0 fs-6">노원역 2,4번출구 도보 10분</p>
+                                <br>
+                                <p class="mb-0 fs-6">젤네일 기본 원컬러 40,000 ~</p>
+                              </div>
+                              <div class="fs-6 mt-6 lh-1">
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
+                                  </span>
+                                  <span>10:00</span>
+                                </span>
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
+                                  </span>
+                                  <span>22:00</span>
+                                </span>
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/personIcon.png">
+                                  </span>
+                                  <span>8인 동시</span>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <!-- 이벤트네일샵 - 유후네일 start -->
+                <!-- 이벤트네일샵 - 여느네일 start -->
+                <div class="col-lg-6">
+                  <div class="card border-0 shadow-sm img-hover">
+                    <a href="#" class="text-body">
+                      <div class="row g-0">
+                        <!-- thumbnail -->
+                        <div class="col-12 col-md-5 rounded-start "
+                          style="background-image: url(/usr/v1/template/NailForest/assets/images/nail/mapoShop1.png); background-repeat: no-repeat; background-size: cover;">
+                          <img src="/usr/v1/template/NailForest/assets/images/nail/mapoShop1.png" class="img-fluid d-md-none invisible" alt="">
+                        </div>
+                        <div class="col-md-7 ">
+                          <div class="card-body p-4">
+                            <div class="">
+                              <div class="lh-1">
+                                <h4 class="mb-0 h5">여느네일</h4>
+                                <br>
+                                <p class="mb-0 fs-6">홍대입구역 8번출구에서 도보 2분</p>
+                                <br>
+                                <p class="mb-0 fs-6">젤네일 기본 원컬러 20,000 ~</p>
+                              </div>
+                              <div class="fs-6 mt-6 lh-1">
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
+                                  </span>
+                                  <span>10:00</span>
+                                </span>
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
+                                  </span>
+                                  <span>22:00</span>
+                                </span>
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/personIcon.png">
+                                  </span>
+                                  <span>2인 동시</span>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <!-- 이벤트네일샵 - 여느네일 start -->
+                <!-- 이벤트네일샵 - 니드썸네일 start -->
+                <div class="col-lg-6">
+                  <div class="card border-0 shadow-sm img-hover">
+                    <a href="#" class="text-body">
+                      <div class="row g-0">
+                        <!-- thumbnail -->
+                        <div class="col-12 col-md-5 rounded-start "
+                          style="background-image: url(/usr/v1/template/NailForest/assets/images/nail/nowonShop2.png); background-repeat: no-repeat; background-size: cover;">
+                          <img src="/usr/v1/template/NailForest/assets/images/nail/nowonShop2.png" class="img-fluid d-md-none invisible" alt="">
+                        </div>
+                        <div class="col-md-7 ">
+                          <div class="card-body p-4">
+                            <div class="">
+                              <div class="lh-1">
+                                <h4 class="mb-0 h5">니드썸네일 </h4>
+                                <br>
+                                <p class="mb-0 fs-6">4호선 노원역 10번출구에서 도보 7분</p>
+                                <br>
+                                <p class="mb-0 fs-6">젤네일 기본 원컬러 40,000 ~</p>
+                              </div>
+                              <div class="fs-6 mt-6 lh-1">
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
+                                  </span>
+                                  <span>11:00</span>
+                                </span>
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
+                                  </span>
+                                  <span>21:00</span>
+                                </span>
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/personIcon.png">
+                                  </span>
+                                  <span>3인 동시</span>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <!-- 이벤트네일샵 - 니드썸네일 end -->
+              </div>
+            </div>
+          </div>
+          <div class="mt-4">
+            <a href="#" class="btn btn-primary">Show more listing</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 이벤트 Shop List end -->
+  <!-- 신규 Shop List start -->
+  <div class="py-7 bg-light">
+    <div class="container">
+      <div class="row ">
+        <div class="col-12">
+          <div class="mb-8">
+            <h2 class="mb-1">NEW Shop</h2>
+            <p class="mb-0">새로 생긴 shop</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab"
+              tabindex="0">
+              <div class="row g-4">
+                <!-- 신규네일샵 - 팔색조네일 start -->
+                <div class="col-lg-6">
+                  <div class="card border-0 shadow-sm img-hover">
+                    <a href="#" class="text-body">
+                      <div class="row g-0">
+                        <!-- thumbnail -->
+                        <div class="col-12 col-md-5 rounded-start "
+                          style="background-image: url(/usr/v1/template/NailForest/assets/images/nail/gangnamShop2.png); background-repeat: no-repeat; background-size: cover;">
+                          <img src="/usr/v1/template/NailForest/assets/images/nail/gangnamShop2.png" class="img-fluid d-md-none invisible"
+                            alt="">
+                        </div>
+                        <div class="col-md-7 ">
+                          <div class="card-body p-4">
+                            <div class="">
+                              <div class="lh-1">
+                                <h4 class="mb-0 h5">팔색조네일</h4>
+                                <br>
+                                <p class="mb-0 fs-6">논현역 2번출구에서 도보 1분</p>
+                                <br>
+                                <p class="mb-0 fs-6">네일 기본 원컬러 50,000 ~</p>
+                              </div>
+                              <div class="fs-6 mt-6 lh-1">
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
+                                  </span>
+                                  <span>11:00</span>
+                                </span>
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
+                                  </span>
+                                  <span>21:00</span>
+                                </span>
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/personIcon.png">
+                                  </span>
+                                  <span>5인 동시</span>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <!-- 신규네일샵 - 팔색조네일 end -->
+                <!-- 신규네일샵 - 유후네일 start -->
+                <div class="col-lg-6">
+                  <div class="card border-0 shadow-sm img-hover">
+                    <a href="#" class="text-body">
+                      <div class="row g-0">
+                        <!-- thumbnail -->
+                        <div class="col-12 col-md-5 rounded-start "
+                          style="background-image: url(/usr/v1/template/NailForest/assets/images/nail/dobongShop1.png); background-repeat: no-repeat; background-size: cover;">
+                          <img src="/usr/v1/template/NailForest/assets/images/nail/dobongShop1.png" class="img-fluid d-md-none invisible" alt="">
+                        </div>
+                        <div class="col-md-7 ">
+                          <div class="card-body p-4">
+                            <div class="">
+                              <div class="lh-1">
+                                <h4 class="mb-0 h5">유후네일</h4>
+                                <br>
+                                <p class="mb-0 fs-6">노원역 2,4번출구 도보 10분</p>
+                                <br>
+                                <p class="mb-0 fs-6">젤네일 기본 원컬러 40,000 ~</p>
+                              </div>
+                              <div class="fs-6 mt-6 lh-1">
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
+                                  </span>
+                                  <span>10:00</span>
+                                </span>
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
+                                  </span>
+                                  <span>22:00</span>
+                                </span>
+                                <span class="me-2">
+                                  <span>
+                                    <img src="/usr/v1/template/NailForest/assets/images/nail/personIcon.png">
+                                  </span>
+                                  <span>8인 동시</span>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <!-- 신규네일샵 - 유후네일 start -->
+                <!-- 신규네일샵 - 여느네일 start -->
+                <div class="col-lg-6">
+                  <div class="card border-0 shadow-sm img-hover">
+                    <a href="#" class="text-body">
+                      <div class="row g-0">
+                        <!-- thumbnail -->
+                        <div class="col-12 col-md-5 rounded-start "
+                          style="background-image: url(/usr/v1/template/NailForest/assets/images/nail/mapoShop2.png); background-repeat: no-repeat; background-size: cover;">
+                          <img src="/usr/v1/template/NailForest/assets/images/nail/mapoShop2.png" class="img-fluid d-md-none invisible" alt="">
+                        </div>
+                        <div class="col-md-7 ">
+                          <div class="card-body p-4">
+                            <div class="">
+                            <div class="lh-1">
+                              <h4 class="mb-0 h5">여느네일</h4>
+                              <br>
+                              <p class="mb-0 fs-6">홍대입구역 8번출구에서 도보 2분</p>
+                              <br>
+                              <p class="mb-0 fs-6">젤네일 기본 원컬러 20,000 ~</p>
+                            </div>
+                            <div class="fs-6 mt-6 lh-1">
+                              <span class="me-2">
+                                <span>
+                                  <img src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
+                                </span>
+                                <span>10:00</span>
+                              </span>
+                              <span class="me-2">
+                                <span>
+                                  <img src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
+                                </span>
+                                <span>22:00</span>
+                              </span>
+                              <span class="me-2">
+                                <span>
+                                  <img src="/usr/v1/template/NailForest/assets/images/nail/personIcon.png">
+                                </span>
+                                <span>2인 동시</span>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  </a>
+                </div>
+              </div>
+              <!-- 신규네일샵 - 여느네일 start -->
+              <!-- 신규네일샵 - 니드썸네일 start -->
+              <div class="col-lg-6">
+                <div class="card border-0 shadow-sm img-hover">
+                  <a href="#" class="text-body">
+                    <div class="row g-0">
+                      <!-- thumbnail -->
+                      <div class="col-12 col-md-5 rounded-start "
+                        style="background-image: url(/usr/v1/template/NailForest/assets/images/nail/dobongShop2.png); background-repeat: no-repeat; background-size: cover;">
+                        <img src="/usr/v1/template/NailForest/assets/images/nail/dobongShop2.png" class="img-fluid d-md-none invisible" alt="">
+                      </div>
+                      <div class="col-md-7 ">
+                        <div class="card-body p-4">
+                          <div class="">
+                            <div class="lh-1">
+                              <h4 class="mb-0 h5">니드썸네일 </h4>
+                              <br>
+                              <p class="mb-0 fs-6">4호선 노원역 10번출구에서 도보 7분</p>
+                              <br>
+                              <p class="mb-0 fs-6">젤네일 기본 원컬러 40,000 ~</p>
+                            </div>
+                            <div class="fs-6 mt-6 lh-1">
+                              <span class="me-2">
+                                <span>
+                                  <img src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
+                                </span>
+                                <span>11:00</span>
+                              </span>
+                              <span class="me-2">
+                                <span>
+                                  <img src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
+                                </span>
+                                <span>21:00</span>
+                              </span>
+                              <span class="me-2">
+                                <span>
+                                  <img src="/usr/v1/template/NailForest/assets/images/nail/personIcon.png">
+                                </span>
+                                <span>3인 동시</span>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <!-- 인기네일샵 - 니드썸네일 end -->
+            </div>
+          </div>
+        </div>
+        <div class="mt-4">
+          <a href="#" class="btn btn-primary">Show more listing</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- 신규 Shop List end -->
+  <!-- 상품 이미지 List start -->
+  <!-- section blog -->
+  <div class="pb-lg-11 pb-7 bg-light">
+    <div class="container">
+      <div class="row ">
+        <div class="col-12">
+          <div class="mb-8">
+            <br><br><br>
+            <h2 class="mb-1">Product</h2>
+            <p class="mb-0">네일 디자인 이미지 클릭시 해당 샵 페이지로 이동</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <!-- post classic block -->
+        <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+          <div class="mb-6">
+            <a href="../pages/0_shop_detail.html">
+              <img src="/usr/v1/template/NailForest/assets/images/nail/nail3.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme"
+                class="w-100 rounded-3 img-hover" width="356px" height="356px">
+            </a>
+            <div class="mt-4">
+            </div>
+          </div>
+        </div>
+        <!-- /.post classic block -->
+        <!-- post classic block -->
+        <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+          <div class="mb-6">
+            <a href="../pages/0_shop_detail.html">
+              <img src="/usr/v1/template/NailForest/assets/images/nail/nail9.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme"
+                class="w-100 rounded-3 img-hover" width="356px" height="356px">
+            </a>
+          </div>
+        </div>
+        <!-- /.post classic block -->
+        <!-- post classic block -->
+        <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+          <div class="mb-6">
+            <a href="../pages/0_shop_detail.html">
+              <img src="/usr/v1/template/NailForest/assets/images/nail/nail29.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme"
+                class="w-100 rounded-3 img-hover" width="356px" height="356px">
+            </a>
+            <div class="mt-4">
+            </div>
+          </div>
+        </div>
+        <!-- /.post classic block -->
+        <!-- post classic block -->
+        <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+          <div class="mb-6">
+            <a href="../pages/0_shop_detail.html">
+              <img src="/usr/v1/template/NailForest/assets/images/nail/nail28.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme"
+                class="w-100 rounded-3 img-hover" width="356px" height="356px">
+            </a>
+            <div class="mt-4">
+            </div>
+          </div>
+        </div>
+        <!-- /.post classic block -->
+        <!-- post classic block -->
+        <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+          <div class="mb-6">
+            <a href="../pages/0_shop_detail.html">
+              <img src="/usr/v1/template/NailForest/assets/images/nail/nail34.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme"
+                class="w-100 rounded-3 img-hover" width="356px" height="356px">
+            </a>
+          </div>
+        </div>
+        <!-- /.post classic block -->
+        <!-- post classic block -->
+        <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+          <div class="mb-6">
+            <a href="../pages/0_shop_detail.html">
+              <img src="/usr/v1/template/NailForest/assets/images/nail/nail35.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme"
+                class="w-100 rounded-3 img-hover" width="356px" height="356px">
+            </a>
+            <div class="mt-4">
+            </div>
+          </div>
+        </div>
+        <!-- /.post classic block -->
+        <!-- post classic block -->
+        <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+          <div class="mb-6">
+            <a href="../pages/0_shop_detail.html">
+              <img src="/usr/v1/template/NailForest/assets/images/nail/nail36.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme"
+                class="w-100 rounded-3 img-hover" width="356px" height="356px">
+            </a>
+            <div class="mt-4">
+            </div>
+          </div>
+        </div>
+        <!-- /.post classic block -->
+        <!-- post classic block -->
+        <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+          <div class="mb-6">
+            <a href="../pages/0_shop_detail.html">
+              <img src="/usr/v1/template/NailForest/assets/images/nail/nail37.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme"
+                class="w-100 rounded-3 img-hover" width="356px" height="356px">
+            </a>
+          </div>
+        </div>
+        <!-- /.post classic block -->
+        <!-- post classic block -->
+        <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+          <div class="mb-6">
+            <a href="../pages/0_shop_detail.html">
+              <img src="/usr/v1/template/NailForest/assets/images/nail/nail38.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme"
+                class="w-100 rounded-3 img-hover" width="356px" height="356px">
+            </a>
+            <div class="mt-4">
+            </div>
+          </div>
+        </div>
+        <!-- /.post classic block -->
+        <div class="col-md-12 col-12 text-center mt-5">
+          <a href="#" class="btn btn-primary">Show more listing</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 상품 이미지 List end -->
+  <!-- section reviews start -->
+  <div class="py-lg-11 py-7 bg-light ">
+    <div class="container">
+      <div class="row">
+        <!-- section heading -->
+        <div class="col-md-12 col-sm-12 col-12 text-center">
+          <div class="mb-8">
+            <h2 class="mb-1">Our Customer Reviews </h2>
+            <p>
+              Happy guest stay longer!
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="theme-carousel">
+        <div class="owl-carousel owl-theme owl-testimonial">
+          <div class="item">
+            <!-- testimonial -->
+            <div class="card">
+              <div class="card-body p-5">
+                <h3 class="h4 mb-2">유지력이 좋아요!1</h3>
+                <p class="mb-4 ">
+                  저번에도 만족했는데 이번에도 완전 만족입니다!!
+                  무슨 색으로 할지 너무 고민되었는데 선생님 손으로 직접 테스트 보여주셔서 색 고르기 너무 편했어요~
+                  다음번에 또 받으러 갈게용~
+                </p>
+                <div class="d-flex">
+                  <span>
+                    [팔색조네일]
+                  </span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <div class="text-primary align-self-center text-sm">
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star-half"></span>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <img src="/usr/v1/template/NailForest/assets/images/nail/womanIcon32.png" alt="Rentkit Directory & Listing Bootstrap 5 Theme"
+                      class="avatar-xs rounded-circle me-2">
+                    <span class="text-sm  font-weight-semi-bold">젤루죠이</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- testimonial -->
+          </div>
+          <div class="item">
+            <!-- testimonial -->
+            <div class="card">
+              <div class="card-body p-5">
+                <h3 class="h4 mb-2">유지력이 좋아요!2</h3>
+                <p class="mb-4 ">
+                  저번에도 만족햇는데 이번에도 완전 만족입니다!!
+                  무슨 색으로 할지 너무 고민되었는데 선생님 손으로 직접 테스트 보여주셔서 색 고르기 너무 편했어요~
+                  다음번에 또 받으러 갈게용~
+                </p>
+                <div class="d-flex">
+                  <span>
+                    [팔색조네일]
+                  </span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <div class="text-primary align-self-center text-sm">
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star-half"></span>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <img src="/usr/v1/template/NailForest/assets/images/nail/womanIcon32.png" alt="Rentkit Directory & Listing Bootstrap 5 Theme"
+                      class="avatar-xs rounded-circle me-2">
+                    <span class="text-sm  font-weight-semi-bold">젤루죠이</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- testimonial -->
+          </div>
+          <div class="item">
+            <!-- testimonial -->
+            <div class="card">
+              <div class="card-body p-5">
+                <h3 class="h4 mb-2">유지력이 좋아요!3</h3>
+                <p class="mb-4 ">
+                  저번에도 만족햇는데 이번에도 완전 만족입니다!!
+                  무슨 색으로 할지 너무 고민되었는데 선생님 손으로 직접 테스트 보여주셔서 색 고르기 너무 편했어요~
+                  다음번에 또 받으러 갈게용~
+                </p>
+                <div class="d-flex">
+                  <span>
+                    [팔색조네일]
+                  </span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <div class="text-primary align-self-center text-sm">
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star-half"></span>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <img src="/usr/v1/template/NailForest/assets/images/nail/womanIcon32.png" alt="Rentkit Directory & Listing Bootstrap 5 Theme"
+                      class="avatar-xs rounded-circle me-2">
+                    <span class="text-sm  font-weight-semi-bold">젤루죠이</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- testimonial -->
+          </div>
+          <div class="item">
+            <!-- testimonial -->
+            <div class="card">
+              <div class="card-body p-5">
+                <h3 class="h4 mb-2">유지력이 좋아요!4</h3>
+                <p class="mb-4 ">
+                  저번에도 만족햇는데 이번에도 완전 만족입니다!!
+                  무슨 색으로 할지 너무 고민되었는데 선생님 손으로 직접 테스트 보여주셔서 색 고르기 너무 편했어요~
+                  다음번에 또 받으러 갈게용~
+                </p>
+                <div class="d-flex">
+                  <span>
+                    [팔색조네일]
+                  </span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <div class="text-primary align-self-center text-sm">
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star-half"></span>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <img src="/usr/v1/template/NailForest/assets/images/nail/womanIcon32.png" alt="Rentkit Directory & Listing Bootstrap 5 Theme"
+                      class="avatar-xs rounded-circle me-2">
+                    <span class="text-sm  font-weight-semi-bold">젤루죠이</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- testimonial -->
+          </div>
+          <div class="item">
+            <!-- testimonial -->
+            <div class="card">
+              <div class="card-body p-5">
+                <h3 class="h4 mb-2">유지력이 좋아요!5</h3>
+                <p class="mb-4 ">
+                  저번에도 만족햇는데 이번에도 완전 만족입니다!!
+                  무슨 색으로 할지 너무 고민되었는데 선생님 손으로 직접 테스트 보여주셔서 색 고르기 너무 편했어요~
+                  다음번에 또 받으러 갈게용~
+                </p>
+                <div class="d-flex">
+                  <span>
+                    [팔색조네일]
+                  </span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <div class="text-primary align-self-center text-sm">
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star-half"></span>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <img src="/usr/v1/template/NailForest/assets/images/nail/womanIcon32.png" alt="Rentkit Directory & Listing Bootstrap 5 Theme"
+                      class="avatar-xs rounded-circle me-2">
+                    <span class="text-sm  font-weight-semi-bold">젤루죠이</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- testimonial -->
+          </div>
+          <div class="item">
+            <!-- testimonial -->
+            <div class="card">
+              <div class="card-body p-5">
+                <h3 class="h4 mb-2">유지력이 좋아요!6</h3>
+                <p class="mb-4 ">
+                  저번에도 만족햇는데 이번에도 완전 만족입니다!!
+                  무슨 색으로 할지 너무 고민되었는데 선생님 손으로 직접 테스트 보여주셔서 색 고르기 너무 편했어요~
+                  다음번에 또 받으러 갈게용~
+                </p>
+                <div class="d-flex">
+                  <span>
+                    [팔색조네일]
+                  </span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <div class="text-primary align-self-center text-sm">
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star-half"></span>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <img src="/usr/v1/template/NailForest/assets/images/nail/womanIcon32.png" alt="Rentkit Directory & Listing Bootstrap 5 Theme"
+                      class="avatar-xs rounded-circle me-2">
+                    <span class="text-sm  font-weight-semi-bold">젤루죠이</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- testimonial -->
+          </div>
+          <div class="item">
+            <!-- testimonial -->
+            <div class="card">
+              <div class="card-body p-5">
+                <h3 class="h4 mb-2">유지력이 좋아요!7</h3>
+                <p class="mb-4 ">
+                  저번에도 만족햇는데 이번에도 완전 만족입니다!!
+                  무슨 색으로 할지 너무 고민되었는데 선생님 손으로 직접 테스트 보여주셔서 색 고르기 너무 편했어요~
+                  다음번에 또 받으러 갈게용~
+                </p>
+                <div class="d-flex">
+                  <span>
+                    [팔색조네일]
+                  </span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <div class="text-primary align-self-center text-sm">
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star-half"></span>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <img src="/usr/v1/template/NailForest/assets/images/nail/womanIcon32.png" alt="Rentkit Directory & Listing Bootstrap 5 Theme"
+                      class="avatar-xs rounded-circle me-2">
+                    <span class="text-sm  font-weight-semi-bold">젤루죠이</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- testimonial -->
+          </div>
+          <div class="item">
+            <!-- testimonial -->
+            <div class="card">
+              <div class="card-body p-5">
+                <h3 class="h4 mb-2">유지력이 좋아요!8</h3>
+                <p class="mb-4 ">
+                  저번에도 만족햇는데 이번에도 완전 만족입니다!!
+                  무슨 색으로 할지 너무 고민되었는데 선생님 손으로 직접 테스트 보여주셔서 색 고르기 너무 편했어요~
+                  다음번에 또 받으러 갈게용~
+                </p>
+                <div class="d-flex">
+                  <span>
+                    [팔색조네일]
+                  </span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <div class="text-primary align-self-center text-sm">
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star-half"></span>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <img src="/usr/v1/template/NailForest/assets/images/nail/womanIcon32.png" alt="Rentkit Directory & Listing Bootstrap 5 Theme"
+                      class="avatar-xs rounded-circle me-2">
+                    <span class="text-sm  font-weight-semi-bold">젤루죠이</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- testimonial -->
+          </div>
+          <div class="item">
+            <!-- testimonial -->
+            <div class="card">
+              <div class="card-body p-5">
+                <h3 class="h4 mb-2">유지력이 좋아요!9</h3>
+                <p class="mb-4 ">
+                  저번에도 만족햇는데 이번에도 완전 만족입니다!!
+                  무슨 색으로 할지 너무 고민되었는데 선생님 손으로 직접 테스트 보여주셔서 색 고르기 너무 편했어요~
+                  다음번에 또 받으러 갈게용~
+                </p>
+                <div class="d-flex">
+                  <span>
+                    [팔색조네일]
+                  </span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <div class="text-primary align-self-center text-sm">
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star"></span>
+                    <span class="mdi mdi-star-half"></span>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <img src="/usr/v1/template/NailForest/assets/images/nail/womanIcon32.png" alt="Rentkit Directory & Listing Bootstrap 5 Theme"
+                      class="avatar-xs rounded-circle me-2">
+                    <span class="text-sm  font-weight-semi-bold">젤루죠이</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- testimonial -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- section reviews end -->
+  <!-- body end -->
+
+  <!-- footer  -->
+  <!-- footer  -->
+  <!-- footer section -->
+  <div class="footer pt-14 bg-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-2 col-lg-2 col-md-4 col-6">
+          <!-- footer widget  -->
+          <div class="mb-14">
+            <h4 class=" mb-3 text-dark">Explore Rentkit</h4>
+            <div>
+              <ul class="list-unstyled">
+                <li><a href="#" class="text-reset lh-lg">List your property</a></li>
+                <li><a href="#" class="text-reset lh-lg">Book with Confidence</a></li>
+                <li><a href="#" class="text-reset lh-lg">Trust & Safety</a></li>
+                <li><a href="#" class="text-reset lh-lg">Vacation rental guides</a> </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-2 col-lg-2 col-md-4 col-6">
+          <!-- footer widget  -->
+          <div class="mb-14">
+            <h4 class=" mb-3  text-dark">For Owner</h4>
+            <div>
+              <ul class="list-unstyled">
+                <li><a href="#" class="text-reset lh-lg">How it works</a></li>
+                <li><a href="#" class="text-reset lh-lg">Pricing</a></li>
+                <li><a href="#" class="text-reset lh-lg">Join as Owner</a></li>
+                <li><a href="#" class="text-reset lh-lg">Help centre</a> </li>
+                <li><a href="#" class="text-reset lh-lg">Mobile App</a> </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-2 col-lg-2 col-md-4 col-6">
+          <div class="mb-14">
+            <h4 class=" mb-3  text-dark">Company</h4>
+            <div>
+              <ul class="list-unstyled">
+                <li><a href="#" class="text-reset lh-lg">About us</a></li>
+                <li><a href="#" class="text-reset lh-lg">Careers</a></li>
+                <li><a href="#" class="text-reset lh-lg">Clients</a></li>
+                <li><a href="#" class="text-reset lh-lg">Team</a> </li>
+                <li><a href="#" class="text-reset lh-lg">Help Center</a></li>
+                <li><a href="#" class="text-reset lh-lg">Press</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- footer widget  -->
+        <div class="col-xl-2 col-lg-2 col-md-4 col-6">
+          <div class="mb-14">
+            <h4 class=" mb-3  text-dark">Social</h4>
+            <div>
+              <ul class="list-unstyled">
+                <li><a href="#" class="text-reset lh-lg">Facebook</a></li>
+                <li><a href="#" class="text-reset lh-lg">Twitter</a></li>
+                <li><a href="#" class="text-reset lh-lg">Linkedin</a></li>
+                <li><a href="#" class="text-reset lh-lg">Google</a></li>
+                <li><a href="#" class="text-reset lh-lg">Instagram</a></li>
+              </ul>
+            </div>
+            <!-- footer widget  -->
+          </div>
+        </div>
+        <!-- footer widget  -->
+        <div class="col-xl-4 col-lg-4 col-md-8 col-12">
+          <div class="mb-14">
+            <h4 class=" mb-3  text-dark">Rentkit deals in your inbox ?</h4>
+            <p class="text-reset  ">Get special offers, travel inspiration, and more from Rentkit </p>
+            <form>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Enter your email" aria-label="Enter your email"
+                  aria-describedby="subscriber">
+                <span class="btn btn-primary" id="subscriber">Subscribe</span>
+              </div>
+
+
+
+            </form>
+            <!-- footer widget  -->
+          </div>
+        </div>
+        <div class="col-md-12 col-12">
+          <p class="fs-6 text-gray-500">© 2021 Rentkit. All rights reserved.</p>
+        </div>
+      </div>
+      <!-- tiny footer  -->
+      <!-- footer section -->
+    </div>
+    <!-- footer section -->
+  </div>
+
+  </div>
+  <!-- scripts  -->
+  <!-- Libs JS -->
+  <script src="/usr/v1/template/NailForest/assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="/usr/v1/template/NailForest/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/usr/v1/template/NailForest/assets/libs/owl.carousel/dist/owl.carousel.min.js"></script>
+  <script src="/usr/v1/template/NailForest/assets/libs/select2/dist/js/select2.full.min.js"></script>
+  <script src="/usr/v1/template/NailForest/assets/libs/select2/dist/js/select2.min.js"></script>
+  <script src="/usr/v1/template/NailForest/assets/libs/jquery-raty-js/lib/jquery.raty.js"></script>
+  <script src="/usr/v1/template/NailForest/assets/libs/quill/dist/quill.min.js"></script>
+  <script src="/usr/v1/template/NailForest/assets/libs/uppy/dist/uppy.min.js"></script>
+  <script src="/usr/v1/template/NailForest/assets/libs/litepicker/dist/litepicker.js"></script>
+  <script src="/usr/v1/template/NailForest/assets/libs/prismjs/prism.js"></script>
+  <script src="/usr/v1/template/NailForest/assets/libs/leaflet/dist/leaflet.js"></script>
+  <script src="/usr/v1/template/NailForest/assets/libs/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+  <script src="/usr/v1/template/NailForest/assets/libs/nouislider/dist/nouislider.min.js"></script>
+  <script src="/usr/v1/template/NailForest/assets/libs/wnumb/wNumb.min.js"></script>
+  <script src="/usr/v1/template/NailForest/assets/libs/simplebar/dist/simplebar.min.js"></script>
+  <script src="/usr/v1/template/NailForest/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.12/clipboard.min.js"></script>
+
+  <!-- Theme JS -->
+  <script src="/usr/v1/template/NailForest/assets/js/theme.min.js"></script>
