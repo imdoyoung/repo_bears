@@ -237,73 +237,76 @@
 
 									<!-- Table with stripped rows -->
 									<!-- Default Table -->
-									<table class="table">
-										<thead>
-											<tr>
-												<th><input class="form-check-input" type="checkbox"
-													id="gridCheck1"></th>
-												<th>No</th>
-												<th>샵번호</th>
-												<th>샵이름</th>
-												<th>샵전화번호</th>
-												<th>사장이름</th>
-												<th>동시시술인원</th>
-												<th>지역구</th>
-												<th>기본가격</th>
-												<th>주차가능</th>
-												<th>반려동물동반가능</th>
-												<th>이달의아트유무</th>
-												<th>드릴케어</th>
-												<th>습식케어</th>
-												<th>별점</th>
-												<th>등록일</th>
-												<th>수정일</th>
-												<th>삭제여부</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr th:if="${#lists.isEmpty(shopList)}">
-												<td colspan="18" align="center">No Data!!</td>
-											</tr>
-											<tr th:if="!${#lists.isEmpty(shopList)}" th:each="list : ${shopList}">
-												<td><input class="form-check-input" type="checkbox"
-													id="gridCheck1"></td>
-												<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
-												<td th:text="${list.nsSeq}"></td>
-												<td><a
-													th:href="@{/xdm/v1/infra/shop/shopXdmMfom(nsSeq=${list?.nsSeq})}"
-													th:text="${list.nsName}"></a></td>
-												<td th:text="${list.nsTel}"></td>
-												<td th:text="${list.nsOwnerName}"></td>
-												<td th:text="${list.nsMulti}"></td>
-												
-<!-- 												<td th:text="${list.nsAddrCode}"></td> -->
-												<td th:if="${list.nsAddrCode != null}" th:text="${@codeService.selectOneCachedCode(list.nsAddrCode)}"></td>
-												<td th:unless="${list.nsAddrCode != null}" ></td>
-<!-- 												<td th:if="${list.usrGrade != null}" th:text="${@codeService.selectOneCachedCode(list.usrGrade)}"></td> -->
-<!-- 													<td th:unless="${list.usrGrade != null}"></td> -->
-												
-												<td th:text="${list.nsInfoPrice}"></td>
-												<td th:if="${list.nsAddParkingNy eq 0}">N</td>
-												<td th:unless="${list.nsAddParkingNy eq 0}">Y</td>
-												<td th:if="${list.nsAddDogNy eq 0}">N</td>
-												<td th:unless="${list.nsAddDogNy eq 0}">Y</td>
-												<td th:if="${list.nsAddArtOfMonthNy eq 0}">N</td>
-												<td th:unless="${list.nsAddArtOfMonthNy eq 0}">Y</td>
-												<td th:if="${list.nsAddDrillcareNy eq 0}">N</td>
-												<td th:unless="${list.nsAddDrillcareNy eq 0}">Y</td>
-												<td th:if="${list.nsAddWetcareNy eq 0}">N</td>
-												<td th:unless="${list.nsAddWetcareNy eq 0}">Y</td>
-												<td th:text="${list.nsStar}"></td>
-												<td
-													th:text="${#dates.format(list?.nsRegDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
-												<td
-													th:text="${#dates.format(list?.nsEditDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
-												<td th:if="${list.nsDelNy eq 0}">N</td>
-												<td th:unless="${list.nsDelNy eq 0}">Y</td>
-											</tr>
-										</tbody>
-									</table>
+									<div class="divHorizontalScroll">
+										<table class="table tableHorizontalScroll">
+											<thead>
+												<tr>
+													<th>
+														<input class="form-check-input" type="checkbox" id="gridCheck1">
+													</th>
+													<th>No</th>
+													<th>샵번호</th>
+													<th>샵이름</th>
+													<th>샵전화번호</th>
+													<th>사장이름</th>
+													<th>동시시술인원</th>
+													<th>지역구</th>
+													<th>기본가격</th>
+													<th>주차가능</th>
+													<th>반려동물동반가능</th>
+													<th>이달의아트유무</th>
+													<th>드릴케어</th>
+													<th>습식케어</th>
+													<th>별점</th>
+													<th>등록일</th>
+													<th>수정일</th>
+													<th>삭제여부</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:if="${#lists.isEmpty(shopList)}">
+													<td colspan="18" align="center">No Data!!</td>
+												</tr>
+												<tr th:if="!${#lists.isEmpty(shopList)}" th:each="list : ${shopList}">
+													<td><input class="form-check-input" type="checkbox"
+														id="gridCheck1"></td>
+													<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
+													<td th:text="${list.nsSeq}"></td>
+													<td><a
+														th:href="@{/xdm/v1/infra/shop/shopXdmMfom(nsSeq=${list?.nsSeq})}"
+														th:text="${list.nsName}"></a></td>
+													<td th:text="${list.nsTel}"></td>
+													<td th:text="${list.nsOwnerName}"></td>
+													<td th:text="${list.nsMulti}"></td>
+													
+	<!-- 												<td th:text="${list.nsAddrCode}"></td> -->
+													<td th:if="${list.nsAddrCode != null}" th:text="${@codeService.selectOneCachedCode(list.nsAddrCode)}"></td>
+													<td th:unless="${list.nsAddrCode != null}" ></td>
+	<!-- 												<td th:if="${list.usrGrade != null}" th:text="${@codeService.selectOneCachedCode(list.usrGrade)}"></td> -->
+	<!-- 													<td th:unless="${list.usrGrade != null}"></td> -->
+													
+													<td th:text="${list.nsInfoPrice}"></td>
+													<td th:if="${list.nsAddParkingNy eq 0}">N</td>
+													<td th:unless="${list.nsAddParkingNy eq 0}">Y</td>
+													<td th:if="${list.nsAddDogNy eq 0}">N</td>
+													<td th:unless="${list.nsAddDogNy eq 0}">Y</td>
+													<td th:if="${list.nsAddArtOfMonthNy eq 0}">N</td>
+													<td th:unless="${list.nsAddArtOfMonthNy eq 0}">Y</td>
+													<td th:if="${list.nsAddDrillcareNy eq 0}">N</td>
+													<td th:unless="${list.nsAddDrillcareNy eq 0}">Y</td>
+													<td th:if="${list.nsAddWetcareNy eq 0}">N</td>
+													<td th:unless="${list.nsAddWetcareNy eq 0}">Y</td>
+													<td th:text="${list.nsStar}"></td>
+													<td
+														th:text="${#dates.format(list?.nsRegDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+													<td
+														th:text="${#dates.format(list?.nsEditDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+													<td th:if="${list.nsDelNy eq 0}">N</td>
+													<td th:unless="${list.nsDelNy eq 0}">Y</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
 									<!-- End Table with stripped rows -->
 
 									<!--pagination start-->

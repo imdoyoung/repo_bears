@@ -1238,3 +1238,21 @@ h6 {
 .icon_color_change{
   color: #FFFFFF;
 }
+
+/*** 가로 스크롤 start ***/
+.divHorizontalScroll {
+    overflow-x: auto; /* 가로 스크롤 활성화 */
+    white-space: nowrap; /* 텍스트를 한 줄로 */
+}
+
+.tableHorizontalScroll {
+    white-space: nowrap; /* 표 내부의 텍스트도 한 줄로 */
+    width: 100%; /* 테이블이 가능한 넓게 표시되도록 */
+}
+
+.tableHorizontalScroll td{
+	text-align: center; /* 텍스트를 가운데 정렬 */
+	vertical-align: middle; /* 세로 방향으로도 가운데 정렬 (테이블 셀의 높이가 클 경우) */
+}
+/*** 가로 스크롤 end ***/
+
