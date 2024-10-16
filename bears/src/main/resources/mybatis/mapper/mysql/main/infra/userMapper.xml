@@ -84,7 +84,7 @@
 				usrMktNy,
 				usrDelNy
 			) VALUES (
-			    #{usrXdmNy},
+			    0,
 			    #{usrName},
 			    #{usrId},
 			    #{usrPw},
