@@ -42,15 +42,15 @@
 			<div class="row d-flex align-items-center min-vh-100 justify-content-end">
 				<div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 col-12">
 					<!-- card -->
-					<div class="card border-0 shadow">
+					<div class="card border-0 shadow" style="margin-top: 10px; margin-bottom: 10px;">
 						<div class="card-body p-8">
-							<h1 class="mb-4">SIGN UP</h1>
+							<h1 class="mb-4" align="center">SIGN UP</h1>
 							<!-- form -->
-							<form>
+							<form name="form" id="form" method="post">
 								<!-- Name -->
 								<div class="mb-3">
 									<label for="name" class="form-label"> 이름 <span class="text-danger">*</span></label> 
-									<input type="text" class="form-control" name="usrName" id="usrName" placeholder="이름" required>
+									<input type="text" class="form-control" name="usrName" id="usrName" placeholder="이름" autocomplete="off" required>
 									<div class="invalid-feedback" id="usrNameFeedback">이름을 입력해 주세요.</div>
 									<div class="invalid-feedback" id="usrNameRegExpFeedback">이름은 한글만 입력해 주세요.</div>
 								</div>
@@ -58,7 +58,7 @@
 								<!-- id -->
 								<div class="mb-3">
 									<label fot="id" class="form-label"> 아이디 <span class="text-danger">*</span></label> 
-									<input type="text" class="form-control" name="usrId" id="usrId" placeholder="영대소문자, 숫자조합 6~15자" required>
+									<input type="text" class="form-control" name="usrId" id="usrId" placeholder="영대소문자, 숫자조합 6~15자" autocomplete="off" required>
 									<div class="invalid-feedback" id="usrIdFeedback">아이디를 입력해 주세요.</div>
 									<div class="invalid-feedback" id="usrIdRegExpFeedback">아이디는 영대소문자, 숫자조합 6~15자로 입력해 주세요.</div>
 								</div>
@@ -66,7 +66,7 @@
 								<!-- password -->
 								<div class="mb-3">
 									<label for="password" class="form-label"> 비밀번호 <span class="text-danger">*</span></label> 
-									<input type="password" class="form-control" name="usrPw" id="usrPw" placeholder="영대소문자, 숫자, 특수문자조합 8~15자" required>
+									<input type="password" class="form-control" name="usrPw" id="usrPw" placeholder="영대소문자, 숫자, 특수문자조합 8~15자" autocomplete="off" required>
 									<div class="invalid-feedback" id="usrPwFeedback">비밀번호를 입력해 주세요.</div>
 									<div class="invalid-feedback" id="usrPwRegExpFeedback">비밀번호는 영대소문자, 숫자, 특수문자!@#$%^*+=-조합 8~15자로 입력해 주세요.</div>
 								</div>
@@ -74,7 +74,7 @@
 								<!-- confirm password -->
 								<div class="mb-3">
 									<label for="confirm-password" class="form-label"> 비밀번호 확인 <span class="text-danger">*</span></label> 
-									<input type="password" class="form-control" name="usrConfirmPw" id="usrConfirmPw" placeholder="영대소문자, 숫자, 특수문자조합 8~15자" required>
+									<input type="password" class="form-control" name="usrConfirmPw" id="usrConfirmPw" placeholder="영대소문자, 숫자, 특수문자조합 8~15자" autocomplete="off" required>
 									<div class="invalid-feedback" id="usrConfirmPwFeedback">비밀번호를 입력해 주세요.</div>
 										<div class="invalid-feedback" id="usrConfirmPwCheck">비밀번호가 다릅니다.</div>
 								</div>
@@ -82,14 +82,14 @@
 								<!-- gender -->
 								<div class="mb-3">
 									<label for="gender" class="form-label"> 성별 <span class="text-danger">*</span></label> 
-									<select class="select2" id="usrGender" name="usrGender" required>
-										<option value="">성별</option>
+									<select class="form-select" id="usrGender" name="usrGender" required>
+											<option value="">성별</option>
 											<option th:each="list : ${@codeService.selectListCachedCode(1)}"
 												th:value="${list.ifcdSeq}" th:text="${list.ifcdName}"
 												th:selected="${list.ifcdSeq} == ${usrItem?.usrGender}">
 											</option>
-									</select>
-									<div class="invalid-feedback">성별을 선택해 주세요.</div>
+										</select>
+										<div class="invalid-feedback">성별을 선택해 주세요.</div>
 								</div>
 								
 								<!-- birth -->
@@ -104,7 +104,7 @@
 								<!-- email -->
 								<div class="mb-3">
 									<label for="email" class="form-label"> 이메일 <span class="text-danger">*</span></label> 
-									<input type="email" class="form-control" name="usrEmail" id="usrEmail" placeholder="이메일" required>
+									<input type="email" class="form-control" name="usrEmail" id="usrEmail" placeholder="이메일" autocomplete="off" required>
 										<div class="invalid-feedback" id="usrEmailFeedback">이메일을 입력해 주세요.</div>
 										<div class="invalid-feedback" id="usrEmailRegExpFeedback">이메일을 형식에 맞게 입력해 주세요.</div>
 								</div>
@@ -112,7 +112,7 @@
 								<!-- phone -->
 								<div class="mb-3">
 									<label for="phone" class="form-label"> 전화번호 <span class="text-danger">*</span></label> 
-									<input type="text" class="form-control" name="usrPhone" id="usrPhone"  placeholder="'-'빼고 입력해 주세요." required>
+									<input type="text" class="form-control" name="usrPhone" id="usrPhone"  placeholder="'-'빼고 입력해 주세요." autocomplete="off" required>
 										<div class="invalid-feedback" id="usrPhoneFeedback">전화번호를 입력해 주세요.</div>
 										<div class="invalid-feedback" id="usrPhoneRegExpFeedback">'-'빼고 입력해 주세요.</div>
 								</div>
@@ -121,7 +121,7 @@
 								<div class="d-flex align-items-center">
 									<div class="me-1">
 										<label for="id" class="form-label">주소</label> 
-										<input type="text" class="form-control" name="usrZipCode" id="usrZipCode" placeholder="우편번호" required style="margin-bottom: 7px">
+										<input type="text" class="form-control" name="usrZipCode" id="usrZipCode" placeholder="우편번호" required  readonly style="margin-bottom: 7px">
 										<div class="invalid-feedback">우편번호를 입력해 주세요.</div>
 									</div>
 									<div class="ms-1">
@@ -130,8 +130,8 @@
 									</div>
 								</div>
 								<div class="mb-3">
-									<input type="text" class="form-control" placeholder="주소" style="margin-bottom: 7px"> 
-									<input type="text" class="form-control" name="usrAddr" id="usrAddr" placeholder="상세주소" required>
+									<input type="text" class="form-control" name="usrAddr" id="usrAddr" placeholder="주소" style="margin-bottom: 7px"> 
+									<input type="text" class="form-control" name="usrAddrDetail" id="usrAddrDetail" placeholder="상세주소" autocomplete="off" required>
 									<div class="invalid-feedback">상세주소를 입력해 주세요.</div>
 								</div>
 
@@ -140,7 +140,7 @@
 								<!-- text -->
 								<div class="mb-2">
 									<p class="text-sm">
-										가입하시면 <strong class="text-dark">대여 약관</strong> 및 <strong
+										가입하시면 <strong class="text-dark"> 약관</strong> 및 <strong
 											class="text-dark">개인정보 처리방침</strong>에 동의하시는 것으로 간주됩니다.
 									</p>
 								</div>
@@ -152,7 +152,7 @@
 								<p class="mb-0">
 									이미 회원이신가요? 
 									<span class="ml-3">
-										<a href="0_signin.html"> Sign In </a>
+										<a href="/usr/v1/infra/user/userUsrSignin"> Sign In </a>
 									</span>
 								</p>
 							</div>
@@ -188,7 +188,6 @@
 	<script src="/usr/v1/template/NailForest/assets/js/theme.min.js"></script>
 
 <!--========== by developer ==========-->	
-	<script src="/xdm/v1/jquery/jquery-3.7.1.min.js"></script>
 	<script src="/xdm/v1/js/datetimepicker/jquery.datetimepicker.full.min.js"></script>
 	<!-- Daum 우편번호 api -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -207,64 +206,32 @@
 		
 		// Daum 우편번호 api
 		function sample6_execDaumPostcode() {
-			new daum.Postcode({
-				oncomplete : function(data) {
-					// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-						// 각 주소의 노출 규칙에 따라 주소를 조합한다.
-					// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-					var addr = ''; // 주소 변수
-					var extraAddr = ''; // 참고항목 변수
-					//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-					if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-						addr = data.roadAddress;
-					} else { // 사용자가 지번 주소를 선택했을 경우(J)
-						addr = data.jibunAddress;
-					}
-					// 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-					if (data.userSelectedType === 'R') {
-						// 법정동명이 있을 경우 추가한다. (법정리는 제외)
-						// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-						if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-							extraAddr += data.bname;
-						}
-						// 건물명이 있고, 공동주택일 경우 추가한다.
-						if (data.buildingName !== '' && data.apartment === 'Y') {
-								extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-						}
-						// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-						if (extraAddr !== '') {
-							extraAddr = ' (' + extraAddr + ')';
-						}
-						// 조합된 참고항목을 해당 필드에 넣는다.
-						document.getElementById("sample6_extraAddress").value = extraAddr;
-						} else {
-						document.getElementById("sample6_extraAddress").value = '';
-					}
-						// 우편번호와 주소 정보를 해당 필드에 넣는다.
-					document.getElementById('sample6_postcode').value = data.zonecode;
-					document.getElementById("sample6_address").value = addr;
-					// 커서를 상세주소 필드로 이동한다.
-					document.getElementById("sample6_detailAddress") .focus();
-				}
-			}).open();
-		}
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('usrZipCode').value = data.zonecode;
+                document.getElementById("usrAddr").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("usrAddrDetail").focus();
+            }
+        }).open();
+    }
 		
 		// validation
 		document.getElementById("btnSubmit").onclick = function(){
-			
-			// usrXdmNy
-			var usrXdmNy = document.getElementById("usrXdmNy");
-			var usrXdmNyValue = document.getElementById("usrXdmNy").value.trim();
-			
-			if(usrXdmNyValue == "" || usrXdmNyValue == null){
-				usrXdmNy.classList.add('is-invalid');
-				usrXdmNy.focus();
-				return false;
-			} else {
-// 				by pass
-				usrXdmNy.classList.remove('is-invalid');
-				usrXdmNy.classList.add('is-valid');
-			}
 			
 			// usrName
 			var usrName = document.getElementById("usrName");
@@ -377,14 +344,14 @@
 			} else {
 // 				by pass
 			}
-			if(usrPwValue == usrConfirmPwValue){
+			if(usrPwValue != usrConfirmPwValue){
 				usrConfirmPwCheck.style.display='block';
 				usrConfirmPw.classList.add('is-invalid');
 				usrConfirmPw.focus();
 				return false;
 			} else {
 // 				by pass
-				usrPw.classList.add('is-valid');
+				usrConfirmPw.classList.add('is-valid');
 			}
 			
 			// usrGender
@@ -494,22 +461,21 @@
 				usrPhone.classList.add('is-valid');
 			}
 			
-		// usrAddr
-			var usrAddr = document.getElementById("usrAddr");
-			var usrAddrValue = document.getElementById("usrAddr").value.trim();
+		// usrAddrDetail
+			var usrAddrDetail = document.getElementById("usrAddrDetail");
+			var usrAddrDetailValue = document.getElementById("usrAddrDetail").value.trim();
 			
-			if(usrAddrValue == "" || usrAddrValue == null){
-				usrAddr.classList.add('is-invalid');
-				usrAddr.focus();
+			if(usrAddrDetailValue == "" || usrAddrDetailValue == null){
+				usrAddrDetail.classList.add('is-invalid');
+				usrAddrDetail.focus();
 				return false;
 			} else {
 // 				by pass
-				usrAddr.classList.remove('is-invalid');
-				usrAddr.classList.add('is-valid');
+				usrAddrDetail.classList.remove('is-invalid');
+				usrAddrDetail.classList.add('is-valid');
 			}
 			
-			
-			form.action = "";
+			form.action = "/usr/v1/infra/user/userUsrInst";
 			form.submit();
 		}
 		

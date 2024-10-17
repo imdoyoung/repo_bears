@@ -161,6 +161,13 @@ public class UserController {
 	public String userUsrSignup() {
 		return "/usr/v1/infra/user/userUsrSignup";
 	}
+	
+	// UsrINSERT
+	@RequestMapping(value="/usr/v1/infra/user/userUsrInst")
+	public String userUsrInst(UserDto userDto) {
+		userService.usrInsert(userDto);
+		return "redirect:/usr/v1/infra/user/userUsrSignin";
+	}
 
 	// Sign in
 	@RequestMapping(value="/usr/v1/infra/user/userUsrSignin")
@@ -168,6 +175,42 @@ public class UserController {
 		userService.usrSelectOneSignin(userDto);
 		return "/usr/v1/infra/user/userUsrSignin";
 	}
+	
+	// UsrLoginProc
+	@ResponseBody
+	@RequestMapping(value="/usr/v1/infra/user/userUsrSigninProc")
+	public Map<String, Object> userUsrSigninProc(UserDto userDto, HttpSession httpSession) {
+			
+		Map<String, Object> returnMap = new HashMap<String, Object>();	// 결과를 담기 위한 맵 생성
+			
+		UserDto rtUser = userService.usrSelectOneSignin(userDto);	// 사용자 정보 조회
+		
+		
+		if(rtUser != null) {	// 객체를 대상으로 null을 검사
+			
+			UserDto rtUser2 = userService.usrSelectOneId(userDto);	// 로그인 후 세션 정보 저장
+			
+			if(rtUser2 != null) {
+				// 세션값 저장
+				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
+				httpSession.setAttribute("sessSeqXdm", rtUser2.getUsrSeq());
+				httpSession.setAttribute("sessIdXdm", rtUser2.getUsrId());
+				httpSession.setAttribute("sessNameXdm", rtUser2.getUsrName());
+				httpSession.setAttribute("sessGradeXdm", rtUser2.getUsrGrade());
+				// 성공 응답 설정
+				returnMap.put("rt", "success");	
+				// 저장된 세션값 확인
+				System.out.println("sessSeqXdm: " + httpSession.getAttribute("sessSeqXdm"));
+				System.out.println("sessIdXdm: " + httpSession.getAttribute("sessIdXdm"));
+				System.out.println("sessNameXdm: " + httpSession.getAttribute("sessNameXdm"));
+				System.out.println("sessGradeXdm: " + httpSession.getAttribute("sessGradeXdm"));
+			}
+		} else {
+			returnMap.put("rt", "fail");	// 실패 응답 설정
+		}
+		return returnMap;
+	}
+	
 	
 	// List
 	@RequestMapping(value="/usr/v1/infra/user/userUsrList")

@@ -44,10 +44,8 @@
 	rel="stylesheet">
 
 <!-- Theme CSS -->
-<link rel="stylesheet"
-	href="/usr/v1/template/NailForest/assets/css/theme.min.css">
-<title>Login Page - Rentkit - Directory & Listings Bootstrap 5
-	Template.</title>
+<link rel="stylesheet" href="/usr/v1/template/NailForest/assets/css/theme.min.css">
+<title>네일숲</title>
 
 </head>
 
@@ -65,40 +63,43 @@
 						<div class="card-body p-8">
 							<h1 class="mb-4" align="center">SIGN IN</h1>
 							<!-- form -->
-							<form>
+							<form name="form" id="form" method="post" novalidate>
 								<!-- id -->
 								<div class="mb-3">
-									<label for="id" class="form-label">ID</label> <input
-										type="text" class="form-control" id="id"
-										placeholder="Enter ID" required>
+									<label fot="id" class="form-label"> 아이디 <span class="text-danger">*</span></label> 
+									<input type="text" class="form-control" name="usrId" id="usrId" placeholder="영대소문자, 숫자조합 6~15자" autocomplete="off" required>
+									<div class="invalid-feedback" id="usrIdFeedback">아이디를 입력해 주세요.</div>
+									<div class="invalid-feedback" id="usrIdRegExpFeedback">아이디는 영대소문자, 숫자조합 6~15자로 입력해 주세요.</div>
 								</div>
+								
 								<!-- password -->
 								<div class="mb-3">
-									<label for="password" class="form-label">Password</label> <input
-										type="password" class="form-control" id="password"
-										placeholder="**********" required>
+									<label for="password" class="form-label"> 비밀번호 <span class="text-danger">*</span></label> 
+									<input type="password" class="form-control" name="usrPw" id="usrPw" placeholder="영대소문자, 숫자, 특수문자조합 8~15자" autocomplete="off" required>
+									<div class="invalid-feedback" id="usrPwFeedback">비밀번호를 입력해 주세요.</div>
+									<div class="invalid-feedback" id="usrPwRegExpFeedback">비밀번호는 영대소문자, 숫자, 특수문자!@#$%^*+=-조합 8~15자로 입력해 주세요.</div>
 								</div>
 								<div
 									class="d-flex justify-content-between mb-2 pb-2 mt-3 text-sm ">
 									<!-- form check -->
 									<div class="form-check ">
-										<input type="checkbox" class="form-check-input"
-											id="rememberme"> <label class="form-check-label"
-											for="rememberme">Remember ID</label>
+										<input type="checkbox" class="form-check-input" id="rememberme"> 
+											<label class="form-check-label" for="rememberme"> ID 기억하기</label>
 									</div>
 									<!-- forgot password -->
 									<div class="fw-bold">
 										<a href="0_forget-password.html" class="text-inherit">
-											Forgot Password?</a>
+											Forgot Password?
+										</a>
 									</div>
 								</div>
 								<!-- button -->
-								<button type="submit" class="btn btn-primary btn-block">SIGN
-									IN</button>
+								<button type="submit" class="btn btn-primary btn-block" style="width: 100%;">SIGN IN</button>
+<!-- 								<button type="submit" class="btn btn-primary btn-block" style="width: 100%;">SIGN IN</button> -->
 							</form>
 							<div class="mt-4">
 								<p class="mb-0">
-									Don’t Have an Account?<a href="0_signup.html"> Sign Up </a>
+									아직 회원이 아니신가요?<a href="/usr/v1/infra/user/userUsrSignup"> Sign Up </a>
 								</p>
 							</div>
 						</div>
@@ -146,3 +147,96 @@
 
 	<!-- Theme JS -->
 	<script src="/usr/v1/template/NailForest/assets/js/theme.min.js"></script>
+	
+	<script type="text/javascript">
+
+		document.getElementById("btnSubmit").onclick = function() {
+			// validation
+			// usrId
+			var usrId = document.getElementById("usrId");
+			var usrIdValue = document.getElementById("usrId").value.trim();
+			var usrIdRegExp = /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,15}$/;		// 영대소문자, 숫자포함 6~15자
+			var usrIdFeedback = document.getElementById("usrIdFeedback");
+			var usrIdRegExpFeedback = document.getElementById("usrIdRegExpFeedback");
+			
+			// 기존 validation 초기화
+			usrId.classList.remove('is-valid', 'is-invalid');
+			usrIdFeedback.style.display='none';
+			usrIdRegExpFeedback.style.display='none';
+			
+			if(usrIdValue == "" || usrIdValue == null){
+				usrIdFeedback.style.display='block';
+				usrId.classList.add('is-invalid');
+				usrId.focus();
+				return false;
+			} else {
+// 				by pass
+			}
+			if(!usrIdRegExp.test(usrIdValue)){
+				usrIdRegExpFeedback.style.display='block';
+				usrId.classList.add('is-invalid');
+				usrId.focus();
+				return false;
+			} else {
+// 				by pass
+				usrId.classList.add('is-valid');
+			}
+			
+			// usrPw
+			var usrPw = document.getElementById("usrPw");
+			var usrPwValue = document.getElementById("usrPw").value.trim();
+			var usrPwRegExp = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^*+=-]).{8,15}$/;	// 영대소문자, 숫자, 특수문자!@#$%^*+=- 포함 8~15자
+			var usrPwFeedback = document.getElementById("usrPwFeedback");
+			var usrPwRegExpFeedback = document.getElementById("usrPwRegExpFeedback");
+			
+			// 기존 validation 초기화
+			usrPw.classList.remove('is-valid', 'is-invalid');
+			usrPwFeedback.style.display='none';
+			usrPwRegExpFeedback.style.display='none';
+			
+			if(usrPwValue == "" || usrPwValue == null){
+				usrPwFeedback.style.display='block';
+				usrPw.classList.add('is-invalid');
+				usrPw.focus();
+				return false;
+			} else {
+// 				by pass
+			}
+			if(!usrPwRegExp.test(usrPwValue)){
+				usrPwRegExpFeedback.style.display='block';
+				usrPw.classList.add('is-invalid');
+				usrpw.focus();
+				return false;
+			} else {
+// 				by pass
+				usrPw.classList.add('is-valid');
+			}
+			
+			
+			// Login Ajax
+			$.ajax({ // AJAX 요청을 시작하는 jQuery 메서드
+				async : true // 요청을 비동기로 처리 (기본값이 true라 생략 가능)
+				, cache : false // 요청 결과를 캐시하지 않도록 설정
+				, type : "post" // HTTP 메서드를 POST로 설정
+				/* ,dataType:"json" */
+				, url : "/xdm/v1/infra/user/userXdmSigninProc" // 요청을 보낼 URL
+				/* ,data : $("#formLogin").serialize() */
+				, data : {
+					"usrId" : $("#usrId").val(), // 사용자 ID를 가져와서 전송
+					"usrPw" : $("#usrPw").val()
+				// 비밀번호를 가져와서 전송
+				//, "autoLogin": $("#autoLogin").is(":checked")
+				},
+				success : function(response) { // 요청이 성공적으로 완료되면 실행될 함수
+					if (response.rt == "success") { // 응답의 rt 속성이 "success"일 경우
+						usrPw.classList.add('is-valid');
+						location.href = "/xdm/v1/infra/user/userXdmMain"; // 메인 페이지로 리다이렉션
+					} else { // 로그인 실패 시 모달 창을 띄움
+						$("#verticalycentered").modal("show");  // 모달을 표시
+						usrPwRegExpFeedback.style.display='block';
+						usrPw.classList.add('is-invalid');
+					}
+				}
+			});
+		}
+	</script>

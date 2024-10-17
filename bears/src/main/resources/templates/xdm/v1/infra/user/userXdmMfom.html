@@ -168,6 +168,32 @@
 								</div>
 								<div class="row mb-3">
 									<div class="col-md-3">
+										<label class="form-label">
+											우편번호
+											<a style="color: red;">*</a>
+										</label> 
+										<input type="text" class="form-control" name="usrZipCode" id="usrZipCode" th:value="${usrItem?.usrZipCode}" required>
+										<div class="invalid-feedback">우편번호를 입력해 주세요.</div>
+									</div>
+									<div class="col-md-3">
+										<label class="form-label">
+											주소
+											<a style="color: red;">*</a>
+										</label> 
+										<input type="text" class="form-control" name="usrAddr" id="usrAddr" th:value="${usrItem?.usrAddr}" required>
+										<div class="invalid-feedback">주소를 입력해 주세요.</div>
+									</div>
+									<div class="col-md-3">
+										<label class="form-label">
+											상세주소
+											<a style="color: red;">*</a>
+										</label> 
+										<input type="text" class="form-control" name="usrAddrDetail" id="usrAddrDetail" th:value="${usrItem?.usrAddrDetail}" required>
+										<div class="invalid-feedback">상세주소를 입력해 주세요.</div>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<div class="col-md-3">
 										<label class="form-label"> 
 											등급
 											<a style="color: red;">*</a>
@@ -548,6 +574,50 @@
 			} else {
 // 				by pass
 				usrPhone.classList.add('is-valid');
+			}
+			
+			// usrZipCode
+			var usrZipCode = document.getElementById("usrZipCode");
+			var usrZipCodeValue = document.getElementById("usrZipCode").value.trim();
+			
+			if(usrZipCodeValue == "" || usrZipCodeValue == null){
+				usrZipCode.classList.add('is-invalid');
+				usrZipCode.focus();
+				return false;
+			} else {
+// 				by pass
+				usrZipCode.classList.remove('is-invalid');
+				usrZipCode.classList.add('is-valid');
+			}
+			
+			
+		// usrAddr
+			var usrAddr = document.getElementById("usrAddr");
+			var usrAddrValue = document.getElementById("usrAddr").value.trim();
+			
+			if(usrAddrValue == "" || usrAddrValue == null){
+				usrAddr.classList.add('is-invalid');
+				usrAddr.focus();
+				return false;
+			} else {
+// 				by pass
+				usrAddr.classList.remove('is-invalid');
+				usrAddr.classList.add('is-valid');
+			}
+			
+			
+		// usrAddrDetail
+			var usrAddrDetail = document.getElementById("usrAddrDetail");
+			var usrAddrDetailValue = document.getElementById("usrAddrDetail").value.trim();
+			
+			if(usrAddrDetailValue == "" || usrAddrDetailValue == null){
+				usrAddrDetail.classList.add('is-invalid');
+				usrAddrDetail.focus();
+				return false;
+			} else {
+// 				by pass
+				usrAddrDetail.classList.remove('is-invalid');
+				usrAddrDetail.classList.add('is-valid');
 			}
 			
 			// usrGrade

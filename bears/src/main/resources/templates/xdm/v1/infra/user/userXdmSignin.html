@@ -260,7 +260,7 @@
 				success : function(response) { // 요청이 성공적으로 완료되면 실행될 함수
 					if (response.rt == "success") { // 응답의 rt 속성이 "success"일 경우
 						usrPw.classList.add('is-valid');
-						location.href = "/xdm/v1/infra/user/userXdmMain"; // 메인 페이지로 리다이렉션
+						location.href = "/usr/v1/infra/user/userUsrMain"; // 메인 페이지로 리다이렉션
 					} else { // 로그인 실패 시 모달 창을 띄움
 						$("#verticalycentered").modal("show");  // 모달을 표시
 						usrPwRegExpFeedback.style.display='block';
