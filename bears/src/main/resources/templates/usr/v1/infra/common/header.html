@@ -38,20 +38,48 @@
                     <a class="nav-link" href="../pages/0_add_shop.html">REGIST_YOUR_SHOP</a>
                   </li>
                 </ul>
-                <ul class="navbar-nav ms-lg-3">
-                  <li class="nav-item">
-                    <a class="nav-link" href="/usr/v1/infra/user/userUsrSignin">SIGNIN</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/usr/v1/infra/user/userUsrSignup">SIGNUP</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/usr/v1/infra/user/userUsrMypage">MYPAGE</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="../pages/dashboard/overview.html">Dashboard</a>
-                  </li>
-                </ul>
+                
+                <th:block th:if="${session.sessSeqXdm == null}">
+                  <ul class="navbar-nav ms-lg-3">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/usr/v1/infra/user/userUsrSignin">SIGNIN</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/usr/v1/infra/user/userUsrSignup">SIGNUP</a>
+                    </li>
+                  </ul>
+                </th:block>
+                <th:block th:if="${session.sessSeqXdm != null}">
+                  <ul class="navbar-nav ms-lg-3">
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="/usr/v1/infra/user/userUsrMypage" id="mypageDropdown" 
+                    	  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <strong><span th:text="${session.sessNameXdm}"></span></strong>님
+                      </a>
+                      <ul class="dropdown-menu">
+                    	  <li>
+	                    	<a class="dropdown-item">
+	                    		<span th:text="${session.sessIdXdm}"></span>
+	                    	</a>
+                    	  </li>
+                    	  <li>
+	                    	<a class="dropdown-item">
+	                    		<span th:text="${@codeService.selectOneCachedCode(session.sessGradeXdm)}"></span>
+	                    	</a>
+                    	  </li>
+                    	  <li>
+	                    	<a class="dropdown-item" href="/usr/v1/infra/user/userUsrMypage">
+	                    		MyPage
+	                    	</a>
+                    	  </li>
+                      </ul>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="SignoutBtn">SignOut</a>
+                    </li> 
+                  </ul> 
+                </th:block>
+                
               </div>
             </nav>
           </div>

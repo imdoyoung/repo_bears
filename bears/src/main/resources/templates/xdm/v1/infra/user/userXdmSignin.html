@@ -76,32 +76,26 @@
 							<!-- End Logo -->
 
 							<div class="card mb-3">
-
 								<div class="card-body">
-
 									<div class="pt-4 pb-2">
 										<h5 class="card-title text-center pb-0 fs-4">Sign in to
 											Your Account</h5>
 										<p class="text-center small">Enter your id & password to
 											sign in</p>
 									</div>
-
 									<form class="row g-3 needs-validation needs-invalidation" name="form" id="form" novalidate>
-
 										<div class="col-12">
 											<label for="yourUsername" class="form-label">ID</label> 
 											<input type="text" name="usrId" class="form-control" id="usrId" placeholder="영대소문자, 숫자조합 6~15자" value="doyoung0908" required>
 											<div class="invalid-feedback" id="usrIdFeedback">아이디를 입력해 주세요.</div>
 											<div class="invalid-feedback" id="usrIdRegExpFeedback">아이디는 영문자, 숫자조합 6~15자로 입력해 주세요.</div>
 										</div>
-
 										<div class="col-12">
 											<label for="yourPassword" class="form-label">PW</label> 
 											<input type="password" name="usrPw" class="form-control" id="usrPw" placeholder="영대소문자, 숫자, 특수문자!@#$%^*+=-조합 8~15자" value="doyoung0908!@" required>
 											<div class="invalid-feedback" id="usrPwFeedback">비밀번호를 입력해주세요!</div>
 											<div class="invalid-feedback" id="usrPwRegExpFeedback">비밀번호는 영문자, 숫자, 특수문자!@#$%^*+=-조합 8~15자로 입력해주세요!</div>
 										</div>
-
 										<div class="col-12">
 											<div class="form-check">
 												<input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe"> 
@@ -260,7 +254,7 @@
 				success : function(response) { // 요청이 성공적으로 완료되면 실행될 함수
 					if (response.rt == "success") { // 응답의 rt 속성이 "success"일 경우
 						usrPw.classList.add('is-valid');
-						location.href = "/usr/v1/infra/user/userUsrMain"; // 메인 페이지로 리다이렉션
+						location.href = "/xdm/v1/infra/user/userXdmMain"; // 메인 페이지로 리다이렉션
 					} else { // 로그인 실패 시 모달 창을 띄움
 						$("#verticalycentered").modal("show");  // 모달을 표시
 						usrPwRegExpFeedback.style.display='block';

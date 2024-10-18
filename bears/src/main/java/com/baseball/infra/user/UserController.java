@@ -211,12 +211,19 @@ public class UserController {
 		return returnMap;
 	}
 	
-	
+	// UsrLogoutProc
+		@ResponseBody
+		@RequestMapping(value="/usr/v1/infra/user/userUsrSignoutProc")
+		public Map<String, Object> userUsrSignoutProc(HttpSession httpSession) {
+			Map<String, Object> returnMap = new HashMap<String, Object>();
+			httpSession.invalidate();
+			returnMap.put("rt", "success");
+			return returnMap;
+		}
+
 	// List
 	@RequestMapping(value="/usr/v1/infra/user/userUsrList")
 	public String userUsrList() {
 		return "/usr/v1/infra/user/userUsrList";
 	}
-	
-
 }

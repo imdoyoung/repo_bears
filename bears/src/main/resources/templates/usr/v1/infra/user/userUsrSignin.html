@@ -44,7 +44,8 @@
 	rel="stylesheet">
 
 <!-- Theme CSS -->
-<link rel="stylesheet" href="/usr/v1/template/NailForest/assets/css/theme.min.css">
+<link rel="stylesheet"
+	href="/usr/v1/template/NailForest/assets/css/theme.min.css">
 <title>네일숲</title>
 
 </head>
@@ -66,42 +67,68 @@
 							<form name="form" id="form" method="post" novalidate>
 								<!-- id -->
 								<div class="mb-3">
-									<label fot="id" class="form-label"> 아이디 <span class="text-danger">*</span></label> 
-									<input type="text" class="form-control" name="usrId" id="usrId" placeholder="영대소문자, 숫자조합 6~15자" autocomplete="off" required>
-									<div class="invalid-feedback" id="usrIdFeedback">아이디를 입력해 주세요.</div>
-									<div class="invalid-feedback" id="usrIdRegExpFeedback">아이디는 영대소문자, 숫자조합 6~15자로 입력해 주세요.</div>
+									<label fot="id" class="form-label"> 아이디 <span
+										class="text-danger">*</span></label> <input type="text"
+										class="form-control" name="usrId" id="usrId"
+										placeholder="영대소문자, 숫자조합 6~15자" autocomplete="off" required>
+									<div class="invalid-feedback">아이디를 입력해 주세요.</div>
 								</div>
-								
+
 								<!-- password -->
 								<div class="mb-3">
-									<label for="password" class="form-label"> 비밀번호 <span class="text-danger">*</span></label> 
-									<input type="password" class="form-control" name="usrPw" id="usrPw" placeholder="영대소문자, 숫자, 특수문자조합 8~15자" autocomplete="off" required>
-									<div class="invalid-feedback" id="usrPwFeedback">비밀번호를 입력해 주세요.</div>
-									<div class="invalid-feedback" id="usrPwRegExpFeedback">비밀번호는 영대소문자, 숫자, 특수문자!@#$%^*+=-조합 8~15자로 입력해 주세요.</div>
+									<label for="password" class="form-label"> 비밀번호 <span
+										class="text-danger">*</span></label> <input type="password"
+										class="form-control" name="usrPw" id="usrPw"
+										placeholder="영대소문자, 숫자, 특수문자조합 8~15자" autocomplete="off"
+										required>
+									<div class="invalid-feedback">비밀번호를 입력해 주세요.</div>
 								</div>
 								<div
 									class="d-flex justify-content-between mb-2 pb-2 mt-3 text-sm ">
 									<!-- form check -->
 									<div class="form-check ">
-										<input type="checkbox" class="form-check-input" id="rememberme"> 
-											<label class="form-check-label" for="rememberme"> ID 기억하기</label>
+										<input type="checkbox" class="form-check-input"
+											id="rememberme"> <label class="form-check-label"
+											for="rememberme"> ID 기억하기</label>
 									</div>
 									<!-- forgot password -->
 									<div class="fw-bold">
 										<a href="0_forget-password.html" class="text-inherit">
-											Forgot Password?
-										</a>
+											Forgot Password? </a>
 									</div>
 								</div>
 								<!-- button -->
-								<button type="submit" class="btn btn-primary btn-block" style="width: 100%;">SIGN IN</button>
-<!-- 								<button type="submit" class="btn btn-primary btn-block" style="width: 100%;">SIGN IN</button> -->
+								<button type="button" id="btnSubmit"
+									class="btn btn-primary btn-block" style="width: 100%;">SIGN
+									IN</button>
+								<!-- 								<button type="submit" class="btn btn-primary btn-block" style="width: 100%;">SIGN IN</button> -->
 							</form>
 							<div class="mt-4">
 								<p class="mb-0">
-									아직 회원이 아니신가요?<a href="/usr/v1/infra/user/userUsrSignup"> Sign Up </a>
+									아직 회원이 아니신가요?<a href="/usr/v1/infra/user/userUsrSignup">
+										Sign Up </a>
 								</p>
 							</div>
+							<!-- Vertically centered Modal -->
+							<div class="modal fade" id="verticalycentered" tabindex="-1">
+								<div class="modal-dialog modal-dialog-centered">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title">확인</h5>
+											<button type="button" class="btn-close"
+												data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<div class="modal-body">일치하는 회원이 존재하지 않습니다.</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-bs-dismiss="modal">취소</button>
+											<button type="button" class="btn btn-primary"
+												data-bs-dismiss="modal">확인</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- End Vertically centered Modal-->
 						</div>
 					</div>
 				</div>
@@ -147,81 +174,51 @@
 
 	<!-- Theme JS -->
 	<script src="/usr/v1/template/NailForest/assets/js/theme.min.js"></script>
-	
-	<script type="text/javascript">
 
+	<script type="text/javascript">
 		document.getElementById("btnSubmit").onclick = function() {
 			// validation
 			// usrId
 			var usrId = document.getElementById("usrId");
 			var usrIdValue = document.getElementById("usrId").value.trim();
-			var usrIdRegExp = /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,15}$/;		// 영대소문자, 숫자포함 6~15자
-			var usrIdFeedback = document.getElementById("usrIdFeedback");
-			var usrIdRegExpFeedback = document.getElementById("usrIdRegExpFeedback");
-			
-			// 기존 validation 초기화
-			usrId.classList.remove('is-valid', 'is-invalid');
-			usrIdFeedback.style.display='none';
-			usrIdRegExpFeedback.style.display='none';
-			
-			if(usrIdValue == "" || usrIdValue == null){
-				usrIdFeedback.style.display='block';
+
+			if (usrIdValue == "" || usrIdValue == null) {
 				usrId.classList.add('is-invalid');
 				usrId.focus();
 				return false;
 			} else {
-// 				by pass
-			}
-			if(!usrIdRegExp.test(usrIdValue)){
-				usrIdRegExpFeedback.style.display='block';
-				usrId.classList.add('is-invalid');
-				usrId.focus();
-				return false;
-			} else {
-// 				by pass
+				// 				by pass
+				usrId.classList.remove('is-invalid');
 				usrId.classList.add('is-valid');
 			}
-			
-			// usrPw
+
+			// nsInfoEvent
 			var usrPw = document.getElementById("usrPw");
 			var usrPwValue = document.getElementById("usrPw").value.trim();
-			var usrPwRegExp = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^*+=-]).{8,15}$/;	// 영대소문자, 숫자, 특수문자!@#$%^*+=- 포함 8~15자
-			var usrPwFeedback = document.getElementById("usrPwFeedback");
-			var usrPwRegExpFeedback = document.getElementById("usrPwRegExpFeedback");
-			
-			// 기존 validation 초기화
-			usrPw.classList.remove('is-valid', 'is-invalid');
-			usrPwFeedback.style.display='none';
-			usrPwRegExpFeedback.style.display='none';
-			
-			if(usrPwValue == "" || usrPwValue == null){
-				usrPwFeedback.style.display='block';
+
+			if (usrPwValue == "" || usrPwValue == null) {
 				usrPw.classList.add('is-invalid');
 				usrPw.focus();
 				return false;
 			} else {
-// 				by pass
-			}
-			if(!usrPwRegExp.test(usrPwValue)){
-				usrPwRegExpFeedback.style.display='block';
-				usrPw.classList.add('is-invalid');
-				usrpw.focus();
-				return false;
-			} else {
-// 				by pass
+				//by pass
+				usrPw.classList.remove('is-invalid');
 				usrPw.classList.add('is-valid');
 			}
-			
-			
+
 			// Login Ajax
 			$.ajax({ // AJAX 요청을 시작하는 jQuery 메서드
 				async : true // 요청을 비동기로 처리 (기본값이 true라 생략 가능)
-				, cache : false // 요청 결과를 캐시하지 않도록 설정
-				, type : "post" // HTTP 메서드를 POST로 설정
+				,
+				cache : false // 요청 결과를 캐시하지 않도록 설정
+				,
+				type : "post" // HTTP 메서드를 POST로 설정
 				/* ,dataType:"json" */
-				, url : "/xdm/v1/infra/user/userXdmSigninProc" // 요청을 보낼 URL
+				,
+				url : "/usr/v1/infra/user/userUsrSigninProc" // 요청을 보낼 URL
 				/* ,data : $("#formLogin").serialize() */
-				, data : {
+				,
+				data : {
 					"usrId" : $("#usrId").val(), // 사용자 ID를 가져와서 전송
 					"usrPw" : $("#usrPw").val()
 				// 비밀번호를 가져와서 전송
@@ -230,10 +227,10 @@
 				success : function(response) { // 요청이 성공적으로 완료되면 실행될 함수
 					if (response.rt == "success") { // 응답의 rt 속성이 "success"일 경우
 						usrPw.classList.add('is-valid');
-						location.href = "/xdm/v1/infra/user/userXdmMain"; // 메인 페이지로 리다이렉션
-					} else { // 로그인 실패 시 모달 창을 띄움
-						$("#verticalycentered").modal("show");  // 모달을 표시
-						usrPwRegExpFeedback.style.display='block';
+						location.href = "/usr/v1/infra/user/userUsrMain"; // 메인 페이지로 리다이렉션
+					} else { // 로그인 실패 시 alert 창을 띄움
+						$("#verticalycentered").modal("show"); // 모달을 표시
+						usrId.classList.add('is-invalid');
 						usrPw.classList.add('is-invalid');
 					}
 				}
