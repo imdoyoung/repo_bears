@@ -1394,11 +1394,11 @@
 		      ,cache: false
 		      ,type: "post"
 		      /* ,dataType:"json" */
-		      ,url: "/usr/v1/infra/user/userUsrSignoutProc"
+		      ,url: "/usr/v1/infra/user/userShopSignoutProc"
 		      /* ,data : $("#formLogin").serialize() */
 		      ,success: function(response) {
 		         if(response.rt == "success") {
-		               location.href = "/usr/v1/infra/user/userUsrMain";
+		               location.href = "/usr/v1/infra/user/userShopMain";
 		         } else {
 		            // by pass
 		         }

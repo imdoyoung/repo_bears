@@ -105,7 +105,7 @@
 							</form>
 							<div class="mt-4">
 								<p class="mb-0">
-									아직 회원이 아니신가요?<a href="/usr/v1/infra/user/userUsrSignup">
+									아직 회원이 아니신가요?<a href="/usr/v1/infra/user/userShopSignup">
 										Sign Up </a>
 								</p>
 							</div>
@@ -187,12 +187,11 @@
 				usrId.focus();
 				return false;
 			} else {
-				// 				by pass
+				// by pass
 				usrId.classList.remove('is-invalid');
-				usrId.classList.add('is-valid');
 			}
 
-			// nsInfoEvent
+			// usrPw
 			var usrPw = document.getElementById("usrPw");
 			var usrPwValue = document.getElementById("usrPw").value.trim();
 
@@ -203,7 +202,6 @@
 			} else {
 				//by pass
 				usrPw.classList.remove('is-invalid');
-				usrPw.classList.add('is-valid');
 			}
 
 			// Login Ajax
@@ -215,7 +213,7 @@
 				type : "post" // HTTP 메서드를 POST로 설정
 				/* ,dataType:"json" */
 				,
-				url : "/usr/v1/infra/user/userUsrSigninProc" // 요청을 보낼 URL
+				url : "/usr/v1/infra/user/userShopSigninProc" // 요청을 보낼 URL
 				/* ,data : $("#formLogin").serialize() */
 				,
 				data : {
@@ -227,11 +225,9 @@
 				success : function(response) { // 요청이 성공적으로 완료되면 실행될 함수
 					if (response.rt == "success") { // 응답의 rt 속성이 "success"일 경우
 						usrPw.classList.add('is-valid');
-						location.href = "/usr/v1/infra/user/userUsrMain"; // 메인 페이지로 리다이렉션
+						location.href = "/usr/v1/infra/user/userShopMain"; // 메인 페이지로 리다이렉션
 					} else { // 로그인 실패 시 alert 창을 띄움
 						$("#verticalycentered").modal("show"); // 모달을 표시
-						usrId.classList.add('is-invalid');
-						usrPw.classList.add('is-invalid');
 					}
 				}
 			});

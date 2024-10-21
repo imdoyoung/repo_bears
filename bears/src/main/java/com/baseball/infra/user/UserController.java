@@ -150,36 +150,36 @@ public class UserController {
 	
 //=================== USR ===================//
 	
-	// Main
-	@RequestMapping(value="/usr/v1/infra/user/userUsrMain")
-	public String userUsrMain() {
-		return "/usr/v1/infra/user/userUsrMain";
+	// ShopMain
+	@RequestMapping(value="/usr/v1/infra/user/userShopMain")
+	public String userShopMain() {
+		return "/usr/v1/infra/user/userShopMain";
 	}
 	
-	// Sign up
-	@RequestMapping(value="/usr/v1/infra/user/userUsrSignup")
-	public String userUsrSignup() {
-		return "/usr/v1/infra/user/userUsrSignup";
+	// ShopSignUp
+	@RequestMapping(value="/usr/v1/infra/user/userShopSignup")
+	public String userShopSignup() {
+		return "/usr/v1/infra/user/userShopSignup";
 	}
 	
-	// UsrINSERT
-	@RequestMapping(value="/usr/v1/infra/user/userUsrInst")
-	public String userUsrInst(UserDto userDto) {
+	// ShopINSERT
+	@RequestMapping(value="/usr/v1/infra/user/userShopInst")
+	public String userShopInst(UserDto userDto) {
 		userService.usrInsert(userDto);
-		return "redirect:/usr/v1/infra/user/userUsrSignin";
+		return "redirect:/usr/v1/infra/user/userShopSignin";
 	}
 
-	// Sign in
-	@RequestMapping(value="/usr/v1/infra/user/userUsrSignin")
-	public String userUsrSignin(UserDto userDto) {
+	// ShopSignIn
+	@RequestMapping(value="/usr/v1/infra/user/userShopSignin")
+	public String userShopSignin(UserDto userDto) {
 		userService.usrSelectOneSignin(userDto);
-		return "/usr/v1/infra/user/userUsrSignin";
+		return "/usr/v1/infra/user/userShopSignin";
 	}
 	
-	// UsrLoginProc
+	// ShopLoginProc
 	@ResponseBody
-	@RequestMapping(value="/usr/v1/infra/user/userUsrSigninProc")
-	public Map<String, Object> userUsrSigninProc(UserDto userDto, HttpSession httpSession) {
+	@RequestMapping(value="/usr/v1/infra/user/userShopSigninProc")
+	public Map<String, Object> userShopSigninProc(UserDto userDto, HttpSession httpSession) {
 			
 		Map<String, Object> returnMap = new HashMap<String, Object>();	// 결과를 담기 위한 맵 생성
 			
@@ -211,19 +211,25 @@ public class UserController {
 		return returnMap;
 	}
 	
-	// UsrLogoutProc
+	// ShopLogoutProc
 		@ResponseBody
-		@RequestMapping(value="/usr/v1/infra/user/userUsrSignoutProc")
-		public Map<String, Object> userUsrSignoutProc(HttpSession httpSession) {
+		@RequestMapping(value="/usr/v1/infra/user/userShopSignoutProc")
+		public Map<String, Object> userShopSignoutProc(HttpSession httpSession) {
 			Map<String, Object> returnMap = new HashMap<String, Object>();
 			httpSession.invalidate();
 			returnMap.put("rt", "success");
 			return returnMap;
 		}
 
-	// List
-	@RequestMapping(value="/usr/v1/infra/user/userUsrList")
-	public String userUsrList() {
-		return "/usr/v1/infra/user/userUsrList";
+	// ShopList
+	@RequestMapping(value="/usr/v1/infra/user/userShopList")
+	public String userShopList() {
+		return "/usr/v1/infra/user/userShopList";
+	}
+	
+	// ShopDetail
+	@RequestMapping(value="/usr/v1/infra/user/userShopDetail")
+	public String userShopDetail() {
+		return "/usr/v1/infra/user/userShopDetail";
 	}
 }

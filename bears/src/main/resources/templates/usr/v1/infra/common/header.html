@@ -4,7 +4,7 @@
           <div class="col-md-12">
             <nav class="navbar navbar-expand-lg">
               <!-- navbar 로고 -->
-              <a class="navbar-brand" href="/usr/v1/infra/user/userUsrMain">
+              <a class="navbar-brand" href="/usr/v1/infra/user/userShopMain">
                 <img src="/usr/v1/template/NailForest/assets/images/nail/logo.png" alt="Rentkit Directory & Listing Bootstrap 5 Theme"
                   width="204px" height="52px">
               </a>
@@ -20,7 +20,7 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto ms-lg-3">
                   <li class="nav-item">
-                    <a class="nav-link" href="/usr/v1/infra/user/userUsrList">SHOP</a>
+                    <a class="nav-link" href="/usr/v1/infra/user/userShopList">SHOP</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="../pages/0_reviews.html....">REVIEW</a>
@@ -42,17 +42,17 @@
                 <th:block th:if="${session.sessSeqXdm == null}">
                   <ul class="navbar-nav ms-lg-3">
                     <li class="nav-item">
-                      <a class="nav-link" href="/usr/v1/infra/user/userUsrSignin">SIGNIN</a>
+                      <a class="nav-link" href="/usr/v1/infra/user/userShopSignin">SIGNIN</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="/usr/v1/infra/user/userUsrSignup">SIGNUP</a>
+                      <a class="nav-link" href="/usr/v1/infra/user/userShopSignup">SIGNUP</a>
                     </li>
                   </ul>
                 </th:block>
                 <th:block th:if="${session.sessSeqXdm != null}">
                   <ul class="navbar-nav ms-lg-3">
                     <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="/usr/v1/infra/user/userUsrMypage" id="mypageDropdown" 
+                      <a class="nav-link dropdown-toggle" href="/usr/v1/infra/user/userShopMypage" id="mypageDropdown" 
                     	  role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <strong><span th:text="${session.sessNameXdm}"></span></strong>님
                       </a>
@@ -68,7 +68,7 @@
 	                    	</a>
                     	  </li>
                     	  <li>
-	                    	<a class="dropdown-item" href="/usr/v1/infra/user/userUsrMypage">
+	                    	<a class="dropdown-item" href="/usr/v1/infra/user/userShopMypage">
 	                    		MyPage
 	                    	</a>
                     	  </li>
