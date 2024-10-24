@@ -78,5 +78,24 @@ public class ShopController {
 		return "redirect:/xdm/v1/infra/shop/shopXdmList";
 	}
 	
+	// ShopList
+	@RequestMapping(value="/usr/v1/infra/shop/userShopList")
+	public String userShopList(@ModelAttribute("vo") ShopVo shopVo, Model model) {
+		
+		// 페이징 - selectOneCount
+		shopVo.setParamsPaging(shopService.shopSelectOneCount(shopVo));
+		if(shopVo.getTotalRows() > 0) {
+			model.addAttribute("shopList", shopService.shopSelectList(shopVo));
+		}
+		
+		return "/usr/v1/infra/shop/userShopList";
+	}
+	
+	// ShopDetail(Mfom-selectOne)
+	@RequestMapping(value="/usr/v1/infra/shop/userShopDetail")
+	public String userShopDetail(ShopDto shopDto, Model model) {
+		model.addAttribute("shopItem", shopService.shopSelectOne(shopDto));
+		return "/usr/v1/infra/shop/userShopDetail";
+	}
 
 }

@@ -221,15 +221,4 @@ public class UserController {
 			return returnMap;
 		}
 
-	// ShopList
-	@RequestMapping(value="/usr/v1/infra/user/userShopList")
-	public String userShopList() {
-		return "/usr/v1/infra/user/userShopList";
-	}
-	
-	// ShopDetail
-	@RequestMapping(value="/usr/v1/infra/user/userShopDetail")
-	public String userShopDetail() {
-		return "/usr/v1/infra/user/userShopDetail";
-	}
 }
