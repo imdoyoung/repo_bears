@@ -142,19 +142,19 @@
 									<div class="col-md-6">
 										<ul class="list-group list-unstyled">
 											<li class="list-item">
-												<span th:text="${shopItem?.nsAddParkingNy}">주차가능</span>
+											    <span th:text="${shopItem?.nsAddParkingNy == 1 ? '주차가능' : ''}"></span>
 											</li>
 											<li class="list-item">
-												<span th:text="${shopItem?.nsAddDogNy}">반려견동반가능</span>
+											    <span th:text="${shopItem?.nsAddDogNy == 1 ? '반려견동반가능' : ''}"></span>
 											</li>
 											<li class="list-item">
-												<span th:text="${shopItem?.nsAddArtOfMonthNy}">이달의아트</span>
+											    <span th:text="${shopItem?.nsAddArtOfMonthNy == 1 ? '이달의아트' : ''}"></span>
 											</li>
 											<li class="list-item">
-												<span th:text="${shopItem?.nsAddDrillcareNy}">드릴케어</span>
+											    <span th:text="${shopItem?.nsAddDrillcareNy == 1 ? '드릴케어' : ''}"></span>
 											</li>
 											<li class="list-item">
-												<span th:text="${shopItem?.nsAddWetcareNy}">습식케어</span>
+											    <span th:text="${shopItem?.nsAddWetcareNy == 1 ? '습식케어' : ''}"></span>
 											</li>
 										</ul>
 									</div>
@@ -179,11 +179,11 @@
 									<div class="col-md-2">
 										<div class="text-lg-center">
 											<p>
-												<span class="mdi mdi-star text-primary"></span> <span
-													class="mdi mdi-star text-primary"></span> <span
-													class="mdi mdi-star text-primary"></span> <span
-													class="mdi mdi-star text-primary"></span> <span
-													class="mdi mdi-star text-primary"></span>
+												<span class="mdi mdi-star text-primary"></span> 
+												<span class="mdi mdi-star text-primary"></span> 
+												<span class="mdi mdi-star text-primary"></span> 
+												<span class="mdi mdi-star text-primary"></span> 
+												<span class="mdi mdi-star text-primary"></span>
 											</p>
 										</div>
 									</div>
@@ -247,63 +247,35 @@
 							<!-- listing detail -->
 						</div>
 						<!-- listing detail -->
-						<!-- listing detail
+						<!-- listing detail -->
                         <div class="card mb-4 ">
                             <div class="card-body p-4">
                                 <h4 class="mb-3">Leave Your Review</h4>
                                 <form class="row">
                                     <div class="mb-3 col-6">
-                                        <label for="reviewtitle" class="form-label">Name <span
-                                                class="text-danger">*</span></label>
+                                        <label for="reviewtitle" class="form-label"> Name </label>
                                         <input type="text" name="name" class="form-control" id="reviewname"
                                             aria-describedby="reviewname" placeholder="John Deo" required="">
                                     </div>
-                                    <div class="mb-3 col-6">
-                                        <label for="reviewemail" class="form-label"> Email <span
-                                                class="text-danger">*</span></label>
-                                        <input type="email" name="email" class="form-control" id="reviewemail"
-                                            aria-describedby="reviewemail" placeholder="Enter email" required="">
-                                    </div>
+                                    <div class="mb-3 col-6" id="mystar">
+									    <fieldset>
+									        <span for="reviewemail" class="form-label">Reviews</span><br>
+									        <input type="radio" name="reviewStar" value="1" id="rate1">
+									        <label for="rate1" data-value="1">★</label>
+									        <input type="radio" name="reviewStar" value="2" id="rate2">
+									        <label for="rate2" data-value="2">★</label>
+									        <input type="radio" name="reviewStar" value="3" id="rate3">
+									        <label for="rate3" data-value="3">★</label>
+									        <input type="radio" name="reviewStar" value="4" id="rate4">
+									        <label for="rate4" data-value="4">★</label>
+									        <input type="radio" name="reviewStar" value="5" id="rate5">
+									        <label for="rate5" data-value="5">★</label>
+									    </fieldset>
+									</div>
                                     <div class="mb-3 col-12">
-                                        <label for="reviewtitle" class="form-label">Review Title <span
-                                                class="text-danger">*</span></label>
+                                        <label for="reviewtitle" class="form-label"> Review Title </label>
                                         <input type="text" name="title" class="form-control" id="reviewtitle"
                                             aria-describedby="reviewtitle" placeholder="Write Review Title" required="">
-                                    </div>
-                                    <div class="col-md-12 mt-2">
-                                        <h5>Reviews</h5>
-                                    </div>
-                                    <div class="col-md-5 review-total mb-2">
-                                        <div class="d-flex justify-content-between text-sm">
-                                            <div><span>Atmosphere</span></div>
-                                            <div><span id="ratingstar1" class="rating-star-img"></span></div>
-                                        </div>
-                                        <div class="d-flex justify-content-between text-sm">
-                                            <div><span>Security</span></div>
-                                            <div><span id="ratingstar2" class="rating-star-img"></span></div>
-                                        </div>
-                                        <div class="d-flex justify-content-between text-sm">
-                                            <div><span>Location</span></div>
-                                            <div><span id="ratingstar3" class="rating-star-img"></span></div>
-                                        </div>
-                                        <div class="d-flex justify-content-between text-sm">
-                                            <div><span>Facilities</span> </div>
-                                            <div><span id="ratingstar4" class="rating-star-img"></span></div>
-                                        </div>
-                                    </div>
-                                    <div class="offset-md-1 col-md-5 review-total">
-                                        <div class="d-flex justify-content-between text-sm">
-                                            <div><span>Staff</span></div>
-                                            <div><span id="ratingstar5" class="rating-star-img"></span></div>
-                                        </div>
-                                        <div class="d-flex justify-content-between text-sm">
-                                            <div><span>Cleanliness</span></div>
-                                            <div><span id="ratingstar6" class="rating-star-img"></span></div>
-                                        </div>
-                                        <div class="d-flex justify-content-between text-sm">
-                                            <div><span>Value of money</span></div>
-                                            <div><span id="ratingstar7" class="rating-star-img"></span></div>
-                                        </div>
                                     </div>
                                     <div class="mb-3 col-12 mt-3">
                                         <label for="reviewdescription" class="form-label">Write Your Experience</label>
@@ -311,11 +283,10 @@
                                     </div>
                                     <div class="d-lg-flex justify-content-between align-items-center">
                                         <button type="submit" class="btn btn-primary">Submit Review</button>
-                                        <small class="ms-2"><span class="text-danger">*</span> Required Filed</small>
                                     </div>
                                 </form>
                             </div>
-                        </div> -->
+                        </div>
 						<!-- listing detail -->
 						<!-- listing detail -->
 						<div class="card mb-4" id="gallery">
@@ -809,3 +780,39 @@
 
 	<!-- Theme JS -->
 	<script src="/usr/v1/template/NailForest/assets/js/theme.min.js"></script>
+	
+	<script>
+	    const stars = document.querySelectorAll('#mystar label');
+	
+	    // 별에 마우스 올렸을 때 해당 별과 왼쪽 별들 채우기
+	    stars.forEach(star => {
+	        star.addEventListener('mouseover', () => {
+	            const value = parseInt(star.getAttribute('data-value'));
+	            stars.forEach((s, index) => {
+	                if (index < value) {
+	                    s.style.color = 'rgba(250, 208, 0, 0.99)';
+	                } else {
+	                    s.style.color = 'transparent';
+	                }
+	            });
+	        });
+	
+	        // 마우스가 별 밖으로 나가면 별 초기화
+	        star.addEventListener('mouseout', () => {
+	            stars.forEach(s => s.style.color = 'transparent');
+	        });
+	
+	        // 별 클릭 시 선택 상태 유지
+	        star.addEventListener('click', () => {
+	            const value = parseInt(star.getAttribute('data-value'));
+	            stars.forEach((s, index) => {
+	                if (index < value) {
+	                    s.style.color = 'rgba(250, 208, 0, 0.99)';
+	                } else {
+	                    s.style.color = 'transparent';
+	                }
+	            });
+	        });
+	    });
+	</script>
+	

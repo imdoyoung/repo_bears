@@ -73147,3 +73147,21 @@ svg.leaflet-image-layer.leaflet-interactive path {
     font-size: 16px;
 } */
 /* shop_list 페이지 슬라이더 가격 글씨 크기 조절 end */
+
+
+
+
+
+/******************** custom CSS ********************/
+ #mystar input[type=radio] {
+	display: none;
+}
+
+#mystar label {
+	font-size: 3em;
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+    cursor: pointer;
+}
+
+

@@ -16,7 +16,7 @@ public class UserDto {
 	private Date usrBirth;
 	private String usrEmail;
 	private String usrPhone;
-	private Integer usrZipCode;
+	private String usrZipCode;
 	private String usrAddr;
 	private String usrAddrDetail;
 	private Integer usrGrade;
@@ -84,10 +84,10 @@ public class UserDto {
 	public void setUsrPhone(String usrPhone) {
 		this.usrPhone = usrPhone;
 	}
-	public Integer getUsrZipCode() {
+	public String getUsrZipCode() {
 		return usrZipCode;
 	}
-	public void setUsrZipCode(Integer usrZipCode) {
+	public void setUsrZipCode(String usrZipCode) {
 		this.usrZipCode = usrZipCode;
 	}
 	public String getUsrAddr() {

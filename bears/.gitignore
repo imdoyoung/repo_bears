@@ -40,3 +40,4 @@ out/
 ### custom ###
 application.properties
 logs/
+application-external.properties

@@ -189,7 +189,7 @@
 			WHERE 
 				1 = 1
 				AND a.usrId = #{usrId}
-				AND a.usrPw = #{usrPw}
+				<!-- AND a.usrPw = #{usrPw} -->
 		</select>
 		
 		<!-- 로그인 세션 유지 -->

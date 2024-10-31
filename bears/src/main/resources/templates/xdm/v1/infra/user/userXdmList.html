@@ -210,7 +210,6 @@
 													<th>관리자여부</th>
 													<th>이름</th>
 													<th>아이디</th>
-													<th>비밀번호</th>
 													<th>성별</th>
 													<th>생년월일</th>
 													<th>이메일</th>
@@ -239,7 +238,6 @@
 														<a th:href="@{/xdm/v1/infra/user/userXdmMfom(usrSeq=${list?.usrSeq})}" th:text="${list.usrName}"></a>
 													</td>
 													<td th:text="${list.usrId}"></td>
-													<td th:text="${list.usrPw}"></td>
 													<td th:if="${list.usrGender != null}" th:text="${@codeService.selectOneCachedCode(list.usrGender)}"></td>
 													<td th:unless="${list.usrGender != null}"></td>
 													<td th:text="${#dates.format(list?.usrBirth, 'yyyy-MM-dd')}"></td>
