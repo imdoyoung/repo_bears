@@ -28,5 +28,13 @@ public interface ShopDao {
 	// 페이징 - selectOneCount
 	public int shopSelectOneCount(ShopVo shopVo);
 	
-
+	// file 첨부
+	public void insertUploaded(ShopDto shopDto);
+	
+	// file 확인
+	public ShopDto shopUploadedSelectOne(ShopDto shopDto);
+	
+	// 리뷰List - shopReviewSelectList
+	public List<ShopDto> shopReviewSelectList(ShopDto shopDto);
+	
 }

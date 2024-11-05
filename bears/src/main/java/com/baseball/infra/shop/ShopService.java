@@ -1,9 +1,14 @@
 package com.baseball.infra.shop;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.baseball.common.util.UtilDateTime;
 
 @Service
 public class ShopService {
@@ -11,15 +16,61 @@ public class ShopService {
 	@Autowired
 	ShopDao shopDao;
 	
+	@Autowired
+	AmazonS3Client amazonS3Client;
+	
 	// 목록 - selectList
 	public List<ShopDto> shopSelectList(ShopVo shopVo){
 		return shopDao.shopSelectList(shopVo);
 	}
 	
 	// 등록 - insert
-	public int shopInsert(ShopDto shopDto) {
+	public int shopInsert(ShopDto shopDto, int type) throws Exception {
+		
+		for(int i=0; i<shopDto.getUploadFiles().length; i++) {
+			
+			// S3
+			if(!shopDto.getUploadFiles()[i].isEmpty()) {
+				
+				String className = shopDto.getClass().getSimpleName().toString().toLowerCase();		
+				String fileName = shopDto.getUploadFiles()[i].getOriginalFilename();
+				String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
+				String uuid = UUID.randomUUID().toString();
+				String uuidFileName = uuid + "." + ext;
+				String pathModule = className;
+				String nowString = UtilDateTime.nowString();
+				String pathDate = nowString.substring(0,4) + "/" + nowString.substring(5,7) + "/" + nowString.substring(8,10); 
+				String path = pathModule + "/" + type + "/" + pathDate + "/";
+//				String pathForView = Constants.UPLOADED_PATH_PREFIX_FOR_VIEW_LOCAL + "/" + pathModule + "/" + type + "/" + pathDate + "/";
+				
+				
+		        ObjectMetadata metadata = new ObjectMetadata();
+		        metadata.setContentLength(shopDto.getUploadFiles()[i].getSize());
+		        metadata.setContentType(shopDto.getUploadFiles()[i].getContentType());
+		        
+		        amazonS3Client.putObject("lovelybears", path + uuidFileName, shopDto.getUploadFiles()[i].getInputStream(), metadata);
+				
+		        String objectUrl = amazonS3Client.getUrl("lovelybears", path + uuidFileName).toString();
+		        System.out.println("objectUrl 확인 : "+ objectUrl);
+		        shopDto.setNsfPath(objectUrl);
+		        shopDto.setNsfOriginalName(fileName);
+		        shopDto.setNsfUuidName(uuidFileName);
+		        shopDto.setNsfExt(ext);
+		        shopDto.setNsfSize(shopDto.getUploadFiles()[i].getSize());
+				
+//		        shopDto.setNsfTableName(tableName);
+		        shopDto.setNsfType(type);
+//				shopDto.setNsfDefaultNy();
+//		        shopDto.setNsfSort(maxNumber + i);
+		        shopDto.setNsfPseq(shopDto.getNsfPseq());		
+				
+		        shopDao.insertUploaded(shopDto);
+			}
+		}
+		
 		return shopDao.shopInsert(shopDto);
 	}
+	
 	
 	// 수정 - selectOne
 	public ShopDto shopSelectOne(ShopDto shopDto) {
@@ -46,4 +97,13 @@ public class ShopService {
 		return shopDao.shopSelectOneCount(shopVo);
 	}
 	
+	// 첨부file 확인
+	public ShopDto shopUploadedSelectOne(ShopDto shopDto) {
+		return shopDao.shopUploadedSelectOne(shopDto);
+	}
+	
+	// 리뷰List - shopReviewSelectList
+	public List<ShopDto> shopReviewSelectList(ShopDto shopDto){
+		return shopDao.shopReviewSelectList(shopDto);
+	}
 }

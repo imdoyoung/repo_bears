@@ -3,6 +3,7 @@ package com.baseball.infra.shop;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 public class ShopDto {
 //	----- feild -----
@@ -38,7 +39,45 @@ public class ShopDto {
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date nsEditDate;
 	private Integer nsDelNy;
+
 	
+	// 리뷰
+	private String reSeq;
+	private String reTitle;
+	private String reContent;
+	private String  reId;
+	private Integer reStar;
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date reRegDate;
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date reEditDate;
+	private Integer reDelNy;
+    private String B_user_usrSeq;
+    private String B_shop_nsSeq;
+	
+	
+	// 파일첨부
+	private MultipartFile uploadFile;
+	private MultipartFile[] uploadFiles;
+	private Integer nsfSeq;
+	private Integer nsfType;
+	private Integer nsfDefaultNy;
+	private Integer nsfSort;
+	private String nsfPath;
+	private String nsfOriginalName;
+	private String nsfUuidName;
+	private String nsfExt;
+	private long nsfSize;
+	private Integer nsfDelNy;
+	private Integer nsfPseq;
+	private String nsfRegIp;
+	private Integer nsfRegSeq;
+	private Integer nsfRegDeviceCd;
+	private Date nsfRegDateTime;
+	private Date nsfRegDateTimeSvr;
+	private String nsfTableName;
+	
+
 
 //	----- getter/setter -----
 
@@ -210,5 +249,179 @@ public class ShopDto {
 	public void setNsDelNy(Integer nsDelNy) {
 		this.nsDelNy = nsDelNy;
 	}
-
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+	public MultipartFile[] getUploadFiles() {
+		return uploadFiles;
+	}
+	public void setUploadFiles(MultipartFile[] uploadFiles) {
+		this.uploadFiles = uploadFiles;
+	}
+	public Integer getNsfSeq() {
+		return nsfSeq;
+	}
+	public void setNsfSeq(Integer nsfSeq) {
+		this.nsfSeq = nsfSeq;
+	}
+	public Integer getNsfType() {
+		return nsfType;
+	}
+	public void setNsfType(Integer nsfType) {
+		this.nsfType = nsfType;
+	}
+	public Integer getNsfDefaultNy() {
+		return nsfDefaultNy;
+	}
+	public void setNsfDefaultNy(Integer nsfDefaultNy) {
+		this.nsfDefaultNy = nsfDefaultNy;
+	}
+	public Integer getNsfSort() {
+		return nsfSort;
+	}
+	public void setNsfSort(Integer nsfSort) {
+		this.nsfSort = nsfSort;
+	}
+	public String getNsfPath() {
+		return nsfPath;
+	}
+	public void setNsfPath(String nsfPath) {
+		this.nsfPath = nsfPath;
+	}
+	public String getNsfOriginalName() {
+		return nsfOriginalName;
+	}
+	public void setNsfOriginalName(String nsfOriginalName) {
+		this.nsfOriginalName = nsfOriginalName;
+	}
+	public String getNsfUuidName() {
+		return nsfUuidName;
+	}
+	public void setNsfUuidName(String nsfUuidName) {
+		this.nsfUuidName = nsfUuidName;
+	}
+	public String getNsfExt() {
+		return nsfExt;
+	}
+	public void setNsfExt(String nsfExt) {
+		this.nsfExt = nsfExt;
+	}
+	public long getNsfSize() {
+		return nsfSize;
+	}
+	public void setNsfSize(long nsfSize) {
+		this.nsfSize = nsfSize;
+	}
+	public Integer getNsfDelNy() {
+		return nsfDelNy;
+	}
+	public void setNsfDelNy(Integer nsfDelNy) {
+		this.nsfDelNy = nsfDelNy;
+	}
+	public Integer getNsfPseq() {
+		return nsfPseq;
+	}
+	public void setNsfPseq(Integer nsfPseq) {
+		this.nsfPseq = nsfPseq;
+	}
+	public String getNsfRegIp() {
+		return nsfRegIp;
+	}
+	public void setNsfRegIp(String nsfRegIp) {
+		this.nsfRegIp = nsfRegIp;
+	}
+	public Integer getNsfRegSeq() {
+		return nsfRegSeq;
+	}
+	public void setNsfRegSeq(Integer nsfRegSeq) {
+		this.nsfRegSeq = nsfRegSeq;
+	}
+	public Integer getNsfRegDeviceCd() {
+		return nsfRegDeviceCd;
+	}
+	public void setNsfRegDeviceCd(Integer nsfRegDeviceCd) {
+		this.nsfRegDeviceCd = nsfRegDeviceCd;
+	}
+	public Date getNsfRegDateTime() {
+		return nsfRegDateTime;
+	}
+	public void setNsfRegDateTime(Date nsfRegDateTime) {
+		this.nsfRegDateTime = nsfRegDateTime;
+	}
+	public Date getNsfRegDateTimeSvr() {
+		return nsfRegDateTimeSvr;
+	}
+	public void setNsfRegDateTimeSvr(Date nsfRegDateTimeSvr) {
+		this.nsfRegDateTimeSvr = nsfRegDateTimeSvr;
+	}
+	public String getNsfTableName() {
+		return nsfTableName;
+	}
+	public void setNsfTableName(String nsfTableName) {
+		this.nsfTableName = nsfTableName;
+	}
+	public String getReSeq() {
+		return reSeq;
+	}
+	public void setReSeq(String reSeq) {
+		this.reSeq = reSeq;
+	}
+	public String getReTitle() {
+		return reTitle;
+	}
+	public void setReTitle(String reTitle) {
+		this.reTitle = reTitle;
+	}
+	public String getReContent() {
+		return reContent;
+	}
+	public void setReContent(String reContent) {
+		this.reContent = reContent;
+	}
+	public String getReId() {
+		return reId;
+	}
+	public void setReId(String reId) {
+		this.reId = reId;
+	}
+	public Integer getReStar() {
+		return reStar;
+	}
+	public void setReStar(Integer reStar) {
+		this.reStar = reStar;
+	}
+	public Date getReRegDate() {
+		return reRegDate;
+	}
+	public void setReRegDate(Date reRegDate) {
+		this.reRegDate = reRegDate;
+	}
+	public Date getReEditDate() {
+		return reEditDate;
+	}
+	public void setReEditDate(Date reEditDate) {
+		this.reEditDate = reEditDate;
+	}
+	public Integer getReDelNy() {
+		return reDelNy;
+	}
+	public void setReDelNy(Integer reDelNy) {
+		this.reDelNy = reDelNy;
+	}
+	public String getB_user_usrSeq() {
+		return B_user_usrSeq;
+	}
+	public void setB_user_usrSeq(String b_user_usrSeq) {
+		B_user_usrSeq = b_user_usrSeq;
+	}
+	public String getB_shop_nsSeq() {
+		return B_shop_nsSeq;
+	}
+	public void setB_shop_nsSeq(String b_shop_nsSeq) {
+		B_shop_nsSeq = b_shop_nsSeq;
+	}
+	
 }

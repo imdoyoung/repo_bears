@@ -1,11 +1,14 @@
 package com.baseball.infra.shop;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.baseball.common.util.UtilDateTime;
 
 @Controller
@@ -42,9 +45,9 @@ public class ShopController {
 	
 	// 등록 - selectInst
 	@RequestMapping(value="/xdm/v1/infra/shop/shopXdmInst")
-	public String ShopXdmInst(ShopDto shopDto) {
+	public String ShopXdmInst(ShopDto shopDto) throws Exception {
 		System.out.println("/// shopInst 실행 ///");
-		shopService.shopInsert(shopDto);
+		shopService.shopInsert(shopDto, 0);
 		return "redirect:/xdm/v1/infra/shop/shopXdmList";
 	}
 	
@@ -52,6 +55,8 @@ public class ShopController {
 	@RequestMapping(value="/xdm/v1/infra/shop/shopXdmMfom")
 	public String shopXdmMfom(ShopDto shopDto, Model model) {
 		model.addAttribute("shopItem", shopService.shopSelectOne(shopDto));
+		// 첨부file확인
+		model.addAttribute("file", shopService.shopUploadedSelectOne(shopDto));
 		System.out.println("/// shopMfom-selectOne 실행 ///");
 		return "/xdm/v1/infra/shop/shopXdmMfom";
 	}
@@ -95,7 +100,15 @@ public class ShopController {
 	@RequestMapping(value="/usr/v1/infra/shop/userShopDetail")
 	public String userShopDetail(ShopDto shopDto, Model model) {
 		model.addAttribute("shopItem", shopService.shopSelectOne(shopDto));
+		model.addAttribute("reviewList", shopService.shopReviewSelectList(shopDto));
 		return "/usr/v1/infra/shop/userShopDetail";
 	}
 
+	
+	
+	
+	
+	
+	
+	
 }

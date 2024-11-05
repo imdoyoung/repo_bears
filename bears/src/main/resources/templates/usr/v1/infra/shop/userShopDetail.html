@@ -188,61 +188,35 @@
 										</div>
 									</div>
 								</div>
+								<!--  review start -->
 								<div class="row">
-									<div class="col-md-12 mb-5">
+									<div class="col-md-12 mb-5" th:each="list : ${reviewList}">
 										<div class="row">
 											<div class="col-md-3">
 												<div>
-													<img
-														src="/usr/v1/template/NailForest/assets/images/nail/womanIcon32.png"
-														alt="Rentkit Directory & Listing Bootstrap 5 Theme"
-														class="avatar-md avatar rounded-circle mb-3">
-													<h5 class="mb-n1">젤루죠이</h5>
-													<small>30 May, 2024</small>
+													<img src="/usr/v1/template/NailForest/assets/images/nail/womanIcon32.png"
+														alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="avatar-md avatar rounded-circle mb-3">
+													<h5 class="mb-n1" th:text="${list.B_user_usrSeq}">회원이름</h5>
+													<small th:text="${#dates.format(list?.reRegDate, 'yyyy-MM-dd HH:mm:ss')}">리뷰등록일</small>
 												</div>
 											</div>
 											<div class="col-md-9">
 												<div>
-													<h5 class="fw-bold mb-2">유지력이 좋아요!1</h5>
-													<p>저번에도 만족했는데 이번에도 완전 만족입니다!! 무슨 색으로 할지 너무 고민되었는데 선생님
-														손으로 직접 테스트 보여주셔서 색 고르기 너무 편했어요~ 다음번에 또 받으러 갈게용~</p>
-													<span class="mdi mdi-star text-primary"></span><span
-														class="mdi mdi-star text-primary"></span><span
-														class="mdi mdi-star text-primary"></span><span
-														class="mdi mdi-star text-primary"></span><span
-														class="mdi mdi-star text-primary"></span>
-
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="row">
-											<div class="col-md-3">
-												<div>
-													<img
-														src="/usr/v1/template/NailForest/assets/images/nail/womanIcon32.png"
-														alt="Rentkit Directory & Listing Bootstrap 5 Theme"
-														class="avatar-md avatar rounded-circle mb-3">
-													<h5 class="mb-n1">가성비가 좋아요!</h5>
-													<small>30 May, 2024</small>
-												</div>
-											</div>
-											<div class="col-md-9">
-												<div>
-													<h5 class="fw-bold mb-2">유지력이 좋아요!2</h5>
-													<p>저번에도 만족했는데 이번에도 완전 만족입니다!! 무슨 색으로 할지 너무 고민되었는데 선생님
-														손으로 직접 테스트 보여주셔서 색 고르기 너무 편했어요~ 다음번에 또 받으러 갈게용~</p>
-													<span class="mdi mdi-star text-primary"></span><span
-														class="mdi mdi-star text-primary"></span><span
-														class="mdi mdi-star text-primary"></span><span
-														class="mdi mdi-star text-primary"></span><span
-														class="mdi mdi-star text-primary"></span>
+													<h5 class="fw-bold mb-2" th:text="${list.reTitle}">리뷰제목</h5>
+													<p th:text="${list.reContent}">
+														리뷰내용
+													</p>
+													<span class="mdi mdi-star text-primary"></span>
+													<span class="mdi mdi-star text-primary"></span>
+													<span class="mdi mdi-star text-primary"></span>
+													<span class="mdi mdi-star text-primary"></span>
+													<span class="mdi mdi-star text-primary"></span>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
+								<!--  review start -->
 							</div>
 							<!-- listing detail -->
 						</div>

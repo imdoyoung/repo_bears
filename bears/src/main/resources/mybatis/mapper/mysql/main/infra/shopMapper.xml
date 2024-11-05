@@ -257,5 +257,68 @@
 			AND nsSeq = #{nsSeq}
 	</delete>
 	
-
+	<!-- 파일 업로드 -->
+	<insert id="insertUploaded">
+		INSERT INTO B_shopUploaded (
+			nsfType,
+			nsfDefaultNy,
+			nsfSort,
+			nsfPath,
+			nsfOriginalName,
+			nsfUuidName,
+			nsfExt,
+			nsfSize,
+			nsfDelNy,
+			nsfPseq,
+			nsfRegIp,
+			nsfRegSeq,
+			nsfRegDeviceCd,
+			nsfRegDateTime,
+			nsfRegDateTimeSvr
+		) VALUES (
+			#{nsfType},
+			#{nsfDefaultNy},
+			#{nsfSort},
+			#{nsfPath},
+			#{nsfOriginalName},
+			#{nsfUuidName},
+			#{nsfExt},
+			#{nsfSize},
+			0,
+			#{nsfPseq},
+			#{nsfRegIp},
+			#{nsfRegSeq},
+			#{nsfRegDeviceCd},
+			#{nsfRegDateTime},
+			#{nsfRegDateTimeSvr}
+		)
+	</insert>
+	
+	<!-- 리뷰리스트 출력 -->
+	<select id="shopReviewSelectList" resultMap="resultMapObj">
+		SELECT 
+			c.reSeq,
+		    c.B_shop_nsSeq,
+		    b.nsName,
+		    c.B_user_usrSeq,
+		    a.usrId,
+		    c.reTitle,
+		    c.reContent,
+		    c.reStar,
+		    c.reRegDate,
+		    c.reEditDate,
+		    c.reDelNy    
+		FROM 
+			B_review AS c
+			LEFT JOIN B_user AS a
+				ON c.B_user_usrSeq = a.usrSeq
+			LEFT JOIN B_shop AS b
+				ON c.B_shop_nsSeq = b.nsSeq
+		WHERE 1 = 1 
+			AND c.B_shop_nsSeq = b.nsSeq
+		ORDER BY 
+			c.reSeq DESC
+	</select>
+	
+	
 </mapper>
