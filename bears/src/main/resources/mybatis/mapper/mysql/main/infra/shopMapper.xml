@@ -315,10 +315,45 @@
 			LEFT JOIN B_shop AS b
 				ON c.B_shop_nsSeq = b.nsSeq
 		WHERE 1 = 1 
-			AND c.B_shop_nsSeq = b.nsSeq
+			AND b.nsSeq = #{nsSeq}
 		ORDER BY 
 			c.reSeq DESC
+
+<!-- 		SELECT  -->
+<!-- 			c.reSeq, -->
+<!-- 		    c.B_shop_nsSeq, -->
+<!-- 		    b.nsName, -->
+<!-- 		    c.B_user_usrSeq, -->
+<!-- 		    a.usrId, -->
+<!-- 		    c.reTitle, -->
+<!-- 		    c.reContent, -->
+<!-- 		    c.reStar, -->
+<!-- 		    c.reRegDate, -->
+<!-- 		    c.reEditDate, -->
+<!-- 		    c.reDelNy, -->
+<!-- 		    avg_table.average_star -->
+<!-- 		FROM  -->
+<!-- 			B_review AS c -->
+<!-- 			LEFT JOIN B_user AS a -->
+<!-- 				ON c.B_user_usrSeq = a.usrSeq -->
+<!-- 			LEFT JOIN B_shop AS b -->
+<!-- 				ON c.B_shop_nsSeq = b.nsSeq -->
+<!-- 			LEFT JOIN ( -->
+<!-- 				SELECT  -->
+<!-- 					B_shop_nsSeq, -->
+<!-- 					AVG(reStar) as average_star -->
+<!-- 		        FROM -->
+<!-- 					B_review -->
+<!-- 				GROUP BY B_shop_nsSeq -->
+<!-- 		    ) AS avg_table On c.B_shop_nsSeq = avg_table.B_shop_nsSeq -->
+<!-- 		WHERE 1 = 1  -->
+<!-- 			AND b.nsSeq = #{nsSeq} -->
+<!-- 		ORDER BY  -->
+<!-- 			c.reSeq DESC -->
+
 	</select>
+	
+	<select id="getAverageStar" resultMap="resultMapObj"></select>
 	
 	
 </mapper>

@@ -55,8 +55,6 @@ public class ShopController {
 	@RequestMapping(value="/xdm/v1/infra/shop/shopXdmMfom")
 	public String shopXdmMfom(ShopDto shopDto, Model model) {
 		model.addAttribute("shopItem", shopService.shopSelectOne(shopDto));
-		// 첨부file확인
-		model.addAttribute("file", shopService.shopUploadedSelectOne(shopDto));
 		System.out.println("/// shopMfom-selectOne 실행 ///");
 		return "/xdm/v1/infra/shop/shopXdmMfom";
 	}
@@ -101,6 +99,8 @@ public class ShopController {
 	public String userShopDetail(ShopDto shopDto, Model model) {
 		model.addAttribute("shopItem", shopService.shopSelectOne(shopDto));
 		model.addAttribute("reviewList", shopService.shopReviewSelectList(shopDto));
+//		double averageStar = shopService.getAverageStar()
+//		model.addAttribute("average_star", averageStar);
 		return "/usr/v1/infra/shop/userShopDetail";
 	}
 

@@ -173,18 +173,7 @@
 									</div>
 									<div class="col-md-2">
 										<div class="text-lg-center">
-											<h1 class="fw-bold mb-0 lh-1">5.0</h1>
-										</div>
-									</div>
-									<div class="col-md-2">
-										<div class="text-lg-center">
-											<p>
-												<span class="mdi mdi-star text-primary"></span> 
-												<span class="mdi mdi-star text-primary"></span> 
-												<span class="mdi mdi-star text-primary"></span> 
-												<span class="mdi mdi-star text-primary"></span> 
-												<span class="mdi mdi-star text-primary"></span>
-											</p>
+											<h1 class="fw-bold mb-0 lh-1" th:text="${average_star}">5.0</h1>
 										</div>
 									</div>
 								</div>
@@ -196,21 +185,15 @@
 												<div>
 													<img src="/usr/v1/template/NailForest/assets/images/nail/womanIcon32.png"
 														alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="avatar-md avatar rounded-circle mb-3">
-													<h5 class="mb-n1" th:text="${list.B_user_usrSeq}">회원이름</h5>
+													<h5 class="mb-n1" th:text="${list.usrId}">회원이름</h5>
 													<small th:text="${#dates.format(list?.reRegDate, 'yyyy-MM-dd HH:mm:ss')}">리뷰등록일</small>
 												</div>
 											</div>
 											<div class="col-md-9">
 												<div>
 													<h5 class="fw-bold mb-2" th:text="${list.reTitle}">리뷰제목</h5>
-													<p th:text="${list.reContent}">
-														리뷰내용
-													</p>
-													<span class="mdi mdi-star text-primary"></span>
-													<span class="mdi mdi-star text-primary"></span>
-													<span class="mdi mdi-star text-primary"></span>
-													<span class="mdi mdi-star text-primary"></span>
-													<span class="mdi mdi-star text-primary"></span>
+													<p th:text="${list.reContent}"> 리뷰내용 </p>
+													<span th:each="i : ${#numbers.sequence(1, list.reStar)}" class="mdi mdi-star text-primary"></span>
 												</div>
 											</div>
 										</div>
@@ -224,16 +207,15 @@
 						<!-- listing detail -->
                         <div class="card mb-4 ">
                             <div class="card-body p-4">
-                                <h4 class="mb-3">Leave Your Review</h4>
+                                <h4 class="mb-3"> Reviews </h4>
                                 <form class="row">
                                     <div class="mb-3 col-6">
-                                        <label for="reviewtitle" class="form-label"> Name </label>
-                                        <input type="text" name="name" class="form-control" id="reviewname"
-                                            aria-describedby="reviewname" placeholder="John Deo" required="">
+                                        <label for="reviewtitle" class="form-label"> ID </label>
+                                        <input type="text" name="name" class="form-control" id="reviewname" aria-describedby="reviewname" placeholder="ID" required>
                                     </div>
                                     <div class="mb-3 col-6" id="mystar">
 									    <fieldset>
-									        <span for="reviewemail" class="form-label">Reviews</span><br>
+									        <span for="reviewemail" class="form-label">별점</span><br>
 									        <input type="radio" name="reviewStar" value="1" id="rate1">
 									        <label for="rate1" data-value="1">★</label>
 									        <input type="radio" name="reviewStar" value="2" id="rate2">
@@ -247,16 +229,16 @@
 									    </fieldset>
 									</div>
                                     <div class="mb-3 col-12">
-                                        <label for="reviewtitle" class="form-label"> Review Title </label>
+                                        <label for="reviewtitle" class="form-label"> 리뷰 제목 </label>
                                         <input type="text" name="title" class="form-control" id="reviewtitle"
-                                            aria-describedby="reviewtitle" placeholder="Write Review Title" required="">
+                                            aria-describedby="reviewtitle" placeholder="리뷰 제목" required="">
                                     </div>
                                     <div class="mb-3 col-12 mt-3">
-                                        <label for="reviewdescription" class="form-label">Write Your Experience</label>
+                                        <label for="reviewdescription" class="form-label">리뷰 내용</label>
                                         <textarea class="form-control" id="reviewdescription" rows="3"></textarea>
                                     </div>
                                     <div class="d-lg-flex justify-content-between align-items-center">
-                                        <button type="submit" class="btn btn-primary">Submit Review</button>
+                                        <button type="submit" class="btn btn-primary">저장</button>
                                     </div>
                                 </form>
                             </div>

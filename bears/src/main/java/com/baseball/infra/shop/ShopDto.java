@@ -47,6 +47,7 @@ public class ShopDto {
 	private String reContent;
 	private String  reId;
 	private Integer reStar;
+	private double average_star;
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date reRegDate;
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
@@ -54,6 +55,7 @@ public class ShopDto {
 	private Integer reDelNy;
     private String B_user_usrSeq;
     private String B_shop_nsSeq;
+    private String usrId;
 	
 	
 	// 파일첨부
@@ -423,5 +425,17 @@ public class ShopDto {
 	public void setB_shop_nsSeq(String b_shop_nsSeq) {
 		B_shop_nsSeq = b_shop_nsSeq;
 	}
-	
+	public String getUsrId() {
+		return usrId;
+	}
+	public void setUsrId(String usrId) {
+		this.usrId = usrId;
+	}
+	public double getAverage_star() {
+		return average_star;
+	}
+	public void setAverage_star(double average_star) {
+		this.average_star = average_star;
+	}
+
 }

@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 // 인터페이스를 구현하는 클래스
 // HandlerInterceptor : 특정 URI 호출을 '가로채는' 역할, 이를 이용하여 기존 컨트롤러의 로직을 수정하기도 않고도, 사전이나 사후 제어가 가능
-public class CheckLoginSessionInterceptor implements HandlerInterceptor{
+public class CheckLoginSessionInterceptor implements HandlerInterceptor {
 	
 	// 로그인 여부를 체크해서 로그인이 되었을때만 페이지에 접근을 허용한다.
 	@Override

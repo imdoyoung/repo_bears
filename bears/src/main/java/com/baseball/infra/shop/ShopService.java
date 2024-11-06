@@ -97,11 +97,6 @@ public class ShopService {
 		return shopDao.shopSelectOneCount(shopVo);
 	}
 	
-	// 첨부file 확인
-	public ShopDto shopUploadedSelectOne(ShopDto shopDto) {
-		return shopDao.shopUploadedSelectOne(shopDto);
-	}
-	
 	// 리뷰List - shopReviewSelectList
 	public List<ShopDto> shopReviewSelectList(ShopDto shopDto){
 		return shopDao.shopReviewSelectList(shopDto);
