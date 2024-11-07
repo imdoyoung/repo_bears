@@ -47,7 +47,6 @@ public class ShopDto {
 	private String reContent;
 	private String  reId;
 	private Integer reStar;
-	private double average_star;
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date reRegDate;
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
@@ -56,6 +55,8 @@ public class ShopDto {
     private String B_user_usrSeq;
     private String B_shop_nsSeq;
     private String usrId;
+    private Integer review_count;
+    private double average_star;
 	
 	
 	// 파일첨부
@@ -436,6 +437,12 @@ public class ShopDto {
 	}
 	public void setAverage_star(double average_star) {
 		this.average_star = average_star;
+	}
+	public Integer getReview_count() {
+		return review_count;
+	}
+	public void setReview_count(Integer review_count) {
+		this.review_count = review_count;
 	}
 
 }

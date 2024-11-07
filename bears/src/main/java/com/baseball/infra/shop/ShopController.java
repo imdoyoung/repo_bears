@@ -83,8 +83,8 @@ public class ShopController {
 	
 	// ShopList
 	@RequestMapping(value="/usr/v1/infra/shop/userShopList")
-	public String userShopList(@ModelAttribute("vo") ShopVo shopVo, Model model) {
-		
+	public String userShopList(@ModelAttribute("vo") ShopVo shopVo, ShopDto shopDto, Model model) {
+
 		// 페이징 - selectOneCount
 		shopVo.setParamsPaging(shopService.shopSelectOneCount(shopVo));
 		if(shopVo.getTotalRows() > 0) {
@@ -99,8 +99,7 @@ public class ShopController {
 	public String userShopDetail(ShopDto shopDto, Model model) {
 		model.addAttribute("shopItem", shopService.shopSelectOne(shopDto));
 		model.addAttribute("reviewList", shopService.shopReviewSelectList(shopDto));
-//		double averageStar = shopService.getAverageStar()
-//		model.addAttribute("average_star", averageStar);
+		model.addAttribute("averageStarItem", shopService.getAverageStar(shopDto));
 		return "/usr/v1/infra/shop/userShopDetail";
 	}
 

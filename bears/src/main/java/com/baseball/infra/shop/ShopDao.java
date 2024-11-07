@@ -34,4 +34,7 @@ public interface ShopDao {
 	// 리뷰List - shopReviewSelectList
 	public List<ShopDto> shopReviewSelectList(ShopDto shopDto);
 	
+	// 리뷰 - 별점 평균
+	public ShopDto getAverageStar(ShopDto shopDto);
+	
 }

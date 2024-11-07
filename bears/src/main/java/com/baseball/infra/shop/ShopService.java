@@ -101,4 +101,9 @@ public class ShopService {
 	public List<ShopDto> shopReviewSelectList(ShopDto shopDto){
 		return shopDao.shopReviewSelectList(shopDto);
 	}
+	
+	// 리뷰 - 별점 평균
+	public ShopDto getAverageStar(ShopDto shopDto) {
+		return shopDao.getAverageStar(shopDto);
+	}
 }
