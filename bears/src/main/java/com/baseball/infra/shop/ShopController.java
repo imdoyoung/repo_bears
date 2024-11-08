@@ -17,6 +17,9 @@ public class ShopController {
 	@Autowired
 	ShopService shopService;
 	
+	
+//=================== XDM - SHOP ===================//
+	
 	// 목록 - selectList
 	@RequestMapping(value="/xdm/v1/infra/shop/shopXdmList")
 	public String shopXdmList(@ModelAttribute("vo") ShopVo shopVo, Model model) {
@@ -80,6 +83,32 @@ public class ShopController {
 		shopService.shopDelete(shopDto);
 		return "redirect:/xdm/v1/infra/shop/shopXdmList";
 	}
+	
+//=================== XDM - SHOPMENU ===================//
+	
+	// 목록 - selectList
+	@RequestMapping(value="/xdm/v1/infra/shop/shopMenuXdmList")
+	public String shopMenuXdmList(@ModelAttribute("vo") ShopVo shopVo, Model model) {
+		
+		// 초기값 세팅이 없는 경우 사용
+		shopVo.setShStartDate(shopVo.getShStartDate() == null || shopVo.getShStartDate() == "" ? null : UtilDateTime.add00TimeString(shopVo.getShStartDate()));
+		shopVo.setShEndDate(shopVo.getShEndDate() == null || shopVo.getShEndDate() == "" ? null : UtilDateTime.add59TimeString(shopVo.getShEndDate()));
+		
+		// 페이징 - selectOneCount
+		shopVo.setParamsPaging(shopService.shopMenuSelectOneCount(shopVo));
+
+		if(shopVo.getTotalRows() > 0) {
+			model.addAttribute("shopMenuList", shopService.shopMenuSelectList(shopVo));
+		}
+		
+		return "/xdm/v1/infra/shop/shopMenuXdmList";
+	}
+
+	
+	
+	
+	
+//=================== USR - SHOP ===================//
 	
 	// ShopList
 	@RequestMapping(value="/usr/v1/infra/shop/userShopList")

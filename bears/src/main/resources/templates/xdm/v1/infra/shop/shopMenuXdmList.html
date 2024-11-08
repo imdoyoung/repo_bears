@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+<title>Tables / Data - NiceAdmin Bootstrap Template</title>
+<meta content="" name="description">
+<meta content="" name="keywords">
+
+<!-- Favicons -->
+<link href="/xdm/v1/template/Lonely/assets/img/favicon.png" rel="icon">
+<link href="/xdm/v1/template/Lonely/assets/img/apple-touch-icon.png"
+	rel="apple-touch-icon">
+
+<!-- Google Fonts -->
+<link href="https://fonts.gstatic.com" rel="preconnect">
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+	rel="stylesheet">
+
+<!-- Vendor CSS Files -->
+<link
+	href="/xdm/v1/template/Lonely/assets/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="/xdm/v1/template/Lonely/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+	rel="stylesheet">
+<link
+	href="/xdm/v1/template/Lonely/assets/vendor/boxicons/css/boxicons.min.css"
+	rel="stylesheet">
+<link href="/xdm/v1/template/Lonely/assets/vendor/quill/quill.snow.css"
+	rel="stylesheet">
+<link
+	href="/xdm/v1/template/Lonely/assets/vendor/quill/quill.bubble.css"
+	rel="stylesheet">
+<link
+	href="/xdm/v1/template/Lonely/assets/vendor/remixicon/remixicon.css"
+	rel="stylesheet">
+<link
+	href="/xdm/v1/template/Lonely/assets/vendor/simple-datatables/style.css"
+	rel="stylesheet">
+
+<!-- Template Main CSS File -->
+<link href="/xdm/v1/template/Lonely/assets/css/style.css"
+	rel="stylesheet">
+	
+<!-- by developer -->
+<link rel="stylesheet" href="/xdm/v1/css/datetimepicker/jquery.datetimepicker.min.css" />
+
+<!-- =======================================================
+  * Template Name: NiceAdmin
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Updated: Apr 20 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+	<!-- ======= Header ======= -->
+	  <div th:replace="~{/xdm/v1/infra/common/header :: header}"></div>
+	<!-- End Header -->
+	
+	<!-- ======= Sidebar ======= -->
+	  <div th:replace="~{/xdm/v1/infra/common/sidebar :: aside}"></div>
+	<!-- End Sidebar-->
+
+	<main id="main" class="main">
+
+		<div class="pagetitle">
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="index.html">Page 1</a></li>
+					<li class="breadcrumb-item"><a href="index.html">Page 2</a></li>
+					<li class="breadcrumb-item active">Default</li>
+				</ol>
+			</nav>
+			<h1>ShopMenu</h1>
+		</div>
+		<!-- End Page Title -->
+
+		<section class="section">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-body">
+							<h1 class="card-title">ShopMenu 정보</h1>
+							<form name="form" method="post" action="/xdm/v1/infra/shop/shopMenuXdmList">
+								<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1" /> 
+								<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}" />
+								<div class="row mb-3">
+									<div class="col-md-2">
+										<select class="form-select" aria-label="Default select example" name="shDelNy">
+											<option value="" th:selected="${vo.shMeDelNy == null}">삭제 여부</option>
+											<option value="1" th:selected="${vo.shMeDelNy == 1}">Y</option>
+											<option value="0" th:selected="${vo.shMeDelNy == 0}">N</option>
+										</select>
+									</div>
+									<div class="col-md-2">
+										<input type="text" class="form-control" placeholder="시작일" id="shStartDate" name="shStartDate" 
+											th:value="${#strings.substring(vo.shStartDate, 0, 10)}" autocomplete="off" readonly>
+									</div>
+									<div class="col-md-2">
+										<input type="text" class="form-control" placeholder="종료일" id="shEndDate" name="shEndDate" 
+											th:value="${#strings.substring(vo.shEndDate, 0, 10)}" autocomplete="off" readonly>
+									</div>
+									<div class="col-md-2">
+										<select class="form-select" id="shOption" name="shOption" aria-label="Default select example">
+											<option value="" th:selected="${vo.shOption == null}">검색구분</option>
+											<option value="1" th:selected="${vo.shOption == 1}">샵번호</option>
+											<option value="2" th:selected="${vo.shOption == 2}">샵이름</option>
+											<option value="3" th:selected="${vo.shOption == 3}">샵전화번호</option>
+											<option value="4" th:selected="${vo.shOption == 4}">사장이름</option>
+											<option value="5" th:selected="${vo.shOption == 5}">사장전화번호</option>
+											<option value="6" th:selected="${vo.shOption == 6}">기본가격</option>
+										</select>
+									</div>
+									<div class="col-md-2">
+										<input type="text" class="form-control" id="shValue" name="shValue" placeholder="검색어" autocomplete="off">
+									</div>
+									<div class="col-md-2">
+										<button type="submit" class="btn btn-outline-dark" >
+											<i class="bi bi-search"></i>
+										</button>
+										<button type="button" class="btn btn-outline-dark">
+											<i class="bi bi-arrow-clockwise"></i>
+										</button>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<div class="col-md-2">
+										<a th:text="'Total: ' + ${vo.totalRows}"></a>
+									</div>
+									<div class="col-md-8"></div>
+									<div class="col-md-2">
+										<select class="form-select form-select-sm" id="changeRowNum" name="changeRowNum">
+											<option value="5" th:selected="${vo.rowNumToShow eq 5}">5</option>
+											<option value="10" th:selected="${vo.rowNumToShow eq 10}">10</option>
+											<option value="15" th:selected="${vo.rowNumToShow eq 15}">15</option>
+											<option value="20" th:selected="${vo.rowNumToShow eq 20}">20</option>
+											<option value="25" th:selected="${vo.rowNumToShow eq 25}">25</option>
+											<option value="30" th:selected="${vo.rowNumToShow eq 30}">30</option>
+										</select>
+									</div>
+
+									<!-- Table with stripped rows -->
+									<!-- Default Table -->
+									<div class="divHorizontalScroll">
+										<table class="table tableHorizontalScroll">
+											<thead>
+												<tr align="center">
+													<th>
+														<input class="form-check-input" type="checkbox" id="gridCheck1">
+													</th>
+													<th>No</th>
+													<th>메뉴번호</th>
+													<th>샵이름</th>
+													<th>메뉴이름</th>
+													<th>소요시간</th>
+													<th>가격</th>
+													<th>사용여부</th>
+													<th>삭제여부</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:if="${#lists.isEmpty(shopMenuList)}">
+													<td colspan="9" align="center">No Data!!</td>
+												</tr>
+												<tr th:if="!${#lists.isEmpty(shopMenuList)}" th:each="list : ${shopMenuList}">
+													<td>
+														<input class="form-check-input" type="checkbox" id="gridCheck1">
+													</td>
+													<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
+													<td th:text="${list.meSeq}"></td>
+													<td th:text="${list.B_shop_nsSeq}">샵이름</td>
+													<td>
+														<a th:href="@{/xdm/v1/infra/shop/shopMenuXdmMfom(meSeq=${list?.meSeq})}" th:text="${list.meName}"></a>
+													</td>
+													<td th:text="${list.meTime}"></td>
+													<td th:text="${list.mePrice}"></td>
+													<td th:if="${list.meUseNy eq 0}">N</td>
+													<td th:unless="${list.meUseNy eq 0}">Y</td>
+													<td th:if="${list.meDelNy eq 0}">N</td>
+													<td th:unless="${list.meDelNy eq 0}">Y</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<!-- End Table with stripped rows -->
+
+									<!--pagination start-->
+										<nav aria-label="Page navigation example">
+											<ul class="pagination justify-content-center">
+												<li class="page-item disabled" th:if="${vo.startPage gt vo.pageNumToShow}" style="cursor: pointer;">
+													<a class="page-link" aria-label="Previous" href="javascript:goList(${vo.startPage - 1})" 
+														th:attr="onclick=|goList('${vo.startPage - 1}')|"> 
+														<span aria-hidden="true">&laquo;</span>
+													</a>
+												</li>
+												<li class="page-item" th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" 
+									    			th:classappend="${num eq vo.thisPage} ? active : ''" style="cursor: pointer;">
+												<a class="page-link" th:attr="onclick=|goList('${num}')|" th:text="${num}"></a>
+												</li>
+												<li class="page-item" th:if="${vo.endPage ne vo.totalPages}" style="cursor: pointer;">
+													<a class="page-link" aria-label="Next" th:attr="onclick=|goList('${vo.endPage + 1}')|"> 
+														<span aria-hidden="true">&raquo;</span>
+													</a>
+												</li>
+											</ul>
+										</nav>
+									<!--pagination end-->
+							</form>
+							<div class="row mb-3">
+								<div class="col-md-6">
+									<a href="#">
+										<button type="button" class="btn btn-danger">
+											<i class="bi bi-x-lg icon_color_change"></i>
+										</button>
+									</a> <a href="#">
+										<button type="button" class="btn btn-danger">
+											<i class="bi bi-trash-fill icon_color_change"></i>
+										</button>
+									</a>
+								</div>
+								<div class="col-md-6" align="Right">
+									<button type="button" class="btn btn-success">
+										<a href="#"> <i
+											class="bi bi-file-earmark-x icon_color_change"></i>
+										</a>
+									</button>
+									<a href="/xdm/v1/infra/shop/shopXdmForm">
+										<button type="button" class="btn btn-primary">
+											<i class="bi bi-plus-lg icon_color_change"></i>
+										</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+	</main>
+	<!-- End #main -->
+
+	<!-- ======= Footer ======= -->
+	<footer id="footer" class="footer">
+		<div class="copyright">
+			&copy; Copyright <strong><span>ImDoyoung</span></strong>. All Rights
+			Reserved
+		</div>
+	</footer>
+	<!-- End Footer -->
+
+	<a href="#"
+		class="back-to-top d-flex align-items-center justify-content-center"><i
+		class="bi bi-arrow-up-short"></i></a>
+
+	<!-- Vendor JS Files -->
+	<script
+		src="/xdm/v1/template/Lonely/assets/vendor/apexcharts/apexcharts.min.js"></script>
+	<script
+		src="/xdm/v1/template/Lonely/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="/xdm/v1/template/Lonely/assets/vendor/chart.js/chart.umd.js"></script>
+	<script
+		src="/xdm/v1/template/Lonely/assets/vendor/echarts/echarts.min.js"></script>
+	<script src="/xdm/v1/template/Lonely/assets/vendor/quill/quill.js"></script>
+	<script
+		src="/xdm/v1/template/Lonely/assets/vendor/simple-datatables/simple-datatables.js"></script>
+	<script
+		src="/xdm/v1/template/Lonely/assets/vendor/tinymce/tinymce.min.js"></script>
+	<script
+		src="/xdm/v1/template/Lonely/assets/vendor/php-email-form/validate.js"></script>
+
+	<!-- Template Main JS File -->
+	<script src="/xdm/v1/template/Lonely/assets/js/main.js"></script>
+	
+	<!-- by developer -->	
+	<script src="/xdm/v1/jquery/jquery-3.7.1.min.js"></script>
+	<script src="/xdm/v1/js/datetimepicker/jquery.datetimepicker.full.min.js"></script>
+	
+	<script type="text/javascript">
+	
+		// 날짜 검색 - datetimepicker
+		window.addEventListener('load', function(){
+			$.datetimepicker.setLocale('ko');
+			$("#shStartDate, #shEndDate").datetimepicker({ 
+				timepicker:false,
+				format:'Y-m-d'
+			});
+		});
+		
+		// 페이징 - paging
+		goList = function(thisPage) {
+			document.querySelector("input[name=thisPage]").value = thisPage;
+			document.querySelector("form[name=form]").action = "/xdm/v1/infra/shop/shopMenuXdmList";
+			document.querySelector("form[name=form]").submit();
+		}
+		
+		// 리스트 개수 조절 - changeRowNum
+		document.getElementById("changeRowNum").onchange = function () {
+		    document.getElementById("rowNumToShow").value = document.getElementById("changeRowNum").value;
+		    form.action = "/xdm/v1/infra/shop/shopMenuXdmList";
+		    form.submit();
+		}
+	</script>
+
+</body>
+
+</html>

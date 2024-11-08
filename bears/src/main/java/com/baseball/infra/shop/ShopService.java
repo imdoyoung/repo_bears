@@ -106,4 +106,16 @@ public class ShopService {
 	public ShopDto getAverageStar(ShopDto shopDto) {
 		return shopDao.getAverageStar(shopDto);
 	}
+	
+	// 메뉴목록 - shopMenuSelectList
+	public List<ShopDto> shopMenuSelectList(ShopVo shopVo){
+		return shopDao.shopMenuSelectList(shopVo);
+	}
+	
+	// 페이징 - selectOneCount
+	public int shopMenuSelectOneCount(ShopVo shopVo) {
+		return shopDao.shopMenuSelectOneCount(shopVo);
+	}
+	
+	
 }

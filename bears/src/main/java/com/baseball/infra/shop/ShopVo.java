@@ -24,6 +24,8 @@ public class ShopVo {
 	private Integer shDateOption;			// 날짜검색옵션
 	private String 	shStartDate;			// 검색시작날짜
 	private String 	shEndDate;				// 검색종료날짜
+	
+	private Integer shMeDelNy;				// 메뉴삭제여부
 
 	// paging
 	private int thisPage = 1;		// 현재 페이지
@@ -258,6 +260,36 @@ public class ShopVo {
 
 	public void setStartRnumForMySql(int startRnumForMySql) {
 		this.startRnumForMySql = startRnumForMySql;
+	}
+
+
+	public Integer getShAddrCode() {
+		return shAddrCode;
+	}
+
+
+	public void setShAddrCode(Integer shAddrCode) {
+		this.shAddrCode = shAddrCode;
+	}
+
+
+	public Integer getShAddParkingNy() {
+		return shAddParkingNy;
+	}
+
+
+	public void setShAddParkingNy(Integer shAddParkingNy) {
+		this.shAddParkingNy = shAddParkingNy;
+	}
+
+
+	public Integer getShMeDelNy() {
+		return shMeDelNy;
+	}
+
+
+	public void setShMeDelNy(Integer shMeDelNy) {
+		this.shMeDelNy = shMeDelNy;
 	}
 	
 }

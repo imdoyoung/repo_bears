@@ -57,6 +57,16 @@ public class ShopDto {
     private String usrId;
     private Integer review_count;
     private double average_star;
+    
+    // 메뉴
+    private String meSeq;
+    private String meName; 
+    private String meDesc; 
+    private String meTime;
+    private Integer mePrice; 
+    private Integer meCount; 
+    private Integer meUseNy; 
+    private Integer meDelNy;
 	
 	
 	// 파일첨부
@@ -443,6 +453,54 @@ public class ShopDto {
 	}
 	public void setReview_count(Integer review_count) {
 		this.review_count = review_count;
+	}
+	public String getMeSeq() {
+		return meSeq;
+	}
+	public void setMeSeq(String meSeq) {
+		this.meSeq = meSeq;
+	}
+	public String getMeName() {
+		return meName;
+	}
+	public void setMeName(String meName) {
+		this.meName = meName;
+	}
+	public String getMeDesc() {
+		return meDesc;
+	}
+	public void setMeDesc(String meDesc) {
+		this.meDesc = meDesc;
+	}
+	public String getMeTime() {
+		return meTime;
+	}
+	public void setMeTime(String meTime) {
+		this.meTime = meTime;
+	}
+	public Integer getMePrice() {
+		return mePrice;
+	}
+	public void setMePrice(Integer mePrice) {
+		this.mePrice = mePrice;
+	}
+	public Integer getMeCount() {
+		return meCount;
+	}
+	public void setMeCount(Integer meCount) {
+		this.meCount = meCount;
+	}
+	public Integer getMeUseNy() {
+		return meUseNy;
+	}
+	public void setMeUseNy(Integer meUseNy) {
+		this.meUseNy = meUseNy;
+	}
+	public Integer getMeDelNy() {
+		return meDelNy;
+	}
+	public void setMeDelNy(Integer meDelNy) {
+		this.meDelNy = meDelNy;
 	}
 
 }

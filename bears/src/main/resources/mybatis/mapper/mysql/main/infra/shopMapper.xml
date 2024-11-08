@@ -348,5 +348,49 @@
 			AND b.nsSeq = #{nsSeq}
 	</select>
 	
+	<!-- shopMenuSelectList - list 페이지 데이터 불러오기 -->
+	<select id="shopMenuSelectList" resultMap="resultMapObj">
+		SELECT 
+			c.meSeq, 
+		   	a.nsName,
+			c.meName, 
+			c.meDesc, 
+			c.meTime, 
+			c.mePrice, 
+			c.meCount, 
+			c.meUseNy, 
+			c.meDelNy, 
+			c.B_shop_nsSeq
+		FROM B_menu AS c
+			LEFT JOIN B_shop AS a
+				ON c.B_shop_nsSeq = a.nsSeq
+		WHERE 1 = 1
+		ORDER BY c.meSeq DESC
+	</select>
+	
+	<!-- paging -->
+	<sql id="shopMenuSelectCommon">
+		FROM B_menu AS c
+			LEFT JOIN B_shop AS a
+				ON c.B_shop_nsSeq = a.nsSeq
+		WHERE 1 = 1
+			<!-- 삭제여부 -->
+			<if test="shMeDelNy != null and !shMeDelNy.equals('')">AND meDelNy = #{shMeDelNy}</if>
+			<!-- 날짜 검색 -->
+			<choose>
+				<when test="shDateOption == 1">AND nsRegDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
+				<when test="shDateOption == 2">AND nsEditDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
+			</choose>
+			<!-- 키워드검색 -->
+<!-- 			<choose> -->
+<!-- 				<when test="shOption == 1">AND nsSeq = #{shValue}</when> -->
+<!-- 			</choose> -->
+	</sql>
+	
+	<select id="shopMenuSelectOneCount">
+		SELECT COUNT(*)
+		<include refid="shopMenuSelectCommon"/>
+	</select>
+	
 	
 </mapper>

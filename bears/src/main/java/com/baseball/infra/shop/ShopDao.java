@@ -37,4 +37,10 @@ public interface ShopDao {
 	// 리뷰 - 별점 평균
 	public ShopDto getAverageStar(ShopDto shopDto);
 	
+	// 메뉴목록 - shopMenuSelectList
+	public List<ShopDto> shopMenuSelectList(ShopVo shopVo);
+	
+	// 페이징 - shopMenuSelectOneCount
+	public int shopMenuSelectOneCount(ShopVo shopVo);
+	
 }
