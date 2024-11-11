@@ -175,7 +175,7 @@
 													</td>
 													<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
 													<td th:text="${list.meSeq}"></td>
-													<td th:text="${list.B_shop_nsSeq}">샵이름</td>
+													<td th:text="${list.nsName}">샵이름</td>
 													<td>
 														<a th:href="@{/xdm/v1/infra/shop/shopMenuXdmMfom(meSeq=${list?.meSeq})}" th:text="${list.meName}"></a>
 													</td>
@@ -231,7 +231,7 @@
 											class="bi bi-file-earmark-x icon_color_change"></i>
 										</a>
 									</button>
-									<a href="/xdm/v1/infra/shop/shopXdmForm">
+									<a href="/xdm/v1/infra/shop/shopMenuXdmForm">
 										<button type="button" class="btn btn-primary">
 											<i class="bi bi-plus-lg icon_color_change"></i>
 										</button>

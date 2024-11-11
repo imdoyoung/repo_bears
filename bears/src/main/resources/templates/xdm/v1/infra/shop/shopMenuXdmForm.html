@@ -79,7 +79,7 @@
 					<li class="breadcrumb-item active">Default</li>
 				</ol>
 			</nav>
-			<h1>Shop</h1>
+			<h1>ShopMenu</h1>
 		</div>
 		<!-- End Page Title -->
 
@@ -88,265 +88,85 @@
 				<div class="col-lg-12">
 					<div class="card">
 						<div class="card-body">
-							<h5 class="card-title">Shop 등록</h5>
+							<h5 class="card-title">ShopMenu 등록</h5>
 
 							<!-- Custom Styled Validation -->
-							<form name="form" id="form" method="post" action="/xdm/v1/infra/shop/shopXdmInst" enctype="multipart/form-data" class="needs-validation" novalidate>
+							<form name="form" id="form" method="post" action="/xdm/v1/infra/shop/shopMenuXdmInst" enctype="multipart/form-data" class="needs-validation" novalidate>
 								<div class="row mb-3">
 									<div class="col-md-3">
 										<label class="form-label">
-											No.
+											메뉴번호
 											<a style="color: red;">*</a>
 										</label> 
-										<input type="text" class="form-control" name="nsSeq" id="nsSeq"
+										<input type="text" class="form-control" name="meSeq" id="meSeq"
 											placeholder="자동생성" style="background-color: lightgray;" disabled>
 									</div>
+									
 									<div class="col-md-3">
 										<label class="form-label">
 											shop 이름
 											<a style="color: red;">*</a>
 										</label> 
-										<input type="text" class="form-control" name="nsName" id="nsName" placeholder="shop 이름" required>
-										<div class="invalid-feedback" id="nsNameFeedback">shop 이름을 입력해 주세요.</div>
-										<div class="invalid-feedback" id="nsNameRegExpFeedback">shop 이름에는 특수문자를 사용할 수 없습니다.</div>
-									</div>
-									<div class="col-md-3">
-										<label class="form-label">
-											shop 전화번호
-											<a style="color: red;">*</a>
-										</label> 
-										<input type="text" class="form-control" name="nsTel" id="nsTel" placeholder="'-'없이 입력해주세요" required>
-										<div class="invalid-feedback" id="nsTelFeedback">shop 전화번호를 입력해 주세요.</div>
-										<div class="invalid-feedback" id="nsTelRegExpFeedback">'-'빼고 입력해 주세요.</div>
-									</div>
-								</div>
-								<div class="row mb-3">
-									<div class="col-md-3">
-										<label class="form-label">
-											대표자 이름
-											<a style="color: red;">*</a>
-										</label> 
-										<input type="text" class="form-control" name="nsOwnerName" id="nsOwnerName" placeholder="대표자 이름" required>
-										<div class="invalid-feedback" id="nsOwnerNameFeedback">대표자 이름을 입력해 주세요.</div>
-										<div class="invalid-feedback" id="nsOwnerNameRegExpFeedback">대표자 이름은 한글만 입력해 주세요.</div>
-									</div>
-									<div class="col-md-3">
-										<label class="form-label">
-											대표자 전화번호
-											<a style="color: red;">*</a>
-										</label> 
-										<input type="text" class="form-control" name="nsOwnerTel" id="nsOwnerTel" placeholder="'-'없이 입력해주세요" required>
-										<div class="invalid-feedback" id="nsOwnerTelFeedback">전화번호를 입력해 주세요.</div>
-										<div class="invalid-feedback" id="nsOwnerTelRegExpFeedback">'-'빼고 입력해 주세요.</div>
-									</div>
-									<div class="col-md-3">
-										<label class="form-label">
-											오픈시간
-											<a style="color: red;">*</a>
-										</label> 
-										<input type="text" class="form-control" name="nsOpenTime" id="nsOpenTime" placeholder="오픈시간" autocomplete="off" readonly required>
-										<div class="invalid-feedback">오픈시간을 입력해 주세요.</div>
-									</div>
-									<div class="col-md-3">
-										<label class="form-label">
-											마감시간
-											<a style="color: red;">*</a>
-										</label> 
-										<input type="text" class="form-control" name="nsClosTime" id="nsClosTime" placeholder="마감시간" autocomplete="off" readonly required>
-										<div class="invalid-feedback">마감시간을 입력해 주세요.</div>
-									</div>
-								</div>
-								<div class="row mb-3">
-									<div class="col-md-3">
-										<label class="form-label">
-											동시시술인원
-											<a style="color: red;">*</a>
-										</label> 
-										<select class="form-select" name="nsMulti" id="nsMulti" required>
-											<option value="">동시시술인원선택</option>
-											<option value="1">1</option>
-											<option value="2">2</option>
-											<option value="3">3</option>
-											<option value="4">4</option>
-											<option value="5">5</option>
-											<option value="6">6</option>
-											<option value="7">7</option>
-											<option value="8">8</option>
-											<option value="9">9</option>
-											<option value="10">10</option>
+										<select class="form-select" name="B_shop_nsSeq" id="B_shop_nsSeq" required>
+											<option value="">shop 이름 선택</option>
+											<option th:each = "list:${listShop}" th:value="${list.nsSeq}" th:text="${list.nsName}"></option>
 										</select>
-										<div class="invalid-feedback">동시시술인원 선택해 주세요.</div>
+										<div class="invalid-feedback">shop 이름을 선택해 주세요.</div>
 									</div>
+									<div class="col-md-3">
+										<label class="form-label">
+											메뉴 이름
+											<a style="color: red;">*</a>
+										</label> 
+										<input type="text" class="form-control" name="meName" id="meName" placeholder="메뉴 이름" required>
+										<div class="invalid-feedback" id="meNameFeedback">메뉴 이름을 입력해 주세요.</div>
+										<div class="invalid-feedback" id="meNameRegExpFeedback">메뉴 이름에는 특수문자를 사용할 수 없습니다.</div>
+									</div>
+								</div>
+								<div class="row mb-3">
+									
 									<div class="col-md-9">
 										<label class="form-label">
-											shop 소개글
+											메뉴 설명
 											<a style="color: red;">*</a>
 										</label> 
-										<input type="text" class="form-control" name="nsInfoText" id="nsInfoText" placeholder="shop 소개글" style="width:100%" required>
-										<div class="invalid-feedback">shop 소개글을 입력해 주세요.</div>
+										<input type="text" class="form-control" name="meDesc" id="meDesc" placeholder="메뉴 설명" style="width:100%">
+										<div class="invalid-feedback">메뉴 설명을 입력해 주세요.</div>
 									</div>
 								</div>
 								<div class="row mb-3">
 									<div class="col-md-3">
 										<label class="form-label">
-											우편번호
+											소요시간
 											<a style="color: red;">*</a>
 										</label> 
-										<input type="text" class="form-control" name="nsZipCode" id="nsZipCode"
-										placeholder="우편번호" required>
-										<div class="invalid-feedback">우편번호를 입력해 주세요.</div>
+										<input type="text" class="form-control" name="meTime" id="meTime" placeholder="분단위로 입력해주세요">
+										<div class="invalid-feedback">소요시간을 입력해 주세요.</div>
 									</div>
 									<div class="col-md-3">
 										<label class="form-label">
-											주소
+											가격
 											<a style="color: red;">*</a>
 										</label> 
-										<input type="text" class="form-control" name="nsAddr" id="nsAddr"
-										placeholder="주소" required>
-										<div class="invalid-feedback">주소를 입력해 주세요.</div>
+										<input type="text" class="form-control" name="mePrice" id="mePrice" placeholder="가격을 입력하세요" required>
+										<div class="invalid-feedback">가격을 입력해 주세요.</div>
 									</div>
 									<div class="col-md-3">
 										<label class="form-label">
-											상세주소
+											사용 여부
 											<a style="color: red;">*</a>
 										</label> 
-										<input type="text" class="form-control" name="nsAddrDetail" id="nsAddrDetail"
-										placeholder="상세주소" required>
-										<div class="invalid-feedback">상세주소를 입력해 주세요.</div>
-									</div>
-								</div>
-								<div class="row mb-3">
-									<div class="col-md-3">
-										<label class="form-label">
-											지역구
-											<a style="color: red;">*</a>
-										</label> 
-										<select class="form-select" name="nsAddrCode" id="nsAddrCode" required>
-											<option value="">지역구</option>
-											<option th:each="list : ${@codeService.selectListCachedCode(7)}" 
-												th:value="${list.ifcdSeq}" th:text="${list.ifcdName}"
-												th:selected="${list.ifcdSeq} == ${shopItem?.nsAddrCode}">
-											</option>
-										</select>
-										<div class="invalid-feedback">지역구를 입력해 주세요.</div>
-									</div>
-									<div class="col-md-3">
-										<label class="form-label">
-											도보정보
-											<a style="color: red;">*</a>
-										</label> 
-										<input type="text" class="form-control" name="nsInfoWalk" id="nsInfoWalk"
-										placeholder="도보정보" required>
-										<div class="invalid-feedback">도보정보를 입력해 주세요.</div>
-									</div>
-									<div class="col-md-3">
-										<label class="form-label">
-											가격정보
-											<a style="color: red;">*</a>
-										</label> 
-										<input type="text" class="form-control" name="nsInfoPrice" id="nsInfoPrice"
-										placeholder="가격정보" required>
-										<div class="invalid-feedback">가격정보를 입력해 주세요.</div>
-									</div>
-									<div class="col-md-3">
-										<label class="form-label">
-											이벤트정보
-											<a style="color: red;">*</a>
-										</label> 
-										<input type="text" class="form-control" name="nsInfoEvent" id="nsInfoEvent"
-										placeholder="이벤트정보" required>
-										<div class="invalid-feedback">이벤트정보를 입력해 주세요.</div>
-									</div>
-								</div>
-								<div class="row mb-3">
-									<div class="col-md-9">
-										<label class="form-label">
-											상세정보
-											<a style="color: red;">*</a>
-										</label>
-										<textarea class="form-control" name="nsInfoDetail" id="nsInfoDetail"
-											 style="height: 100px; width:100%" required>
-										</textarea>
-										<div class="invalid-feedback">상세정보를 입력해 주세요.</div>
-									</div>
-								</div>
-								<div class="row mb-3">
-									<div class="col-md-3">
-										<label class="form-label">
-											사진첨부
-											<a style="color: red;">*</a>
-										</label> 
-										<input type="file" id="uploadFiles" name="uploadFiles" multiple class="form-control"/>
-										<div class="invalid-feedback">사진을 첨부하세요</div>
-									</div>
-								</div>
-								<div class="row mb-3">
-									<div class="col-md-3">
-										<label class="form-label">
-											주차가능 여부
-											<a style="color: red;">*</a>
-										</label> 
-										<select class="form-select" name="nsAddParkingNy" id="nsAddParkingNy" required>
-											<option value="">주차가능 여부</option>
+										<select class="form-select" name="meUseNy" id="meUseNy" >
+											<option value="">사용 여부</option>
 											<option value="1">Y</option>
 											<option value="0">N</option>
 										</select>
-										<div class="invalid-feedback">주차가능 여부를 선택해 주세요.</div>
-									</div>
-									<div class="col-md-3">
-										<label class="form-label">
-											반려동물 동반가능 여부
-											<a style="color: red;">*</a>
-										</label> 
-										<select class="form-select" name="nsAddDogNy" id="nsAddDogNy" required>
-											<option value="">반려동물 동반가능 여부</option>
-											<option value="1">Y</option>
-											<option value="0">N</option>
-										</select>
-										<div class="invalid-feedback">반려동불 동반가능 여부를 선택해 주세요.</div>
-									</div>
-									<div class="col-md-3">
-										<label class="form-label">
-											이달의아트 여부
-											<a style="color: red;">*</a>
-										</label> 
-										<select class="form-select" name="nsAddArtOfMonthNy" id="nsAddArtOfMonthNy" required>
-											<option value="">이달의아트 여부</option>
-											<option value="1">Y</option>
-											<option value="0">N</option>
-										</select>
-										<div class="invalid-feedback">이달의아트 여부를 선택해 주세요.</div>
-									</div>
-								</div>
-								<div class="row mb-3">
-									<div class="col-md-3">
-										<label class="form-label">
-											드릴케어 여부
-											<a style="color: red;">*</a>
-										</label> 
-										<select class="form-select" name="nsAddDrillcareNy" id="nsAddDrillcareNy" required>
-											<option value="">드릴케어 여부</option>
-											<option value="1">Y</option>
-											<option value="0">N</option>
-										</select>
-										<div class="invalid-feedback">드릴케어 가능 여부를 선택해 주세요.</div>
-									</div>
-									<div class="col-md-3">
-										<label class="form-label">
-											습식케어 여부
-											<a style="color: red;">*</a>
-										</label> 
-										<select class="form-select" name="nsAddWetcareNy" id="nsAddWetcareNy" required>
-											<option value="">습식케어 여부</option>
-											<option value="1">Y</option>
-											<option value="0">N</option>
-										</select>
-										<div class="invalid-feedback">습식케어 가능 여부를 선택해 주세요.</div>
+										<div class="invalid-feedback">사용 여부를 선택해 주세요.</div>
 									</div>
 								</div>
 								<div class="row mb-3">
 									<div class="col-md-4">
-										<a href="/xdm/v1/infra/shop/shopXdmList"> 
+										<a href="/xdm/v1/infra/shop/shopMenuXdmList"> 
 											<button type="button" class="btn btn-outline-dark" id="btnList">
 												<i class="bi bi-list-ul"></i>
 											</button>
@@ -415,402 +235,84 @@
 	
 	<script type="text/javascript">
 		
-		// 오픈시간, 마감시간
-		window.addEventListener('load', function(){
-			$.datetimepicker.setLocale('ko');
-			$("#nsOpenTime, #nsClosTime").datetimepicker({ 
-				datepicker: false,		// 날짜 선택 비활성화
-				timepicker: true,		// 시간 선택 활성화
-				format: 'H:i',			// 시간과 분만 표시 (24시간 형식)
-				step: 30				// 분 단위 선택 간격 (30분 단위)
-			});
-		});
-
-		
 		// validation
 		document.getElementById("btnSubmit").onclick = function(){
+		
 			
-		// nsName
-			var nsName = document.getElementById("nsName");
-			var nsNameValue = document.getElementById("nsName").value.trim();
-			var nsNameRegExp = /^[ㄱ-ㅎ가-힣A-Za-z0-9]+$/;
-			var nsNameFeedback = document.getElementById("nsNameFeedback");
-			var nsNameRegExpFeedback = document.getElementById("nsNameRegExpFeedback");
+			// B_shop_nsSeq
+			var B_shop_nsSeq = document.getElementById("B_shop_nsSeq");
+			var B_shop_nsSeqValue = document.getElementById("B_shop_nsSeq").value.trim();
+			
+			if(B_shop_nsSeqValue == "" || B_shop_nsSeqValue == null){
+				B_shop_nsSeq.classList.add('is-invalid');
+				B_shop_nsSeq.focus();
+				return false;
+			} else {
+// 				by pass
+				B_shop_nsSeq.classList.remove('is-invalid');
+				B_shop_nsSeq.classList.add('is-valid');
+			}
+			
+	
+		// meName
+			var meName = document.getElementById("meName");
+			var meNameValue = document.getElementById("meName").value.trim();
+			var meNameRegExp = /^[ㄱ-ㅎ가-힣A-Za-z0-9]+$/;
+			var meNameFeedback = document.getElementById("meNameFeedback");
+			var meNameRegExpFeedback = document.getElementById("meNameRegExpFeedback");
 			
 			// 기존의 validation 초기화
-			nsName.classList.remove('is-valid', 'is-invalid');
-			nsNameFeedback.style.display='none';
-			nsNameRegExpFeedback.style.display='none';
+			meName.classList.remove('is-valid', 'is-invalid');
+			meNameFeedback.style.display='none';
+			meNameRegExpFeedback.style.display='none';
 			
-			if(nsNameValue == "" || nsNameValue == null){
-				nsNameFeedback.style.display='block';
-				nsName.classList.add('is-invalid');
-				nsName.focus();
+			if(meNameValue == "" || meNameValue == null){
+				meNameFeedback.style.display='block';
+				meName.classList.add('is-invalid');
+				meName.focus();
 				return false;
 			} else {
 // 				by pass
 			}
-			if(!nsNameRegExp.test(nsNameValue)){
-				nsNameRegExpFeedback.style.display='block';		// 에러 메세지 표시
-				nsName.classList.add('is-invalid');		// 유효성 검사 실패 처리 - 빨간 테두리
-				nsName.focus();	// 객체로 마우스 커서 포커스
+			if(!meNameRegExp.test(meNameValue)){
+				meNameRegExpFeedback.style.display='block';		// 에러 메세지 표시
+				meName.classList.add('is-invalid');		// 유효성 검사 실패 처리 - 빨간 테두리
+				meName.focus();	// 객체로 마우스 커서 포커스
 		    	return false;	// 함수를 탈출
 		    } else {
 				// by pass
-				nsName.classList.add('is-valid');		// 유효성 검사 성공 처리 - 초록 테두리
+				meName.classList.add('is-valid');		// 유효성 검사 성공 처리 - 초록 테두리
 			}
-					
+				
+			// mePrice
+			var mePrice = document.getElementById("mePrice");
+			var mePriceValue = document.getElementById("mePrice").value.trim();
 			
-		// nsTel
-			var nsTel = document.getElementById("nsTel");
-			var nsTelValue = document.getElementById("nsTel").value.trim();
-			var nsTelRegExp = /^(0[2-8][0-5]?|01[01346-9])?([1-9]{1}[0-9]{2,3})?([0-9]{4})$/;
-			var nsTelFeedback = document.getElementById("nsTelFeedback");
-			var nsTelRegExpFeedback = document.getElementById("nsTelRegExpFeedback");
-			
-			// 기존 validation 초기화
-			nsTel.classList.remove('is-valid', 'is-invalid');
-			nsTelFeedback.style.display='none';
-			nsTelRegExpFeedback.style.display='none';
-			
-			if(nsTelValue == "" || nsTelValue == null){
-				nsTelFeedback.style.display='block';
-				nsTel.classList.add('is-invalid');
-				nsTel.focus();
+			if(mePriceValue == "" || mePriceValue == null){
+				mePrice.classList.add('is-invalid');
+				mePrice.focus();
 				return false;
 			} else {
 // 				by pass
-			}
-			if(!nsTelRegExp.test(nsTelValue)){
-				nsTelRegExpFeedback.style.display='block';
-				nsTel.classList.add('is-invalid');	
-				nsTel.focus();	
-		    	return false;	
-		    } else {
-				// by pass
-				nsTel.classList.add('is-valid');		
+				mePrice.classList.remove('is-invalid');
+				mePrice.classList.add('is-valid');
 			}
 			
+			// meUseNy
+			var meUseNy = document.getElementById("meUseNy");
+			var meUseNyValue = document.getElementById("meUseNy").value.trim();
 			
-		// nsOwnerName
-			var nsOwnerName = document.getElementById("nsOwnerName");
-			var nsOwnerNameValue = document.getElementById("nsOwnerName").value.trim();
-			var nsOwnerNameRegExp = /^[ㄱ-ㅎ가-힣A-Za-z]+$/;
-			var nsOwnerNameFeedback = document.getElementById("nsOwnerNameFeedback");
-			var nsOwnerNameRegExpFeedback = document.getElementById("nsOwnerNameRegExpFeedback");
-			
-			// 기존의 validation 초기화
-			nsOwnerName.classList.remove('is-valid', 'is-invalid');
-			nsOwnerNameFeedback.style.display='none';
-			nsOwnerNameRegExpFeedback.style.display='none';
-			
-			if(nsOwnerNameValue == "" || nsOwnerNameValue == null){
-				nsOwnerNameFeedback.style.display='block';
-				nsOwnerName.classList.add('is-invalid');
-				nsOwnerName.focus();
+			if(meUseNyValue == "" || meUseNyValue == null){
+				meUseNy.classList.add('is-invalid');
+				meUseNy.focus();
 				return false;
 			} else {
 // 				by pass
+				meUseNy.classList.remove('is-invalid');
+				meUseNy.classList.add('is-valid');
 			}
-			if(!nsOwnerNameRegExp.test(nsOwnerNameValue)){
-				nsOwnerNameRegExpFeedback.style.display='block';
-				nsOwnerName.classList.add('is-invalid');
-				nsOwnerName.focus();
-				return false;
-			} else {
-// 				by pass
-				nsOwnerName.classList.add('is-valid');
-			}
-			
-			
-		// nsOwnerTel
-			var nsOwnerTel = document.getElementById("nsOwnerTel");
-			var nsOwnerTelValue = document.getElementById("nsOwnerTel").value.trim();
-			var nsOwnerTelRegExp = /^(0[2-8][0-5]?|01[01346-9])?([1-9]{1}[0-9]{2,3})?([0-9]{4})$/;
-			var nsOwnerTelFeedback = document.getElementById("nsOwnerTelFeedback");
-			var nsOwnerTelRegExpFeedback = document.getElementById("nsOwnerTelRegExpFeedback");
-			
-			// 기존 validation 초기화
-			nsOwnerTel.classList.remove('is-valid', 'is-invalid');
-			nsOwnerTelFeedback.style.display='none';
-			nsOwnerTelRegExpFeedback.style.display='none';
-			
-			if(nsOwnerTelValue == "" || nsOwnerTelValue == null){
-				nsOwnerTelFeedback.style.display='block';
-				nsOwnerTel.classList.add('is-invalid');
-				nsOwnerTel.focus();
-				return false;
-			} else {
-// 				by pass
-			}
-			if(!nsOwnerTelRegExp.test(nsOwnerTelValue)){
-				nsOwnerTelRegExpFeedback.style.display='block';
-				nsOwnerTel.classList.add('is-invalid');	
-				nsOwnerTel.focus();	
-		    	return false;	
-		    } else {
-				// by pass
-				nsOwnerTel.classList.add('is-valid');		
-			}
-			
-			
-		// nsOpenTime
-			var nsOpenTime = document.getElementById("nsOpenTime");
-			var nsOpenTimeValue = document.getElementById("nsOpenTime").value.trim();
-			
-			if(nsOpenTimeValue == "" || nsOpenTimeValue == null){
-				nsOpenTime.classList.add('is-invalid');
-				nsOpenTime.focus();
-				return false;
-			} else {
-// 				by pass
-				nsOpenTime.classList.remove('is-invalid');
-				nsOpenTime.classList.add('is-valid');
-			}
-		
-			
-		// nsClosTime
-			var nsClosTime = document.getElementById("nsClosTime");
-			var nsClosTimeValue = document.getElementById("nsClosTime").value.trim();
-			
-			if(nsClosTimeValue == "" || nsClosTimeValue == null){
-				nsClosTime.classList.add('is-invalid');
-				nsClosTime.focus();
-				return false;
-			} else {
-// 				by pass
-				nsClosTime.classList.remove('is-invalid');
-				nsClosTime.classList.add('is-valid');
-			}
-			
-			
-		// nsMulti
-			var nsMulti = document.getElementById("nsMulti");
-			var nsMultiValue = document.getElementById("nsMulti").value.trim();
-			
-			if(nsMultiValue == "" || nsMultiValue == null){
-				nsMulti.classList.add('is-invalid');
-				nsMulti.focus();
-				return false;
-			} else {
-// 				by pass
-				nsMulti.classList.remove('is-invalid');
-				nsMulti.classList.add('is-valid');
-			}
-			
-			
-		// nsInfoText
-			var nsInfoText = document.getElementById("nsInfoText");
-			var nsInfoTextValue = document.getElementById("nsInfoText").value.trim();
-			
-			if(nsInfoTextValue == "" || nsInfoTextValue == null){
-				nsInfoText.classList.add('is-invalid');
-				nsInfoText.focus();
-				return false;
-			} else {
-// 				by pass
-				nsInfoText.classList.remove('is-invalid');
-				nsInfoText.classList.add('is-valid');
-			}
-			
-			
-		// nsZipCode
-			var nsZipCode = document.getElementById("nsZipCode");
-			var nsZipCodeValue = document.getElementById("nsZipCode").value.trim();
-			
-			if(nsZipCodeValue == "" || nsZipCodeValue == null){
-				nsZipCode.classList.add('is-invalid');
-				nsZipCode.focus();
-				return false;
-			} else {
-// 				by pass
-				nsZipCode.classList.remove('is-invalid');
-				nsZipCode.classList.add('is-valid');
-			}
-			
-			
-		// nsAddr
-			var nsAddr = document.getElementById("nsAddr");
-			var nsAddrValue = document.getElementById("nsAddr").value.trim();
-			
-			if(nsAddrValue == "" || nsAddrValue == null){
-				nsAddr.classList.add('is-invalid');
-				nsAddr.focus();
-				return false;
-			} else {
-// 				by pass
-				nsAddr.classList.remove('is-invalid');
-				nsAddr.classList.add('is-valid');
-			}
-			
-			
-		// nsAddrDetail
-			var nsAddrDetail = document.getElementById("nsAddrDetail");
-			var nsAddrDetailValue = document.getElementById("nsAddrDetail").value.trim();
-			
-			if(nsAddrDetailValue == "" || nsAddrDetailValue == null){
-				nsAddrDetail.classList.add('is-invalid');
-				nsAddrDetail.focus();
-				return false;
-			} else {
-// 				by pass
-				nsAddrDetail.classList.remove('is-invalid');
-				nsAddrDetail.classList.add('is-valid');
-			}
-			
-			
-		// nsAddrCode
-			var nsAddrCode = document.getElementById("nsAddrCode");
-			var nsAddrCodeValue = document.getElementById("nsAddrCode").value.trim();
-			
-			if(nsAddrCodeValue == "" || nsAddrCodeValue == null){
-				nsAddrCode.classList.add('is-invalid');
-				nsAddrCode.focus();
-				return false;
-			} else {
-// 				by pass
-				nsAddrCode.classList.remove('is-invalid');
-				nsAddrCode.classList.add('is-valid');
-			}
-			
-			
-		// nsInfoWalk
-			var nsInfoWalk = document.getElementById("nsInfoWalk");
-			var nsInfoWalkValue = document.getElementById("nsInfoWalk").value.trim();
-			
-			if(nsInfoWalkValue == "" || nsInfoWalkValue == null){
-				nsInfoWalk.classList.add('is-invalid');
-				nsInfoWalk.focus();
-				return false;
-			} else {
-// 				by pass
-				nsInfoWalk.classList.remove('is-invalid');
-				nsInfoWalk.classList.add('is-valid');
-			}
-			
-			
-		// nsInfoPrice
-			var nsInfoPrice = document.getElementById("nsInfoPrice");
-			var nsInfoPriceValue = document.getElementById("nsInfoPrice").value.trim();
-			
-			if(nsInfoPriceValue == "" || nsInfoPriceValue == null){
-				nsInfoPrice.classList.add('is-invalid');
-				nsInfoPrice.focus();
-				return false;
-			} else {
-// 				by pass
-				nsInfoPrice.classList.remove('is-invalid');
-				nsInfoPrice.classList.add('is-valid');
-			}
-			
-			
-		// nsInfoEvent
-			var nsInfoEvent = document.getElementById("nsInfoEvent");
-			var nsInfoEventValue = document.getElementById("nsInfoEvent").value.trim();
-			
-			if(nsInfoEventValue == "" || nsInfoEventValue == null){
-				nsInfoEvent.classList.add('is-invalid');
-				nsInfoEvent.focus();
-				return false;
-			} else {
-// 				by pass
-				nsInfoEvent.classList.remove('is-invalid');
-				nsInfoEvent.classList.add('is-valid');
-			}
-			
-			
-		// nsInfoDetail
-			var nsInfoDetail = document.getElementById("nsInfoDetail");
-			var nsInfoDetailValue = document.getElementById("nsInfoDetail").value.trim();
-			
-			if(nsInfoDetailValue == "" || nsInfoDetailValue == null){
-				nsInfoDetail.classList.add('is-invalid');
-				nsInfoDetail.focus();
-				return false;
-			} else {
-// 				by pass
-				nsInfoDetail.classList.remove('is-invalid');
-				nsInfoDetail.classList.add('is-valid');
-			}
-			
-			
-			// nsAddParkingNy
-			var nsAddParkingNy = document.getElementById("nsAddParkingNy");
-			var nsAddParkingNyValue = document.getElementById("nsAddParkingNy").value.trim();
-			
-			if(nsAddParkingNyValue == "" || nsAddParkingNyValue == null){
-				nsAddParkingNy.classList.add('is-invalid');
-				nsAddParkingNy.focus();
-				return false;
-			} else {
-// 				by pass
-				nsAddParkingNy.classList.remove('is-invalid');
-				nsAddParkingNy.classList.add('is-valid');
-			}
-			
-			
-		// nsAddDogNy
-			var nsAddDogNy = document.getElementById("nsAddDogNy");
-			var nsAddDogNyValue = document.getElementById("nsAddDogNy").value.trim();
-			
-			if(nsAddDogNyValue == "" || nsAddDogNyValue == null){
-				nsAddDogNy.classList.add('is-invalid');
-				nsAddDogNy.focus();
-				return false;
-			} else {
-// 				by pass
-				nsAddDogNy.classList.remove('is-invalid');
-				nsAddDogNy.classList.add('is-valid');
-			}
-			
-			
-		// nsAddArtOfMonthNy
-			var nsAddArtOfMonthNy = document.getElementById("nsAddArtOfMonthNy");
-			var nsAddArtOfMonthNyValue = document.getElementById("nsAddArtOfMonthNy").value.trim();
-			
-			if(nsAddArtOfMonthNyValue == "" || nsAddArtOfMonthNyValue == null){
-				nsAddArtOfMonthNy.classList.add('is-invalid');
-				nsAddArtOfMonthNy.focus();
-				return false;
-			} else {
-// 				by pass
-				nsAddArtOfMonthNy.classList.remove('is-invalid');
-				nsAddArtOfMonthNy.classList.add('is-valid');
-			}
-			
-			
-		// nsAddDrillcareNy
-			var nsAddDrillcareNy = document.getElementById("nsAddDrillcareNy");
-			var nsAddDrillcareNyValue = document.getElementById("nsAddDrillcareNy").value.trim();
-			
-			if(nsAddDrillcareNyValue == "" || nsAddDrillcareNyValue == null){
-				nsAddDrillcareNy.classList.add('is-invalid');
-				nsAddDrillcareNy.focus();
-				return false;
-			} else {
-// 				by pass
-				nsAddDrillcareNy.classList.remove('is-invalid');
-				nsAddDrillcareNy.classList.add('is-valid');
-			}
-			
-			
-		// nsAddWetcareNy
-			var nsAddWetcareNy = document.getElementById("nsAddWetcareNy");
-			var nsAddWetcareNyValue = document.getElementById("nsAddWetcareNy").value.trim();
-			
-			if(nsAddWetcareNyValue == "" || nsAddWetcareNyValue == null){
-				nsAddWetcareNy.classList.add('is-invalid');
-				nsAddWetcareNy.focus();
-				return false;
-			} else {
-// 				by pass
-				nsAddWetcareNy.classList.remove('is-invalid');
-				nsAddWetcareNy.classList.add('is-valid');
-			}
-			
-			
-			
-		    form.action = "/xdm/v1/infra/shop/shopXdmInst";
+
+		    form.action = "/xdm/v1/infra/shop/shopMenuXdmInst";
 			form.submit();
 		}
 	</script>

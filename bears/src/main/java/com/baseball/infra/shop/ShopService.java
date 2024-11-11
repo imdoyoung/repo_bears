@@ -117,5 +117,14 @@ public class ShopService {
 		return shopDao.shopMenuSelectOneCount(shopVo);
 	}
 	
+	// Shop-ShopMenu 연결 - selectListShop
+	public List<ShopDto> selectListShop(){
+		return shopDao.selectListShop();
+	}
+	
+	// 등록 - insert
+	public int shopMenuInsert(ShopDto shopDto) throws Exception {
+		return shopDao.shopMenuInsert(shopDto);
+	}
 	
 }

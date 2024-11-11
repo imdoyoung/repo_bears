@@ -350,22 +350,21 @@
 	
 	<!-- shopMenuSelectList - list 페이지 데이터 불러오기 -->
 	<select id="shopMenuSelectList" resultMap="resultMapObj">
-		SELECT 
-			c.meSeq, 
-		   	a.nsName,
-			c.meName, 
-			c.meDesc, 
-			c.meTime, 
-			c.mePrice, 
-			c.meCount, 
-			c.meUseNy, 
-			c.meDelNy, 
-			c.B_shop_nsSeq
-		FROM B_menu AS c
-			LEFT JOIN B_shop AS a
-				ON c.B_shop_nsSeq = a.nsSeq
-		WHERE 1 = 1
-		ORDER BY c.meSeq DESC
+		SELECT bb.* FROM(
+			SELECT 
+				c.meSeq, 
+			   	a.nsName,
+				c.meName, 
+				c.meDesc, 
+				c.meTime, 
+				c.mePrice, 
+				c.meCount, 
+				c.meUseNy, 
+				c.meDelNy, 
+				c.B_shop_nsSeq
+			<include refid="shopMenuSelectCommon"></include>
+			ORDER BY c.meSeq DESC
+		) bb limit #{rowNumToShow} offset #{startRnumForMySql}
 	</select>
 	
 	<!-- paging -->
@@ -392,5 +391,40 @@
 		<include refid="shopMenuSelectCommon"/>
 	</select>
 	
+	<!-- ShopMenu에 Shop 연결 -->
+	<select id="selectListShop" resultMap="resultMapObj">
+		SELECT
+			a.nsSeq,
+			a.nsName
+		FROM
+			B_shop a
+		WHERE 1 = 1
+			AND a.nsDelNy = 0
+		ORDER BY
+			a.nsSeq DESC
+	</select>
+	
+	<!-- shopMenuInsert - form 페이지 데이터 입력하기 -->
+	<insert id="shopMenuInsert">
+		INSERT INTO B_menu (
+			meName, 
+			meDesc, 
+			meTime, 
+			mePrice, 
+			meCount, 
+			meUseNy, 
+			meDelNy, 
+			B_shop_nsSeq
+		) values (
+		    #{meName},
+		    #{meDesc},
+		    #{meTime},
+		    #{mePrice},
+		    null,
+		    #{meUseNy},
+		    0,
+		    #{B_shop_nsSeq}
+		)
+	</insert>
 	
 </mapper>
