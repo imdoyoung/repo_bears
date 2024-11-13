@@ -48,7 +48,8 @@
 
 
 <!-- Theme CSS -->
-<link rel="stylesheet" href="/usr/v1/template/NailForest/assets/css/theme.min.css">
+<link rel="stylesheet"
+	href="/usr/v1/template/NailForest/assets/css/theme.min.css">
 <title>네일숲</title>
 
 
@@ -62,7 +63,7 @@
 		<!--  Header ======= -->
 		<div th:replace="~{/usr/v1/infra/common/header :: div}"></div>
 		<!-- ======= End Header ======= -->
-		
+
 		<!-- listing slide -->
 		<div class="container mt-5">
 			<div class="py-22 position-relative rounded-3"
@@ -72,10 +73,9 @@
 						<!-- listing badges -->
 						<div class="position-absolute bottom-0 mb-5 ms-5">
 							<div>
-								<a href="#" class="btn btn-white btn-sm"> 
-									<span class="mdi mdi-heart me-1 text-danger"></span>Save
-								</a> 
-								<a href="#gallery" class="btn btn-white btn-sm">View Photos</a>
+								<a href="#" class="btn btn-white btn-sm"> <span
+									class="mdi mdi-heart me-1 text-danger"></span>Save
+								</a> <a href="#gallery" class="btn btn-white btn-sm">View Photos</a>
 							</div>
 						</div>
 						<!-- listing badges -->
@@ -92,34 +92,28 @@
 							<div class="card-body p-4">
 								<h2 class="mb-2" th:text="${shopItem?.nsName}"></h2>
 								<p class="mb-4 fs-6" th:text="${shopItem?.nsInfoWalk}"></p>
-								<p class="mb-4 fs-6">젤네일 기본 원컬러 <strong><span th:text="${shopItem?.nsInfoPrice}"></span></strong>원 ~</p>
+								<p class="mb-4 fs-6">
+									젤네일 기본 원컬러 <strong><span
+										th:text="${shopItem?.nsInfoPrice}"></span></strong>원 ~
+								</p>
 								<p class="mb-4 fs-6" th:text="${shopItem?.nsInfoEvent}"></p>
-								<p class="mb-4 fs-6" th:text="${shopItem?.nsAddr + ' ' + shopItem?.nsAddrDetail}"></p>
+								<p class="mb-4 fs-6"
+									th:text="${shopItem?.nsAddr + ' ' + shopItem?.nsAddrDetail}"></p>
 								<div class="text-sm">
-									<span class="me-2"> 
-										<span> 
-											<img src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
-										</span> 
-										<strong>
-											<span th:text="${#dates.format(shopItem?.nsOpenTime, 'HH:mm')}"></span>
-										</strong>
-									</span> 
-									<span class="me-2"> 
-										<span> 
-											<img src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
-										</span>
-										<strong> 
-											<span th:text="${#dates.format(shopItem?.nsClosTime, 'HH:mm')}"></span>
-										</strong>
-									</span> 
-									<span class="me-2"> 
-										<span> 
-											<img src="/usr/v1/template/NailForest/assets/images/nail/personIcon.png">
-										</span> 
-										<strong> 
-											<span th:text="${shopItem?.nsMulti}"></span>
-										</strong>
-										인 동시시술
+									<span class="me-2"> <span> <img
+											src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
+									</span> <strong> <span
+											th:text="${#dates.format(shopItem?.nsOpenTime, 'HH:mm')}"></span>
+									</strong>
+									</span> <span class="me-2"> <span> <img
+											src="/usr/v1/template/NailForest/assets/images/nail/clockIcon.png">
+									</span> <strong> <span
+											th:text="${#dates.format(shopItem?.nsClosTime, 'HH:mm')}"></span>
+									</strong>
+									</span> <span class="me-2"> <span> <img
+											src="/usr/v1/template/NailForest/assets/images/nail/personIcon.png">
+									</span> <strong> <span th:text="${shopItem?.nsMulti}"></span>
+									</strong> 인 동시시술
 									</span>
 								</div>
 							</div>
@@ -141,20 +135,20 @@
 								<div class="row">
 									<div class="col-md-6">
 										<ul class="list-group list-unstyled">
-											<li class="list-item">
-											    <span th:text="${shopItem?.nsAddParkingNy == 1 ? '주차가능' : ''}"></span>
+											<li class="list-item"><span
+												th:text="${shopItem?.nsAddParkingNy == 1 ? '주차가능' : ''}"></span>
 											</li>
-											<li class="list-item">
-											    <span th:text="${shopItem?.nsAddDogNy == 1 ? '반려견동반가능' : ''}"></span>
+											<li class="list-item"><span
+												th:text="${shopItem?.nsAddDogNy == 1 ? '반려견동반가능' : ''}"></span>
 											</li>
-											<li class="list-item">
-											    <span th:text="${shopItem?.nsAddArtOfMonthNy == 1 ? '이달의아트' : ''}"></span>
+											<li class="list-item"><span
+												th:text="${shopItem?.nsAddArtOfMonthNy == 1 ? '이달의아트' : ''}"></span>
 											</li>
-											<li class="list-item">
-											    <span th:text="${shopItem?.nsAddDrillcareNy == 1 ? '드릴케어' : ''}"></span>
+											<li class="list-item"><span
+												th:text="${shopItem?.nsAddDrillcareNy == 1 ? '드릴케어' : ''}"></span>
 											</li>
-											<li class="list-item">
-											    <span th:text="${shopItem?.nsAddWetcareNy == 1 ? '습식케어' : ''}"></span>
+											<li class="list-item"><span
+												th:text="${shopItem?.nsAddWetcareNy == 1 ? '습식케어' : ''}"></span>
 											</li>
 										</ul>
 									</div>
@@ -173,7 +167,8 @@
 									</div>
 									<div class="col-md-2">
 										<div class="text-lg-center">
-											<h1 class="fw-bold mb-0 lh-1" th:text="${averageStarItem?.average_star}">5.0</h1>
+											<h1 class="fw-bold mb-0 lh-1"
+												th:text="${averageStarItem?.average_star}">5.0</h1>
 										</div>
 									</div>
 								</div>
@@ -183,17 +178,21 @@
 										<div class="row">
 											<div class="col-md-3">
 												<div>
-													<img src="/usr/v1/template/NailForest/assets/images/nail/womanIcon32.png"
-														alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="avatar-md avatar rounded-circle mb-3">
+													<img
+														src="/usr/v1/template/NailForest/assets/images/nail/womanIcon32.png"
+														alt="Rentkit Directory & Listing Bootstrap 5 Theme"
+														class="avatar-md avatar rounded-circle mb-3">
 													<h5 class="mb-n1" th:text="${list.usrId}">회원이름</h5>
-													<small th:text="${#dates.format(list?.reRegDate, 'yyyy-MM-dd HH:mm:ss')}">리뷰등록일</small>
+													<small
+														th:text="${#dates.format(list?.reRegDate, 'yyyy-MM-dd HH:mm:ss')}">리뷰등록일</small>
 												</div>
 											</div>
 											<div class="col-md-9">
 												<div>
 													<h5 class="fw-bold mb-2" th:text="${list.reTitle}">리뷰제목</h5>
-													<p th:text="${list.reContent}"> 리뷰내용 </p>
-													<span th:each="i : ${#numbers.sequence(1, list.reStar)}" class="mdi mdi-star text-primary"></span>
+													<p th:text="${list.reContent}">리뷰내용</p>
+													<span th:each="i : ${#numbers.sequence(1, list.reStar)}"
+														class="mdi mdi-star text-primary"></span>
 												</div>
 											</div>
 										</div>
@@ -205,44 +204,48 @@
 						</div>
 						<!-- listing detail -->
 						<!-- listing detail -->
-                        <div class="card mb-4 ">
-                            <div class="card-body p-4">
-                                <h4 class="mb-3"> Reviews </h4>
-                                <form class="row">
-                                    <div class="mb-3 col-6">
-                                        <label for="reviewtitle" class="form-label"> ID </label>
-                                        <input type="text" name="name" class="form-control" id="reviewname" aria-describedby="reviewname" placeholder="ID" required>
-                                    </div>
-                                    <div class="mb-3 col-6" id="mystar">
-									    <fieldset>
-									        <span for="reviewemail" class="form-label">별점</span><br>
-									        <input type="radio" name="reviewStar" value="1" id="rate1">
-									        <label for="rate1" data-value="1">★</label>
-									        <input type="radio" name="reviewStar" value="2" id="rate2">
-									        <label for="rate2" data-value="2">★</label>
-									        <input type="radio" name="reviewStar" value="3" id="rate3">
-									        <label for="rate3" data-value="3">★</label>
-									        <input type="radio" name="reviewStar" value="4" id="rate4">
-									        <label for="rate4" data-value="4">★</label>
-									        <input type="radio" name="reviewStar" value="5" id="rate5">
-									        <label for="rate5" data-value="5">★</label>
-									    </fieldset>
+						<div class="card mb-4 ">
+							<div class="card-body p-4">
+								<h4 class="mb-3">Reviews</h4>
+								<form class="row">
+									<div class="mb-3 col-6">
+										<label for="reviewtitle" class="form-label"> ID </label> <input
+											type="text" name="name" class="form-control" id="reviewname"
+											aria-describedby="reviewname" placeholder="ID" required>
 									</div>
-                                    <div class="mb-3 col-12">
-                                        <label for="reviewtitle" class="form-label"> 리뷰 제목 </label>
-                                        <input type="text" name="title" class="form-control" id="reviewtitle"
-                                            aria-describedby="reviewtitle" placeholder="리뷰 제목" required="">
-                                    </div>
-                                    <div class="mb-3 col-12 mt-3">
-                                        <label for="reviewdescription" class="form-label">리뷰 내용</label>
-                                        <textarea class="form-control" id="reviewdescription" rows="3"></textarea>
-                                    </div>
-                                    <div class="d-lg-flex justify-content-between align-items-center">
-                                        <button type="submit" class="btn btn-primary">저장</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+									<div class="mb-3 col-6" id="mystar">
+										<fieldset>
+											<span for="reviewemail" class="form-label">별점</span><br>
+											<input type="radio" name="reviewStar" value="1" id="rate1">
+											<label for="rate1" data-value="1">★</label> <input
+												type="radio" name="reviewStar" value="2" id="rate2">
+											<label for="rate2" data-value="2">★</label> <input
+												type="radio" name="reviewStar" value="3" id="rate3">
+											<label for="rate3" data-value="3">★</label> <input
+												type="radio" name="reviewStar" value="4" id="rate4">
+											<label for="rate4" data-value="4">★</label> <input
+												type="radio" name="reviewStar" value="5" id="rate5">
+											<label for="rate5" data-value="5">★</label>
+										</fieldset>
+									</div>
+									<div class="mb-3 col-12">
+										<label for="reviewtitle" class="form-label"> 리뷰 제목 </label> <input
+											type="text" name="title" class="form-control"
+											id="reviewtitle" aria-describedby="reviewtitle"
+											placeholder="리뷰 제목" required="">
+									</div>
+									<div class="mb-3 col-12 mt-3">
+										<label for="reviewdescription" class="form-label">리뷰
+											내용</label>
+										<textarea class="form-control" id="reviewdescription" rows="3"></textarea>
+									</div>
+									<div
+										class="d-lg-flex justify-content-between align-items-center">
+										<button type="submit" class="btn btn-primary">저장</button>
+									</div>
+								</form>
+							</div>
+						</div>
 						<!-- listing detail -->
 						<!-- listing detail -->
 						<div class="card mb-4" id="gallery">
@@ -314,8 +317,10 @@
 						<div class="card mb-4">
 							<div class="card-body p-4">
 								<h4 class="mb-1">위치</h4>
-								<p th:text="${shopItem?.nsAddr + ' ' + shopItem?.nsAddrDetail}" id="shopAddress" th:attr="data-address=${shopItem?.nsAddr + ' ' + shopItem?.nsAddrDetail}"></p>
-								<div id="map" style="width:100%;height:400px;"></div>
+								<p th:text="${shopItem?.nsAddr + ' ' + shopItem?.nsAddrDetail}"
+									id="shopAddress"
+									th:attr="data-address=${shopItem?.nsAddr + ' ' + shopItem?.nsAddrDetail}"></p>
+								<div id="map" style="width: 100%; height: 400px;"></div>
 							</div>
 						</div>
 						<!-- listing detail -->
@@ -335,204 +340,36 @@
 											<div class="mb-3">
 												<label class="form-label">Your Visit</label>
 												<div class="input-group mb-3">
-													<input type="text" class="form-control" id="dateSelect"
-														placeholder="Date" aria-label="Recipient's username">
-													<span class="input-group-text bg-transparent"><i
-														class="mdi mdi-calendar-month-outline"></i></span>
+													<input type="text" class="form-control" id="dateSelect" placeholder="Date" aria-label="Recipient's username">
+													<span class="input-group-text bg-transparent">
+														<i class="mdi mdi-calendar-month-outline"></i>
+													</span>
 												</div>
 											</div>
 											<!-- select -->
 											<select class="select2">
 												<option>Time</option>
-												<option value="1">11:00</option>
-												<option value="2">11:30</option>
-												<option value="3">13:00</option>
-												<option value="4">13:30</option>
-												<option value="5">14:00</option>
-												<option value="6">14:30</option>
-												<option value="7">15:00</option>
-												<option value="8">15:30</option>
-												<option value="9">16:00</option>
-												<option value="10">16:30</option>
-												<option value="11">17:00</option>
-												<option value="12">17:30</option>
-												<option value="13">18:00</option>
-												<option value="14">18:30</option>
-												<option value="15">19:00</option>
-												<option value="16">19:30</option>
-												<option value="17">20:00</option>
-												<option value="18">20:30</option>
-											</select> <br>
-											<br>
+												<option value="">11:00</option>
+											</select> <br> <br>
 											<!-- option -->
 											<div class="mb-3">
 												<label class="form-label">Option</label>
-												<div class="input-group mb-3 mylabel">
-													<label class="form-control custom-checkbox"> <input
-														type="checkbox" id="checkbox1" name="checkbox" value="">
-														<div class="content">
-															<p class="align-left">
-																<strong>젤제거</strong>
-															</p>
-															<div class="price-and-buttons">
-																<span class="price">30분 / 10,000원</span>
-															</div>
-														</div>
-													</label>
-												</div>
-												<div class="input-group mb-3">
-													<label class="form-control custom-checkbox"> <input
-														type="checkbox" id="checkbox1" name="checkbox" value="">
-														<div class="content">
-															<p class="align-left">
-																<strong>젤네일 풀컬러</strong> 컬러변경은 2개까지 무료입니다.
-															</p>
-															<div class="price-and-buttons">
-																<span class="price">1시간 / 40,000원</span>
-															</div>
-														</div>
-													</label>
-												</div>
-												<div class="input-group mb-3">
-													<label class="form-control custom-checkbox"> <input
-														type="checkbox" id="checkbox1" name="checkbox" value="">
-														<div class="content">
-															<p class="align-left">
-																<strong>젤페디 풀컬러</strong> 컬러변경은 2개까지 무료입니다.
-															</p>
-															<div class="price-and-buttons">
-																<span class="price">1시간 / 40,000원</span>
-															</div>
-														</div>
-													</label>
-												</div>
-												<div class="input-group mb-3">
-													<label class="form-control custom-checkbox"> <input
-														type="checkbox" id="checkbox1" name="checkbox" value="">
-														<div class="content">
-															<p class="align-left">
-																<strong>이달의 아트(네일)</strong>
-															</p>
-															<div class="price-and-buttons">
-																<span class="price">1시간 30분 / 60,000원</span>
-															</div>
-														</div>
-													</label>
-												</div>
-												<div class="input-group mb-3">
-													<label class="form-control custom-checkbox"> <input
-														type="checkbox" id="checkbox1" name="checkbox" value="">
-														<div class="content">
-															<p class="align-left">
-																<strong>이달의 아트(페디)</strong>
-															</p>
-															<div class="price-and-buttons">
-																<span class="price">1시간 30분 / 70,000원</span>
-															</div>
-														</div>
-													</label>
-												</div>
-												<div class="input-group mb-3">
-													<label class="form-control custom-checkbox"> <input
-														type="checkbox" id="checkbox1" name="checkbox" value="">
-														<div class="content">
-															<p class="align-left">
-																<strong>자석젤</strong> 손가락 1개 기준입니다.
-															</p>
-															<div class="price-and-buttons">
-																<span class="price">4,000원</span>
-																<div class="btn-group">
-																	<input type="button" value="-" class="mybtn"> <span>0</span>
-																	<input type="button" value="+" class="mybtn">
+												<div th:each="list : ${shopMenuList}">
+													<div class="input-group mb-3">
+														<label class="form-control custom-checkbox"> 
+														<input type="checkbox" id="checkbox1" name="checkbox" th:value="${list.mePrice}">
+															<div class="content">
+																<p class="align-left">
+																	<strong><span th:text="${list.meName}">메뉴이름</span></strong>
+																	<span th:text="${list.meDesc}">메뉴설명</span>
+																</p>
+																<div class="price-and-buttons">
+																	<span class="price" th:text="${list.meTime}">소요시간</span>
+																	<span th:text="${list.mePrice} + 원">가격</span>
 																</div>
 															</div>
-														</div>
-													</label>
-												</div>
-												<div class="input-group mb-3">
-													<label class="form-control custom-checkbox"> <input
-														type="checkbox" id="checkbox1" name="checkbox" value="">
-														<div class="content">
-															<p class="align-left">
-																<strong>글리터</strong> 손가락 1개 기준입니다.
-															</p>
-															<div class="price-and-buttons">
-																<span class="price">4,000원</span>
-																<div class="btn-group">
-																	<input type="button" value="-" class="mybtn"> <span>0</span>
-																	<input type="button" value="+" class="mybtn">
-																</div>
-															</div>
-														</div>
-													</label>
-												</div>
-												<div class="input-group mb-3">
-													<label class="form-control custom-checkbox"> <input
-														type="checkbox" id="checkbox1" name="checkbox" value="">
-														<div class="content">
-															<p class="align-left">
-																<strong>프렌치</strong> 손가락 1개 기준입니다.
-															</p>
-															<div class="price-and-buttons">
-																<span class="price">6,000원</span>
-																<div class="btn-group">
-																	<input type="button" value="-" class="mybtn"> <span>0</span>
-																	<input type="button" value="+" class="mybtn">
-																</div>
-															</div>
-														</div>
-													</label>
-												</div>
-												<div class="input-group mb-3">
-													<label class="form-control custom-checkbox"> <input
-														type="checkbox" id="checkbox1" name="checkbox" value="">
-														<div class="content">
-															<p class="align-left">
-																<strong>그라데이션</strong> 손가락 1개 기준입니다.
-															</p>
-															<div class="price-and-buttons">
-																<span class="price">4,500원</span>
-																<div class="btn-group">
-																	<input type="button" value="-" class="mybtn"> <span>0</span>
-																	<input type="button" value="+" class="mybtn">
-																</div>
-															</div>
-														</div>
-													</label>
-												</div>
-												<div class="input-group mb-3">
-													<label class="form-control custom-checkbox"> <input
-														type="checkbox" id="checkbox1" name="checkbox" value="">
-														<div class="content">
-															<p class="align-left">
-																<strong>연장</strong> 손가락 1개 기준입니다.
-															</p>
-															<div class="price-and-buttons">
-																<span class="price">10,000원</span>
-																<div class="btn-group">
-																	<input type="button" value="-" class="mybtn"> <span>0</span>
-																	<input type="button" value="+" class="mybtn">
-																</div>
-															</div>
-														</div>
-													</label>
-												</div>
-												<div class="input-group mb-3">
-													<label class="form-control custom-checkbox"> <input
-														type="checkbox" id="checkbox1" name="checkbox" value="">
-														<div class="content">
-															<p class="align-left">
-																<strong>컬러변경</strong> 3번째 변경컬러부터 금액이 추가됩니다.
-															</p>
-															<div class="price-and-buttons">
-																<span class="price">5,000원</span>
-																<div class="btn-group">
-																	<input type="button" value="-" class="mybtn"> <span>0</span>
-																	<input type="button" value="+" class="mybtn">
-																</div>
-															</div>
-														</div>
-													</label>
+														</label>
+													</div>
 												</div>
 												<br>
 												<!-- total -->
@@ -540,8 +377,13 @@
 													<label class="form-label">Total</label>
 													<div class="input-group mb-3">
 														<p>
-															날짜 : 2024.08.13 <br> 시간 : 15:00 <br> 예약금 :
-															30,000원 <br> 총금액 : 70,000원
+															<span>날짜 : 2024.08.13</span> 
+															<br>
+															<span>시간 : 15:00</span> 
+															<br> 
+															<span>예약금 : 30,000원</span>
+															<br> 
+															<span>총금액 : 70,000원</span>
 														</p>
 													</div>
 												</div>
@@ -736,10 +578,11 @@
 
 	<!-- Theme JS -->
 	<script src="/usr/v1/template/NailForest/assets/js/theme.min.js"></script>
-	
+
 	<!-- KAKAO MAP API services 라이브러리 불러오기 -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e7a4c61c5d2d5eec0befbefd5116181&libraries=services"></script>
-	
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e7a4c61c5d2d5eec0befbefd5116181&libraries=services"></script>
+
 	<script>
 	
 		// 주소
@@ -774,9 +617,7 @@
 		       
 		     	// 지도의 중심을 결과값으로 받은 위치로 이동
 		        map.setCenter(coords);
-		     	
 		     }
-		    
 		});
 		
 
@@ -814,4 +655,3 @@
 	        });
 	    });
 	</script>
-	

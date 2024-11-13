@@ -175,10 +175,11 @@ public class ShopController {
 	
 	// ShopDetail(Mfom-selectOne)
 	@RequestMapping(value="/usr/v1/infra/shop/userShopDetail")
-	public String userShopDetail(ShopDto shopDto, Model model) {
+	public String userShopDetail(ShopDto shopDto, ShopVo shopVo, Model model) {
 		model.addAttribute("shopItem", shopService.shopSelectOne(shopDto));
 		model.addAttribute("reviewList", shopService.shopReviewSelectList(shopDto));
 		model.addAttribute("averageStarItem", shopService.getAverageStar(shopDto));
+		model.addAttribute("shopMenuList", shopService.menuSelectList(shopDto));
 		return "/usr/v1/infra/shop/userShopDetail";
 	}
 	

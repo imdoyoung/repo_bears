@@ -427,4 +427,25 @@
 		)
 	</insert>
 	
+	<!--  shopDetail에서 Menu 리스트 띄우기 -->
+	<select id="menuSelectList" resultMap="resultMapObj">
+		SELECT 
+			c.meSeq,
+			c.meName, 
+			c.meDesc, 
+			c.meTime, 
+			c.mePrice, 
+			c.meCount, 
+			c.meUseNy, 
+			c.meDelNy, 
+			c.B_shop_nsSeq
+		FROM 
+			B_menu AS c
+			LEFT JOIN B_shop AS a ON c.B_shop_nsSeq = a.nsSeq
+		WHERE 1 = 1
+			AND c.B_shop_nsSeq = #{nsSeq}
+		ORDER BY 
+			c.meSeq DESC
+	</select>
+	
 </mapper>

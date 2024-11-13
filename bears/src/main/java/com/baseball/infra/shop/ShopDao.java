@@ -50,4 +50,7 @@ public interface ShopDao {
 	// 등록 - insert
 	public int shopMenuInsert(ShopDto shopDto);
 	
+	// shopDetail에서 Menu 리스트 띄우기
+	public List<ShopDto> menuSelectList(ShopDto shopDto);
+	
 }

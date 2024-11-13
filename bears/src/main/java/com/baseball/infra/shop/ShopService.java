@@ -127,4 +127,8 @@ public class ShopService {
 		return shopDao.shopMenuInsert(shopDto);
 	}
 	
+	// shopDetail에서 Menu 리스트 띄우기
+	public List<ShopDto> menuSelectList(ShopDto shopDto){
+		return shopDao.menuSelectList(shopDto);
+	}
 }
