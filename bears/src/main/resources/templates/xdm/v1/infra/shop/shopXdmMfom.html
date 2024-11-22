@@ -224,7 +224,7 @@
 										</label> 
 										<select class="form-select" name="nsAddrCode" id="nsAddrCode">
 											<option value="">지역구</option>
-											<option th:each="list : ${@codeService.selectListCachedCode(7)}" 
+											<option th:each="list : ${@codeService.selectListCachedCode(2)}" 
 												th:value="${list.ifcdSeq}" th:text="${list.ifcdName}"
 												th:selected="${list.ifcdSeq} == ${shopItem?.nsAddrCode}">
 											</option>
@@ -875,7 +875,7 @@
 			
 			
 			
-		    form.action = "/xdm/v1/infra/shop/shopXdmInst";
+		    form.action = "/xdm/v1/infra/shop/shopXdmUpdt";
 			form.submit();
 		}
 	</script>

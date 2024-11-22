@@ -1,66 +1,16 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description"
-	content="Rentkit - Directory & Listings Bootstrap 5 Template.">
-
-
-<link rel="apple-touch-icon" sizes="180x180"
-	href="/usr/v1/template/NailForest/assets/images/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32"
-	href="/usr/v1/template/NailForest/assets/images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16"
-	href="/usr/v1/template/NailForest/assets/images/favicon-16x16.png">
-
-
-<!-- Libs CSS -->
-
-<link
-	href="/usr/v1/template/NailForest/assets/libs/magnific-popup/dist/magnific-popup.css"
-	rel="stylesheet" />
-<link
-	href="/usr/v1/template/NailForest/assets/libs/animate.css/animate.min.css"
-	rel="stylesheet">
-<link
-	href="/usr/v1/template/NailForest/assets/libs/nouislider/dist/nouislider.min.css"
-	rel="stylesheet">
-<link
-	href="/usr/v1/template/NailForest/assets/libs/uppy/dist/uppy.min.css"
-	rel="stylesheet">
-<link
-	href="/usr/v1/template/NailForest/assets/libs/litepicker/dist/css/litepicker.css"
-	rel="stylesheet">
-<link
-	href="/usr/v1/template/NailForest/assets/libs/bootstrap-icons/font/bootstrap-icons.css"
-	rel="stylesheet">
-<link
-	href="/usr/v1/template/NailForest/assets/libs/simplebar/dist/simplebar.min.css"
-	rel="stylesheet">
-<link
-	href="/usr/v1/template/NailForest/assets/libs/@fortawesome/fontawesome-free/css/all.min.css"
-	rel="stylesheet">
-
-
-
-<!-- Theme CSS -->
-<link rel="stylesheet"
-	href="/usr/v1/template/NailForest/assets/css/theme.min.css">
-<title>네일숲</title>
-
-
-</head>
+<!-- ======= Head ======= -->
+<div th:replace="~{/usr/v1/infra/common/head :: head}"></div>
+<!-- ======= End Head ======= -->
 
 <body>
 	<!-- main wrapper -->
 	<div class="main-wrapper">
 		<!-- navbar -->
 
-		<!--  Header ======= -->
+		<!-- ======= Header ======= -->
 		<div th:replace="~{/usr/v1/infra/common/header :: div}"></div>
 		<!-- ======= End Header ======= -->
 
@@ -168,7 +118,7 @@
 									<div class="col-md-2">
 										<div class="text-lg-center">
 											<h1 class="fw-bold mb-0 lh-1"
-												th:text="${averageStarItem?.average_star}">5.0</h1>
+												th:text="${averageStarItem?.average_star}">별점평균</h1>
 										</div>
 									</div>
 								</div>
@@ -336,28 +286,30 @@
 										<small class="text-muted ms-2">(예약금)</small>
 									</div>
 									<div>
-										<form>
+										<form name="form" method="post" action="/usr/v1/infra/shop/shopBookingInsert">
 											<div class="mb-3">
-												<label class="form-label">Your Visit</label>
+												<label class="form-label"> 예약 </label>
 												<div class="input-group mb-3">
-													<input type="text" class="form-control" id="dateSelect" placeholder="Date" aria-label="Recipient's username">
-													<span class="input-group-text bg-transparent">
-														<i class="mdi mdi-calendar-month-outline"></i>
+													<input type="text" class="form-control" id="boDate"
+														name="boDate" placeholder="예약날짜" autocomplete="off"
+														readonly required> <span
+														class="input-group-text bg-transparent"> <i
+														class="mdi mdi-calendar-month-outline"></i>
 													</span>
 												</div>
+												<input type="text" class="form-control" name="boTime"
+													id="boTime" placeholder="예약시간" autocomplete="off" readonly
+													required>
 											</div>
-											<!-- select -->
-											<select class="select2">
-												<option>Time</option>
-												<option value="">11:00</option>
-											</select> <br> <br>
-											<!-- option -->
 											<div class="mb-3">
 												<label class="form-label">Option</label>
 												<div th:each="list : ${shopMenuList}">
 													<div class="input-group mb-3">
 														<label class="form-control custom-checkbox"> 
-														<input type="checkbox" id="checkbox1" name="checkbox" th:value="${list.mePrice}">
+															<!-- name="menuSeqs" 로 여러개의 메뉴를 배열로 서버에 전송 -->
+															<input type="checkbox" id="checkbox1" name="menuSeqs" class="menu-checkbox"
+    															th:value="${list.meSeq}" th:attr="data-price=${list.mePrice != null ? list.mePrice : 0}" onchange="updateTotalPrice()">
+															<input type="hidden" name="boTotalPrice" id="boTotalPriceInput"><!-- DB에 boTotalPrice를 넘기기위해서 hidden으로 만든다. -->
 															<div class="content">
 																<p class="align-left">
 																	<strong><span th:text="${list.meName}">메뉴이름</span></strong>
@@ -377,19 +329,15 @@
 													<label class="form-label">Total</label>
 													<div class="input-group mb-3">
 														<p>
-															<span>날짜 : 2024.08.13</span> 
-															<br>
-															<span>시간 : 15:00</span> 
-															<br> 
-															<span>예약금 : 30,000원</span>
-															<br> 
-															<span>총금액 : 70,000원</span>
+															<span>예약 날짜 : <span id="rvDate"></span></span> <br>
+															<span>예약 시간 : <span id="rvTime"></span></span> <br>
+															<span>예약금 : <span id="boDeposit">30,000</span>원</span> <br> 
+															<span>총금액 : <span id="boTotalPrice">0</span>원</span>
 														</p>
 													</div>
 												</div>
 												<div class="mt-3 d-grid">
-													<button class="btn btn-primary " type="button">
-														Check Availability</button>
+													<button type="button" class="btn btn-primary " id="btnBooking" >예약하기</button>
 												</div>
 										</form>
 									</div>
@@ -579,11 +527,16 @@
 	<!-- Theme JS -->
 	<script src="/usr/v1/template/NailForest/assets/js/theme.min.js"></script>
 
+	<!-- by developer -->
+	<script src="/xdm/v1/jquery/jquery-3.7.1.min.js"></script>
+	<script
+		src="/xdm/v1/js/datetimepicker/jquery.datetimepicker.full.min.js"></script>
+
 	<!-- KAKAO MAP API services 라이브러리 불러오기 -->
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e7a4c61c5d2d5eec0befbefd5116181&libraries=services"></script>
 
-	<script>
+	<script type="text/javascript">
 	
 		// 주소
 		var addr = document.getElementById('shopAddress').getAttribute('data-address');
@@ -654,4 +607,71 @@
 	            });
 	        });
 	    });
+	    
+ 	
+		// 예약 날짜,시간 검색 - datetimepicker
+	    window.addEventListener('load', function () {
+	        $.datetimepicker.setLocale('ko');
+	        
+	        // 날짜 선택 필드 초기화
+	        $("#boDate").datetimepicker({ 
+	            timepicker: false,    // 시간 선택 비활성화
+	            format: 'Y-m-d'      // 날짜 형식
+	        }).on('change', function () {
+	            // 날짜 선택 시 rvDate에 값 반영
+	            const selectedDate = $(this).val();
+	            $('#rvDate').text(selectedDate);
+	        });
+	
+	        // 시간 선택 필드 초기화
+	        $("#boTime").datetimepicker({ 
+	            datepicker: false,    // 날짜 선택 비활성화
+	            timepicker: true,     // 시간 선택 활성화
+	            format: 'H:i',        // 시간 형식 (24시간제)
+	            step: 30              // 30분 단위
+	        }).on('change', function () {
+	            // 시간 선택 시 rvTime에 값 반영
+	            const selectedTime = $(this).val();
+	            $('#rvTime').text(selectedTime);
+	        });
+    	});
+		
+		
+		// 메뉴 가격 합산 및 선택된 메뉴 seq 처리
+		function updateTotalPrice() {
+		    let total = 0; // 총 금액 초기화
+		    let selectedMenuSeqs = []; // 선택된 메뉴 seq 배열 초기화
+		
+		    // 선택된 체크박스들의 데이터(가격, seq)를 처리
+		    document.querySelectorAll('.menu-checkbox:checked').forEach(checkbox => {
+		        const price = checkbox.getAttribute('data-price'); // data-price 읽기
+		        console.log('data-price:', price); // 디버깅 출력
+		
+		        const priceValue = isNaN(price) || price === null || price === '' ? 0 : parseInt(price, 10);	// Nan  방지
+		
+		        total += priceValue; // 총 금액 합산
+		        selectedMenuSeqs.push(checkbox.value); // 메뉴 seq 저장
+		    });
+		
+		    // 총 금액을 화면에 표시 (boTotalPrice)
+		    document.getElementById('boTotalPrice').textContent = total.toLocaleString(); // 숫자 형식화
+		
+		    // 총 금액을 hidden 필드에 설정
+		    document.getElementById('boTotalPriceInput').value = total;
+		
+		    // 선택된 메뉴 seq를 디버깅 로그로 출력
+		    console.log('선택된 메뉴 seq:', selectedMenuSeqs);
+		    console.log('총 금액:', total);
+		}
+
+		
+		// 예약하기 버튼 - insert
+		document.getElementById('btnBooking').onclick = function(){
+			form.action="/usr/v1/infra/shop/shopBookingInsert";
+			form.submit();
+		}
+		
+		
 	</script>
+</body>
+</html>

@@ -7,7 +7,7 @@
 	  
 	  <sql id="selectCommon">
 	  		FROM 
-				bears.B_codegroup a
+				bears.b_codegroup a
 			WHERE 1 = 1
 				<!-- 삭제 여부 -->
 				<if test="shDelNy != null and !shDelNy.equals('')">AND ifcgDelNy = #{shDelNy}</if>
@@ -41,7 +41,7 @@
 				    a.ifcgDelNy,
 				    a.ifcgRegist,
 				    a.ifcgEdit,
-				    (SELECT count(ifcdSeq) FROM B_code AS b WHERE 1 = 1 AND b.B_codegroup_ifcgSeq = a.ifcgSeq) AS xifcdSeqCount
+				    (SELECT count(ifcdSeq) FROM b_code AS b WHERE 1 = 1 AND b.b_codegroup_ifcgSeq = a.ifcgSeq) AS xifcdSeqCount
 					<include refid="selectCommon"/>
 					ORDER BY
 						a.ifcgSeq desc
@@ -50,7 +50,7 @@
 	  </select>
 	  
 	  <insert id="insert">
-	  		INSERT INTO B_codegroup (
+	  		INSERT INTO b_codegroup (
 				ifcgName,
 				ifcgUseNy,
 				ifcgOrder,
@@ -83,13 +83,13 @@
 			    a.ifcgRegist,
 			    a.ifcgEdit
 			FROM 
-				bears.B_codegroup a
+				bears.b_codegroup a
 			WHERE 1=1
 				AND a.ifcgSeq = #{ifcgSeq}
 	  </select>
 	  
 	  <update id="update">
-	  		UPDATE bears.B_codegroup
+	  		UPDATE bears.b_codegroup
 	  		SET
 	  			ifcgName = #{ifcgName},
 				ifcgUseNy = #{ifcgUseNy},
@@ -102,7 +102,7 @@
 	  </update>
 	  
 	  <update id="uelete">
-	  		UPDATE bears.B_codegroup
+	  		UPDATE bears.b_codegroup
 	  		SET
 	  			ifcgDelNy = 1
 	  		WHERE 1 = 1
@@ -110,7 +110,7 @@
 	  </update>
 	  
 	  <delete id="delete">
-	  		DELETE FROM B_codegroup
+	  		DELETE FROM b_codegroup
 			WHERE 1 = 1
 				AND ifcgSeq = #{ifcgSeq}
 	  </delete>

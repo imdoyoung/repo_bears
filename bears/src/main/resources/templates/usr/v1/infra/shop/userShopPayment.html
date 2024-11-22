@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- ======= Head ======= -->
+<div th:replace="~{/usr/v1/infra/common/head :: head}"></div>
+<!-- ======= End Head ======= -->
+
+<body>
+	<!-- main wrapper -->
+	<div class="main-wrapper">
+		<!-- navbar -->
+		
+		<!-- ======= Header ======= -->
+		<div th:replace="~{/usr/v1/infra/common/header :: div}"></div>
+		<!-- ======= End Header ======= -->
+		
+		<!-- content -->
+		<div class="py-11 py-7">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-8 col-md-12 col-12">
+						<div class="card checkout-form">
+							<div class="card-body p-5">
+								<h4 class="mb-4 border-bottom pb-2">예약 정보</h4>
+								<!-- form -->
+								<form class="row" name="form" method="post" action="/usr/v1/infra/shop/userShopPaymentUpt">
+									<!-- booking테이블의 boSeq 정보 bookingUpdate에 넘겨주기 -->
+									<input type="hidden" name="boSeq" th:value="${bookingItem?.boSeq}">
+									<!-- 예약날짜 -->
+									<div class="mb-3 col-md-6">
+										<label class="form-label"> 
+											예약날짜
+											<span class="text-danger">*</span>
+										</label> 
+										<input type="text" class="form-control" id="boDate" name="boDate" th:value="${#dates.format(bookingItem?.boDate, 'yyyy-MM-dd')}" readonly>
+									</div>
+									<!-- 예약시간 -->
+									<div class="mb-3 col-md-6">
+										<label class="form-label"> 
+											예약시간
+											<span class="text-danger">*</span>
+										</label> 
+										<input type="text" class="form-control" id="boTime" name="boTime" th:value="${#dates.format(bookingItem?.boTime, 'HH:mm')}" readonly>
+									</div>
+									<!-- name -->
+									<div class="mb-3 col-md-6">
+										<label for="fname" class="form-label"> 
+											이름 
+											<span class="text-danger">*</span>
+										</label> 
+										<input type="text" class="form-control" id="usrName" name="usrName" th:value="${bookingItem?.usrName}" readonly>
+									</div>
+									<!-- phone -->
+									<div class="mb-3 col-md-6">
+										<label for=text class="form-label"> 
+											전화번호 
+											<span class="text-danger">*</span>
+										</label> 
+										<input type="text" class="form-control" id="usrPhone" name="usrPhone" th:value="${bookingItem?.usrPhone}" readonly>
+									</div>
+									<!-- ShopName -->
+									<div class="mb-3 col-md-6">
+										<label class="form-label"> 
+											shop 이름 
+											<span class="text-danger">*</span>
+										</label> 
+										<input type="text" class="form-control" id="nsName" name="nsName" th:value="${shopItem?.nsName}" readonly>
+									</div>
+									<!-- ShopAddr -->
+									<div class="mb-3 col-md-6">
+										<label class="form-label"> 
+											shop 주소 
+											<span class="text-danger">*</span>
+										</label> 
+										<input type="text" class="form-control" id="nsAddr" name="nsAddr" 
+											th:value="${#strings.isEmpty(shopItem?.nsAddr) ? '' : shopItem?.nsAddr} + ' ' + ${#strings.isEmpty(shopItem?.nsAddrDetail) ? '' : shopItem?.nsAddrDetail}" readonly>
+									</div>
+									
+									<!-- 여백 추가 -->
+									<div class="w-100 my-3"></div>
+									
+									<!-- 선택한 메뉴 -->
+									<div class="col-md-12">
+										<h4 class="mb-4 border-bottom pb-2">선택한 메뉴</h4>
+									</div>
+									<div class="mb-3 col-md-6">
+										<div th:each="list : ${bookingMenuList}">
+									        <div class="d-flex justify-content-between">
+									            <span th:text="${list.meName}"></span>
+									            <span th:text="${#numbers.formatInteger(list.mePrice, 0, 'COMMA')}"></span>
+									        </div>
+									    </div>
+									</div>
+									
+									<!-- 여백 추가 -->
+									<div class="w-100 my-3"></div>
+									
+									<!-- payment details -->
+									<div class="col-md-12">
+										<h4 class="mb-4 border-bottom pb-2">결제 정보</h4>
+									</div>
+									<div class="col-md-12">
+										<div class="d-flex flex-wrap mb-4">
+											<!-- payment -->
+											<div class="mb-3 col-md-6">
+												<label for="text" class="form-label"> 
+													결제수단 선택
+													<span class="text-danger">*</span>
+												</label> <br>
+												<input type="radio" name="boPayment" value="15"> 카카오페이
+												<br>
+												<input type="radio" name="boPayment" value="16"> 신용카드/체크카드
+												<br>
+												<input type="radio" name="boPayment" value="17"> 무통장입금
+												<br>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<h4 class="mb-4 border-bottom pb-2">결제 금액</h4>
+									</div>
+									<!-- meta -->
+									<div class="col-md-12">
+										<div class="d-flex justify-content-between align-items-center">
+											<div>
+												<p class="mb-1 text-lg text-dark">(예약금) <span name="boDeposit" id="boDeposit" th:text="${#numbers.formatInteger(bookingItem?.boDeposit, 0, 'COMMA')}"></span>원</p>
+											</div>
+											<div>
+												<button class="btn btn-primary" type="submit" id="btnSubmit">
+													결제 하기
+												</button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- footer -->
+		<!-- footer section -->
+		<div class="footer pt-14 bg-dark ">
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-2 col-lg-2 col-md-4 col-6">
+						<!-- footer widget  -->
+						<div class="mb-14">
+							<h4 class=" mb-3 text-white">Explore Rentkit</h4>
+							<div>
+								<ul class="list-unstyled">
+									<li><a href="#" class="text-reset lh-lg">List your
+											property</a></li>
+									<li><a href="#" class="text-reset lh-lg">Book with
+											Confidence</a></li>
+									<li><a href="#" class="text-reset lh-lg">Trust &
+											Safety</a></li>
+									<li><a href="#" class="text-reset lh-lg">Vacation
+											rental guides</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-2 col-lg-2 col-md-4 col-6">
+						<!-- footer widget  -->
+						<div class="mb-14">
+							<h4 class=" mb-3  text-white">For Owner</h4>
+							<div>
+								<ul class="list-unstyled">
+									<li><a href="#" class="text-reset lh-lg">How it works</a></li>
+									<li><a href="#" class="text-reset lh-lg">Pricing</a></li>
+									<li><a href="#" class="text-reset lh-lg">Join as Owner</a></li>
+									<li><a href="#" class="text-reset lh-lg">Help centre</a></li>
+									<li><a href="#" class="text-reset lh-lg">Mobile App</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-2 col-lg-2 col-md-4 col-6">
+						<div class="mb-14">
+							<h4 class=" mb-3  text-white">Company</h4>
+							<div>
+								<ul class="list-unstyled">
+									<li><a href="#" class="text-reset lh-lg">About us</a></li>
+									<li><a href="#" class="text-reset lh-lg">Careers</a></li>
+									<li><a href="#" class="text-reset lh-lg">Clients</a></li>
+									<li><a href="#" class="text-reset lh-lg">Team</a></li>
+									<li><a href="#" class="text-reset lh-lg">Help Center</a></li>
+									<li><a href="#" class="text-reset lh-lg">Press</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- footer widget  -->
+					<div class="col-xl-2 col-lg-2 col-md-4 col-6">
+						<div class="mb-14">
+							<h4 class=" mb-3  text-white">Social</h4>
+							<div>
+								<ul class="list-unstyled">
+									<li><a href="#" class="text-reset lh-lg">Facebook</a></li>
+									<li><a href="#" class="text-reset lh-lg">Twitter</a></li>
+									<li><a href="#" class="text-reset lh-lg">Linkedin</a></li>
+									<li><a href="#" class="text-reset lh-lg">Google</a></li>
+									<li><a href="#" class="text-reset lh-lg">Instagram</a></li>
+								</ul>
+							</div>
+							<!-- footer widget  -->
+						</div>
+					</div>
+					<!-- footer widget  -->
+					<div class="col-xl-4 col-lg-4 col-md-8 col-12">
+						<div class="mb-14">
+							<h4 class=" mb-3  text-white">Rentkit deals in your inbox ?</h4>
+							<p class="text-reset  ">Get special offers, travel
+								inspiration, and more from Rentkit</p>
+							<form>
+								<div class="input-group mb-3">
+									<input type="text" class="form-control"
+										placeholder="Enter your email" aria-label="Enter your email"
+										aria-describedby="subscriber"> <span
+										class="btn btn-primary" id="subscriber">Subscribe</span>
+								</div>
+
+
+
+							</form>
+							<!-- footer widget  -->
+						</div>
+					</div>
+					<div class="col-md-12 col-12">
+						<p class="fs-6 text-gray-500">© 2021 Rentkit. All rights
+							reserved.</p>
+					</div>
+				</div>
+				<!-- tiny footer  -->
+				<!-- footer section -->
+			</div>
+			<!-- footer section -->
+		</div>
+	</div>
+	<!-- scripts -->
+	<!-- Libs JS -->
+	<script src="/usr/v1/template/NailForest/assets/libs/jquery/dist/jquery.min.js"></script>
+	<script src="/usr/v1/template/NailForest/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="/usr/v1/template/NailForest/assets/libs/owl.carousel/dist/owl.carousel.min.js"></script>
+	<script src="/usr/v1/template/NailForest/assets/libs/select2/dist/js/select2.full.min.js"></script>
+	<script src="/usr/v1/template/NailForest/assets/libs/select2/dist/js/select2.min.js"></script>
+	<script src="/usr/v1/template/NailForest/assets/libs/jquery-raty-js/lib/jquery.raty.js"></script>
+	<script src="/usr/v1/template/NailForest/assets/libs/quill/dist/quill.min.js"></script>
+	<script src="/usr/v1/template/NailForest/assets/libs/uppy/dist/uppy.min.js"></script>
+	<script src="/usr/v1/template/NailForest/assets/libs/litepicker/dist/litepicker.js"></script>
+	<script src="/usr/v1/template/NailForest/assets/libs/prismjs/prism.js"></script>
+	<script src="/usr/v1/template/NailForest/assets/libs/leaflet/dist/leaflet.js"></script>
+	<script
+		src="/usr/v1/template/NailForest/assets/libs/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+	<script src="/usr/v1/template/NailForest/assets/libs/nouislider/dist/nouislider.min.js"></script>
+	<script src="/usr/v1/template/NailForest/assets/libs/wnumb/wNumb.min.js"></script>
+	<script src="/usr/v1/template/NailForest/assets/libs/simplebar/dist/simplebar.min.js"></script>
+	<script src="/usr/v1/template/NailForest/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+
+
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.12/clipboard.min.js"></script>
+
+	<!-- Theme JS -->
+	<script src="/usr/v1/template/NailForest/assets/js/theme.min.js"></script>
+	
+	<script type="text/javascript">
+		
+		// 카카오페이 결제 팝업창 연결
+		
+		document.getElementById("btnSubmit").onclick = function(){
+			form.action = "/usr/v1/infra/shop/userShopPaymentUpt";
+			form.submit();
+		}
+	</script>
+	
+</body>
+</html>

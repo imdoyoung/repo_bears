@@ -131,4 +131,35 @@ public class ShopService {
 	public List<ShopDto> menuSelectList(ShopDto shopDto){
 		return shopDao.menuSelectList(shopDto);
 	}
+	
+	// ===== booking ===== //
+	// 예약 등록 - shopBookingInsert
+	public int shopBookingInsert(ShopDto shopDto) {
+		return shopDao.shopBookingInsert(shopDto);
+	};
+	public int shopBookingMenuInsert(ShopDto shopDto) {
+		return shopDao.shopBookingMenuInsert(shopDto);
+	};
+	
+	// ===== ShopPayment ===== //
+	// booking+user 정보 출력
+	public ShopDto paymentBookingSelectOne(ShopDto shopdto) {
+		return shopDao.paymentBookingSelectOne(shopdto);
+	};
+	
+	// bookingMenu+menu 정보 출력
+	public List<ShopDto> paymentBookingMenuSelectList(ShopDto shopDto){
+		return shopDao.paymentBookingMenuSelectList(shopDto);
+	};
+	
+	// shop 정보 출력
+	public ShopDto paymentShopSelectOne(ShopDto shopDto) {
+		return shopDao.paymentShopSelectOne(shopDto);
+	};
+	
+	// booking 정보 update
+	public int bookingUpdate(ShopDto shopDto) {
+		return shopDao.bookingUpdate(shopDto);
+	};
+	
 }

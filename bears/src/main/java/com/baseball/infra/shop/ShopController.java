@@ -1,17 +1,20 @@
 package com.baseball.infra.shop;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.baseball.common.util.UtilDateTime;
-import com.baseball.infra.code.CodeDto;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class ShopController {
@@ -39,13 +42,13 @@ public class ShopController {
 			model.addAttribute("shopList", shopService.shopSelectList(shopVo));
 		}
 		
-		return "/xdm/v1/infra/shop/shopXdmList";
+		return "xdm/v1/infra/shop/shopXdmList";
 	}
 	
 	// 등록 - selectForm
 	@RequestMapping(value="/xdm/v1/infra/shop/shopXdmForm")
 	public String shopXdmForm() {
-		return "/xdm/v1/infra/shop/shopXdmForm";
+		return "xdm/v1/infra/shop/shopXdmForm";
 	}
 	
 	// 등록 - selectInst
@@ -61,7 +64,7 @@ public class ShopController {
 	public String shopXdmMfom(ShopDto shopDto, Model model) {
 		model.addAttribute("shopItem", shopService.shopSelectOne(shopDto));
 		System.out.println("/// shopMfom-selectOne 실행 ///");
-		return "/xdm/v1/infra/shop/shopXdmMfom";
+		return "xdm/v1/infra/shop/shopXdmMfom";
 	}
 	
 	// 수정 - update
@@ -103,7 +106,7 @@ public class ShopController {
 			model.addAttribute("shopMenuList", shopService.shopMenuSelectList(shopVo));
 		}
 		
-		return "/xdm/v1/infra/shop/shopMenuXdmList";
+		return "xdm/v1/infra/shop/shopMenuXdmList";
 	}
 	
 	// 등록 - selectForm
@@ -113,7 +116,7 @@ public class ShopController {
 		List<ShopDto> codeGroups = shopService.selectListShop();
 		// 불러온 코드그룹 정보를 codeXdmForm에 전달해주어야함
 		model.addAttribute("listShop", shopService.selectListShop());
-		return "/xdm/v1/infra/shop/shopMenuXdmForm";
+		return "xdm/v1/infra/shop/shopMenuXdmForm";
 	}
 		
 	// 등록 - selectInst
@@ -170,7 +173,7 @@ public class ShopController {
 			model.addAttribute("shopList", shopService.shopSelectList(shopVo));
 		}
 		
-		return "/usr/v1/infra/shop/userShopList";
+		return "usr/v1/infra/shop/userShopList";
 	}
 	
 	// ShopDetail(Mfom-selectOne)
@@ -180,13 +183,124 @@ public class ShopController {
 		model.addAttribute("reviewList", shopService.shopReviewSelectList(shopDto));
 		model.addAttribute("averageStarItem", shopService.getAverageStar(shopDto));
 		model.addAttribute("shopMenuList", shopService.menuSelectList(shopDto));
-		return "/usr/v1/infra/shop/userShopDetail";
+		return "usr/v1/infra/shop/userShopDetail";
+	}
+	
+	// ===== booking ===== //
+	// 예약 등록 - shopBookingInsert
+	// step1
+//	@RequestMapping(value = "/usr/v1/infra/shop/shopBookingInsert")
+//	public String shopBookingInsert(ShopDto shopDto) {
+//		shopService.shopBookingInsert(shopDto);
+//		shopService.shopBookingMenuInsert(shopDto);
+//		return "/usr/v1/infra/shop/userShopPayment";
+//	}
+	
+	// step2
+	// shopBookingInsert의 B_user_usrSeq에 sessSeqXdm 값 저장하기
+//	@RequestMapping(value = "/usr/v1/infra/shop/shopBookingInsert")
+//	public String shopBookingInsert(ShopDto shopDto, HttpSession httpSession) {
+//		
+//	    // 세션에서 sessSeqXdm 값 가져오기
+//	    String sessSeqXdm = (String) httpSession.getAttribute("sessSeqXdm");
+//
+//	    if (sessSeqXdm != null) {
+//	        // B_user_usrSeq로 사용되는 값 설정
+//	        shopDto.setB_user_usrSeq(sessSeqXdm);
+//	        
+//	        // 실제 shopBookingInsert와 관련된 서비스 호출
+//	        shopService.shopBookingInsert(shopDto);
+//	        shopService.shopBookingMenuInsert(shopDto);
+//	    } else {
+//	        // 세션에 사용자 정보가 없으면 처리
+//	        return "redirect:/login"; // 로그인 페이지로 리디렉션
+//	    }
+//
+//	    return "/usr/v1/infra/shop/userShopPayment";
+//	}
+
+	
+	// step3
+	// shopBookingInsert에 html에서 계산 된 boTotalPrice 값 바인딩
+//	@RequestMapping(value = "/usr/v1/infra/shop/shopBookingInsert")
+//	public String shopBookingInsert(ShopDto shopDto, HttpSession httpSession) {
+//		
+//		// 세션에서 sessSeqXdm 값 가져오기
+//		String sessSeqXdm = (String) httpSession.getAttribute("sessSeqXdm");
+//		
+//		if (sessSeqXdm != null) {
+//			// B_user_usrSeq로 사용되는 값 설정
+//			shopDto.setB_user_usrSeq(sessSeqXdm);
+//			
+//			// boTotalPrice 값 설정 (자동으로 폼에서 전달된 값이 ShopDto로 바인딩됨)
+//	        System.out.println("총 금액: " + shopDto.getBoTotalPrice()); // 확인용 출력
+//			
+//			// 실제 shopBookingInsert와 관련된 서비스 호출
+//			shopService.shopBookingInsert(shopDto);
+//			shopService.shopBookingMenuInsert(shopDto);
+//		} else {
+//			// 세션에 사용자 정보가 없으면 처리
+//			return "redirect:/login"; // 로그인 페이지로 리디렉션
+//		}
+//		
+//		return "/usr/v1/infra/shop/userShopPayment";
+//	}
+	
+	// step 4
+	// shopBookingMenuInsert의 b_menu_meSeq에 meSeq 값 저장하기
+	@RequestMapping(value = "/usr/v1/infra/shop/shopBookingInsert")
+	public String shopBookingInsert(ShopDto shopDto,@RequestParam("menuSeqs") List<String> menuSeqs, HttpSession httpSession) {
+		
+		// 세션에서 sessSeqXdm 값 가져오기
+		String sessSeqXdm = (String) httpSession.getAttribute("sessSeqXdm");
+		
+		if (sessSeqXdm != null) {
+			// B_user_usrSeq로 사용되는 값 설정
+			shopDto.setB_user_usrSeq(sessSeqXdm);
+			
+			// menuSeqs 값을 shopDto에 설정
+			shopDto.setMenuSeqs(menuSeqs);	// shopDto에 menuSeqs 필드 추가
+			
+			// boTotalPrice 값 설정 (자동으로 폼에서 전달된 값이 ShopDto로 바인딩됨)
+			System.out.println("총 금액: " + shopDto.getBoTotalPrice()); // 확인용 출력
+			
+			// 실제 shopBookingInsert와 관련된 서비스 호출
+			shopService.shopBookingInsert(shopDto);		// 실행 후 shopDto.boSeq에 boSeq 값이 저장됨
+			shopService.shopBookingMenuInsert(shopDto);
+			
+			// boSeq 값을 userShopPayment로 리다이렉션 전달
+			 return "redirect:/usr/v1/infra/shop/userShopPayment?boSeq=" + shopDto.getBoSeq();
+		} else {
+			// 세션에 사용자 정보가 없으면 처리
+			return "redirect:/usr/v1/infra/user/userShopSignin"; // 로그인 페이지로 리디렉션
+		}
+//		return "/usr/v1/infra/shop/userShopPayment";
+	}
+
+	// ShopPayment
+	@RequestMapping(value="/usr/v1/infra/shop/userShopPayment")
+	public String userShopPayment(ShopDto shopDto, @RequestParam("boSeq") String boSeq, Model model) {
+
+		// 결제 페이지에 예약 정보 출력(shopPaymentSelectOne 호출)
+		model.addAttribute("bookingItem", shopService.paymentBookingSelectOne(shopDto));
+		model.addAttribute("bookingMenuList", shopService.paymentBookingMenuSelectList(shopDto));
+		model.addAttribute("shopItem", shopService.paymentShopSelectOne(shopDto));
+		
+		return "usr/v1/infra/shop/userShopPayment";
+	}
+	
+	// ShopPaymentUpt(결제수단, 결제일 업데이트)
+	@RequestMapping(value="/usr/v1/infra/shop/userShopPaymentUpt")
+	public String userShopPaymentUpt(ShopDto shopDto) {
+		shopService.bookingUpdate(shopDto);
+		return "usr/v1/infra/shop/userShopPaymentComplete";
+	}
+	// 결제완료 후 이동할 페이지
+	@RequestMapping(value="/usr/v1/infra/shop/userShopPaymentComplete")
+	public String userShopPaymentComplete() {
+		return "usr/v1/infra/shop/userShopPaymentComplete";
 	}
 	
 	
-	
-	
-	
-	
-	
+	 
 }

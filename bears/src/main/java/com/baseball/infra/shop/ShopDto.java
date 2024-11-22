@@ -1,6 +1,7 @@
 package com.baseball.infra.shop;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
@@ -58,7 +59,7 @@ public class ShopDto {
     private Integer review_count;
     private double average_star;
     
-    // 메뉴
+    // menu
     private String meSeq;
     private String meName; 
     private String meDesc; 
@@ -68,11 +69,57 @@ public class ShopDto {
     private Integer meUseNy; 
     private Integer meDelNy;
 	
+    // booking
+    private String boSeq;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date boDate;
+    @DateTimeFormat(pattern="HH:mm")
+    private Date boTime;
+    private Integer boDeposit;
+    private Integer boTotalPrice;
+    private Integer boPayment;
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private Date boSettleDate;
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private Date boRegDate;
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private Date boEditdate;
+    private Integer boDelNy;
+    
+    // bookingMenu
+    private String bmSeq;
+    private Integer bmUseNy;
+    private Integer bmDelNy;
+    private String B_booking_boSeq;
+    private String B_menu_meSeq;
+    private List<String> menuSeqs;	// checkbox 선택된 meseq 배열
 	
+    // user
+	private String usrSeq;
+	private Integer usrXdmNy;
+	private String usrName;
+	private String usrPw;
+	private Integer usrGender;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date usrBirth;
+	private String usrEmail;
+	private String usrPhone;
+	private String usrZipCode;
+	private String usrAddr;
+	private String usrAddrDetail;
+	private Integer usrGrade;
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date usrRegDate;
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date usrEditdate;
+	private Integer usrTosNy;
+	private Integer usrMktNy;
+	private Integer usrDelNy;
+    
 	// 파일첨부
 	private MultipartFile uploadFile;
 	private MultipartFile[] uploadFiles;
-	private Integer nsfSeq;
+	private String nsfSeq;
 	private Integer nsfType;
 	private Integer nsfDefaultNy;
 	private Integer nsfSort;
@@ -89,8 +136,6 @@ public class ShopDto {
 	private Date nsfRegDateTime;
 	private Date nsfRegDateTimeSvr;
 	private String nsfTableName;
-	
-
 
 //	----- getter/setter -----
 
@@ -262,6 +307,222 @@ public class ShopDto {
 	public void setNsDelNy(Integer nsDelNy) {
 		this.nsDelNy = nsDelNy;
 	}
+	public String getReSeq() {
+		return reSeq;
+	}
+	public void setReSeq(String reSeq) {
+		this.reSeq = reSeq;
+	}
+	public String getReTitle() {
+		return reTitle;
+	}
+	public void setReTitle(String reTitle) {
+		this.reTitle = reTitle;
+	}
+	public String getReContent() {
+		return reContent;
+	}
+	public void setReContent(String reContent) {
+		this.reContent = reContent;
+	}
+	public String getReId() {
+		return reId;
+	}
+	public void setReId(String reId) {
+		this.reId = reId;
+	}
+	public Integer getReStar() {
+		return reStar;
+	}
+	public void setReStar(Integer reStar) {
+		this.reStar = reStar;
+	}
+	public Date getReRegDate() {
+		return reRegDate;
+	}
+	public void setReRegDate(Date reRegDate) {
+		this.reRegDate = reRegDate;
+	}
+	public Date getReEditDate() {
+		return reEditDate;
+	}
+	public void setReEditDate(Date reEditDate) {
+		this.reEditDate = reEditDate;
+	}
+	public Integer getReDelNy() {
+		return reDelNy;
+	}
+	public void setReDelNy(Integer reDelNy) {
+		this.reDelNy = reDelNy;
+	}
+	public String getB_user_usrSeq() {
+		return B_user_usrSeq;
+	}
+	public void setB_user_usrSeq(String b_user_usrSeq) {
+		B_user_usrSeq = b_user_usrSeq;
+	}
+	public String getB_shop_nsSeq() {
+		return B_shop_nsSeq;
+	}
+	public void setB_shop_nsSeq(String b_shop_nsSeq) {
+		B_shop_nsSeq = b_shop_nsSeq;
+	}
+	public String getUsrId() {
+		return usrId;
+	}
+	public void setUsrId(String usrId) {
+		this.usrId = usrId;
+	}
+	public Integer getReview_count() {
+		return review_count;
+	}
+	public void setReview_count(Integer review_count) {
+		this.review_count = review_count;
+	}
+	public double getAverage_star() {
+		return average_star;
+	}
+	public void setAverage_star(double average_star) {
+		this.average_star = average_star;
+	}
+	public String getMeSeq() {
+		return meSeq;
+	}
+	public void setMeSeq(String meSeq) {
+		this.meSeq = meSeq;
+	}
+	public String getMeName() {
+		return meName;
+	}
+	public void setMeName(String meName) {
+		this.meName = meName;
+	}
+	public String getMeDesc() {
+		return meDesc;
+	}
+	public void setMeDesc(String meDesc) {
+		this.meDesc = meDesc;
+	}
+	public String getMeTime() {
+		return meTime;
+	}
+	public void setMeTime(String meTime) {
+		this.meTime = meTime;
+	}
+	public Integer getMePrice() {
+		return mePrice;
+	}
+	public void setMePrice(Integer mePrice) {
+		this.mePrice = mePrice;
+	}
+	public Integer getMeCount() {
+		return meCount;
+	}
+	public void setMeCount(Integer meCount) {
+		this.meCount = meCount;
+	}
+	public Integer getMeUseNy() {
+		return meUseNy;
+	}
+	public void setMeUseNy(Integer meUseNy) {
+		this.meUseNy = meUseNy;
+	}
+	public Integer getMeDelNy() {
+		return meDelNy;
+	}
+	public void setMeDelNy(Integer meDelNy) {
+		this.meDelNy = meDelNy;
+	}
+	public String getBoSeq() {
+		return boSeq;
+	}
+	public void setBoSeq(String boSeq) {
+		this.boSeq = boSeq;
+	}
+	public Date getBoDate() {
+		return boDate;
+	}
+	public void setBoDate(Date boDate) {
+		this.boDate = boDate;
+	}
+	public Date getBoTime() {
+		return boTime;
+	}
+	public void setBoTime(Date boTime) {
+		this.boTime = boTime;
+	}
+	public Integer getBoDeposit() {
+		return boDeposit;
+	}
+	public void setBoDeposit(Integer boDeposit) {
+		this.boDeposit = boDeposit;
+	}
+	public Integer getBoTotalPrice() {
+		return boTotalPrice;
+	}
+	public void setBoTotalPrice(Integer boTotalPrice) {
+		this.boTotalPrice = boTotalPrice;
+	}
+	public Integer getBoPayment() {
+		return boPayment;
+	}
+	public void setBoPayment(Integer boPayment) {
+		this.boPayment = boPayment;
+	}
+	public Date getBoSettleDate() {
+		return boSettleDate;
+	}
+	public void setBoSettleDate(Date boSettleDate) {
+		this.boSettleDate = boSettleDate;
+	}
+	public Date getBoRegDate() {
+		return boRegDate;
+	}
+	public void setBoRegDate(Date boRegDate) {
+		this.boRegDate = boRegDate;
+	}
+	public Date getBoEditdate() {
+		return boEditdate;
+	}
+	public void setBoEditdate(Date boEditdate) {
+		this.boEditdate = boEditdate;
+	}
+	public Integer getBoDelNy() {
+		return boDelNy;
+	}
+	public void setBoDelNy(Integer boDelNy) {
+		this.boDelNy = boDelNy;
+	}
+	public String getBmSeq() {
+		return bmSeq;
+	}
+	public void setBmSeq(String bmSeq) {
+		this.bmSeq = bmSeq;
+	}
+	public Integer getBmUseNy() {
+		return bmUseNy;
+	}
+	public void setBmUseNy(Integer bmUseNy) {
+		this.bmUseNy = bmUseNy;
+	}
+	public Integer getBmDelNy() {
+		return bmDelNy;
+	}
+	public void setBmDelNy(Integer bmDelNy) {
+		this.bmDelNy = bmDelNy;
+	}
+	public String getB_booking_boSeq() {
+		return B_booking_boSeq;
+	}
+	public void setB_booking_boSeq(String b_booking_boSeq) {
+		B_booking_boSeq = b_booking_boSeq;
+	}
+	public String getB_menu_meSeq() {
+		return B_menu_meSeq;
+	}
+	public void setB_menu_meSeq(String b_menu_meSeq) {
+		B_menu_meSeq = b_menu_meSeq;
+	}
 	public MultipartFile getUploadFile() {
 		return uploadFile;
 	}
@@ -274,10 +535,10 @@ public class ShopDto {
 	public void setUploadFiles(MultipartFile[] uploadFiles) {
 		this.uploadFiles = uploadFiles;
 	}
-	public Integer getNsfSeq() {
+	public String getNsfSeq() {
 		return nsfSeq;
 	}
-	public void setNsfSeq(Integer nsfSeq) {
+	public void setNsfSeq(String nsfSeq) {
 		this.nsfSeq = nsfSeq;
 	}
 	public Integer getNsfType() {
@@ -376,131 +637,113 @@ public class ShopDto {
 	public void setNsfTableName(String nsfTableName) {
 		this.nsfTableName = nsfTableName;
 	}
-	public String getReSeq() {
-		return reSeq;
+	public List<String> getMenuSeqs() {
+		return menuSeqs;
 	}
-	public void setReSeq(String reSeq) {
-		this.reSeq = reSeq;
+	public void setMenuSeqs(List<String> menuSeqs) {
+		this.menuSeqs = menuSeqs;
 	}
-	public String getReTitle() {
-		return reTitle;
+	public String getUsrSeq() {
+		return usrSeq;
 	}
-	public void setReTitle(String reTitle) {
-		this.reTitle = reTitle;
+	public void setUsrSeq(String usrSeq) {
+		this.usrSeq = usrSeq;
 	}
-	public String getReContent() {
-		return reContent;
+	public Integer getUsrXdmNy() {
+		return usrXdmNy;
 	}
-	public void setReContent(String reContent) {
-		this.reContent = reContent;
+	public void setUsrXdmNy(Integer usrXdmNy) {
+		this.usrXdmNy = usrXdmNy;
 	}
-	public String getReId() {
-		return reId;
+	public String getUsrName() {
+		return usrName;
 	}
-	public void setReId(String reId) {
-		this.reId = reId;
+	public void setUsrName(String usrName) {
+		this.usrName = usrName;
 	}
-	public Integer getReStar() {
-		return reStar;
+	public String getUsrPw() {
+		return usrPw;
 	}
-	public void setReStar(Integer reStar) {
-		this.reStar = reStar;
+	public void setUsrPw(String usrPw) {
+		this.usrPw = usrPw;
 	}
-	public Date getReRegDate() {
-		return reRegDate;
+	public Integer getUsrGender() {
+		return usrGender;
 	}
-	public void setReRegDate(Date reRegDate) {
-		this.reRegDate = reRegDate;
+	public void setUsrGender(Integer usrGender) {
+		this.usrGender = usrGender;
 	}
-	public Date getReEditDate() {
-		return reEditDate;
+	public Date getUsrBirth() {
+		return usrBirth;
 	}
-	public void setReEditDate(Date reEditDate) {
-		this.reEditDate = reEditDate;
+	public void setUsrBirth(Date usrBirth) {
+		this.usrBirth = usrBirth;
 	}
-	public Integer getReDelNy() {
-		return reDelNy;
+	public String getUsrEmail() {
+		return usrEmail;
 	}
-	public void setReDelNy(Integer reDelNy) {
-		this.reDelNy = reDelNy;
+	public void setUsrEmail(String usrEmail) {
+		this.usrEmail = usrEmail;
 	}
-	public String getB_user_usrSeq() {
-		return B_user_usrSeq;
+	public String getUsrPhone() {
+		return usrPhone;
 	}
-	public void setB_user_usrSeq(String b_user_usrSeq) {
-		B_user_usrSeq = b_user_usrSeq;
+	public void setUsrPhone(String usrPhone) {
+		this.usrPhone = usrPhone;
 	}
-	public String getB_shop_nsSeq() {
-		return B_shop_nsSeq;
+	public String getUsrZipCode() {
+		return usrZipCode;
 	}
-	public void setB_shop_nsSeq(String b_shop_nsSeq) {
-		B_shop_nsSeq = b_shop_nsSeq;
+	public void setUsrZipCode(String usrZipCode) {
+		this.usrZipCode = usrZipCode;
 	}
-	public String getUsrId() {
-		return usrId;
+	public String getUsrAddr() {
+		return usrAddr;
 	}
-	public void setUsrId(String usrId) {
-		this.usrId = usrId;
+	public void setUsrAddr(String usrAddr) {
+		this.usrAddr = usrAddr;
 	}
-	public double getAverage_star() {
-		return average_star;
+	public String getUsrAddrDetail() {
+		return usrAddrDetail;
 	}
-	public void setAverage_star(double average_star) {
-		this.average_star = average_star;
+	public void setUsrAddrDetail(String usrAddrDetail) {
+		this.usrAddrDetail = usrAddrDetail;
 	}
-	public Integer getReview_count() {
-		return review_count;
+	public Integer getUsrGrade() {
+		return usrGrade;
 	}
-	public void setReview_count(Integer review_count) {
-		this.review_count = review_count;
+	public void setUsrGrade(Integer usrGrade) {
+		this.usrGrade = usrGrade;
 	}
-	public String getMeSeq() {
-		return meSeq;
+	public Date getUsrRegDate() {
+		return usrRegDate;
 	}
-	public void setMeSeq(String meSeq) {
-		this.meSeq = meSeq;
+	public void setUsrRegDate(Date usrRegDate) {
+		this.usrRegDate = usrRegDate;
 	}
-	public String getMeName() {
-		return meName;
+	public Date getUsrEditdate() {
+		return usrEditdate;
 	}
-	public void setMeName(String meName) {
-		this.meName = meName;
+	public void setUsrEditdate(Date usrEditdate) {
+		this.usrEditdate = usrEditdate;
 	}
-	public String getMeDesc() {
-		return meDesc;
+	public Integer getUsrTosNy() {
+		return usrTosNy;
 	}
-	public void setMeDesc(String meDesc) {
-		this.meDesc = meDesc;
+	public void setUsrTosNy(Integer usrTosNy) {
+		this.usrTosNy = usrTosNy;
 	}
-	public String getMeTime() {
-		return meTime;
+	public Integer getUsrMktNy() {
+		return usrMktNy;
 	}
-	public void setMeTime(String meTime) {
-		this.meTime = meTime;
+	public void setUsrMktNy(Integer usrMktNy) {
+		this.usrMktNy = usrMktNy;
 	}
-	public Integer getMePrice() {
-		return mePrice;
+	public Integer getUsrDelNy() {
+		return usrDelNy;
 	}
-	public void setMePrice(Integer mePrice) {
-		this.mePrice = mePrice;
-	}
-	public Integer getMeCount() {
-		return meCount;
-	}
-	public void setMeCount(Integer meCount) {
-		this.meCount = meCount;
-	}
-	public Integer getMeUseNy() {
-		return meUseNy;
-	}
-	public void setMeUseNy(Integer meUseNy) {
-		this.meUseNy = meUseNy;
-	}
-	public Integer getMeDelNy() {
-		return meDelNy;
-	}
-	public void setMeDelNy(Integer meDelNy) {
-		this.meDelNy = meDelNy;
+	public void setUsrDelNy(Integer usrDelNy) {
+		this.usrDelNy = usrDelNy;
 	}
 
 }

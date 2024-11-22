@@ -8,16 +8,16 @@
 	<!-- paging -->
 	<sql id="shopSelectCommon">
 		FROM
-			bears.B_shop a
+			bears.b_shop a
 			LEFT JOIN (
 				SELECT 
-					B_shop_nsSeq,
+					b_shop_nsSeq,
 					AVG(reStar) AS average_star,
 		            COUNT(*) AS review_count
 				FROM
-					B_review
-				GROUP BY B_shop_nsSeq
-			) AS avg_table On a.nsSeq = avg_table.B_shop_nsSeq
+					b_review
+				GROUP BY b_shop_nsSeq
+			) AS avg_table On a.nsSeq = avg_table.b_shop_nsSeq
 		WHERE 1 = 1
 			AND a.nsSeq = nsSeq
 			<!-- 삭제여부 -->
@@ -121,13 +121,13 @@
     			avg_table.review_count
 			<include refid="shopSelectCommon"/>
 			ORDER BY
-				a.nsSeq DESC
+				a.nsSeq ASC
 		) aa limit #{rowNumToShow} offset #{startRnumForMySql}
 	</select>
 	
 	<!-- shopInsert - form 페이지 데이터 입력하기 -->
 	<insert id="shopInsert">
-		INSERT INTO B_shop (
+		INSERT INTO b_shop (
 			nsName,
 		    nsTel,
 		    nsOwnerName,
@@ -217,14 +217,14 @@
 			a.nsEditDate,
 			a.nsDelNy
 		FROM
-			bears.B_shop a
+			bears.b_shop a
 		WHERE 1 = 1
 			AND a.nsSeq = #{nsSeq}
 	</select>
 	
 	<!-- shopUpdate - Mfom 페이지에서 데이터 수정하기 -->
 	<update id="shopUpdate">
-		UPDATE bears.B_shop
+		UPDATE bears.b_shop
 		SET
 			nsName = #{nsName},
 		    nsTel = #{nsTel},
@@ -255,7 +255,7 @@
 	
 	<!-- shopUelete - Mfom 페이지에서 삭제여부 수정하기(수정삭제) -->
 	<update id="shopUelete">
-		UPDATE bears.B_shop
+		UPDATE bears.b_shop
 		SET
 			nsDelNy = 1
 		WHERE 1 = 1
@@ -264,14 +264,14 @@
 	
 	<!-- shopDelete - Mfom 페이지에서 삭제 -->
 	<delete id="shopDelete">
-		DELETE FROM bears.B_shop
+		DELETE FROM bears.b_shop
 		WHERE 1 = 1
 			AND nsSeq = #{nsSeq}
 	</delete>
 	
 	<!-- 파일 업로드 -->
 	<insert id="insertUploaded">
-		INSERT INTO B_shopUploaded (
+		INSERT INTO b_shopUploaded (
 			nsfType,
 			nsfDefaultNy,
 			nsfSort,
@@ -310,9 +310,9 @@
 	<select id="shopReviewSelectList" resultMap="resultMapObj">
 		SELECT 
 			c.reSeq,
-		    c.B_shop_nsSeq,
+		    c.b_shop_nsSeq,
 		    b.nsName,
-		    c.B_user_usrSeq,
+		    c.b_user_usrSeq,
 		    a.usrId,
 		    c.reTitle,
 		    c.reContent,
@@ -321,11 +321,11 @@
 		    c.reEditDate,
 		    c.reDelNy    
 		FROM 
-			B_review AS c
-			LEFT JOIN B_user AS a
-				ON c.B_user_usrSeq = a.usrSeq
-			LEFT JOIN B_shop AS b
-				ON c.B_shop_nsSeq = b.nsSeq
+			b_review AS c
+			LEFT JOIN b_user AS a
+				ON c.b_user_usrSeq = a.usrSeq
+			LEFT JOIN b_shop AS b
+				ON c.b_shop_nsSeq = b.nsSeq
 		WHERE 1 = 1 
 			AND b.nsSeq = #{nsSeq}
 		ORDER BY 
@@ -339,11 +339,11 @@
 		    b.nsName,
 		    AVG(c.reStar) as average_star
 		FROM 
-			B_review AS c
-			LEFT JOIN B_user AS a
-				ON c.B_user_usrSeq = a.usrSeq
-			LEFT JOIN B_shop AS b
-				ON c.B_shop_nsSeq = b.nsSeq
+			b_review AS c
+			LEFT JOIN b_user AS a
+				ON c.b_user_usrSeq = a.usrSeq
+			LEFT JOIN b_shop AS b
+				ON c.b_shop_nsSeq = b.nsSeq
 		WHERE 1 = 1 
 			AND b.nsSeq = #{nsSeq}
 	</select>
@@ -361,17 +361,17 @@
 				c.meCount, 
 				c.meUseNy, 
 				c.meDelNy, 
-				c.B_shop_nsSeq
+				c.b_shop_nsSeq
 			<include refid="shopMenuSelectCommon"></include>
-			ORDER BY c.meSeq DESC
+			ORDER BY c.meSeq ASC
 		) bb limit #{rowNumToShow} offset #{startRnumForMySql}
 	</select>
 	
 	<!-- paging -->
 	<sql id="shopMenuSelectCommon">
-		FROM B_menu AS c
-			LEFT JOIN B_shop AS a
-				ON c.B_shop_nsSeq = a.nsSeq
+		FROM b_menu AS c
+			LEFT JOIN b_shop AS a
+				ON c.b_shop_nsSeq = a.nsSeq
 		WHERE 1 = 1
 			<!-- 삭제여부 -->
 			<if test="shMeDelNy != null and !shMeDelNy.equals('')">AND meDelNy = #{shMeDelNy}</if>
@@ -397,16 +397,16 @@
 			a.nsSeq,
 			a.nsName
 		FROM
-			B_shop a
+			b_shop a
 		WHERE 1 = 1
 			AND a.nsDelNy = 0
 		ORDER BY
-			a.nsSeq DESC
+			a.nsSeq ASC
 	</select>
 	
 	<!-- shopMenuInsert - form 페이지 데이터 입력하기 -->
 	<insert id="shopMenuInsert">
-		INSERT INTO B_menu (
+		INSERT INTO b_menu (
 			meName, 
 			meDesc, 
 			meTime, 
@@ -414,7 +414,7 @@
 			meCount, 
 			meUseNy, 
 			meDelNy, 
-			B_shop_nsSeq
+			b_shop_nsSeq
 		) values (
 		    #{meName},
 		    #{meDesc},
@@ -423,7 +423,7 @@
 		    null,
 		    #{meUseNy},
 		    0,
-		    #{B_shop_nsSeq}
+		    #{b_shop_nsSeq}
 		)
 	</insert>
 	
@@ -438,14 +438,121 @@
 			c.meCount, 
 			c.meUseNy, 
 			c.meDelNy, 
-			c.B_shop_nsSeq
+			c.b_shop_nsSeq
 		FROM 
-			B_menu AS c
-			LEFT JOIN B_shop AS a ON c.B_shop_nsSeq = a.nsSeq
+			b_menu AS c
+			LEFT JOIN b_shop AS a ON c.b_shop_nsSeq = a.nsSeq
 		WHERE 1 = 1
-			AND c.B_shop_nsSeq = #{nsSeq}
+			AND c.b_shop_nsSeq = #{nsSeq}
 		ORDER BY 
-			c.meSeq DESC
+			c.meSeq ASC
 	</select>
+	
+	<!-- shopDetail에서 booking, bookingMenu insert -->
+	<!-- boSeq 값을 b_booking에 삽입한 후 b_bookingmenu에 전달하려면, MyBatis에서는 useGeneratedKeys를 설정하여 자동 생성된 boSeq 값을 가져올 수 있다. -->
+	<insert id="shopBookingInsert" useGeneratedKeys="true" keyProperty="boSeq">
+		INSERT INTO b_booking (
+			boDate, 
+			boTime, 
+			boDeposit, 
+			boTotalPrice, 
+			boPayment, 
+			boSettleDate, 
+			boRegDate, 
+			boEditdate,
+			boDelNy, 
+			b_user_usrSeq
+		) values (
+			#{boDate}, 
+			#{boTime}, 
+			30000, 
+			#{boTotalPrice}, 
+			null, 
+			null, 
+			now(), 
+			now(), 
+			0, 
+			#{b_user_usrSeq}
+		)
+	</insert>
+	<insert id="shopBookingMenuInsert" parameterType="map">
+		<!-- 선택된 메뉴들의 meSeq값이 menuSeqs 리스트로 전달되어 shopBookingMenuInsert에서 각각의 menuSeq를 사용하여 b_bookingmenu테이블에 데이터를 삽입할 수 있다. -->
+		INSERT INTO b_bookingmenu (
+			bmUseNy, 
+			bmDelNy, 
+			b_booking_boSeq, 
+			b_menu_meSeq
+		) values 
+		<foreach collection="menuSeqs" item="menuSeq" separator=",">
+			(
+				1,
+				0,
+				#{boSeq}, 
+				#{menuSeq}
+			)
+		</foreach>
+	</insert>
+	
+	<!-- shopPayment 페이지에 booking테이블 정보 출력 -->
+	<select id="paymentBookingSelectOne" resultMap="resultMapObj" parameterType="String" resultType="map">
+		SELECT
+			f.boSeq,
+		    c.usrSeq,
+		    c.usrName,
+		    c.usrPhone,
+		    f.boDate,
+		    f.boTime,
+		    f.boDeposit,
+		    f.boTotalPrice
+		FROM b_booking AS f
+			LEFT JOIN b_user AS c
+				ON f.b_user_usrSeq = c.usrSeq
+		WHERE 1 = 1
+			AND f.boSeq = #{boSeq}
+	</select>
+	
+	<!-- shopPayment 페이지에 bookingmenu테이블 정보 출력 -->
+	<select id="paymentBookingMenuSelectList" resultMap="resultMapObj" parameterType="String" resultType="map">
+		SELECT
+			e.meName,
+		    e.mePrice
+		FROM b_bookingmenu AS g
+			LEFT JOIN b_menu AS e
+				ON g.b_menu_meSeq = e.meSeq
+			LEFT JOIN b_booking AS f
+				ON g.b_booking_boSeq = f.boSeq
+		WHERE 1 = 1 
+			AND boSeq = #{boSeq}
+	</select>
+	
+	<!-- shopPayment 페이지에 shop테이블 정보 출력 -->
+	<!-- DISTINCT를 이용하여 쿼리가 특정칼럼들만 중복되지 않도록 보장하면서 중복을 제거한다. -->
+	<select id="paymentShopSelectOne" resultMap="resultMapObj" parameterType="String" resultType="map">
+		SELECT DISTINCT
+			d.nsName,
+		    d.nsAddr,
+		    d.nsAddrdetail
+		FROM b_bookingmenu AS g
+			LEFT JOIN b_menu AS e
+				ON g.b_menu_meSeq = e.meSeq
+			LEFT JOIN b_shop AS d
+				ON e.b_shop_nsSeq = d.nsSeq
+			LEFT JOIN b_booking AS f
+				ON g.b_booking_boSeq = f.boSeq
+		WHERE 1 = 1 
+			AND boSeq = #{boSeq}
+	</select>
+	
+	<!-- 결제하면 결제방식이랑 결제일 업데이트되어야함 -->
+	<update id="bookingUpdate">
+	    UPDATE bears.b_booking
+	    SET
+	        boPayment = #{boPayment},
+	        boSettleDate = now()
+	    WHERE 1 = 1
+	        AND boSeq = #{boSeq}
+	</update>
+	
+	
 	
 </mapper>

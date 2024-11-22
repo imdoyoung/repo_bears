@@ -7,9 +7,9 @@
 	
 	<sql id="selectCommon">
 		FROM
-			bears.B_code AS b
-			JOIN B_codegroup AS a
-				ON a.ifcgSeq = b.B_codegroup_ifcgSeq
+			bears.b_code AS b
+			JOIN b_codegroup AS a
+				ON a.ifcgSeq = b.b_codegroup_ifcgSeq
 		WHERE 1 = 1
 			<if test="shcdDelNy != null and !shcdDelNy.equals('')">AND ifcdDelNy = #{shcdDelNy}</if>
 			<if test="shcdUseNy != null and !shcdUseNy.equals('')">AND ifcdUseNy = #{shcdUseNy}</if>
@@ -42,7 +42,7 @@
 				b.ifcdDelNy,
 				b.ifcdRegist,
 				b.ifcdEdit,
-				b.B_codegroup_ifcgSeq,
+				b.b_codegroup_ifcgSeq,
 				a.ifcgName
 				<include refid="selectCommon"></include>
 			ORDER BY
@@ -56,7 +56,7 @@
 			a.ifcgSeq,
 			a.ifcgName
 		FROM
-			B_codegroup a
+			b_codegroup a
 		WHERE 1 = 1
 			AND a.ifcgDelNy = 0
 		ORDER BY
@@ -65,7 +65,7 @@
 
 	<!-- 데이터 입력(insert) -->
 	<insert id="insert">
-		INSERT INTO B_code (
+		INSERT INTO b_code (
 			ifcdName,
 			ifcdUseNy,
 			ifcdOrder,
@@ -73,7 +73,7 @@
 			ifcdDelNy,
 			ifcdRegist,
 			ifcdEdit,
-			B_codegroup_ifcgSeq
+			b_codegroup_ifcgSeq
 		) VALUES (
 			#{ifcdName},
 			#{ifcdUseNy},
@@ -82,7 +82,7 @@
 			0,
 			now(),
 			now(),
-			#{B_codegroup_ifcgSeq}
+			#{b_codegroup_ifcgSeq}
 		)
 		<selectKey resultType="String" keyProperty="ifcdSeq" order="AFTER">
 				SELECT last_insert_id()
@@ -100,16 +100,16 @@
 			b.ifcdDelNy,
 			b.ifcdRegist,
 			b.ifcdEdit,
-			b.B_codegroup_ifcgSeq
+			b.b_codegroup_ifcgSeq
 		FROM
-			bears.B_code b
+			bears.b_code b
 		WHERE 1 = 1
 			AND b.ifcdSeq = #{ifcdSeq}
 	</select>
 
 	<!-- 데이터 수정(update) -->
 	<update id="update">
-		UPDATE B_code
+		UPDATE b_code
 		SET
 			ifcdName = #{ifcdName},
 			ifcdUseNy = #{ifcdUseNy},
@@ -117,7 +117,7 @@
 			ifcdDesc = #{ifcdDesc},
 			ifcdDelNy = 0,
 			ifcdEdit = now(),
-			B_codegroup_ifcgSeq = #{B_codegroup_ifcgSeq}
+			b_codegroup_ifcgSeq = #{b_codegroup_ifcgSeq}
 		WHERE 1 = 1
 			AND ifcdSeq = #{ifcdSeq}
 
@@ -125,7 +125,7 @@
 
 	<!-- 삭제여부 수정(uelete) -->
 	<update id="uelete">
-		UPDATE bears.B_code
+		UPDATE bears.b_code
 		SET
 			ifcdDelNy = 1
 		WHERE 1 = 1
@@ -134,7 +134,7 @@
 	
 	<!-- 데이터 삭제(delete) -->
 	<delete id="delete">
-		DELETE FROM bears.B_code
+		DELETE FROM bears.b_code
 		WHERE 1 = 1
 			AND ifcdSeq = #{ifcdSeq}
 	</delete>
@@ -144,9 +144,9 @@
 		SELECT 
 			ifcdSeq,
 			ifcdName,
-			B_codegroup_ifcgSeq
+			b_codegroup_ifcgSeq
 		FROM
-			bears.B_code
+			bears.b_code
 		WHERE 1=1
 			AND ifcdDelNy = 0
 		    AND ifcdUseNy = 1

@@ -116,14 +116,14 @@ public class CodeGroupController {
 		System.out.println("node.get(\"header\").get(\"resultMsg\").asText(): " + node.get("body").get("items").get(0).get("KIT_PROD_QTY").asText());
 				
 		
-		return "/xdm/v1/infra/codegroup/codeGroupXdmList";
+		return "xdm/v1/infra/codegroup/codeGroupXdmList";
 	}
 	
 	// Form
 	@RequestMapping(value="/xdm/v1/infra/codegroup/codeGroupXdmForm")
 	public String codeGroupXdmForm() {
 		
-		return "/xdm/v1/infra/codegroup/codeGroupXdmForm";
+		return "xdm/v1/infra/codegroup/codeGroupXdmForm";
 	}
 	
 	// INSERT
@@ -150,7 +150,7 @@ public class CodeGroupController {
 	@RequestMapping(value="/xdm/v1/infra/codegroup/codeGroupXdmMfom")
 	public String codeGroupXdmMfom(CodeGroupDto codeGroupDto, Model model) {
 		model.addAttribute("item", codeGroupService.selectOne(codeGroupDto));
-		return "/xdm/v1/infra/codegroup/codeGroupXdmMfom";
+		return "xdm/v1/infra/codegroup/codeGroupXdmMfom";
 	}
 	
 	//UPDATE

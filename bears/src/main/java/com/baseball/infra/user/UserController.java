@@ -59,13 +59,13 @@ public class UserController {
 			model.addAttribute("usrList", userService.usrSelectList(userVo));
 //			model.addAttribute("vo", userVo);
 		}
-		return "/xdm/v1/infra/user/userXdmList";
+		return "xdm/v1/infra/user/userXdmList";
 	}
 
 	// FROM
 	@RequestMapping(value = "/xdm/v1/infra/user/userXdmForm")
 	public String userXdmFrom() {
-		return "/xdm/v1/infra/user/userXdmForm";
+		return "xdm/v1/infra/user/userXdmForm";
 	}
 
 	// INSERT
@@ -96,7 +96,7 @@ public class UserController {
 	@RequestMapping(value = "/xdm/v1/infra/user/userXdmMfom")
 	public String userXdmMfom(UserDto userDto, Model model) {
 		model.addAttribute("usrItem", userService.usrSelectOne(userDto));
-		return "/xdm/v1/infra/user/userXdmMfom";
+		return "xdm/v1/infra/user/userXdmMfom";
 	}
 
 	// UPDATE
@@ -125,14 +125,14 @@ public class UserController {
 	@RequestMapping(value = "/xdm/v1/infra/user/userXdmMain")
 	public String userXdmMain(UserVo userVo, Model model) {
 		model.addAttribute("usrList", userService.usrSelectList(userVo));
-		return "/xdm/v1/infra/user/userXdmMain";
+		return "xdm/v1/infra/user/userXdmMain";
 	}
 
 	// LOGIN
 	@RequestMapping(value = "/xdm/v1/infra/user/userXdmSignin")
 	public String userXdmSignin(UserDto userDto) {
 		userService.usrSelectOneSignin(userDto);
-		return "/xdm/v1/infra/user/userXdmSignin";
+		return "xdm/v1/infra/user/userXdmSignin";
 	}
 
 	// LoginProc
@@ -189,13 +189,13 @@ public class UserController {
 	// ShopMain
 	@RequestMapping(value = "/usr/v1/infra/user/userShopMain")
 	public String userShopMain() {
-		return "/usr/v1/infra/user/userShopMain";
+		return "usr/v1/infra/user/userShopMain";
 	}
 
 	// ShopSignUp
 	@RequestMapping(value = "/usr/v1/infra/user/userShopSignup")
 	public String userShopSignup() {
-		return "/usr/v1/infra/user/userShopSignup";
+		return "usr/v1/infra/user/userShopSignup";
 	}
 
 	// ShopINSERT
@@ -214,7 +214,7 @@ public class UserController {
 	@RequestMapping(value = "/usr/v1/infra/user/userShopSignin")
 	public String userShopSignin(UserDto userDto) {
 		userService.usrSelectOneSignin(userDto);
-		return "/usr/v1/infra/user/userShopSignin";
+		return "usr/v1/infra/user/userShopSignin";
 	}
 
 	// ShopLoginProc

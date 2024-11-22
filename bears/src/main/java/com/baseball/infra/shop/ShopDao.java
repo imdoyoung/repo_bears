@@ -53,4 +53,21 @@ public interface ShopDao {
 	// shopDetail에서 Menu 리스트 띄우기
 	public List<ShopDto> menuSelectList(ShopDto shopDto);
 	
+	// ===== booking ===== //
+	// 예약 등록 - shopBookingInsert
+	public int shopBookingInsert(ShopDto shopDto);
+	public int shopBookingMenuInsert(ShopDto shopDto);
+	
+	// ===== ShopPayment ===== //
+	// booking+user 정보 출력
+	public ShopDto paymentBookingSelectOne(ShopDto shopdto);
+	
+	// bookingMenu+menu 정보 출력
+	public List<ShopDto> paymentBookingMenuSelectList(ShopDto shopDto);
+	
+	// shop 정보 출력
+	public ShopDto paymentShopSelectOne(ShopDto shopDto);
+	
+	// booking 정보 update
+	public int bookingUpdate(ShopDto shopDto);
 }

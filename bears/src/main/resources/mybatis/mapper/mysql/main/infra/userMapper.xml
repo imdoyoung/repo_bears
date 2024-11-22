@@ -8,7 +8,7 @@
 		<!-- 검색 -->
 		<sql id="selectCommon">
 			FROM
-				bears.B_user a
+				bears.b_user a
 			WHERE 1 = 1
 				<if test="shDelNy != null and !shDelNy.equals('')">AND usrDelNy = #{shDelNy}</if>
 				<if test="shXdmNy != null and !shXdmNy.equals('')">AND usrXdmNy = #{shXdmNy}</if>
@@ -71,7 +71,7 @@
 		
 		<!-- insert 정보 등록 -->
 		<insert id="usrInsert">
-			INSERT INTO B_user(
+			INSERT INTO b_user(
 				usrXdmNy,
 				usrName,
 				usrId,
@@ -101,7 +101,7 @@
 			    #{usrZipCode},
 			    #{usrAddr},
 			    #{usrAddrDetail},
-			    14,
+			    9,
 			    now(),
 			    now(),
 			    0,
@@ -132,14 +132,14 @@
 				a.usrMktNy,
 				a.usrDelNy
 			FROM
-				bears.B_user a
+				bears.b_user a
 			WHERE 1 = 1
 				AND a.usrSeq = #{usrSeq}
 		</select>
 		
 		<!-- 수정 -->
 		<update id="usrUpdate">
-			UPDATE bears.B_user
+			UPDATE bears.b_user
 			SET
 				usrXdmNy = #{usrXdmNy},
 				usrName = #{usrName},
@@ -163,7 +163,7 @@
 		
 		<!-- 수정삭제 -->
 		<update id="usrUelete">
-			UPDATE bears.B_user
+			UPDATE bears.b_user
 			SET
 				usrDelNy = 1
 			WHERE 1 = 1
@@ -172,7 +172,7 @@
 		
 		<!-- 삭제 -->
 		<delete id="usrDelete">
-			DELETE FROM bears.B_user
+			DELETE FROM bears.b_user
 			WHERE 1 = 1
 				AND usrSeq = #{usrSeq}
 		</delete>
@@ -185,7 +185,7 @@
 				a.usrPw,
 				a.usrGrade
 			FROM
-				bears.B_user a
+				bears.b_user a
 			WHERE 
 				1 = 1
 				AND a.usrId = #{usrId}
@@ -200,7 +200,7 @@
 				a.usrName,
 				a.usrGrade
 			FROM
-				bears.B_user a
+				bears.b_user a
 			WHERE 
 				1 = 1
 				AND a.usrId = #{usrId}

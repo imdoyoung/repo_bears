@@ -223,7 +223,7 @@
 										</label> 
 										<select class="form-select" name="nsAddrCode" id="nsAddrCode" required>
 											<option value="">지역구</option>
-											<option th:each="list : ${@codeService.selectListCachedCode(7)}" 
+											<option th:each="list : ${@codeService.selectListCachedCode(2)}" 
 												th:value="${list.ifcdSeq}" th:text="${list.ifcdName}"
 												th:selected="${list.ifcdSeq} == ${shopItem?.nsAddrCode}">
 											</option>
