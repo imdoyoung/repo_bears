@@ -86,13 +86,13 @@
 									<form class="row g-3 needs-validation needs-invalidation" name="form" id="form" novalidate>
 										<div class="col-12">
 											<label for="yourUsername" class="form-label">ID</label> 
-											<input type="text" name="usrId" class="form-control" id="usrId" placeholder="영대소문자, 숫자조합 6~15자" value="doyoung0908" required>
+											<input type="text" name="usrId" class="form-control" id="usrId" placeholder="영대소문자, 숫자조합 6~15자" value="doyoung0908" onkeyup="enterkey()" required>
 											<div class="invalid-feedback" id="usrIdFeedback">아이디를 입력해 주세요.</div>
 											<div class="invalid-feedback" id="usrIdRegExpFeedback">아이디는 영문자, 숫자조합 6~15자로 입력해 주세요.</div>
 										</div>
 										<div class="col-12">
 											<label for="yourPassword" class="form-label">PW</label> 
-											<input type="password" name="usrPw" class="form-control" id="usrPw" placeholder="영대소문자, 숫자, 특수문자!@#$%^*+=-조합 8~15자" value="doyoung0908!@" required>
+											<input type="password" name="usrPw" class="form-control" id="usrPw" placeholder="영대소문자, 숫자, 특수문자!@#$%^*+=-조합 8~15자" value="doyoung0908!@" onkeyup="enterkey()" required>
 											<div class="invalid-feedback" id="usrPwFeedback">비밀번호를 입력해주세요!</div>
 											<div class="invalid-feedback" id="usrPwRegExpFeedback">비밀번호는 영문자, 숫자, 특수문자!@#$%^*+=-조합 8~15자로 입력해주세요!</div>
 										</div>
@@ -262,6 +262,17 @@
 					}
 				}
 			});
+		}
+		
+		// 엔터키로 로그인
+		// enterkey() 함수는 keydown 이벤트 리스너에 추가되어야 함
+		document.getElementById("usrId").addEventListener("keydown", enterkey);
+		document.getElementById("usrPw").addEventListener("keydown", enterkey);
+		
+		function enterkey(){
+			if(window.event.keyCode == 13){	// 엔터키 코드가 13
+				document.getElementById("btnSubmit").click();	// 로그인 버튼 클릭 이벤트 실행
+			}
 		}
 	</script>
 

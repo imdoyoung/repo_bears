@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <!-- ======= Head ======= -->
-<div th:replace="~{/usr/v1/infra/common/head :: head}"></div>
+<div th:replace="~{usr/v1/infra/common/head :: head}"></div>
 <!-- ======= End Head ======= -->
 
 <body>
@@ -11,7 +11,7 @@
 		<!-- navbar -->
 
 		<!-- ======= Header ======= -->
-		<div th:replace="~{/usr/v1/infra/common/header :: div}"></div>
+		<div th:replace="~{usr/v1/infra/common/header :: div}"></div>
 		<!-- ======= End Header ======= -->
 
 		<!-- listing slide -->
@@ -340,6 +340,23 @@
 													<button type="button" class="btn btn-primary " id="btnBooking" >예약하기</button>
 												</div>
 										</form>
+										<!-- Vertically centered Modal -->
+										<div class="modal fade" id="verticalycentered" tabindex="-1">
+											<div class="modal-dialog modal-dialog-centered">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title">확인</h5>
+														<button type="button" class="btn-close"
+															data-bs-dismiss="modal" aria-label="Close"></button>
+													</div>
+													<div class="modal-body">예약 내용을 모두 선택해 주세요</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-primary" data-bs-dismiss="modal">확인</button>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- End Vertically centered Modal-->
 									</div>
 								</div>
 							</div>
@@ -533,11 +550,10 @@
 		src="/xdm/v1/js/datetimepicker/jquery.datetimepicker.full.min.js"></script>
 
 	<!-- KAKAO MAP API services 라이브러리 불러오기 -->
-	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e7a4c61c5d2d5eec0befbefd5116181&libraries=services"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e7a4c61c5d2d5eec0befbefd5116181&libraries=services"></script>
 
 	<script type="text/javascript">
-	
+	// ========== 카카오 지도 API START ========== //
 		// 주소
 		var addr = document.getElementById('shopAddress').getAttribute('data-address');
 	
@@ -572,8 +588,9 @@
 		        map.setCenter(coords);
 		     }
 		});
-		
+	// ========== 카카오 지도 API END ========== //
 
+	// ========== 리뷰 별 START ========== //
 		// 리뷰 별 
 	    const stars = document.querySelectorAll('#mystar label');
 	
@@ -607,8 +624,11 @@
 	            });
 	        });
 	    });
-	    
+	 // ========== 리뷰 별 END ========== //
+	 
+	   
  	
+	 // ========== Datetimepicker START ========== //
 		// 예약 날짜,시간 검색 - datetimepicker
 	    window.addEventListener('load', function () {
 	        $.datetimepicker.setLocale('ko');
@@ -635,8 +655,10 @@
 	            $('#rvTime').text(selectedTime);
 	        });
     	});
+	 // ========== Datetimepicker END ========== //
 		
-		
+	 
+	 // ========== 메뉴 가격합산, seq 처리 START ========== //
 		// 메뉴 가격 합산 및 선택된 메뉴 seq 처리
 		function updateTotalPrice() {
 		    let total = 0; // 총 금액 초기화
@@ -663,15 +685,56 @@
 		    console.log('선택된 메뉴 seq:', selectedMenuSeqs);
 		    console.log('총 금액:', total);
 		}
+	 // ========== 메뉴 가격합산, seq 처리 END ========== //
 
+	 
 		
+	 // ========== 예약하기 버튼 START ========== //
 		// 예약하기 버튼 - insert
 		document.getElementById('btnBooking').onclick = function(){
-			form.action="/usr/v1/infra/shop/shopBookingInsert";
-			form.submit();
+		 	
+		 	// 예약 날짜와 시간 가져오기
+		 	const boDate = document.getElementById('boDate').value;
+    		const boTime = document.getElementById('boTime').value;
+    		
+    		// 메뉴 체크박스 선택여부 확인
+    		const menuCheckboxes = document.querySelectorAll('.menu-checkbox');
+    		const isMenuSelected = Array.from(menuCheckboxes).some(checkbox => checkbox.checked);
+    		
+    		// 모든 조건 확인
+    	    if (!boDate || !boTime || !isMenuSelected) {
+    	      // 조건 만족하지 않으면 모달 표시
+    	      const modal = new bootstrap.Modal(document.getElementById('verticalycentered'));
+    	      modal.show();
+    	    } else {
+    	      // 조건 만족 시 폼 전송
+    	      document.forms['form'].action = "/usr/v1/infra/shop/shopBookingInsert";
+    	      document.forms['form'].submit();
+    	    }
+		};
+	 // ========== 예약하기 버튼 END ========== //
+		
+		// LogoutProc
+		document.getElementById("SignoutBtn").onclick = function() {
+			alert("로그아웃 성공");
+			$.ajax({
+				async : true,
+				cache : false,
+				type : "post"
+				/* ,dataType:"json" */
+				,
+				url : "/usr/v1/infra/user/userShopSignoutProc"
+				/* ,data : $("#formLogin").serialize() */
+				,
+				success : function(response) {
+					if (response.rt == "success") {
+						location.href = "/usr/v1/infra/user/userShopMain";
+					} else {
+						// by pass
+					}
+				}
+			});
 		}
-		
-		
 	</script>
 </body>
 </html>

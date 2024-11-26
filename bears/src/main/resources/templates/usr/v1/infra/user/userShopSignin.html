@@ -72,7 +72,7 @@
 										<span class="text-danger">*</span>
 									</label> 
 									<input type="text" class="form-control" name="usrId" id="usrId" value="ehdud0908"
-										placeholder="영대소문자, 숫자조합 6~15자" autocomplete="off" required>
+										placeholder="영대소문자, 숫자조합 6~15자" autocomplete="off" required onkeyup="enterkey()">
 									<div class="invalid-feedback">아이디를 입력해 주세요.</div>
 								</div>
 
@@ -83,8 +83,8 @@
 										<span class="text-danger">*</span>
 									</label> 
 									<input type="password" class="form-control" name="usrPw" id="usrPw" value="ehdud0908!@"
-										placeholder="영대소문자, 숫자, 특수문자조합 8~15자" autocomplete="off"
-										required>
+										placeholder="영대소문자, 숫자, 특수문자조합 8~15자" autocomplete="off" required
+										onkeyup="enterkey()">
 									<div class="invalid-feedback">비밀번호를 입력해 주세요.</div>
 								</div>
 								<div
@@ -235,6 +235,17 @@
 					}
 				}
 			});
+		}
+		
+		// 엔터키로 로그인
+		// enterkey() 함수는 keydown 이벤트 리스너에 추가되어야 함
+		document.getElementById("usrId").addEventListener("keydown", enterkey);
+		document.getElementById("usrPw").addEventListener("keydown", enterkey);
+		
+		function enterkey(){
+			if(window.event.keyCode == 13){	// 엔터키 코드가 13
+				document.getElementById("btnSubmit").click();	// 로그인 버튼 클릭 이벤트 실행
+			}
 		}
 	</script>
 </body>

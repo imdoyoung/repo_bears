@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <!-- ======= Head ======= -->
-<div th:replace="~{/usr/v1/infra/common/head :: head}"></div>
+<div th:replace="~{usr/v1/infra/common/head :: head}"></div>
 <!-- ======= End Head ======= -->
 
 <body>
@@ -11,7 +11,7 @@
 		<!-- navbar -->
 		
 		<!-- ======= Header ======= -->
-		<div th:replace="~{/usr/v1/infra/common/header :: div}"></div>
+		<div th:replace="~{usr/v1/infra/common/header :: div}"></div>
 		<!-- ======= End Header ======= -->
 		
 		<!-- content -->
@@ -123,7 +123,12 @@
 									<div class="col-md-12">
 										<div class="d-flex justify-content-between align-items-center">
 											<div>
-												<p class="mb-1 text-lg text-dark">(예약금) <span name="boDeposit" id="boDeposit" th:text="${#numbers.formatInteger(bookingItem?.boDeposit, 0, 'COMMA')}"></span>원</p>
+												<p class="mb-1 text-lg text-dark">
+													(예약금) 
+													<span name="boDeposit" id="boDeposit" th:text="${#numbers.formatInteger(bookingItem?.boDeposit, 0, 'COMMA')}">
+													</span>
+													원
+												</p>
 											</div>
 											<div>
 												<button class="btn btn-primary" type="submit" id="btnSubmit">
@@ -266,14 +271,91 @@
 
 	<!-- Theme JS -->
 	<script src="/usr/v1/template/NailForest/assets/js/theme.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	
 	<script type="text/javascript">
 		
 		// 카카오페이 결제 팝업창 연결
+		// step1
+// 		$(function(){
+// 			$("#btnSubmit").click(function(e){
+				
+// 				e.preventDefault(); // 기본 폼 동작 방지 (클릭 시 새로고침 방지)
+				
+// 				// 아래 데이터 외에도 필요한 데이터를 원하는 대로 담고, Controller에서 @RequestBody로 받으면 됨
+// 	            let data = {
+// 	                name: '상품명',    // 카카오페이에 보낼 대표 상품명
+// 	                totalPrice: 30000 // 총 결제금액
+// 	            };
+	          
+// 	            $.ajax({
+// 	                type: 'POST',
+// 	                url: 'http://localhost:8080/order/pay/ready',
+// 	                data: JSON.stringify(data),
+// 	                contentType: 'application/json',
+// 	                success: function(response) {
+// 	                    location.href = response.next_redirect_pc_url;
+// 	                }
+// 	            });
+// 			});
+// 		});
 		
-		document.getElementById("btnSubmit").onclick = function(){
-			form.action = "/usr/v1/infra/shop/userShopPaymentUpt";
-			form.submit();
+		// step2
+		document.getElementById("btnSubmit").addEventListener("click", function () {
+		    // 결제에 필요한 데이터를 서버로 보냄
+		    const requestData = {
+		        name: "상품 이름",
+		        totalPrice: 30000 // 총 결제 금액
+		    };
+		
+		    // Ajax 호출
+		    fetch("/order/pay/ready", {
+		        method: "POST",
+		        headers: {
+		            "Content-Type": "application/json"
+		        },
+		        body: JSON.stringify(requestData)
+		    })
+		    .then(response => response.json())
+		    .then(data => {
+		        if (data.next_redirect_pc_url) {
+		            // 카카오페이 결제 페이지로 이동
+		            window.location.href = data.next_redirect_pc_url;
+		        } else {
+		            alert("결제 준비 중 문제가 발생했습니다. 다시 시도해주세요.");
+		        }
+		    })
+		    .catch(error => {
+		        console.error("Error during payment request:", error);
+		        alert("결제 요청에 실패했습니다. 관리자에게 문의해주세요.");
+		    });
+		});
+		
+// 		document.getElementById("btnSubmit").onclick = function(){
+// 			form.action = "/usr/v1/infra/shop/userShopPaymentUpt";
+// 			form.submit();
+// 		}
+
+		// LogoutProc
+		document.getElementById("SignoutBtn").onclick = function() {
+			alert("로그아웃 성공");
+			$.ajax({
+				async : true,
+				cache : false,
+				type : "post"
+				/* ,dataType:"json" */
+				,
+				url : "/usr/v1/infra/user/userShopSignoutProc"
+				/* ,data : $("#formLogin").serialize() */
+				,
+				success : function(response) {
+					if (response.rt == "success") {
+						location.href = "/usr/v1/infra/user/userShopMain";
+					} else {
+						// by pass
+					}
+				}
+			});
 		}
 	</script>
 	

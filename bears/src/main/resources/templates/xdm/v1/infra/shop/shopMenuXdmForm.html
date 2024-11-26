@@ -62,11 +62,11 @@
 <body>
 
 	<!-- ======= Header ======= -->
-  		<div th:replace="~{/xdm/v1/infra/common/header :: header}"></div>
+  		<div th:replace="~{xdm/v1/infra/common/header :: header}"></div>
     <!-- End Header -->
 
     <!-- ======= Sidebar ======= -->
-  		<div th:replace="~{/xdm/v1/infra/common/sidebar :: aside}"></div>
+  		<div th:replace="~{xdm/v1/infra/common/sidebar :: aside}"></div>
     <!-- End Sidebar-->
 
 	<main id="main" class="main">
@@ -315,6 +315,26 @@
 		    form.action = "/xdm/v1/infra/shop/shopMenuXdmInst";
 			form.submit();
 		}
+		
+		// LogoutProc
+		  document.getElementById("SignoutBtn").onclick = function (){
+			   alert("로그아웃 성공");
+			   $.ajax({
+			      async: true 
+			      ,cache: false
+			      ,type: "post"
+			      /* ,dataType:"json" */
+			      ,url: "/xdm/v1/infra/user/userXdmSignoutProc"
+			      /* ,data : $("#formLogin").serialize() */
+			      ,success: function(response) {
+			         if(response.rt == "success") {
+			               location.href = "/xdm/v1/infra/user/userXdmSignin";
+			         } else {
+			            // by pass
+			         }
+			      }
+			   });
+			}
 	</script>
 
 </body>

@@ -302,5 +302,11 @@ public class ShopController {
 	}
 	
 	
+	// 
+	@RequestMapping(value="/usr/v1/infra/shop/userShopBookingList")
+	public String userShopBookingList() {
+		return "/usr/v1/infra/shop/userShopBookingList";
+	}
+	
 	 
 }

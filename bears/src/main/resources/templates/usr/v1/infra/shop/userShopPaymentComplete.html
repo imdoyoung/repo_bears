@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <!-- ======= Head ======= -->
-<div th:replace="~{/usr/v1/infra/common/head :: head}"></div>
+<div th:replace="~{usr/v1/infra/common/head :: head}"></div>
 <!-- ======= End Head ======= -->
 
 <body>
@@ -11,7 +11,7 @@
 		<!-- navbar -->
 
 		<!-- ======= Header ======= -->
-		<div th:replace="~{/usr/v1/infra/common/header :: div}"></div>
+		<div th:replace="~{usr/v1/infra/common/header :: div}"></div>
 		<!-- ======= End Header ======= -->
 
 		<!-- content -->
@@ -186,5 +186,29 @@
 
 	<!-- Theme JS -->
 	<script src="/usr/v1/template/NailForest/assets/js/theme.min.js"></script>
+	
+	<script type="text/javascript">
+	// LogoutProc
+	document.getElementById("SignoutBtn").onclick = function() {
+		alert("로그아웃 성공");
+		$.ajax({
+			async : true,
+			cache : false,
+			type : "post"
+			/* ,dataType:"json" */
+			,
+			url : "/usr/v1/infra/user/userShopSignoutProc"
+			/* ,data : $("#formLogin").serialize() */
+			,
+			success : function(response) {
+				if (response.rt == "success") {
+					location.href = "/usr/v1/infra/user/userShopMain";
+				} else {
+					// by pass
+				}
+			}
+		});
+	}
+	</script>
 </body>
 </html>
