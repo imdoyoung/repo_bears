@@ -7,7 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 public class ShopDto {
-//	----- feild -----
+//	----- field -----
 	private String nsSeq;
 	private String nsName;
 	private String nsTel;

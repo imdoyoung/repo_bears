@@ -8,6 +8,12 @@
     font-weight: 400;
     font-style: normal
 }
+@font-face {
+     font-family: 'S-CoreDream-3Light';
+     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
 
 .mdi-set,
 .mdi:before {
@@ -40267,7 +40273,8 @@
 
 body {
     margin: 0;
-    font-family: var(--bs-body-font-family);
+/*     font-family: var(--bs-body-font-family); */
+	font-family: 'S-CoreDream-3Light';
     font-size: var(--bs-body-font-size);
     font-weight: var(--bs-body-font-weight);
     line-height: var(--bs-body-line-height);
@@ -73164,4 +73171,6 @@ svg.leaflet-image-layer.leaflet-interactive path {
     cursor: pointer;
 }
 
-
+#fontchangep{
+	font-family: '';
+}
