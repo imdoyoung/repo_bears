@@ -302,7 +302,7 @@ public class ShopController {
 	}
 	
 	
-	// 
+	// 예약내역 리스트 페이지
 	@RequestMapping(value="/usr/v1/infra/shop/userShopBookingList")
 	public String userShopBookingList() {
 		return "/usr/v1/infra/shop/userShopBookingList";

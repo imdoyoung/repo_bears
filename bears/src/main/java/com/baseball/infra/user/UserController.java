@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.baseball.common.util.UtilDateTime;
 import com.baseball.infra.constants.Constants;
 import com.baseball.infra.mail.MailService;
+import com.baseball.infra.shop.ShopDto;
+import com.baseball.infra.shop.ShopService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -22,6 +24,9 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	ShopService shopService;
 
 	@Autowired
 	MailService mailService;
@@ -188,7 +193,8 @@ public class UserController {
 
 	// ShopMain
 	@RequestMapping(value = "/usr/v1/infra/user/userShopMain")
-	public String userShopMain() {
+	public String userShopMain(ShopDto shopDto, Model model) {
+		model.addAttribute("bestBookingList", shopService.bestBookingList(shopDto));
 		return "usr/v1/infra/user/userShopMain";
 	}
 

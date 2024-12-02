@@ -301,40 +301,40 @@
 // 		});
 		
 		// step2
-		document.getElementById("btnSubmit").addEventListener("click", function () {
-		    // 결제에 필요한 데이터를 서버로 보냄
-		    const requestData = {
-		        name: "상품 이름",
-		        totalPrice: 30000 // 총 결제 금액
-		    };
+// 		document.getElementById("btnSubmit").addEventListener("click", function () {
+// 		    // 결제에 필요한 데이터를 서버로 보냄
+// 		    const requestData = {
+// 		        name: "상품 이름",
+// 		        totalPrice: 30000 // 총 결제 금액
+// 		    };
 		
-		    // Ajax 호출
-		    fetch("/order/pay/ready", {
-		        method: "POST",
-		        headers: {
-		            "Content-Type": "application/json"
-		        },
-		        body: JSON.stringify(requestData)
-		    })
-		    .then(response => response.json())
-		    .then(data => {
-		        if (data.next_redirect_pc_url) {
-		            // 카카오페이 결제 페이지로 이동
-		            window.location.href = data.next_redirect_pc_url;
-		        } else {
-		            alert("결제 준비 중 문제가 발생했습니다. 다시 시도해주세요.");
-		        }
-		    })
-		    .catch(error => {
-		        console.error("Error during payment request:", error);
-		        alert("결제 요청에 실패했습니다. 관리자에게 문의해주세요.");
-		    });
-		});
+// 		    // Ajax 호출
+// 		    fetch("/order/pay/ready", {
+// 		        method: "POST",
+// 		        headers: {
+// 		            "Content-Type": "application/json"
+// 		        },
+// 		        body: JSON.stringify(requestData)
+// 		    })
+// 		    .then(response => response.json())
+// 		    .then(data => {
+// 		        if (data.next_redirect_pc_url) {
+// 		            // 카카오페이 결제 페이지로 이동
+// 		            window.location.href = data.next_redirect_pc_url;
+// 		        } else {
+// 		            alert("결제 준비 중 문제가 발생했습니다. 다시 시도해주세요.");
+// 		        }
+// 		    })
+// 		    .catch(error => {
+// 		        console.error("Error during payment request:", error);
+// 		        alert("결제 요청에 실패했습니다. 관리자에게 문의해주세요.");
+// 		    });
+// 		});
 		
-// 		document.getElementById("btnSubmit").onclick = function(){
-// 			form.action = "/usr/v1/infra/shop/userShopPaymentUpt";
-// 			form.submit();
-// 		}
+		document.getElementById("btnSubmit").onclick = function(){
+			form.action = "/usr/v1/infra/shop/userShopPaymentUpt";
+			form.submit();
+		}
 
 		// LogoutProc
 		document.getElementById("SignoutBtn").onclick = function() {

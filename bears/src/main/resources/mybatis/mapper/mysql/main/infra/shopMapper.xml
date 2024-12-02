@@ -553,6 +553,26 @@
 	        AND boSeq = #{boSeq}
 	</update>
 	
+	<!-- USR 메인 페이지에서 예약건수가 많은 샵 리스트 출력 -->
+	<select id="bestBookingList" resultMap="resultMapObj">
+		SELECT
+			d.nsSeq,
+			d.nsName,
+			d.nsInfoWalk,
+			d.nsInfoPrice,
+			d.nsOpenTime,
+			d.nsClosTime,
+			d.nsMulti,
+		    COUNT(DISTINCT b.boSeq) AS boSeqCount
+		FROM b_bookingmenu AS a
+			LEFT JOIN b_booking AS b
+				ON a.b_booking_boSeq = b.boSeq
+			LEFT JOIN b_menu AS c
+				ON a.B_menu_meSeq = c.meSeq
+			LEFT JOIN b_shop AS d
+				ON c.b_shop_nsSeq = d.nsSeq
+		GROUP BY d.nsSeq
+	</select>
 	
 	
 </mapper>

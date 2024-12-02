@@ -22,12 +22,14 @@
                   <li class="nav-item">
                     <a class="nav-link" href="/usr/v1/infra/shop/userShopList">SHOP</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="../pages/0_reviews.html....">REVIEW</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/usr/v1/infra/shop/userShopBookingList">BOOKING</a>
-                  </li>
+<!--                   <li class="nav-item"> -->
+<!--                     <a class="nav-link" href="../pages/0_reviews.html....">REVIEW</a> -->
+<!--                   </li> -->
+                  <th:block th:if="${session.sessSeqXdm != null}">
+	                  <li class="nav-item">
+	                    <a class="nav-link" href="/usr/v1/infra/shop/userShopBookingList">BOOKING</a>
+	                  </li>
+	              </th:block>
 <!--                   <li class="nav-item"> -->
 <!--                     <a class="nav-link" href="#">NOTIFICATION</a> -->
 <!--                   </li> -->

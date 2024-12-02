@@ -162,4 +162,9 @@ public class ShopService {
 		return shopDao.bookingUpdate(shopDto);
 	};
 	
+	// usr메인페이지에서 예약 많은 순
+	public List<ShopDto> bestBookingList(ShopDto shopDto){
+		return shopDao.bestBookingList(shopDto);
+	};
+	
 }

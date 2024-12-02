@@ -70,4 +70,7 @@ public interface ShopDao {
 	
 	// booking 정보 update
 	public int bookingUpdate(ShopDto shopDto);
+	
+	// usr메인페이지에서 예약 많은 순
+	public List<ShopDto> bestBookingList(ShopDto shopDto);
 }
