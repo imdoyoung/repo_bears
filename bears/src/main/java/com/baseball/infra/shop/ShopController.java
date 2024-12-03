@@ -2,18 +2,16 @@ package com.baseball.infra.shop;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.baseball.common.util.UtilDateTime;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -265,14 +263,16 @@ public class ShopController {
 			System.out.println("총 금액: " + shopDto.getBoTotalPrice()); // 확인용 출력
 			
 			// 실제 shopBookingInsert와 관련된 서비스 호출
-			shopService.shopBookingInsert(shopDto);		// 실행 후 shopDto.boSeq에 boSeq 값이 저장됨
+			// 실행 후 shopDto.boSeq에 boSeq 값이 저장됨
+			shopService.shopBookingInsert(shopDto);		
 			shopService.shopBookingMenuInsert(shopDto);
 			
 			// boSeq 값을 userShopPayment로 리다이렉션 전달
 			 return "redirect:/usr/v1/infra/shop/userShopPayment?boSeq=" + shopDto.getBoSeq();
 		} else {
 			// 세션에 사용자 정보가 없으면 처리
-			return "redirect:/usr/v1/infra/user/userShopSignin"; // 로그인 페이지로 리디렉션
+			// 로그인 페이지로 리디렉션
+			return "redirect:/usr/v1/infra/user/userShopSignin"; 
 		}
 //		return "/usr/v1/infra/shop/userShopPayment";
 	}
@@ -301,12 +301,27 @@ public class ShopController {
 		return "usr/v1/infra/shop/userShopPaymentComplete";
 	}
 	
-	
-	// 예약내역 리스트 페이지
+	// usr 예약내역페이지 리스트 출력
 	@RequestMapping(value="/usr/v1/infra/shop/userShopBookingList")
-	public String userShopBookingList() {
-		return "/usr/v1/infra/shop/userShopBookingList";
+	public String userBookingSelectList(@ModelAttribute("vo") ShopVo shopVo, Model model, HttpSession httpSession) {
+	    
+	    // 세션에서 sessSeqXdm 값 가져오기
+	    String sessSeqXdm = (String) httpSession.getAttribute("sessSeqXdm");
+
+	    // ShopVo에 usrSeq 설정
+	    shopVo.setUsrSeq(sessSeqXdm);
+
+	    // 페이징 설정
+	    shopVo.setParamsPaging(shopService.userBookingSelectOneCount(shopVo));
+
+	    // 예약 내역 리스트 조회
+	    if (shopVo.getTotalRows() > 0) {
+	        model.addAttribute("userBookingList", shopService.userBookingSelectList(shopVo));
+	    }
+
+	    return "usr/v1/infra/shop/userShopBookingList";
 	}
+
 	
 	 
 }

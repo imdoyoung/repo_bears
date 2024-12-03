@@ -76,4 +76,16 @@ public interface ShopDao {
 	
 	// usr메인페이지에서 리뷰 리스트 출력
 	public List<ShopDto> reviewList(ShopDto shopDto);
+	
+	// usr 예약내역페이지 리스트 출력
+//	public List<ShopDto> userBookingSelectList(ShopDto shopDto);
+	List<ShopDto> userBookingSelectList(ShopVo shopVo);
+
+	
+	// paging
+	public int userBookingSelectOneCount(ShopVo shopVo);
+	
+	
+	
+	
 }

@@ -37,18 +37,21 @@
 		<div class="pb-lg-11 pb-7">
 			<div class="container">
 				<form name="form" method="post" action="/usr/v1/infra/shop/userShopList">
-
+					<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1" /> 
+					<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}" />
 					<div class="row mb-3">
 						<div class="col-md-2">
-							<a>Total : 171</a>
+							<a th:text="'Total: ' + ${vo.totalRows}">Total : 171</a>
 						</div>
 						<div class="col-md-8"></div>
 						<div class="col-md-2">
-							<select class="form-select" aria-label="Default select example">
-								<option selected>5</option>
-								<option value="1">10</option>
-								<option value="2">15</option>
-								<option value="3">20</option>
+							<select class="form-select form-select-sm" id="changeRowNum" name="changeRowNum">
+								<option value="5" th:selected="${vo.rowNumToShow eq 5}">5</option>
+								<option value="10" th:selected="${vo.rowNumToShow eq 10}">10</option>
+								<option value="15" th:selected="${vo.rowNumToShow eq 15}">15</option>
+								<option value="20" th:selected="${vo.rowNumToShow eq 20}">20</option>
+								<option value="25" th:selected="${vo.rowNumToShow eq 25}">25</option>
+								<option value="30" th:selected="${vo.rowNumToShow eq 30}">30</option>
 							</select>
 						</div>
 
@@ -56,35 +59,34 @@
 						<!-- Default Table -->
 						<table class="table">
 							<thead>
-								<tr>
-									<th><input class="form-check-input" type="checkbox"
-										id="gridCheck1"></th>
-									<th>#</th>
-									<th>코드그룹 코드</th>
-									<th>코드그룹 이름</th>
-									<th>코드</th>
-									<th>대체 코드</th>
-									<th>코드 이름</th>
-									<th>코드 이름(영문)</th>
-									<th>사용</th>
-									<th>순서</th>
-									<th>등록일</th>
+								<tr align="center">
+									<th>
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+									</th>
+									<th>NO</th>
+									<th>예약번호</th>
+									<th>샵 이름</th>
+									<th>예약일</th>
+									<th>예약시간</th>
+									<th>예약금</th>
+									<th>총금액</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td><input class="form-check-input" type="checkbox"
-										id="gridCheck1"></td>
-									<td>171</td>
-									<td>57</td>
-									<td>테테테</td>
-									<td>278</td>
-									<td></td>
-									<td>ㅁㄴㅇㄹ</td>
-									<td></td>
-									<td>Y</td>
-									<td>1</td>
-									<td>2023-10-12 16:02:31</td>
+								<tr th:if="${#lists.isEmpty(userBookingList)}">
+									<td colspan="9" align="center">No Data!!</td>
+								</tr>
+								<tr th:if="!${#lists.isEmpty(userBookingList)}" th:each="list : ${userBookingList}" align="center">
+									<td>
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+									</td>
+									<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
+									<td th:text="${list.boSeq}"></td>
+									<td th:text="${list.nsName}"></td>
+									<td th:text="${#dates.format(list?.boDate, 'yyyy-MM-dd')}">예약일</td>
+									<td th:text="${#dates.format(list?.boTime, 'HH:mm')}">예약시간</td>
+									<td th:text="${#numbers.formatInteger(list.boDeposit, 3, 'COMMA')}"></td>
+									<td th:text="${#numbers.formatInteger(list.boTotalPrice, 3, 'COMMA')}"></td>
 								</tr>
 							</tbody>
 						</table>
@@ -93,15 +95,21 @@
 						<!--pagination start-->
 						<nav aria-label="Page navigation example">
 							<ul class="pagination justify-content-center">
-								<li class="page-item disabled"><a class="page-link"
-									href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-								</a></li>
-								<li class="page-item"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item"><a class="page-link" href="#"
-									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-								</a></li>
+								<li class="page-item disabled" th:if="${vo.startPage gt vo.pageNumToShow}" style="cursor: pointer;">
+									<a class="page-link" aria-label="Previous" href="javascript:goList(${vo.startPage - 1})" 
+										th:attr="onclick=|goList('${vo.startPage - 1}')|"> 
+										<span aria-hidden="true">&laquo;</span>
+									</a>
+								</li>
+								<li class="page-item" th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" 
+						 			th:classappend="${num eq vo.thisPage} ? active : ''" style="cursor: pointer;">
+									<a class="page-link" th:attr="onclick=|goList('${num}')|" th:text="${num}"></a>
+								</li>
+								<li class="page-item" th:if="${vo.endPage ne vo.totalPages}" style="cursor: pointer;">
+									<a class="page-link" aria-label="Next" th:attr="onclick=|goList('${vo.endPage + 1}')|"> 
+										<span aria-hidden="true">&raquo;</span>
+									</a>
+								</li>
 							</ul>
 						</nav>
 						<!--pagination end-->
@@ -112,104 +120,9 @@
 			</div>
 		</div>
 	</div>
-	<!-- footer -->
-	<!-- footer section -->
-	<div class="footer pt-14 bg-dark ">
-		<div class="container">
-			<div class="row">
-				<div class="col-xl-2 col-lg-2 col-md-4 col-6">
-					<!-- footer widget  -->
-					<div class="mb-14">
-						<h4 class=" mb-3 text-white">Explore Rentkit</h4>
-						<div>
-							<ul class="list-unstyled">
-								<li><a href="#" class="text-reset lh-lg">List your
-										property</a></li>
-								<li><a href="#" class="text-reset lh-lg">Book with
-										Confidence</a></li>
-								<li><a href="#" class="text-reset lh-lg">Trust & Safety</a></li>
-								<li><a href="#" class="text-reset lh-lg">Vacation
-										rental guides</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-2 col-lg-2 col-md-4 col-6">
-					<!-- footer widget  -->
-					<div class="mb-14">
-						<h4 class=" mb-3  text-white">For Owner</h4>
-						<div>
-							<ul class="list-unstyled">
-								<li><a href="#" class="text-reset lh-lg">How it works</a></li>
-								<li><a href="#" class="text-reset lh-lg">Pricing</a></li>
-								<li><a href="#" class="text-reset lh-lg">Join as Owner</a></li>
-								<li><a href="#" class="text-reset lh-lg">Help centre</a></li>
-								<li><a href="#" class="text-reset lh-lg">Mobile App</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-2 col-lg-2 col-md-4 col-6">
-					<div class="mb-14">
-						<h4 class=" mb-3  text-white">Company</h4>
-						<div>
-							<ul class="list-unstyled">
-								<li><a href="#" class="text-reset lh-lg">About us</a></li>
-								<li><a href="#" class="text-reset lh-lg">Careers</a></li>
-								<li><a href="#" class="text-reset lh-lg">Clients</a></li>
-								<li><a href="#" class="text-reset lh-lg">Team</a></li>
-								<li><a href="#" class="text-reset lh-lg">Help Center</a></li>
-								<li><a href="#" class="text-reset lh-lg">Press</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<!-- footer widget  -->
-				<div class="col-xl-2 col-lg-2 col-md-4 col-6">
-					<div class="mb-14">
-						<h4 class=" mb-3  text-white">Social</h4>
-						<div>
-							<ul class="list-unstyled">
-								<li><a href="#" class="text-reset lh-lg">Facebook</a></li>
-								<li><a href="#" class="text-reset lh-lg">Twitter</a></li>
-								<li><a href="#" class="text-reset lh-lg">Linkedin</a></li>
-								<li><a href="#" class="text-reset lh-lg">Google</a></li>
-								<li><a href="#" class="text-reset lh-lg">Instagram</a></li>
-							</ul>
-						</div>
-						<!-- footer widget  -->
-					</div>
-				</div>
-				<!-- footer widget  -->
-				<div class="col-xl-4 col-lg-4 col-md-8 col-12">
-					<div class="mb-14">
-						<h4 class=" mb-3  text-white">Rentkit deals in your inbox ?</h4>
-						<p class="text-reset  ">Get special offers, travel
-							inspiration, and more from Rentkit</p>
-						<form>
-							<div class="input-group mb-3">
-								<input type="text" class="form-control"
-									placeholder="Enter your email" aria-label="Enter your email"
-									aria-describedby="subscriber"> <span
-									class="btn btn-primary" id="subscriber">Subscribe</span>
-							</div>
-
-
-
-						</form>
-						<!-- footer widget  -->
-					</div>
-				</div>
-				<div class="col-md-12 col-12">
-					<p class="fs-6 text-gray-500">© 2021 Rentkit. All rights
-						reserved.</p>
-				</div>
-			</div>
-			<!-- tiny footer  -->
-			<!-- footer section -->
-		</div>
-		<!-- footer section -->
-	</div>
+	<!-- ======= footer ======= -->
+		<div th:replace="~{usr/v1/infra/common/footer :: div}"></div>
+	<!-- ======= End footer ======= -->
 	</div>
 
 	<!-- scripts  -->
@@ -258,8 +171,14 @@
 		// paging
 		goList = function(thisPage) {
 			document.querySelector("input[name=thisPage]").value = thisPage;
-			document.querySelector("form[name=form]").action = "/usr/v1/infra/shop/userShopList";
+			document.querySelector("form[name=form]").action = "/usr/v1/infra/shop/userShopBookingList";
 			document.querySelector("form[name=form]").submit();
+		}
+		// 리스트 개수 조절 - changeRowNum
+		document.getElementById("changeRowNum").onchange = function () {
+		    document.getElementById("rowNumToShow").value = document.getElementById("changeRowNum").value;
+		    form.action = "/usr/v1/infra/shop/userShopBookingList";
+		    form.submit();
 		}
 	</script>
 </body>

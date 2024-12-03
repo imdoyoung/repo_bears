@@ -503,7 +503,10 @@
 		    f.boDate,
 		    f.boTime,
 		    f.boDeposit,
-		    f.boTotalPrice
+		    f.boTotalPrice,
+		    f.boPayment,
+			f.boSettleDate,
+			f.boRegDate
 		FROM b_booking AS f
 			LEFT JOIN b_user AS c
 				ON f.b_user_usrSeq = c.usrSeq
@@ -571,7 +574,7 @@
 				ON a.B_menu_meSeq = c.meSeq
 			LEFT JOIN b_shop AS d
 				ON c.b_shop_nsSeq = d.nsSeq
-		GROUP BY d.nsSeq
+			GROUP BY d.nsSeq
 	</select>
 	
 	<!-- USR 메인 페이지에서 리뷰 리스트 출력 -->
@@ -588,6 +591,56 @@
 				ON a.b_shop_nsSeq = b.nsSeq
 	</select>
 	
+	<!-- USR 예약내역 페이지 리스트 출력 -->
+	<select id="userBookingSelectList" resultMap="resultMapObj">
+		SELECT cc.* FROM(
+			SELECT DISTINCT
+				c.usrSeq,
+				c.usrName,
+				c.usrId,
+				c.usrPhone,
+				c.usrGrade,
+				b.boSeq,
+				b.boDate,
+				b.boTime,
+				b.boDeposit,
+				b.boTotalPrice,
+				b.boPayment,
+				b.boSettleDate,
+				b.boRegDate,
+	            e.nsSeq,
+	            e.nsName,
+				e.nsTel,
+				e.nsAddr,
+				e.nsAddrdetail
+			<include refid="userBookingSelectCommon"/>
+	    	ORDER BY b.boSeq DESC
+		) cc limit #{rowNumToShow} offset #{startRnumForMySql}
+	</select>
+	
+	<!-- paging -->
+	<sql id="userBookingSelectCommon">
+		FROM b_bookingmenu AS a
+			LEFT JOIN b_booking AS b
+				ON a.b_booking_boSeq = b.boSeq
+			LEFT JOIN b_user AS c
+				ON b.b_user_usrSeq = c.usrSeq
+			LEFT JOIN b_menu AS d
+				ON a.b_menu_meSeq = d.meSeq
+			LEFT JOIN b_shop AS e
+				ON d.b_shop_nsSeq = e.nsSeq
+		WHERE 1 = 1
+			AND c.usrSeq = #{usrSeq}
+	        AND b.boPayment IS NOT NULL
+	        AND b.boSettleDate IS NOT NULL
+<!-- 	    GROUP BY b.boSeq -->
+	</sql>
+	
+	<select id="userBookingSelectOneCount">
+	    SELECT COUNT(DISTINCT b.boSeq)
+	    <include refid="userBookingSelectCommon"/>
+	</select>
+
 	
 	
 </mapper>

@@ -7,6 +7,8 @@ import com.baseball.infra.constants.Constants;
 public class ShopVo {
 	
 // ----- field -----
+	private String usrSeq;
+
 	// search
 	private Integer shDelNy;				// 삭제 여부
 	private Integer shMulti;				// 동시시술가능인원
@@ -262,34 +264,36 @@ public class ShopVo {
 		this.startRnumForMySql = startRnumForMySql;
 	}
 
-
 	public Integer getShAddrCode() {
 		return shAddrCode;
 	}
-
 
 	public void setShAddrCode(Integer shAddrCode) {
 		this.shAddrCode = shAddrCode;
 	}
 
-
 	public Integer getShAddParkingNy() {
 		return shAddParkingNy;
 	}
-
 
 	public void setShAddParkingNy(Integer shAddParkingNy) {
 		this.shAddParkingNy = shAddParkingNy;
 	}
 
-
 	public Integer getShMeDelNy() {
 		return shMeDelNy;
 	}
-
 
 	public void setShMeDelNy(Integer shMeDelNy) {
 		this.shMeDelNy = shMeDelNy;
 	}
 	
+	public String getUsrSeq() {
+		return usrSeq;
+	}
+
+
+	public void setUsrSeq(String usrSeq) {
+		this.usrSeq = usrSeq;
+	}
 }
