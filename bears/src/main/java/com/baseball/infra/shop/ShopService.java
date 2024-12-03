@@ -167,4 +167,9 @@ public class ShopService {
 		return shopDao.bestBookingList(shopDto);
 	};
 	
+	// usr메인페이지에서 리뷰 리스트 출력
+	public List<ShopDto> reviewList(ShopDto shopDto){
+		return shopDao.reviewList(shopDto);
+	};
+	
 }

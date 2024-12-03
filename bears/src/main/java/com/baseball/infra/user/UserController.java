@@ -195,6 +195,7 @@ public class UserController {
 	@RequestMapping(value = "/usr/v1/infra/user/userShopMain")
 	public String userShopMain(ShopDto shopDto, Model model) {
 		model.addAttribute("bestBookingList", shopService.bestBookingList(shopDto));
+		model.addAttribute("reviewList", shopService.reviewList(shopDto));
 		return "usr/v1/infra/user/userShopMain";
 	}
 

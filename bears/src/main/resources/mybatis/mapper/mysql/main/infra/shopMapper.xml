@@ -574,5 +574,20 @@
 		GROUP BY d.nsSeq
 	</select>
 	
+	<!-- USR 메인 페이지에서 리뷰 리스트 출력 -->
+	<select id="reviewList" resultMap="resultMapObj">
+		SELECT
+			a.reTitle, 
+		    a.reContent, 
+		    a.reId, 
+		    a.reStar, 
+		    a.reRegDate,
+		    b.nsName
+		FROM b_review AS a
+			LEFT JOIN b_shop AS b
+				ON a.b_shop_nsSeq = b.nsSeq
+	</select>
+	
+	
 	
 </mapper>

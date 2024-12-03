@@ -71,6 +71,9 @@ public interface ShopDao {
 	// booking 정보 update
 	public int bookingUpdate(ShopDto shopDto);
 	
-	// usr메인페이지에서 예약 많은 순
+	// usr메인페이지에서 예약 많은 순 샵 리스트 출력
 	public List<ShopDto> bestBookingList(ShopDto shopDto);
+	
+	// usr메인페이지에서 리뷰 리스트 출력
+	public List<ShopDto> reviewList(ShopDto shopDto);
 }
