@@ -633,7 +633,6 @@
 			AND c.usrSeq = #{usrSeq}
 	        AND b.boPayment IS NOT NULL
 	        AND b.boSettleDate IS NOT NULL
-<!-- 	    GROUP BY b.boSeq -->
 	</sql>
 	
 	<select id="userBookingSelectOneCount">
@@ -641,6 +640,42 @@
 	    <include refid="userBookingSelectCommon"/>
 	</select>
 
+	<!-- 예약내역 상세 페이지 -->
+	<select id="userBookingSelectOne" resultMap="resultMapObj">
+		SELECT
+			*
+		FROM b_booking AS a
+			LEFT JOIN b_user AS b
+				ON a.b_user_usrSeq = b.usrSeq
+		WHERE 1 = 1
+			AND b.usrSeq = #{usrSeq}
+			AND a.boPayment IS NOT NULL
+			AND a.boSettleDate IS NOT NULL
+	</select>
 	
+	<!-- 샵 상세페이지 리뷰 insert -->
+	<insert id="reviewInsert">
+		INSERT INTO b_review (
+			reTitle, 
+			reContent, 
+			reId, 
+			reStar, 
+			reRegDate, 
+			reEditDate, 
+			reDelNy, 
+			B_user_usrSeq, 
+			B_shop_nsSeq
+		) VALUES (
+			#{reTitle},
+			#{reContent},
+			#{reId}, 
+			#{reStar}, 
+			now(), 
+			now(), 
+			0, 
+			#{B_user_usrSeq}, 
+			#{B_shop_nsSeq}
+		)
+	</insert>
 	
 </mapper>

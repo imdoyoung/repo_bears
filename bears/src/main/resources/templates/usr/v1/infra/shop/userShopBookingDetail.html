@@ -21,59 +21,53 @@
 					<div class="col-lg-8 col-md-12 col-12">
 						<div class="card checkout-form">
 							<div class="card-body p-5">
-								<h4 class="mb-4 border-bottom pb-2">예약 정보</h4>
+								<h4 class="mb-4 border-bottom pb-2">예약 상세 내역</h4>
 								<!-- form -->
-								<form class="row" name="form" method="post" action="/usr/v1/infra/shop/userShopPaymentUpt">
+								<form class="row" name="form" method="post" action="">
 									<!-- booking테이블의 boSeq 정보 bookingUpdate에 넘겨주기 -->
-									<input type="hidden" name="boSeq" th:value="${bookingItem?.boSeq}">
 									<!-- 예약날짜 -->
-									<div class="mb-3 col-md-6">
+									<div class="mb-3 col-md-12">
 										<label class="form-label"> 
 											예약날짜
-											<span class="text-danger">*</span>
 										</label> 
-										<input type="text" class="form-control" id="boDate" name="boDate" th:value="${#dates.format(bookingItem?.boDate, 'yyyy-MM-dd')}" readonly>
+										<p>
+											<span name="boDate" id="boDate" th:text="${#dates.format(bookingDetailItem?.boDate, 'yyyy-MM-dd')}">2024-12-04</span>
+										</p>	
 									</div>
 									<!-- 예약시간 -->
-									<div class="mb-3 col-md-6">
+									<div class="mb-3 col-md-12">
 										<label class="form-label"> 
 											예약시간
-											<span class="text-danger">*</span>
 										</label> 
-										<input type="text" class="form-control" id="boTime" name="boTime" th:value="${#dates.format(bookingItem?.boTime, 'HH:mm')}" readonly>
+										<span th:text="${#dates.format(bookingDetailItem?.boTime, 'HH:mm')}">2024-12-04</span>
 									</div>
 									<!-- name -->
-									<div class="mb-3 col-md-6">
+									<div class="mb-3 col-md-12">
 										<label for="fname" class="form-label"> 
-											이름 
-											<span class="text-danger">*</span>
+											예약자명
 										</label> 
-										<input type="text" class="form-control" id="usrName" name="usrName" th:value="${bookingItem?.usrName}" readonly>
+										<span th:text="${bookingDetailItem?.usrName}">2024-12-04</span>
 									</div>
 									<!-- phone -->
-									<div class="mb-3 col-md-6">
+									<div class="mb-3 col-md-12">
 										<label for=text class="form-label"> 
-											전화번호 
-											<span class="text-danger">*</span>
+											예약자 전화번호 
 										</label> 
-										<input type="text" class="form-control" id="usrPhone" name="usrPhone" th:value="${bookingItem?.usrPhone}" readonly>
+										<span th:text="${bookingDetailItem?.usrPhone}">2024-12-04</span>
 									</div>
 									<!-- ShopName -->
-									<div class="mb-3 col-md-6">
+									<div class="mb-3 col-md-12">
 										<label class="form-label"> 
 											shop 이름 
-											<span class="text-danger">*</span>
 										</label> 
-										<input type="text" class="form-control" id="nsName" name="nsName" th:value="${shopItem?.nsName}" readonly>
+										<span th:text="${shopItem?.nsName}">2024-12-04</span>
 									</div>
 									<!-- ShopAddr -->
-									<div class="mb-3 col-md-6">
+									<div class="mb-3 col-md-12">
 										<label class="form-label"> 
 											shop 주소 
-											<span class="text-danger">*</span>
 										</label> 
-										<input type="text" class="form-control" id="nsAddr" name="nsAddr" 
-											th:value="${#strings.isEmpty(shopItem?.nsAddr) ? '' : shopItem?.nsAddr} + ' ' + ${#strings.isEmpty(shopItem?.nsAddrDetail) ? '' : shopItem?.nsAddrDetail}" readonly>
+										<span th:text="${#strings.isEmpty(shopItem?.nsAddr) ? '' : shopItem?.nsAddr} + ' ' + ${#strings.isEmpty(shopItem?.nsAddrDetail) ? '' : shopItem?.nsAddrDetail}">2024-12-04</span>
 									</div>
 									
 									<!-- 여백 추가 -->
@@ -104,8 +98,7 @@
 											<!-- payment -->
 											<div class="mb-3 col-md-6">
 												<label for="text" class="form-label"> 
-													결제수단 선택
-													<span class="text-danger">*</span>
+													결제수단
 												</label> <br>
 												<input type="radio" name="boPayment" value="15"> 카카오페이
 												<br>
@@ -129,11 +122,6 @@
 													</span>
 													원
 												</p>
-											</div>
-											<div>
-												<button class="btn btn-primary" type="submit" id="btnSubmit">
-													결제 하기
-												</button>
 											</div>
 										</div>
 									</div>
@@ -178,68 +166,6 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	
 	<script type="text/javascript">
-		
-		// 카카오페이 결제 팝업창 연결
-		// step1
-// 		$(function(){
-// 			$("#btnSubmit").click(function(e){
-				
-// 				e.preventDefault(); // 기본 폼 동작 방지 (클릭 시 새로고침 방지)
-				
-// 				// 아래 데이터 외에도 필요한 데이터를 원하는 대로 담고, Controller에서 @RequestBody로 받으면 됨
-// 	            let data = {
-// 	                name: '상품명',    // 카카오페이에 보낼 대표 상품명
-// 	                totalPrice: 30000 // 총 결제금액
-// 	            };
-	          
-// 	            $.ajax({
-// 	                type: 'POST',
-// 	                url: 'http://localhost:8080/order/pay/ready',
-// 	                data: JSON.stringify(data),
-// 	                contentType: 'application/json',
-// 	                success: function(response) {
-// 	                    location.href = response.next_redirect_pc_url;
-// 	                }
-// 	            });
-// 			});
-// 		});
-		
-		// step2
-// 		document.getElementById("btnSubmit").addEventListener("click", function () {
-// 		    // 결제에 필요한 데이터를 서버로 보냄
-// 		    const requestData = {
-// 		        name: "상품 이름",
-// 		        totalPrice: 30000 // 총 결제 금액
-// 		    };
-		
-// 		    // Ajax 호출
-// 		    fetch("/order/pay/ready", {
-// 		        method: "POST",
-// 		        headers: {
-// 		            "Content-Type": "application/json"
-// 		        },
-// 		        body: JSON.stringify(requestData)
-// 		    })
-// 		    .then(response => response.json())
-// 		    .then(data => {
-// 		        if (data.next_redirect_pc_url) {
-// 		            // 카카오페이 결제 페이지로 이동
-// 		            window.location.href = data.next_redirect_pc_url;
-// 		        } else {
-// 		            alert("결제 준비 중 문제가 발생했습니다. 다시 시도해주세요.");
-// 		        }
-// 		    })
-// 		    .catch(error => {
-// 		        console.error("Error during payment request:", error);
-// 		        alert("결제 요청에 실패했습니다. 관리자에게 문의해주세요.");
-// 		    });
-// 		});
-		
-		document.getElementById("btnSubmit").onclick = function(){
-			form.action = "/usr/v1/infra/shop/userShopPaymentUpt";
-			form.submit();
-		}
-
 		// LogoutProc
 		document.getElementById("SignoutBtn").onclick = function() {
 			alert("로그아웃 성공");

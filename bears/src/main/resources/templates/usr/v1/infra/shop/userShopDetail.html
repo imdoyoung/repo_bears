@@ -117,30 +117,39 @@
 									</div>
 									<div class="col-md-2">
 										<div class="text-lg-center">
+											<!-- 											<h1 class="fw-bold mb-0 lh-1" th:text="${averageStarItem?.average_star}">별점평균</h1> -->
 											<h1 class="fw-bold mb-0 lh-1"
-												th:text="${averageStarItem?.average_star}">별점평균</h1>
+												th:text="${#numbers.formatDecimal(averageStarItem?.average_star, 1, 1)}">별점평균</h1>
+
 										</div>
 									</div>
 								</div>
 								<!--  review start -->
 								<div class="row">
-									<div class="col-md-12 mb-5" th:each="list : ${reviewList}">
+									<div class="col-md-12 mb-5" id="target"
+										th:each="list : ${reviewList}">
 										<div class="row">
 											<div class="col-md-3">
 												<div>
-													<img src="/usr/v1/template/NailForest/assets/images/nail/womanIcon32.png"
-														alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="avatar-md avatar rounded-circle mb-3">
+													<img
+														src="/usr/v1/template/NailForest/assets/images/nail/womanIcon32.png"
+														alt="Rentkit Directory & Listing Bootstrap 5 Theme"
+														class="avatar-md avatar rounded-circle mb-3">
 													<h5 class="mb-n1" th:text="${list.usrId}">회원이름</h5>
-													<small
-														th:text="${#dates.format(list?.reRegDate, 'yyyy-MM-dd HH:mm:ss')}">리뷰등록일</small>
+													<small th:if="${list.reRegDate != null}"
+														th:text="${#dates.format(list.reRegDate, 'yyyy-MM-dd HH:mm:ss')}">리뷰등록일</small>
+													<small th:if="${list.reRegDate == null}">등록일 없음</small>
 												</div>
 											</div>
 											<div class="col-md-9">
 												<div>
 													<h5 class="fw-bold mb-2" th:text="${list.reTitle}">리뷰제목</h5>
 													<p th:text="${list.reContent}">리뷰내용</p>
-													<span th:each="i : ${#numbers.sequence(1, list.reStar)}"
-														class="mdi mdi-star text-primary"></span>
+													<span class="mdi mdi-star text-primary"
+														th:if="${list.reStar > 0}"
+														th:each="i : ${#numbers.sequence(1, list.reStar != null ? list.reStar : 0)}"></span>
+													<span th:if="${list.reStar == null || list.reStar == 0}">별점
+														없음</span>
 												</div>
 											</div>
 										</div>
@@ -154,42 +163,40 @@
 						<!-- listing detail -->
 						<div class="card mb-4 ">
 							<div class="card-body p-4">
-								<h4 class="mb-3">Reviews</h4>
-								<form class="row">
-									<div class="mb-3 col-6">
-										<label for="reviewtitle" class="form-label"> ID </label> <input
-											type="text" name="name" class="form-control" id="reviewname"
-											aria-describedby="reviewname" placeholder="ID" required>
-									</div>
+								<form name="reviewForm" method="post"
+									action="/usr/v1/infra/shop/userShopDetailReviewInst">
+									<h4 class="mb-3">Reviews</h4>
 									<div class="mb-3 col-6" id="mystar">
 										<fieldset>
 											<span for="reviewemail" class="form-label">별점</span><br>
-											<input type="radio" name="reviewStar" value="1" id="rate1">
+											<input type="radio" name=reStar value="1" id="reStar">
 											<label for="rate1" data-value="1">★</label> <input
-												type="radio" name="reviewStar" value="2" id="rate2">
-											<label for="rate2" data-value="2">★</label> <input
-												type="radio" name="reviewStar" value="3" id="rate3">
-											<label for="rate3" data-value="3">★</label> <input
-												type="radio" name="reviewStar" value="4" id="rate4">
-											<label for="rate4" data-value="4">★</label> <input
-												type="radio" name="reviewStar" value="5" id="rate5">
-											<label for="rate5" data-value="5">★</label>
+												type="radio" name="reStar" value="2" id="reStar"> <label
+												for="rate2" data-value="2">★</label> <input type="radio"
+												name="reStar" value="3" id="reStar"> <label
+												for="rate3" data-value="3">★</label> <input type="radio"
+												name="reStar" value="4" id="reStar"> <label
+												for="rate4" data-value="4">★</label> <input type="radio"
+												name="reStar" value="5" id="reStar"> <label
+												for="rate5" data-value="5">★</label>
 										</fieldset>
 									</div>
 									<div class="mb-3 col-12">
-										<label for="reviewtitle" class="form-label"> 리뷰 제목 </label> <input
-											type="text" name="title" class="form-control"
-											id="reviewtitle" aria-describedby="reviewtitle"
-											placeholder="리뷰 제목" required="">
+										<label for="reTitle" class="form-label"> 리뷰 제목 </label> <input
+											type="text" name="reTitle" class="form-control" id="reTitle">
 									</div>
 									<div class="mb-3 col-12 mt-3">
-										<label for="reviewdescription" class="form-label">리뷰
-											내용</label>
-										<textarea class="form-control" id="reviewdescription" rows="3"></textarea>
+										<label for="reContent" class="form-label">리뷰 내용</label>
+										<textarea class="form-control" id="reContent" name="reContent"
+											rows="3"></textarea>
 									</div>
 									<div
 										class="d-lg-flex justify-content-between align-items-center">
-										<button type="submit" class="btn btn-primary">저장</button>
+										<input type="hidden" name="reStar" id="reStarInput">
+										<div id="hiddenData" data-ns-seq="${nsSeq}"></div>
+										<input type="hidden" name="nsSeq" value="">
+										<button type="button" id="btnReviewSubmit"
+											class="btn btn-primary">저장</button>
 									</div>
 								</form>
 							</div>
@@ -284,7 +291,8 @@
 										<small class="text-muted ms-2">(예약금)</small>
 									</div>
 									<div>
-										<form name="form" method="post" action="/usr/v1/infra/shop/shopBookingInsert">
+										<form name="form" method="post"
+											action="/usr/v1/infra/shop/shopBookingInsert">
 											<div class="mb-3">
 												<label class="form-label"> 예약 </label>
 												<div class="input-group mb-3">
@@ -303,11 +311,13 @@
 												<label class="form-label">Option</label>
 												<div th:each="list : ${shopMenuList}">
 													<div class="input-group mb-3">
-														<label class="form-control custom-checkbox"> 
-															<!-- name="menuSeqs" 로 여러개의 메뉴를 배열로 서버에 전송 -->
-															<input type="checkbox" id="checkbox1" name="menuSeqs" class="menu-checkbox"
-    															th:value="${list.meSeq}" th:attr="data-price=${list.mePrice != null ? list.mePrice : 0}" onchange="updateTotalPrice()">
-															<input type="hidden" name="boTotalPrice" id="boTotalPriceInput"><!-- DB에 boTotalPrice를 넘기기위해서 hidden으로 만든다. -->
+														<label class="form-control custom-checkbox"> <!-- name="menuSeqs" 로 여러개의 메뉴를 배열로 서버에 전송 -->
+															<input type="checkbox" id="checkbox1" name="menuSeqs"
+															class="menu-checkbox" th:value="${list.meSeq}"
+															th:attr="data-price=${list.mePrice != null ? list.mePrice : 0}"
+															onchange="updateTotalPrice()"> <input
+															type="hidden" name="boTotalPrice" id="boTotalPriceInput">
+															<!-- DB에 boTotalPrice를 넘기기위해서 hidden으로 만든다. -->
 															<div class="content">
 																<p class="align-left">
 																	<strong><span th:text="${list.meName}">메뉴이름</span></strong>
@@ -329,13 +339,15 @@
 														<p>
 															<span>예약 날짜 : <span id="rvDate"></span></span> <br>
 															<span>예약 시간 : <span id="rvTime"></span></span> <br>
-															<span>예약금 : <span id="boDeposit">30,000</span>원</span> <br> 
-															<span>총금액 : <span id="boTotalPrice">0</span>원</span>
+															<span>예약금 : <span id="boDeposit">30,000</span>원
+															</span> <br> <span>총금액 : <span id="boTotalPrice">0</span>원
+															</span>
 														</p>
 													</div>
 												</div>
 												<div class="mt-3 d-grid">
-													<button type="button" class="btn btn-primary " id="btnBooking" >예약하기</button>
+													<button type="button" class="btn btn-primary "
+														id="btnBooking">예약하기</button>
 												</div>
 										</form>
 										<!-- Vertically centered Modal -->
@@ -349,7 +361,8 @@
 													</div>
 													<div class="modal-body">예약 내용을 모두 선택해 주세요</div>
 													<div class="modal-footer">
-														<button type="button" class="btn btn-primary" data-bs-dismiss="modal">확인</button>
+														<button type="button" class="btn btn-primary"
+															data-bs-dismiss="modal">확인</button>
 													</div>
 												</div>
 											</div>
@@ -361,48 +374,48 @@
 							<!-- listing widget -->
 						</div>
 						<!-- listing widget -->
-<!-- 						<div class="card mb-4"> -->
-<!-- 							<div class="card-body p-4"> -->
-<!-- 								<h5 class="mb-0"> -->
-<!-- 									<span class="mdi mdi-medal text-primary float-right"></span> -->
-<!-- 								</h5> -->
-<!-- 								<div class="text-center mt-4"> -->
-<!-- 									<img -->
-<!-- 										src="/usr/v1/template/NailForest/assets/images/nail/nowonShop2.png" -->
-<!-- 										alt="Rentkit Directory & Listing Bootstrap 5 Theme" -->
-<!-- 										class="rounded-circle avatar avatar-lg mb-2"> -->
-<!-- 									<h5 class="mb-0">니드썸네일</h5> -->
-<!-- 									<small>joined in january 2024</small> -->
-<!-- 									<p class="mb-0 mx-5 mt-3">니드썸네일의 고객님 한분 한분께 만족스럽고 아름다운 네일은 -->
-<!-- 										물론 마음까지 힐링받으실 수 있도록 니드썸네일 직원 모두가 고민하고 노력하겠습니다.</p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 							<div class="border-top card-body p-4 text-center"> -->
-<!-- 								<p class="mb-0"> -->
-<!-- 									응답률: <span class="text-primary">100%</span> -->
-<!-- 								</p> -->
-<!-- 								<p> -->
-<!-- 									응답시간: <span class="text-primary">1시간 이내</span> -->
-<!-- 								</p> -->
-<!-- 								<div class="d-grid mx-8"> -->
-<!-- 									<a href="#" class="btn btn-dark">1:1 채팅하기</a> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
+						<!-- 						<div class="card mb-4"> -->
+						<!-- 							<div class="card-body p-4"> -->
+						<!-- 								<h5 class="mb-0"> -->
+						<!-- 									<span class="mdi mdi-medal text-primary float-right"></span> -->
+						<!-- 								</h5> -->
+						<!-- 								<div class="text-center mt-4"> -->
+						<!-- 									<img -->
+						<!-- 										src="/usr/v1/template/NailForest/assets/images/nail/nowonShop2.png" -->
+						<!-- 										alt="Rentkit Directory & Listing Bootstrap 5 Theme" -->
+						<!-- 										class="rounded-circle avatar avatar-lg mb-2"> -->
+						<!-- 									<h5 class="mb-0">니드썸네일</h5> -->
+						<!-- 									<small>joined in january 2024</small> -->
+						<!-- 									<p class="mb-0 mx-5 mt-3">니드썸네일의 고객님 한분 한분께 만족스럽고 아름다운 네일은 -->
+						<!-- 										물론 마음까지 힐링받으실 수 있도록 니드썸네일 직원 모두가 고민하고 노력하겠습니다.</p> -->
+						<!-- 								</div> -->
+						<!-- 							</div> -->
+						<!-- 							<div class="border-top card-body p-4 text-center"> -->
+						<!-- 								<p class="mb-0"> -->
+						<!-- 									응답률: <span class="text-primary">100%</span> -->
+						<!-- 								</p> -->
+						<!-- 								<p> -->
+						<!-- 									응답시간: <span class="text-primary">1시간 이내</span> -->
+						<!-- 								</p> -->
+						<!-- 								<div class="d-grid mx-8"> -->
+						<!-- 									<a href="#" class="btn btn-dark">1:1 채팅하기</a> -->
+						<!-- 								</div> -->
+						<!-- 							</div> -->
+						<!-- 						</div> -->
 						<!-- listing detail -->
-						<div class="d-grid">
-							<a href="#" class="btn btn-light mb-4"> <i
-								class="mdi mdi-flag-variant-outline me-1"></i> 신고하기
-							</a>
-						</div>
+						<!-- 						<div class="d-grid"> -->
+						<!-- 							<a href="#" class="btn btn-light mb-4"> <i -->
+						<!-- 								class="mdi mdi-flag-variant-outline me-1"></i> 신고하기 -->
+						<!-- 							</a> -->
+						<!-- 						</div> -->
 					</div>
 				</div>
 			</div>
 		</div>
-		
-	<!-- ======= footer ======= -->
+
+		<!-- ======= footer ======= -->
 		<div th:replace="~{usr/v1/infra/common/footer :: div}"></div>
-	<!-- ======= End footer ======= -->
+		<!-- ======= End footer ======= -->
 
 	</div>
 	<!-- scripts  -->
@@ -450,11 +463,14 @@
 
 	<!-- by developer -->
 	<script src="/xdm/v1/jquery/jquery-3.7.1.min.js"></script>
-	<script
-		src="/xdm/v1/js/datetimepicker/jquery.datetimepicker.full.min.js"></script>
+	<script src="/xdm/v1/js/datetimepicker/jquery.datetimepicker.full.min.js"></script>
+	<!-- Magnific Popup JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+	
 
 	<!-- KAKAO MAP API services 라이브러리 불러오기 -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e7a4c61c5d2d5eec0befbefd5116181&libraries=services"></script>
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e7a4c61c5d2d5eec0befbefd5116181&libraries=services"></script>
 
 	<script type="text/javascript">
 	// ========== 카카오 지도 API START ========== //
@@ -497,6 +513,8 @@
 	// ========== 리뷰 별 START ========== //
 		// 리뷰 별 
 	    const stars = document.querySelectorAll('#mystar label');
+	 	// 선택된 별점 값을 저장하는 변수
+	    let selectedValue = 0; 
 	
 	    // 별에 마우스 올렸을 때 해당 별과 왼쪽 별들 채우기
 	    stars.forEach(star => {
@@ -511,26 +529,106 @@
 	            });
 	        });
 	
-	        // 마우스가 별 밖으로 나가면 별 초기화
+	     	// 마우스가 별 밖으로 나가면 선택된 상태 유지
 	        star.addEventListener('mouseout', () => {
-	            stars.forEach(s => s.style.color = 'transparent');
-	        });
-	
-	        // 별 클릭 시 선택 상태 유지
-	        star.addEventListener('click', () => {
-	            const value = parseInt(star.getAttribute('data-value'));
 	            stars.forEach((s, index) => {
-	                if (index < value) {
+	                if (index < selectedValue) {
 	                    s.style.color = 'rgba(250, 208, 0, 0.99)';
 	                } else {
 	                    s.style.color = 'transparent';
 	                }
 	            });
 	        });
+	
+	     	// 별 클릭 시 선택 상태 저장 및 유지
+	        star.addEventListener('click', () => {
+	            selectedValue = parseInt(star.getAttribute('data-value')); // 선택된 값 저장
+	            console.log("별점값: " + selectedValue);
+	            stars.forEach((s, index) => {
+	                if (index < selectedValue) {
+	                    s.style.color = 'rgba(250, 208, 0, 0.99)';
+	                } else {
+	                    s.style.color = 'transparent';
+	                }
+	            });
+	            
+	            // selectedValue에 저장된 별점 값 html필드에 설정
+	            document.getElementById("reStarInput").value = selectedValue;
+	        });
 	    });
 	 // ========== 리뷰 별 END ========== //
 	 
-	   
+	 
+	 
+	 
+	 // ========== 리뷰 insert START ========== //
+	// nsSeq 값 전달
+	document.addEventListener('DOMContentLoaded', () => {
+		const urlParams = new URLSearchParams(window.location.search);
+	    const nsSeq = urlParams.get('nsSeq');
+	    if (nsSeq) {
+	    	document.querySelector('input[name="nsSeq"]').value = nsSeq;
+		}
+		console.log("nsSeq: " + nsSeq);
+	});
+	 
+	// 리뷰 저장 버튼 클릭 시
+	document.getElementById('btnReviewSubmit').onclick = function() {
+		const nsSeq = document.querySelector('input[name="nsSeq"]').value; 
+	    // 선택된 별점 값이 있을 때만 처리
+	    if (selectedValue > 0) {
+	
+		    // Ajax로 데이터를 전송
+		    $.ajax({ // AJAX 요청을 시작하는 jQuery 메서드
+				async : true, // 요청을 비동기로 처리 (기본값이 true라 생략 가능)
+				cache : false, // 요청 결과를 캐시하지 않도록 설정
+				type : "post", // HTTP 메서드를 POST로 설정
+				/* ,dataType:"json" */
+				url : '/usr/v1/infra/shop/userShopDetailReviewInst', // 요청을 보낼 URL
+				/* ,data : $("#formLogin").serialize() */
+				data : {
+					"reTitle" : $("#reTitle").val(),
+					"reContent" : $("#reContent").val(),
+					"reStar" : selectedValue,	// 별점 가져와서 전송
+					"nsSeq" : nsSeq
+				},
+				success : function(response) { // 요청이 성공적으로 완료되면 실행될 함수
+					if (response.rt == "success") {
+						alert("리뷰저장성공");
+						// append 추가
+						let target = '';
+						target += '<div class="col-md-12 mb-5">';
+						target += '	<div class="row">';
+						target += '		<div class="col-md-3">';
+						target += '			<div>';
+						target += '				<img src="/usr/v1/template/NailForest/assets/images/nail/womanIcon32.png"';
+						target += '					alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="avatar-md avatar rounded-circle mb-3">';
+						target += '				<h5 class="mb-n1">' + response.reId + '</h5>';
+						target += '				<small>' + (response.reRegDate != null ? formatDate(response.reRegDate) : '등록일 없음') + '</small>';
+						target += '			</div>';
+						target += '		</div>';
+						target += '		<div class="col-md-9">';
+						target += '			<div>';
+						target += '				<h5 class="fw-bold mb-2">' + response.reTitle + '</h5>';
+						target += '				<p>' + (response.reContent) + '</p>';
+						target += '				<span>' + (response.reStar == null || response.reStar == 0 ? '별점 없음' : '') + '</span>';
+						target += '			</div>';
+						target += '		</div>';
+						target += '	</div>';
+						target += '</div>';
+							
+						$("#target").append(target);
+							
+					} else { // insert 실패 시 alert 창을 띄움
+						alert("리뷰저장실패");
+					}
+				}
+			});
+	    }
+	};
+	 // ========== 리뷰 insert END ========== //
+	 
+	 
  	
 	 // ========== Datetimepicker START ========== //
 		// 예약 날짜,시간 검색 - datetimepicker

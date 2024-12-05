@@ -82,7 +82,10 @@
 									</td>
 									<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
 									<td th:text="${list.boSeq}"></td>
-									<td th:text="${list.nsName}"></td>
+<!-- 									<td th:text="${list.nsName}"></td> -->
+									<td>
+										<a th:href="@{/usr/v1/infra/shop/userShopBookingDetail(boSeq=${list?.boSeq})}" th:text="${list.nsName}"></a>
+									</td>
 									<td th:text="${#dates.format(list?.boDate, 'yyyy-MM-dd')}">예약일</td>
 									<td th:text="${#dates.format(list?.boTime, 'HH:mm')}">예약시간</td>
 									<td th:text="${#numbers.formatInteger(list.boDeposit, 3, 'COMMA')}"></td>
@@ -179,6 +182,27 @@
 		    document.getElementById("rowNumToShow").value = document.getElementById("changeRowNum").value;
 		    form.action = "/usr/v1/infra/shop/userShopBookingList";
 		    form.submit();
+		}
+		// LogoutProc
+		document.getElementById("SignoutBtn").onclick = function() {
+			alert("로그아웃 성공");
+			$.ajax({
+				async : true,
+				cache : false,
+				type : "post"
+				/* ,dataType:"json" */
+				,
+				url : "/usr/v1/infra/user/userShopSignoutProc"
+				/* ,data : $("#formLogin").serialize() */
+				,
+				success : function(response) {
+					if (response.rt == "success") {
+						location.href = "/usr/v1/infra/user/userShopMain";
+					} else {
+						// by pass
+					}
+				}
+			});
 		}
 	</script>
 </body>

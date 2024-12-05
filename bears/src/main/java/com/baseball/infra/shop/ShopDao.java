@@ -78,14 +78,15 @@ public interface ShopDao {
 	public List<ShopDto> reviewList(ShopDto shopDto);
 	
 	// usr 예약내역페이지 리스트 출력
-//	public List<ShopDto> userBookingSelectList(ShopDto shopDto);
 	List<ShopDto> userBookingSelectList(ShopVo shopVo);
 
-	
 	// paging
 	public int userBookingSelectOneCount(ShopVo shopVo);
 	
+	// usr 예약내역 상세 페이지 출력
+	public ShopDto userBookingSelectOne(ShopDto shopDto);
 	
-	
+	// shop상세페이지 review insert
+	public int reviewInsert(ShopDto shopDto);
 	
 }

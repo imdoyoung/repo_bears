@@ -723,8 +723,7 @@
 								</div>
 								<div class="d-flex justify-content-between">
 									<div class="text-primary align-self-center text-sm">
-										<span th:each="i : ${#numbers.sequence(1, list.reStar)}"
-											class="mdi mdi-star text-primary"></span>
+										<span th:each="i : ${#numbers.sequence(1, list.reStar != null ? list.reStar : 5)}" class="mdi mdi-star text-primary"></span>
 									</div>
 									<div class="d-flex align-items-center">
 										<img

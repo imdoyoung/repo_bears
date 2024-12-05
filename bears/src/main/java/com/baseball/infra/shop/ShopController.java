@@ -1,6 +1,8 @@
 package com.baseball.infra.shop;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baseball.common.util.UtilDateTime;
 
@@ -140,7 +144,7 @@ public class ShopController {
 //		System.out.println("/// shopMenuMfom - MenuUpdate 실행 ///");
 //		return "redirect:/xdm/v1/infra/shop/shopMenuXdmList";
 //	}
-//	S
+//	
 //	// 삭제 - uelete
 //	@RequestMapping(value="/xdm/v1/infra/shop/shopMenuXdmUel")
 //	public String shopMenuXdmUel(ShopDto shopDto) {
@@ -176,13 +180,125 @@ public class ShopController {
 	
 	// ShopDetail(Mfom-selectOne)
 	@RequestMapping(value="/usr/v1/infra/shop/userShopDetail")
-	public String userShopDetail(ShopDto shopDto, ShopVo shopVo, Model model) {
+	public String userShopDetail(@RequestParam("nsSeq") String nsSeq, ShopDto shopDto, ShopVo shopVo, Model model) {
+		
 		model.addAttribute("shopItem", shopService.shopSelectOne(shopDto));
 		model.addAttribute("reviewList", shopService.shopReviewSelectList(shopDto));
 		model.addAttribute("averageStarItem", shopService.getAverageStar(shopDto));
 		model.addAttribute("shopMenuList", shopService.menuSelectList(shopDto));
+		
 		return "usr/v1/infra/shop/userShopDetail";
 	}
+	
+	// ShopDetail에서 review insert
+	@ResponseBody
+	@RequestMapping(value = "/usr/v1/infra/shop/userShopDetailReviewInst", method = RequestMethod.POST)
+	public Map<String, Object> userShopDetailReviewInst(@RequestParam("nsSeq") String nsSeq, ShopDto shopDto, HttpSession httpSession) {
+	    Map<String, Object> response = new HashMap<>();
+	    System.out.println("리뷰 response 돌았다~");
+
+	    // 세션 값 가져오기
+	    String sessSeqXdm = (String) httpSession.getAttribute("sessSeqXdm");
+	    String sessIdXdm = (String) httpSession.getAttribute("sessIdXdm");
+	    
+	    // ShopDto에 값 설정
+	    // ShopDto에 sessSeqXdm값으로 B_user_usrSeq 설정
+	    shopDto.setB_user_usrSeq(sessSeqXdm);
+	    // url에서 nsSeq를 파라미터로 받아 ShopDto에 nsSeq값으로 B_shop_nsSeq 설정
+	    shopDto.setB_shop_nsSeq(nsSeq);
+	    // ShopDto에 sessIdXdm값으로 reId, usrId 설정
+	    shopDto.setUsrId(sessIdXdm);
+	    shopDto.setReId(sessIdXdm);
+
+	    System.out.println("nsSeq : " + shopDto.getB_shop_nsSeq());
+	    System.out.println("shopDto : " + shopDto.toString());
+
+	    // 리뷰 삽입
+	    int result = shopService.reviewInsert(shopDto);
+	    
+	    if (result > 0) {
+	        response.put("rt", "success");
+	        response.put("success", true);
+	        response.put("reId", shopDto.getReId());		// sessIdXdm 값이 이곳에 저장됨
+	        response.put("usrId", shopDto.getUsrId());		// 명확한 확인을 위해 추가
+	        response.put("reStar", shopDto.getReStar());	
+	        response.put("reTitle", shopDto.getReTitle());
+	        response.put("reContent", shopDto.getReContent());
+	    } else {
+	        response.put("rt", "fail");
+	        response.put("message", "리뷰 삽입에 실패했습니다.");
+	    }
+
+	    return response;
+	}
+
+	
+	
+	
+//	@ResponseBody// JSON 응답을 반환하도록 설정
+//	@RequestMapping(value = "/usr/v1/infra/shop/userShopDetailReviewInst", method = RequestMethod.POST)
+//	public Map<String, Object> userShopDetailReviewInst(@RequestParam("nsSeq") String nsSeq, ShopDto shopDto, Model model, HttpSession httpSession) {
+//		
+//		Map<String, Object> response = new HashMap<>();
+//
+//		System.out.println("리뷰 response 돌았다~");
+//		
+//	    // 세션에서 필요한 값 가져오기
+//	    String sessSeqXdm = (String) httpSession.getAttribute("sessSeqXdm");
+//	    String sessIdXdm = (String) httpSession.getAttribute("sessIdXdm");
+//
+//	    // ShopDto에 값 설정
+//	    // ShopDto에 sessSeqXdm값으로 B_user_usrSeq 설정
+//	    shopDto.setB_user_usrSeq(sessSeqXdm);
+//	    // url에서 nsSeq를 파라미터로 받아 ShopDto에 nsSeq값으로 B_shop_nsSeq 설정
+//	    shopDto.setB_shop_nsSeq(nsSeq);
+//	    // ShopDto에 sessIdXdm값으로 ReId 설정
+//	    shopDto.setReId(sessIdXdm);
+//	    
+//	    System.out.println("nsSeq : " + shopDto.getB_shop_nsSeq());
+//	    
+//	    if(nsSeq != null) {
+//	    	// 리뷰 삽입
+//	    	shopService.reviewInsert(shopDto);
+//	    	
+//	    	response.put("rt", "success");
+//	    	
+//	    	// 삽입된 리뷰 데이터 반환 (필요한 데이터만 반환)
+//	    	response.put("success", true); // 리뷰 저장 성공
+//	    	response.put("reId", shopDto.getReId());
+//	    	response.put("reStar", shopDto.getReStar());
+//	    	response.put("reTitle", shopDto.getReTitle());
+//	    	response.put("reContent", shopDto.getReContent());
+//	    } else {
+//	    	response.put("rt", "fail");
+//	    }
+//	    
+//
+//	    return response;
+//	}
+
+	
+//	@RequestMapping(value="/usr/v1/infra/shop/userShopDetailReviewInst")
+//	public String userShopDetailReviewInst(@RequestParam("nsSeq") String nsSeq, ShopDto shopDto, Model model, HttpSession httpSession) {
+//
+//		// 세션에서 sessSeqXdm 값 가져오기
+//		String sessSeqXdm = (String) httpSession.getAttribute("sessSeqXdm");
+//		String sessIdXdm = (String) httpSession.getAttribute("sessIdXdm");
+//		
+//		// ShopDto에 sessSeqXdm값으로 B_user_usrSeq 설정
+//	    shopDto.setB_user_usrSeq(sessSeqXdm);
+//	    
+//	    // url에서 nsSeq를 파라미터로 받아 ShopDto에 nsSeq값으로 B_shop_nsSeq 설정
+//	    shopDto.setB_shop_nsSeq(nsSeq);
+//	    
+//	    // ShopDto에 sessIdXdm값으로 ReId 설정
+//	    shopDto.setReId(sessIdXdm);
+//	    
+//		// review insert
+//		shopService.reviewInsert(shopDto);
+//		
+//		return "redirect:/usr/v1/infra/shop/userShopDetail?nsSeq=" + shopDto.getB_shop_nsSeq();
+//	}
 	
 	// ===== booking ===== //
 	// 예약 등록 - shopBookingInsert
@@ -301,7 +417,7 @@ public class ShopController {
 		return "usr/v1/infra/shop/userShopPaymentComplete";
 	}
 	
-	// usr 예약내역페이지 리스트 출력
+	// usr 예약내역 리스트 페이지 출력
 	@RequestMapping(value="/usr/v1/infra/shop/userShopBookingList")
 	public String userBookingSelectList(@ModelAttribute("vo") ShopVo shopVo, Model model, HttpSession httpSession) {
 	    
@@ -320,6 +436,13 @@ public class ShopController {
 	    }
 
 	    return "usr/v1/infra/shop/userShopBookingList";
+	}
+	
+	// usr 예약내역 상세 페이지 출력
+	@RequestMapping(value="/usr/v1/infra/shop/userShopBookingDetail")
+	public String userShopBookingDetail(ShopDto shopDto, Model model) {
+		model.addAttribute("bookingDetailItem", shopService.userBookingSelectOne(shopDto));
+		return "usr/v1/infra/shop/userShopBookingDetail";
 	}
 
 	

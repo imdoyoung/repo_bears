@@ -173,17 +173,22 @@ public class ShopService {
 	};
 	
 	// usr 예약내역페이지 리스트 출력
-//	public List<ShopDto> userBookingSelectList(ShopDto shopDto){
-//		return shopDao.userBookingSelectList(shopDto);
-//	};
 	public List<ShopDto> userBookingSelectList(ShopVo shopVo) {
 	    return shopDao.userBookingSelectList(shopVo);
 	}
-
 	
 	// paging
 	public int userBookingSelectOneCount(ShopVo shopVo) {
 		return shopDao.userBookingSelectOneCount(shopVo);
 	};
 	
+	// usr 예약내역 상세 페이지 출력
+	public ShopDto userBookingSelectOne(ShopDto shopDto) {
+		return shopDao.userBookingSelectOne(shopDto);
+	};
+	
+	// shop상세페이지 review insert
+	public int reviewInsert(ShopDto shopDto) {
+		return shopDao.reviewInsert(shopDto);
+	};
 }
