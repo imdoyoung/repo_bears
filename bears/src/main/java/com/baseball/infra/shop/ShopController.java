@@ -441,7 +441,10 @@ public class ShopController {
 	// usr 예약내역 상세 페이지 출력
 	@RequestMapping(value="/usr/v1/infra/shop/userShopBookingDetail")
 	public String userShopBookingDetail(ShopDto shopDto, Model model) {
-		model.addAttribute("bookingDetailItem", shopService.userBookingSelectOne(shopDto));
+		model.addAttribute("bookingDetailItem", shopService.userBookingDetailSelectOne(shopDto));
+		model.addAttribute("bookingShopDetailItem", shopService.shopBookingDetailSelectOne(shopDto));
+		model.addAttribute("bookingMenuDetailList", shopService.menuBookingDetailSelectList(shopDto));
+		System.out.println("userBookingDetailSelectOne 잘 넘어감");
 		return "usr/v1/infra/shop/userShopBookingDetail";
 	}
 

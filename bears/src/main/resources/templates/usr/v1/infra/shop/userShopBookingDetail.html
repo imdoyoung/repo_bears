@@ -30,44 +30,42 @@
 										<label class="form-label"> 
 											예약날짜
 										</label> 
-										<p>
-											<span name="boDate" id="boDate" th:text="${#dates.format(bookingDetailItem?.boDate, 'yyyy-MM-dd')}">2024-12-04</span>
-										</p>	
+										<strong>&nbsp;&nbsp;<span name="boDate" id="boDate" th:text="${#dates.format(bookingDetailItem?.boDate, 'yyyy-MM-dd')}">예약날짜</span></strong>
 									</div>
 									<!-- 예약시간 -->
 									<div class="mb-3 col-md-12">
 										<label class="form-label"> 
 											예약시간
 										</label> 
-										<span th:text="${#dates.format(bookingDetailItem?.boTime, 'HH:mm')}">2024-12-04</span>
+										<strong>&nbsp;&nbsp;<span th:text="${#dates.format(bookingDetailItem?.boTime, 'HH:mm')}">예약시간</span></strong>
 									</div>
 									<!-- name -->
 									<div class="mb-3 col-md-12">
 										<label for="fname" class="form-label"> 
 											예약자명
 										</label> 
-										<span th:text="${bookingDetailItem?.usrName}">2024-12-04</span>
+										<strong>&nbsp;&nbsp;<span th:text="${bookingDetailItem?.usrName}">예약자 이름</span></strong>
 									</div>
 									<!-- phone -->
 									<div class="mb-3 col-md-12">
 										<label for=text class="form-label"> 
 											예약자 전화번호 
 										</label> 
-										<span th:text="${bookingDetailItem?.usrPhone}">2024-12-04</span>
+										<strong>&nbsp;&nbsp;<span th:text="${bookingDetailItem?.usrPhone}">예약자 전화번호</span></strong>
 									</div>
 									<!-- ShopName -->
 									<div class="mb-3 col-md-12">
 										<label class="form-label"> 
 											shop 이름 
 										</label> 
-										<span th:text="${shopItem?.nsName}">2024-12-04</span>
+										<strong>&nbsp;&nbsp;<span th:text="${bookingShopDetailItem?.nsName}">샵 이름</span></strong>
 									</div>
 									<!-- ShopAddr -->
 									<div class="mb-3 col-md-12">
 										<label class="form-label"> 
 											shop 주소 
 										</label> 
-										<span th:text="${#strings.isEmpty(shopItem?.nsAddr) ? '' : shopItem?.nsAddr} + ' ' + ${#strings.isEmpty(shopItem?.nsAddrDetail) ? '' : shopItem?.nsAddrDetail}">2024-12-04</span>
+										<strong>&nbsp;&nbsp;<span th:text="${#strings.isEmpty(bookingShopDetailItem?.nsAddr) ? '' : bookingShopDetailItem?.nsAddr} + ' ' + ${#strings.isEmpty(bookingShopDetailItem?.nsAddrDetail) ? '' : bookingShopDetailItem?.nsAddrDetail}">샵 주소</span></strong>
 									</div>
 									
 									<!-- 여백 추가 -->
@@ -78,10 +76,10 @@
 										<h4 class="mb-4 border-bottom pb-2">선택한 메뉴</h4>
 									</div>
 									<div class="mb-3 col-md-6">
-										<div th:each="list : ${bookingMenuList}">
+										<div th:each="list : ${bookingMenuDetailList}">
 									        <div class="d-flex justify-content-between">
-									            <span th:text="${list.meName}"></span>
-									            <span th:text="${#numbers.formatInteger(list.mePrice, 0, 'COMMA')}"></span>
+									            <strong>&nbsp;&nbsp;<span th:text="${list.meName}"></span></strong>
+									            <strong>&nbsp;&nbsp;<span th:text="${#numbers.formatInteger(list.mePrice, 0, 'COMMA')}"></span> 원</strong>
 									        </div>
 									    </div>
 									</div>
@@ -96,32 +94,26 @@
 									<div class="col-md-12">
 										<div class="d-flex flex-wrap mb-4">
 											<!-- payment -->
-											<div class="mb-3 col-md-6">
+											<div class="col-md-12">
 												<label for="text" class="form-label"> 
 													결제수단
-												</label> <br>
-												<input type="radio" name="boPayment" value="15"> 카카오페이
-												<br>
-												<input type="radio" name="boPayment" value="16"> 신용카드/체크카드
-												<br>
-												<input type="radio" name="boPayment" value="17"> 무통장입금
-												<br>
+												</label>
+<!-- 												<strong>&nbsp;&nbsp;<span>카카오뱅크</span></strong> -->
+												<strong>&nbsp;&nbsp;<span th:text="${bookingDetailItem?.boPayment}">결제수단</span></strong>
+<!-- 												<strong>&nbsp;&nbsp;<span th:if="${bookingDetailItem?.boPayment != null}" th:text="${@codeService.selectOneCachedCode(bookingDetailItem.boPayment)}"}">결제수단</span></strong> -->
+<!-- 												<strong>&nbsp;&nbsp;<span th:unless="${bookingDetailItem?.boPayment != null}">결제수단</span></strong> -->
 											</div>
-										</div>
-									</div>
-									<div class="col-md-12">
-										<h4 class="mb-4 border-bottom pb-2">결제 금액</h4>
-									</div>
-									<!-- meta -->
-									<div class="col-md-12">
-										<div class="d-flex justify-content-between align-items-center">
-											<div>
-												<p class="mb-1 text-lg text-dark">
-													(예약금) 
-													<span name="boDeposit" id="boDeposit" th:text="${#numbers.formatInteger(bookingItem?.boDeposit, 0, 'COMMA')}">
-													</span>
-													원
-												</p>
+											<div class="col-md-12">
+												<label for="text" class="form-label"> 
+													총금액
+												</label>
+												<strong>&nbsp;&nbsp;<span th:text="${#numbers.formatInteger(bookingDetailItem?.boTotalPrice, 0, 'COMMA')}">총금액</span> 원</strong>
+											</div>
+											<div class="col-md-12">
+												<label for="text" class="form-label"> 
+													결제금액(예약금)
+												</label>
+												<strong>&nbsp;&nbsp;<span th:text="${#numbers.formatInteger(bookingDetailItem?.boDeposit, 0, 'COMMA')}">결제금액(예약금)</span> 원</strong>
 											</div>
 										</div>
 									</div>

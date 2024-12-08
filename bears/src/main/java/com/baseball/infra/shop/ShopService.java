@@ -183,8 +183,18 @@ public class ShopService {
 	};
 	
 	// usr 예약내역 상세 페이지 출력
-	public ShopDto userBookingSelectOne(ShopDto shopDto) {
-		return shopDao.userBookingSelectOne(shopDto);
+	public ShopDto userBookingDetailSelectOne(ShopDto shopDto) {
+		return shopDao.userBookingDetailSelectOne(shopDto);
+	};
+
+	// shop 예약내역 상세 페이지 출력
+	public ShopDto shopBookingDetailSelectOne(ShopDto shopDto) {
+		return shopDao.shopBookingDetailSelectOne(shopDto);
+	};
+
+	// shop 예약내역 상세 페이지 출력
+	public List<ShopDto> menuBookingDetailSelectList(ShopDto shopDto) {
+		return shopDao.menuBookingDetailSelectList(shopDto);
 	};
 	
 	// shop상세페이지 review insert

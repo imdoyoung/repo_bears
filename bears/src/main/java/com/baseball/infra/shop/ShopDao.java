@@ -84,7 +84,13 @@ public interface ShopDao {
 	public int userBookingSelectOneCount(ShopVo shopVo);
 	
 	// usr 예약내역 상세 페이지 출력
-	public ShopDto userBookingSelectOne(ShopDto shopDto);
+	public ShopDto userBookingDetailSelectOne(ShopDto shopDto);
+	
+	// shop 예약내역 상세 페이지 출력
+	public ShopDto shopBookingDetailSelectOne(ShopDto shopDto);
+
+	// menu 예약내역 상세 페이지 출력
+	public List<ShopDto> menuBookingDetailSelectList(ShopDto shopDto);
 	
 	// shop상세페이지 review insert
 	public int reviewInsert(ShopDto shopDto);

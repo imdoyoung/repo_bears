@@ -525,7 +525,7 @@
 			LEFT JOIN b_booking AS f
 				ON g.b_booking_boSeq = f.boSeq
 		WHERE 1 = 1 
-			AND boSeq = #{boSeq}
+			AND f.boSeq = #{boSeq}
 	</select>
 	
 	<!-- shopPayment 페이지에 shop테이블 정보 출력 -->
@@ -641,18 +641,58 @@
 	</select>
 
 	<!-- 예약내역 상세 페이지 -->
-	<select id="userBookingSelectOne" resultMap="resultMapObj">
+	<!-- 예약 정보 + 예약자(회원) 정보 -->
+	<select id="userBookingDetailSelectOne" resultMap="resultMapObj">
 		SELECT
-			*
+			a.boSeq, 
+			a.boDate, 
+			a.boTime, 
+			a.boDeposit, 
+			a.boTotalPrice, 
+			a.boPayment, 
+			a.boSettleDate, 
+			a.boRegDate, 
+			a.boEditdate, 
+			a.boDelNy, 
+			b.usrName, 
+			b.usrPhone
 		FROM b_booking AS a
 			LEFT JOIN b_user AS b
 				ON a.b_user_usrSeq = b.usrSeq
 		WHERE 1 = 1
-			AND b.usrSeq = #{usrSeq}
-			AND a.boPayment IS NOT NULL
-			AND a.boSettleDate IS NOT NULL
+			AND a.boSeq = #{boSeq}
 	</select>
-	
+	<!-- 샵 정보 -->	
+	<select id="shopBookingDetailSelectOne" resultMap="resultMapObj">
+		SELECT DISTINCT
+			d.nsName,
+			d.nsAddr,
+			d.nsAddrDetail
+		FROM b_bookingmenu AS a
+			LEFT JOIN b_booking AS b
+				ON a.b_booking_boSeq = b.boSeq
+			LEFT JOIN b_menu AS c
+				ON a.b_menu_meSeq = c.meSeq
+			LEFT JOIN b_shop AS d
+				ON c.b_shop_nsSeq = d.nsSeq
+		WHERE 1 = 1
+			AND b.boSeq = #{boSeq}
+	</select>
+	<!-- 메뉴 정보 -->
+	<select id="menuBookingDetailSelectList" resultMap="resultMapObj">
+		SELECT
+			b.meSeq,
+			b.meName,
+			b.mePrice
+		FROM b_bookingmenu AS a
+			LEFT JOIN b_menu AS b
+				ON a.b_menu_meSeq = b.meSeq
+			LEFT JOIN b_booking AS c
+				ON a.b_booking_boSeq = c.boSeq
+		WHERE 1 = 1
+			AND c.boSeq = #{boSeq}
+	</select>
+
 	<!-- 샵 상세페이지 리뷰 insert -->
 	<insert id="reviewInsert">
 		INSERT INTO b_review (
