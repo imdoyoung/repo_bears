@@ -125,9 +125,8 @@
 									</div>
 								</div>
 								<!--  review start -->
-								<div class="row">
-									<div class="col-md-12 mb-5" id="target"
-										th:each="list : ${reviewList}">
+								<div class="row" id="target" th:each="list : ${reviewList}">
+									<div class="col-md-12 mb-5">
 										<div class="row">
 											<div class="col-md-3">
 												<div>
@@ -194,8 +193,7 @@
 										<input type="hidden" name="reStar" id="reStarInput">
 										<div id="hiddenData" data-ns-seq="${nsSeq}"></div>
 										<input type="hidden" name="nsSeq" value="">
-										<button type="button" id="btnReviewSubmit"
-											class="btn btn-primary">저장</button>
+										<button type="button" id="btnReviewSubmit" class="btn btn-primary">저장</button>
 									</div>
 								</form>
 							</div>
@@ -311,11 +309,9 @@
 												<div th:each="list : ${shopMenuList}">
 													<div class="input-group mb-3">
 														<label class="form-control custom-checkbox"> <!-- name="menuSeqs" 로 여러개의 메뉴를 배열로 서버에 전송 -->
-															<input type="checkbox" id="checkbox1" name="menuSeqs"
-															class="menu-checkbox" th:value="${list.meSeq}"
-															th:attr="data-price=${list.mePrice != null ? list.mePrice : 0}"
-															onchange="updateTotalPrice()"> <input
-															type="hidden" name="boTotalPrice" id="boTotalPriceInput">
+															<input type="checkbox" id="checkbox1" name="menuSeqs" class="menu-checkbox" th:value="${list.meSeq}"
+																th:attr="data-price=${list.mePrice != null ? list.mePrice : 0}" onchange="updateTotalPrice()"> 
+															<input type="hidden" name="boTotalPrice" id="boTotalPriceInput">
 															<!-- DB에 boTotalPrice를 넘기기위해서 hidden으로 만든다. -->
 															<div class="content">
 																<p class="align-left">
@@ -602,13 +598,13 @@
 						target += '			<div>';
 						target += '				<img src="/usr/v1/template/NailForest/assets/images/nail/womanIcon32.png"';
 						target += '					alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="avatar-md avatar rounded-circle mb-3">';
-						target += '				<h5 class="mb-n1">' + response.reId + '</h5>';
+						target += '				<h5 class="mb-n1">' + (response.reId) + '</h5>';
 						target += '				<small>' + (response.reRegDate != null ? formatDate(response.reRegDate) : '등록일 없음') + '</small>';
 						target += '			</div>';
 						target += '		</div>';
 						target += '		<div class="col-md-9">';
 						target += '			<div>';
-						target += '				<h5 class="fw-bold mb-2">' + response.reTitle + '</h5>';
+						target += '				<h5 class="fw-bold mb-2">' + (response.reTitle) + '</h5>';
 						target += '				<p>' + (response.reContent) + '</p>';
 						target += '				<span>' + (response.reStar == null || response.reStar == 0 ? '별점 없음' : '') + '</span>';
 						target += '			</div>';
