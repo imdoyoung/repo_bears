@@ -129,16 +129,31 @@ public class ShopDto {
 	private String nsfExt;
 	private long nsfSize;
 	private Integer nsfDelNy;
-	private Integer nsfPseq;
+	private String nsfPseq;
+	private Integer nsfOrder;
 	private String nsfRegIp;
 	private Integer nsfRegSeq;
 	private Integer nsfRegDeviceCd;
 	private Date nsfRegDateTime;
 	private Date nsfRegDateTimeSvr;
 	private String nsfTableName;
+	
+	// 사진 이름!!!
+	private String mainImg;
+	private String subImg1;
+	private String subImg2;
+	private String subImg3;
+	private String subImg4;
+	private String subImg5;
+	private String subImg6;
+	private String subImg7;
+	private String subImg8;
+	private String subImg9;
+	
 
 //	----- getter/setter -----
 
+	
 	public String getNsSeq() {
 		return nsSeq;
 	}
@@ -523,120 +538,6 @@ public class ShopDto {
 	public void setB_menu_meSeq(String b_menu_meSeq) {
 		B_menu_meSeq = b_menu_meSeq;
 	}
-	public MultipartFile getUploadFile() {
-		return uploadFile;
-	}
-	public void setUploadFile(MultipartFile uploadFile) {
-		this.uploadFile = uploadFile;
-	}
-	public MultipartFile[] getUploadFiles() {
-		return uploadFiles;
-	}
-	public void setUploadFiles(MultipartFile[] uploadFiles) {
-		this.uploadFiles = uploadFiles;
-	}
-	public String getNsfSeq() {
-		return nsfSeq;
-	}
-	public void setNsfSeq(String nsfSeq) {
-		this.nsfSeq = nsfSeq;
-	}
-	public Integer getNsfType() {
-		return nsfType;
-	}
-	public void setNsfType(Integer nsfType) {
-		this.nsfType = nsfType;
-	}
-	public Integer getNsfDefaultNy() {
-		return nsfDefaultNy;
-	}
-	public void setNsfDefaultNy(Integer nsfDefaultNy) {
-		this.nsfDefaultNy = nsfDefaultNy;
-	}
-	public Integer getNsfSort() {
-		return nsfSort;
-	}
-	public void setNsfSort(Integer nsfSort) {
-		this.nsfSort = nsfSort;
-	}
-	public String getNsfPath() {
-		return nsfPath;
-	}
-	public void setNsfPath(String nsfPath) {
-		this.nsfPath = nsfPath;
-	}
-	public String getNsfOriginalName() {
-		return nsfOriginalName;
-	}
-	public void setNsfOriginalName(String nsfOriginalName) {
-		this.nsfOriginalName = nsfOriginalName;
-	}
-	public String getNsfUuidName() {
-		return nsfUuidName;
-	}
-	public void setNsfUuidName(String nsfUuidName) {
-		this.nsfUuidName = nsfUuidName;
-	}
-	public String getNsfExt() {
-		return nsfExt;
-	}
-	public void setNsfExt(String nsfExt) {
-		this.nsfExt = nsfExt;
-	}
-	public long getNsfSize() {
-		return nsfSize;
-	}
-	public void setNsfSize(long nsfSize) {
-		this.nsfSize = nsfSize;
-	}
-	public Integer getNsfDelNy() {
-		return nsfDelNy;
-	}
-	public void setNsfDelNy(Integer nsfDelNy) {
-		this.nsfDelNy = nsfDelNy;
-	}
-	public Integer getNsfPseq() {
-		return nsfPseq;
-	}
-	public void setNsfPseq(Integer nsfPseq) {
-		this.nsfPseq = nsfPseq;
-	}
-	public String getNsfRegIp() {
-		return nsfRegIp;
-	}
-	public void setNsfRegIp(String nsfRegIp) {
-		this.nsfRegIp = nsfRegIp;
-	}
-	public Integer getNsfRegSeq() {
-		return nsfRegSeq;
-	}
-	public void setNsfRegSeq(Integer nsfRegSeq) {
-		this.nsfRegSeq = nsfRegSeq;
-	}
-	public Integer getNsfRegDeviceCd() {
-		return nsfRegDeviceCd;
-	}
-	public void setNsfRegDeviceCd(Integer nsfRegDeviceCd) {
-		this.nsfRegDeviceCd = nsfRegDeviceCd;
-	}
-	public Date getNsfRegDateTime() {
-		return nsfRegDateTime;
-	}
-	public void setNsfRegDateTime(Date nsfRegDateTime) {
-		this.nsfRegDateTime = nsfRegDateTime;
-	}
-	public Date getNsfRegDateTimeSvr() {
-		return nsfRegDateTimeSvr;
-	}
-	public void setNsfRegDateTimeSvr(Date nsfRegDateTimeSvr) {
-		this.nsfRegDateTimeSvr = nsfRegDateTimeSvr;
-	}
-	public String getNsfTableName() {
-		return nsfTableName;
-	}
-	public void setNsfTableName(String nsfTableName) {
-		this.nsfTableName = nsfTableName;
-	}
 	public List<String> getMenuSeqs() {
 		return menuSeqs;
 	}
@@ -745,5 +646,187 @@ public class ShopDto {
 	public void setUsrDelNy(Integer usrDelNy) {
 		this.usrDelNy = usrDelNy;
 	}
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+	public MultipartFile[] getUploadFiles() {
+		return uploadFiles;
+	}
+	public void setUploadFiles(MultipartFile[] uploadFiles) {
+		this.uploadFiles = uploadFiles;
+	}
+	public String getNsfSeq() {
+		return nsfSeq;
+	}
+	public void setNsfSeq(String nsfSeq) {
+		this.nsfSeq = nsfSeq;
+	}
+	public Integer getNsfType() {
+		return nsfType;
+	}
+	public void setNsfType(Integer nsfType) {
+		this.nsfType = nsfType;
+	}
+	public Integer getNsfDefaultNy() {
+		return nsfDefaultNy;
+	}
+	public void setNsfDefaultNy(Integer nsfDefaultNy) {
+		this.nsfDefaultNy = nsfDefaultNy;
+	}
+	public Integer getNsfSort() {
+		return nsfSort;
+	}
+	public void setNsfSort(Integer nsfSort) {
+		this.nsfSort = nsfSort;
+	}
+	public String getNsfPath() {
+		return nsfPath;
+	}
+	public void setNsfPath(String nsfPath) {
+		this.nsfPath = nsfPath;
+	}
+	public String getNsfOriginalName() {
+		return nsfOriginalName;
+	}
+	public void setNsfOriginalName(String nsfOriginalName) {
+		this.nsfOriginalName = nsfOriginalName;
+	}
+	public String getNsfUuidName() {
+		return nsfUuidName;
+	}
+	public void setNsfUuidName(String nsfUuidName) {
+		this.nsfUuidName = nsfUuidName;
+	}
+	public String getNsfExt() {
+		return nsfExt;
+	}
+	public void setNsfExt(String nsfExt) {
+		this.nsfExt = nsfExt;
+	}
+	public long getNsfSize() {
+		return nsfSize;
+	}
+	public void setNsfSize(long nsfSize) {
+		this.nsfSize = nsfSize;
+	}
+	public Integer getNsfDelNy() {
+		return nsfDelNy;
+	}
+	public void setNsfDelNy(Integer nsfDelNy) {
+		this.nsfDelNy = nsfDelNy;
+	}
+	public String getNsfPseq() {
+		return nsfPseq;
+	}
+	public void setNsfPseq(String nsfPseq) {
+		this.nsfPseq = nsfPseq;
+	}
+	public Integer getNsfOrder() {
+		return nsfOrder;
+	}
+	public void setNsfOrder(Integer nsfOrder) {
+		this.nsfOrder = nsfOrder;
+	}
+	public String getNsfRegIp() {
+		return nsfRegIp;
+	}
+	public void setNsfRegIp(String nsfRegIp) {
+		this.nsfRegIp = nsfRegIp;
+	}
+	public Integer getNsfRegSeq() {
+		return nsfRegSeq;
+	}
+	public void setNsfRegSeq(Integer nsfRegSeq) {
+		this.nsfRegSeq = nsfRegSeq;
+	}
+	public Integer getNsfRegDeviceCd() {
+		return nsfRegDeviceCd;
+	}
+	public void setNsfRegDeviceCd(Integer nsfRegDeviceCd) {
+		this.nsfRegDeviceCd = nsfRegDeviceCd;
+	}
+	public Date getNsfRegDateTime() {
+		return nsfRegDateTime;
+	}
+	public void setNsfRegDateTime(Date nsfRegDateTime) {
+		this.nsfRegDateTime = nsfRegDateTime;
+	}
+	public Date getNsfRegDateTimeSvr() {
+		return nsfRegDateTimeSvr;
+	}
+	public void setNsfRegDateTimeSvr(Date nsfRegDateTimeSvr) {
+		this.nsfRegDateTimeSvr = nsfRegDateTimeSvr;
+	}
+	public String getNsfTableName() {
+		return nsfTableName;
+	}
+	public void setNsfTableName(String nsfTableName) {
+		this.nsfTableName = nsfTableName;
+	}
+	public String getMainImg() {
+		return mainImg;
+	}
+	public void setMainImg(String mainImg) {
+		this.mainImg = mainImg;
+	}
+	public String getSubImg1() {
+		return subImg1;
+	}
+	public void setSubImg1(String subImg1) {
+		this.subImg1 = subImg1;
+	}
+	public String getSubImg2() {
+		return subImg2;
+	}
+	public void setSubImg2(String subImg2) {
+		this.subImg2 = subImg2;
+	}
+	public String getSubImg3() {
+		return subImg3;
+	}
+	public void setSubImg3(String subImg3) {
+		this.subImg3 = subImg3;
+	}
+	public String getSubImg4() {
+		return subImg4;
+	}
+	public void setSubImg4(String subImg4) {
+		this.subImg4 = subImg4;
+	}
+	public String getSubImg5() {
+		return subImg5;
+	}
+	public void setSubImg5(String subImg5) {
+		this.subImg5 = subImg5;
+	}
+	public String getSubImg6() {
+		return subImg6;
+	}
+	public void setSubImg6(String subImg6) {
+		this.subImg6 = subImg6;
+	}
+	public String getSubImg7() {
+		return subImg7;
+	}
+	public void setSubImg7(String subImg7) {
+		this.subImg7 = subImg7;
+	}
+	public String getSubImg8() {
+		return subImg8;
+	}
+	public void setSubImg8(String subImg8) {
+		this.subImg8 = subImg8;
+	}
+	public String getSubImg9() {
+		return subImg9;
+	}
+	public void setSubImg9(String subImg9) {
+		this.subImg9 = subImg9;
+	}
+	
+
 
 }

@@ -29,7 +29,7 @@ public interface ShopDao {
 	public int shopSelectOneCount(ShopVo shopVo);
 	
 	// file 첨부
-	public void insertUploaded(ShopDto shopDto);
+	public int insertUploaded(ShopDto shopDto);
 	
 	// 리뷰List - shopReviewSelectList
 	public List<ShopDto> shopReviewSelectList(ShopDto shopDto);

@@ -118,10 +118,20 @@
 				a.nsEditDate,
 				a.nsDelNy,
 				avg_table.average_star,
-    			avg_table.review_count
+    			avg_table.review_count,
+    			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 1) as mainImg, 
+				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 2) as subImg1, 
+				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 3) as subImg2, 
+				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 4) as subImg3, 
+				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 5) as subImg4, 
+				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 6) as subImg5, 
+				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 7) as subImg6, 
+				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 8) as subImg7, 
+				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 9) as subImg8, 
+				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 10) as subImg9
 			<include refid="shopSelectCommon"/>
 			ORDER BY
-				a.nsSeq ASC
+				a.nsSeq DESC
 		) aa limit #{rowNumToShow} offset #{startRnumForMySql}
 	</select>
 	
@@ -271,7 +281,7 @@
 	
 	<!-- 파일 업로드 -->
 	<insert id="insertUploaded">
-		INSERT INTO b_shopUploaded (
+		INSERT INTO b_shopuploaded (
 			nsfType,
 			nsfDefaultNy,
 			nsfSort,
@@ -282,6 +292,7 @@
 			nsfSize,
 			nsfDelNy,
 			nsfPseq,
+			nsfOrder,
 			nsfRegIp,
 			nsfRegSeq,
 			nsfRegDeviceCd,
@@ -298,6 +309,7 @@
 			#{nsfSize},
 			0,
 			#{nsfPseq},
+			#{nsfOrder},
 			#{nsfRegIp},
 			#{nsfRegSeq},
 			#{nsfRegDeviceCd},

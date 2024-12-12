@@ -57,6 +57,7 @@ public class ShopController {
 	public String ShopXdmInst(ShopDto shopDto) throws Exception {
 		System.out.println("/// shopInst 실행 ///");
 		shopService.shopInsert(shopDto, 0);
+		shopService.insertUploaded(shopDto);
 		return "redirect:/xdm/v1/infra/shop/shopXdmList";
 	}
 	
@@ -70,8 +71,9 @@ public class ShopController {
 	
 	// 수정 - update
 	@RequestMapping(value="/xdm/v1/infra/shop/shopXdmUpdt")
-	public String shopXdmUpdt(ShopDto shopDto) {
-		shopService.shopUpdate(shopDto);
+	public String shopXdmUpdt(ShopDto shopDto) throws Exception {
+		shopService.shopUpdate(shopDto, 0);
+		shopService.insertUploaded(shopDto);
 		System.out.println("/// shopMfom - update 실행 ///");
 		return "redirect:/xdm/v1/infra/shop/shopXdmList";
 	}

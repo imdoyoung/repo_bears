@@ -87,7 +87,7 @@
 							<h5 class="card-title">Shop 수정</h5>
 
 							<!-- Custom Styled Validation -->
-							<form name="form" method="post" action="/xdm/v1/infra/shop/shopXdmUpdt">
+							<form name="form" method="post" action="/xdm/v1/infra/shop/shopXdmUpdt" enctype="multipart/form-data">
 								<div class="row mb-3">
 									<div class="col-md-3">
 										<label class="form-label">
@@ -279,6 +279,16 @@
 										<img alt="파일업로드사진테스트" 
 											src="https://lovelybears.s3.ap-northeast-2.amazonaws.com/shopdto/0/2024/11/04/4f73cee7-9257-4af6-85aa-d74ac10d7380.jpg"
 											style="width: 80%; height: 80%;">
+										<div class="invalid-feedback">사진을 첨부하세요</div>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<div class="col-md-3">
+										<label class="form-label">
+											사진첨부
+											<a style="color: red;">*</a>
+										</label> 
+										<input type="file" id="uploadFiles" name="uploadFiles" multiple class="form-control"/>
 										<div class="invalid-feedback">사진을 첨부하세요</div>
 									</div>
 								</div>

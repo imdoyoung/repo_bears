@@ -27,7 +27,11 @@ public class ShopService {
 	// 등록 - insert
 	public int shopInsert(ShopDto shopDto, int type) throws Exception {
 		
-		for(int i=0; i<shopDto.getUploadFiles().length; i++) {
+		// insert
+		shopDao.shopInsert(shopDto);
+		
+		// 파일업로드
+		for(int i=0; i<shopDto.getUploadFiles().length-1; i++) {
 			
 			// S3
 			if(!shopDto.getUploadFiles()[i].isEmpty()) {
@@ -62,14 +66,20 @@ public class ShopService {
 		        shopDto.setNsfType(type);
 //				shopDto.setNsfDefaultNy();
 //		        shopDto.setNsfSort(maxNumber + i);
-		        shopDto.setNsfPseq(shopDto.getNsfPseq());		
+		        shopDto.setNsfPseq(shopDto.getNsSeq());		
 				
 		        shopDao.insertUploaded(shopDto);
 			}
 		}
 		
-		return shopDao.shopInsert(shopDto);
+		return 1;
+//		return shopDao.shopInsert(shopDto);
 	}
+	
+	// file 첨부
+	public int insertUploaded(ShopDto shopDto) {
+		return shopDao.insertUploaded(shopDto);
+	};
 	
 	
 	// 수정 - selectOne
@@ -78,8 +88,51 @@ public class ShopService {
 	}
 	
 	// 수정 - update
-	public int shopUpdate(ShopDto shopDto) {
-		return shopDao.shopUpdate(shopDto);
+	public int shopUpdate(ShopDto shopDto, int type) throws Exception {
+		
+		shopDao.shopUpdate(shopDto);
+		
+		for(int i=0; i<shopDto.getUploadFiles().length-1; i++) {
+			
+			// S3
+			if(!shopDto.getUploadFiles()[i].isEmpty()) {
+				
+				String className = shopDto.getClass().getSimpleName().toString().toLowerCase();		
+				String fileName = shopDto.getUploadFiles()[i].getOriginalFilename();
+				String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
+				String uuid = UUID.randomUUID().toString();
+				String uuidFileName = uuid + "." + ext;
+				String pathModule = className;
+				String nowString = UtilDateTime.nowString();
+				String pathDate = nowString.substring(0,4) + "/" + nowString.substring(5,7) + "/" + nowString.substring(8,10); 
+				String path = pathModule + "/" + type + "/" + pathDate + "/";
+//				String pathForView = Constants.UPLOADED_PATH_PREFIX_FOR_VIEW_LOCAL + "/" + pathModule + "/" + type + "/" + pathDate + "/";
+				
+				
+		        ObjectMetadata metadata = new ObjectMetadata();
+		        metadata.setContentLength(shopDto.getUploadFiles()[i].getSize());
+		        metadata.setContentType(shopDto.getUploadFiles()[i].getContentType());
+		        
+		        amazonS3Client.putObject("lovelybears", path + uuidFileName, shopDto.getUploadFiles()[i].getInputStream(), metadata);
+				
+		        String objectUrl = amazonS3Client.getUrl("lovelybears", path + uuidFileName).toString();
+		        System.out.println("objectUrl 확인 : "+ objectUrl);
+		        shopDto.setNsfPath(objectUrl);
+		        shopDto.setNsfOriginalName(fileName);
+		        shopDto.setNsfUuidName(uuidFileName);
+		        shopDto.setNsfExt(ext);
+		        shopDto.setNsfSize(shopDto.getUploadFiles()[i].getSize());
+				
+//		        shopDto.setNsfTableName(tableName);
+		        shopDto.setNsfType(type);
+//				shopDto.setNsfDefaultNy();
+//		        shopDto.setNsfSort(maxNumber + i);
+		        shopDto.setNsfPseq(shopDto.getNsSeq());			
+				
+		        shopDao.insertUploaded(shopDto);
+			}
+		}
+		return 1;
 	}
 	
 	// 삭제 - uelete
