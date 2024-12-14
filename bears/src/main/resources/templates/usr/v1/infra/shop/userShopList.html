@@ -416,7 +416,11 @@
 	                                            <div>
 	                                                <span class="mdi mdi-star me-1 text-primary text-sm"></span>
 	                                                <span class="font-weight-semi-bold  text-sm">
-	                                                    <span class="text-dark" th:text="${list.average_star}"></span>
+<!-- 	                                                	<span class="text-dark" th:text="${list.average_star}"></span> -->
+<!-- 														<span class="text-dark" th:text="${#numbers.formatDecimal(list.average_star, 1, 'floor')}"></span> -->
+<!-- 														<span class="text-dark" th:text="${#numbers.formatDecimal(list.average_star, 1, 1)}"></span> -->
+<!-- 														<span th:text="${T(java.lang.Math).floor(list.average_star)}"></span> -->
+	                                                    <span th:text="${T(java.lang.Math).floor(list.average_star * 10) / 10}"></span>
 	                                                    <span>(</span>
 	                                                    <span class="text-dark" th:text="${list.review_count}"></span>
 	                                                    <span>)</span>

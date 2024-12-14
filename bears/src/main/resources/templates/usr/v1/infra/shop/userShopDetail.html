@@ -119,9 +119,9 @@
 									<div class="col-md-2">
 										<div class="text-lg-center">
 <!-- 											<h1 class="fw-bold mb-0 lh-1" th:text="${averageStarItem?.average_star}">별점평균</h1> -->
-											<h1 class="fw-bold mb-0 lh-1"
-												th:text="${#numbers.formatDecimal(averageStarItem?.average_star, 1, 1)}">별점평균</h1>
-
+<!-- 											<h1 class="fw-bold mb-0 lh-1" th:text="${#numbers.formatDecimal(averageStarItem?.average_star, 1, 1)}">별점평균</h1> -->
+<!-- 											<h1 class="fw-bold mb-0 lh-1" th:text="${#numbers.formatDecimal(T(java.lang.Math).floor(averageStarItem?.average_star * 10) / 10, 1, '0')}">별점평균</h1> -->
+											<h1 class="fw-bold mb-0 lh-1" th:text="${#numbers.formatDecimal(T(java.lang.Math).floor(averageStarItem?.average_star * 10) / 10, 1, '1')}">별점평균</h1>
 										</div>
 									</div>
 								</div>

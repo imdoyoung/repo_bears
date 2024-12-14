@@ -593,18 +593,18 @@
 			d.nsClosTime,
 			d.nsMulti,
 		    COUNT(DISTINCT b.boSeq) AS boSeqCount,
-		    (select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 1) as mainImg1, 
-			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 2) as mainImg2, 
-			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 3) as subImg1, 
-			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 4) as subImg2, 
-			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 5) as subImg3, 
-			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 6) as subImg4, 
-			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 7) as subImg5, 
-			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 8) as subImg6, 
-			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 9) as subImg7, 
-			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 10) as subImg8, 
-			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 11) as subImg9,
-			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 12) as subImg10
+		    (select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 1) as mainImg1
+<!-- 			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 2) as mainImg2,  -->
+<!-- 			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 3) as subImg1,  -->
+<!-- 			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 4) as subImg2,  -->
+<!-- 			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 5) as subImg3,  -->
+<!-- 			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 6) as subImg4,  -->
+<!-- 			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 7) as subImg5,  -->
+<!-- 			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 8) as subImg6,  -->
+<!-- 			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 9) as subImg7,  -->
+<!-- 			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 10) as subImg8,  -->
+<!-- 			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 11) as subImg9, -->
+<!-- 			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 12) as subImg10 -->
 		FROM b_bookingmenu AS a
 			LEFT JOIN b_booking AS b
 				ON a.b_booking_boSeq = b.boSeq
