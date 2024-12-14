@@ -139,7 +139,8 @@ public class ShopDto {
 	private String nsfTableName;
 	
 	// 사진 이름!!!
-	private String mainImg;
+	private String mainImg1;
+	private String mainImg2;
 	private String subImg1;
 	private String subImg2;
 	private String subImg3;
@@ -149,6 +150,7 @@ public class ShopDto {
 	private String subImg7;
 	private String subImg8;
 	private String subImg9;
+	private String subImg10;
 	
 
 //	----- getter/setter -----
@@ -766,11 +768,17 @@ public class ShopDto {
 	public void setNsfTableName(String nsfTableName) {
 		this.nsfTableName = nsfTableName;
 	}
-	public String getMainImg() {
-		return mainImg;
+	public String getMainImg1() {
+		return mainImg1;
 	}
-	public void setMainImg(String mainImg) {
-		this.mainImg = mainImg;
+	public void setMainImg1(String mainImg1) {
+		this.mainImg1 = mainImg1;
+	}
+	public String getMainImg2() {
+		return mainImg2;
+	}
+	public void setMainImg2(String mainImg2) {
+		this.mainImg2 = mainImg2;
 	}
 	public String getSubImg1() {
 		return subImg1;
@@ -826,7 +834,12 @@ public class ShopDto {
 	public void setSubImg9(String subImg9) {
 		this.subImg9 = subImg9;
 	}
+	public String getSubImg10() {
+		return subImg10;
+	}
+	public void setSubImg10(String subImg10) {
+		this.subImg10 = subImg10;
+	}
 	
-
 
 }

@@ -190,25 +190,24 @@
 									th:each="list, iterStat : ${bestBookingList}"
 									th:if="${iterStat.index < 4}">
 									<div class="card border-0 shadow-sm img-hover">
-										<a href="#" class="text-body">
-											<div class="row g-0">
+											<div class="row g-0" th:attr="onclick=|aaa('${list?.nsSeq}')|" style = "cursor: pointer;">
 												<!-- thumbnail -->
 												<!-- 샵 로고 사진 다 어디로 갔어????????????????????? -->
-												<div class="col-12 col-md-5 rounded-start "
-													style="background-image: url(/usr/v1/template/NailForest/assets/images/nail/gangnamShop2.png); background-repeat: no-repeat; background-size: cover;">
-													<img
-														src="/usr/v1/template/NailForest/assets/images/nail/gangnamShop2.png"
-														class="img-fluid d-md-none invisible" alt="">
+<!-- 												<div class="col-12 col-md-5 rounded-start " style="background-image: url(/usr/v1/template/NailForest/assets/images/nail/gangnamShop2.png);  -->
+<!-- 													background-repeat: no-repeat; background-size: cover;"> -->
+<!-- 													<img src="/usr/v1/template/NailForest/assets/images/nail/gangnamShop2.png" class="img-fluid d-md-none invisible" alt=""> -->
+<!-- 												</div> -->
+												<div class="col-5" 
+												     th:style="'background: url(' + ${list?.mainImg1} + ') no-repeat center center; background-size: cover;'">
+<!-- 												    <img th:src="${list?.mainImg1}" alt="Image description" class="w-100 d-md-none" style="height: 5cm;"> -->
 												</div>
 												<!-- 샵 로고 사진 다 어디로 갔어????????????????????? -->
-												<div class="col-md-7 ">
+												<div class="col-7">
 													<div class="card-body p-4">
 														<div class="">
 															<div class="lh-1">
 																<h4 class="mb-0 h5">
-																	<a
-																		th:href="@{/usr/v1/infra/shop/userShopDetail(nsSeq=${list?.nsSeq})}"
-																		th:text="${list.nsName}" class="text-inherit"></a>
+																	<a th:href="@{/usr/v1/infra/shop/userShopDetail(nsSeq=${list?.nsSeq})}" th:text="${list.nsName}" class="text-inherit"></a>
 																</h4>
 																<br>
 																<p class="mb-0 fs-6">
@@ -238,7 +237,6 @@
 													</div>
 												</div>
 											</div>
-										</a>
 									</div>
 								</div>
 								<!-- 인기네일샵 - 팔색조네일 end -->
@@ -933,6 +931,10 @@
 					}
 				}
 			});
+		}
+		
+		function aaa(seq){
+			location.href = "/usr/v1/infra/shop/userShopDetail?nsSeq=" + seq;
 		}
 	</script>
 </body>

@@ -31,7 +31,7 @@ public class ShopService {
 		shopDao.shopInsert(shopDto);
 		
 		// 파일업로드
-		for(int i=0; i<shopDto.getUploadFiles().length-1; i++) {
+		for(int i=0; i<shopDto.getUploadFiles().length; i++) {
 			
 			// S3
 			if(!shopDto.getUploadFiles()[i].isEmpty()) {
@@ -90,9 +90,9 @@ public class ShopService {
 	// 수정 - update
 	public int shopUpdate(ShopDto shopDto, int type) throws Exception {
 		
-		shopDao.shopUpdate(shopDto);
+//		shopDao.shopUpdate(shopDto);
 		
-		for(int i=0; i<shopDto.getUploadFiles().length-1; i++) {
+		for(int i=0; i<shopDto.getUploadFiles().length; i++) {
 			
 			// S3
 			if(!shopDto.getUploadFiles()[i].isEmpty()) {
@@ -132,7 +132,8 @@ public class ShopService {
 		        shopDao.insertUploaded(shopDto);
 			}
 		}
-		return 1;
+//		return 1;
+		return shopDao.shopUpdate(shopDto);
 	}
 	
 	// 삭제 - uelete

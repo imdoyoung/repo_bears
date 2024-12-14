@@ -265,7 +265,7 @@
 									<div class="col-md-9">
 										<label class="form-label">상세정보</label>
 										<textarea class="form-control" name="nsInfoDetail" id="nsInfoDetail" th:text="${shopItem?.nsInfoDetail}"
-											 style="height: 100px; width:100%">
+											 style="height: 200px; width:100%">
 										</textarea>
 										<div class="invalid-feedback">상세정보를 입력해 주세요.</div>
 									</div>
@@ -276,18 +276,8 @@
 											사진첨부
 											<a style="color: red;">*</a>
 										</label> <br>
-										<img alt="파일업로드사진테스트" 
-											src="https://lovelybears.s3.ap-northeast-2.amazonaws.com/shopdto/0/2024/11/04/4f73cee7-9257-4af6-85aa-d74ac10d7380.jpg"
-											style="width: 80%; height: 80%;">
-										<div class="invalid-feedback">사진을 첨부하세요</div>
-									</div>
-								</div>
-								<div class="row mb-3">
-									<div class="col-md-3">
-										<label class="form-label">
-											사진첨부
-											<a style="color: red;">*</a>
-										</label> 
+<!-- 										<img alt="파일업로드사진테스트" th:src="${shopItem?.mainImg}" style="width: 80%; height: 80%;"> -->
+<!-- 										<img alt="파일업로드사진테스트" th:src="${shopItem?.subImg1}" style="width: 80%; height: 80%;"> -->
 										<input type="file" id="uploadFiles" name="uploadFiles" multiple class="form-control"/>
 										<div class="invalid-feedback">사진을 첨부하세요</div>
 									</div>
@@ -360,6 +350,7 @@
 											별점
 											<a style="color: red;">*</a>
 										</label> 
+<!-- 										<input type="text" class="form-control" name="average_star" id="average_star" th:value="${#numbers.formatDecimal(averageStarItem?.average_star, 1, 1)}" readonly> -->
 										<select class="form-select" name="nsStar" id="nsStar">
 											<option value="">별점</option>
 											<option value="1" th:selected="${shopItem?.nsStar == 1}">1</option>

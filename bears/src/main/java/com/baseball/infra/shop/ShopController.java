@@ -65,6 +65,7 @@ public class ShopController {
 	@RequestMapping(value="/xdm/v1/infra/shop/shopXdmMfom")
 	public String shopXdmMfom(ShopDto shopDto, Model model) {
 		model.addAttribute("shopItem", shopService.shopSelectOne(shopDto));
+		model.addAttribute("reviewList", shopService.shopReviewSelectList(shopDto));
 		System.out.println("/// shopMfom-selectOne 실행 ///");
 		return "xdm/v1/infra/shop/shopXdmMfom";
 	}

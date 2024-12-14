@@ -119,16 +119,18 @@
 				a.nsDelNy,
 				avg_table.average_star,
     			avg_table.review_count,
-    			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 1) as mainImg, 
-				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 2) as subImg1, 
-				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 3) as subImg2, 
-				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 4) as subImg3, 
-				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 5) as subImg4, 
-				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 6) as subImg5, 
-				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 7) as subImg6, 
-				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 8) as subImg7, 
-				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 9) as subImg8, 
-				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 10) as subImg9
+    			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 1) as mainImg1, 
+				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 2) as mainImg2, 
+				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 3) as subImg1, 
+				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 4) as subImg2, 
+				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 5) as subImg3, 
+				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 6) as subImg4, 
+				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 7) as subImg5, 
+				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 8) as subImg6, 
+				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 9) as subImg7, 
+				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 10) as subImg8, 
+				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 11) as subImg9,
+				(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 12) as subImg10
 			<include refid="shopSelectCommon"/>
 			ORDER BY
 				a.nsSeq DESC
@@ -225,7 +227,19 @@
 			a.nsStar,
 			a.nsRegDate,
 			a.nsEditDate,
-			a.nsDelNy
+			a.nsDelNy,
+			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 1) as mainImg1, 
+			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 2) as mainImg2, 
+			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 3) as subImg1, 
+			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 4) as subImg2, 
+			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 5) as subImg3, 
+			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 6) as subImg4, 
+			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 7) as subImg5, 
+			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 8) as subImg6, 
+			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 9) as subImg7, 
+			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 10) as subImg8, 
+			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 11) as subImg9,
+			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = a.nsSeq and aa.nsfOrder = 12) as subImg10
 		FROM
 			bears.b_shop a
 		WHERE 1 = 1
@@ -578,7 +592,19 @@
 			d.nsOpenTime,
 			d.nsClosTime,
 			d.nsMulti,
-		    COUNT(DISTINCT b.boSeq) AS boSeqCount
+		    COUNT(DISTINCT b.boSeq) AS boSeqCount,
+		    (select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 1) as mainImg1, 
+			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 2) as mainImg2, 
+			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 3) as subImg1, 
+			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 4) as subImg2, 
+			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 5) as subImg3, 
+			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 6) as subImg4, 
+			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 7) as subImg5, 
+			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 8) as subImg6, 
+			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 9) as subImg7, 
+			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 10) as subImg8, 
+			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 11) as subImg9,
+			(select aa.nsfPath from b_shopuploaded aa where 1=1 and aa.nsfPseq = d.nsSeq and aa.nsfOrder = 12) as subImg10
 		FROM b_bookingmenu AS a
 			LEFT JOIN b_booking AS b
 				ON a.b_booking_boSeq = b.boSeq
@@ -587,6 +613,7 @@
 			LEFT JOIN b_shop AS d
 				ON c.b_shop_nsSeq = d.nsSeq
 			GROUP BY d.nsSeq
+			ORDER BY boSeqCount DESC
 	</select>
 	
 	<!-- USR 메인 페이지에서 리뷰 리스트 출력 -->

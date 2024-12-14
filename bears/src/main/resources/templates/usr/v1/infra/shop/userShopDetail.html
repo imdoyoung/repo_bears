@@ -16,8 +16,9 @@
 
 		<!-- listing slide -->
 		<div class="container mt-5">
-			<div class="py-22 position-relative rounded-3"
-				style="background: url(/usr/v1/template/NailForest/assets/images/nail/nowonShop2.png) no-repeat center center;">
+<!-- 			<div class="py-22 position-relative rounded-3" style="background: url(/usr/v1/template/NailForest/assets/images/nail/nowonShop2.png) no-repeat center center;"> -->
+			<div class="py-22 position-relative rounded-3" th:style="'background: url(' + ${shopItem?.mainImg2} + ') no-repeat center center; background-size: cover;'">
+<!-- 			<img th:src="${list.mainImg}" alt="Image description" class="w-100" style="height: 5cm;"> -->
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-12">
 						<!-- listing badges -->
@@ -74,7 +75,7 @@
 						<div class="card mb-4">
 							<div class="card-body p-4">
 								<h4>매장정보</h4>
-								<p th:text="${shopItem?.nsInfoDetail}"></p>
+								<pre th:text="${shopItem?.nsInfoDetail}"></pre>
 							</div>
 						</div>
 						<!-- listing detail -->
@@ -117,7 +118,7 @@
 									</div>
 									<div class="col-md-2">
 										<div class="text-lg-center">
-											<!-- 											<h1 class="fw-bold mb-0 lh-1" th:text="${averageStarItem?.average_star}">별점평균</h1> -->
+<!-- 											<h1 class="fw-bold mb-0 lh-1" th:text="${averageStarItem?.average_star}">별점평균</h1> -->
 											<h1 class="fw-bold mb-0 lh-1"
 												th:text="${#numbers.formatDecimal(averageStarItem?.average_star, 1, 1)}">별점평균</h1>
 
@@ -185,8 +186,7 @@
 									</div>
 									<div class="mb-3 col-12 mt-3">
 										<label for="reContent" class="form-label">리뷰 내용</label>
-										<textarea class="form-control" id="reContent" name="reContent"
-											rows="3"></textarea>
+										<textarea class="form-control" id="reContent" name="reContent" rows="3"></textarea>
 									</div>
 									<div
 										class="d-lg-flex justify-content-between align-items-center">
@@ -205,58 +205,54 @@
 								<h4 class="mb-4">Gallery</h4>
 								<div class="zoom-gallery">
 									<div class="row">
+<!-- 										<div class="col-md-4"> -->
+<!-- 											<a href="/usr/v1/template/NailForest/assets/images/nail/nail1.jpg"> -->
+<!-- 												<img src="/usr/v1/template/NailForest/assets/images/nail/nail1.jpg" class="img-fluid rounded-3 mb-4"> -->
+<!-- 											</a> -->
+<!-- 										</div> -->
 										<div class="col-md-4">
-											<a
-												href="/usr/v1/template/NailForest/assets/images/nail/nail1.jpg">
-												<img
-												src="/usr/v1/template/NailForest/assets/images/nail/nail1.jpg"
-												class="img-fluid rounded-3 mb-4"
-												alt="Rentkit Directory & Listing Bootstrap 5 Theme">
+											<a th:href="${shopItem?.subImg1}">
+												<img th:src="${shopItem?.subImg1}" class="img-fluid rounded-3 mb-4">
 											</a>
 										</div>
 										<div class="col-md-4">
-											<a
-												href="/usr/v1/template/NailForest/assets/images/nail/nail2.jpg">
-												<img
-												src="/usr/v1/template/NailForest/assets/images/nail/nail2.jpg"
-												class="img-fluid rounded-3 mb-4"
-												alt="Rentkit Directory & Listing Bootstrap 5 Theme">
+											<a th:href="${shopItem?.subImg2}">
+												<img th:src="${shopItem?.subImg2}" class="img-fluid rounded-3 mb-4">
 											</a>
 										</div>
 										<div class="col-md-4">
-											<a
-												href="/usr/v1/template/NailForest/assets/images/nail/nail3.jpg">
-												<img
-												src="/usr/v1/template/NailForest/assets/images/nail/nail3.jpg"
-												class="img-fluid rounded-3 mb-4"
-												alt="Rentkit Directory & Listing Bootstrap 5 Theme">
+											<a th:href="${shopItem?.subImg3}">
+												<img th:src="${shopItem?.subImg3}" class="img-fluid rounded-3 mb-4">
 											</a>
 										</div>
 										<div class="col-md-4">
-											<a
-												href="/usr/v1/template/NailForest/assets/images/nail/nail4.jpg">
-												<img
-												src="/usr/v1/template/NailForest/assets/images/nail/nail4.jpg"
-												class="img-fluid rounded-3 mb-4 mb-lg-0"
-												alt="Rentkit Directory & Listing Bootstrap 5 Theme">
+											<a th:href="${shopItem?.subImg4}">
+												<img th:src="${shopItem?.subImg4}" class="img-fluid rounded-3 mb-4">
 											</a>
 										</div>
 										<div class="col-md-4">
-											<a
-												href="/usr/v1/template/NailForest/assets/images/nail/nail5.jpg">
-												<img
-												src="/usr/v1/template/NailForest/assets/images/nail/nail5.jpg"
-												class="img-fluid rounded-3 mb-4  mb-lg-0"
-												alt="Rentkit Directory & Listing Bootstrap 5 Theme">
+											<a th:href="${shopItem?.subImg5}">
+												<img th:src="${shopItem?.subImg5}" class="img-fluid rounded-3 mb-4">
 											</a>
 										</div>
 										<div class="col-md-4">
-											<a
-												href="/usr/v1/template/NailForest/assets/images/nail/nail6.jpg">
-												<img
-												src="/usr/v1/template/NailForest/assets/images/nail/nail6.jpg"
-												class="img-fluid rounded-3 mb-4 mb-lg-0"
-												alt="Rentkit Directory & Listing Bootstrap 5 Theme">
+											<a th:href="${shopItem?.subImg6}">
+												<img th:src="${shopItem?.subImg6}" class="img-fluid rounded-3 mb-4">
+											</a>
+										</div>
+										<div class="col-md-4">
+											<a th:href="${shopItem?.subImg7}">
+												<img th:src="${shopItem?.subImg7}" class="img-fluid rounded-3 mb-4">
+											</a>
+										</div>
+										<div class="col-md-4">
+											<a th:href="${shopItem?.subImg8}">
+												<img th:src="${shopItem?.subImg8}" class="img-fluid rounded-3 mb-4">
+											</a>
+										</div>
+										<div class="col-md-4">
+											<a th:href="${shopItem?.subImg9}">
+												<img th:src="${shopItem?.subImg9}" class="img-fluid rounded-3 mb-4">
 											</a>
 										</div>
 									</div>
@@ -369,40 +365,36 @@
 							<!-- listing widget -->
 						</div>
 						<!-- listing widget -->
-						<!-- 						<div class="card mb-4"> -->
-						<!-- 							<div class="card-body p-4"> -->
-						<!-- 								<h5 class="mb-0"> -->
-						<!-- 									<span class="mdi mdi-medal text-primary float-right"></span> -->
-						<!-- 								</h5> -->
-						<!-- 								<div class="text-center mt-4"> -->
-						<!-- 									<img -->
-						<!-- 										src="/usr/v1/template/NailForest/assets/images/nail/nowonShop2.png" -->
-						<!-- 										alt="Rentkit Directory & Listing Bootstrap 5 Theme" -->
-						<!-- 										class="rounded-circle avatar avatar-lg mb-2"> -->
-						<!-- 									<h5 class="mb-0">니드썸네일</h5> -->
-						<!-- 									<small>joined in january 2024</small> -->
-						<!-- 									<p class="mb-0 mx-5 mt-3">니드썸네일의 고객님 한분 한분께 만족스럽고 아름다운 네일은 -->
-						<!-- 										물론 마음까지 힐링받으실 수 있도록 니드썸네일 직원 모두가 고민하고 노력하겠습니다.</p> -->
-						<!-- 								</div> -->
-						<!-- 							</div> -->
-						<!-- 							<div class="border-top card-body p-4 text-center"> -->
-						<!-- 								<p class="mb-0"> -->
-						<!-- 									응답률: <span class="text-primary">100%</span> -->
-						<!-- 								</p> -->
-						<!-- 								<p> -->
-						<!-- 									응답시간: <span class="text-primary">1시간 이내</span> -->
-						<!-- 								</p> -->
-						<!-- 								<div class="d-grid mx-8"> -->
-						<!-- 									<a href="#" class="btn btn-dark">1:1 채팅하기</a> -->
-						<!-- 								</div> -->
-						<!-- 							</div> -->
-						<!-- 						</div> -->
+						<div class="card mb-4">
+							<div class="card-body p-4">
+								<h5 class="mb-0">
+									<span class="mdi mdi-medal text-primary float-right"></span>
+								</h5>
+								<div class="text-center mt-4">
+									<img th:src="${shopItem?.mainImg1}"
+										class="rounded-circle avatar avatar-lg mb-2">
+									<h5 class="mb-0" th:text="${shopItem?.nsName}"></h5>
+									<p class="mb-0 mx-5 mt-3" th:text="${shopItem?.nsInfoText}"></p>
+								</div>
+							</div>
+<!-- 							<div class="border-top card-body p-4 text-center"> -->
+<!-- 								<p class="mb-0"> -->
+<!-- 									응답률: <span class="text-primary">100%</span> -->
+<!-- 								</p> -->
+<!-- 								<p> -->
+<!-- 									응답시간: <span class="text-primary">1시간 이내</span> -->
+<!-- 								</p> -->
+<!-- 								<div class="d-grid mx-8"> -->
+<!-- 									<a href="#" class="btn btn-dark">1:1 채팅하기</a> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+						</div>
 						<!-- listing detail -->
-						<!-- 						<div class="d-grid"> -->
-						<!-- 							<a href="#" class="btn btn-light mb-4"> <i -->
-						<!-- 								class="mdi mdi-flag-variant-outline me-1"></i> 신고하기 -->
-						<!-- 							</a> -->
-						<!-- 						</div> -->
+<!-- 						<div class="d-grid"> -->
+<!-- 							<a href="#" class="btn btn-light mb-4"> <i -->
+<!-- 								class="mdi mdi-flag-variant-outline me-1"></i> 신고하기 -->
+<!-- 							</a> -->
+<!-- 						</div> -->
 					</div>
 				</div>
 			</div>
@@ -613,6 +605,11 @@
 						target += '</div>';
 							
 						$("#target").append(target);
+						
+						// 입력창초기화
+		                $("#reTitle").val('');
+		                $("#reContent").val('');
+// 		                $("#htrecomments").val('');
 							
 					} else { // insert 실패 시 alert 창을 띄움
 						alert("리뷰저장실패");
