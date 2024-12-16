@@ -99,9 +99,8 @@
 													결제수단
 												</label>
 <!-- 												<strong>&nbsp;&nbsp;<span>카카오뱅크</span></strong> -->
-												<strong>&nbsp;&nbsp;<span th:text="${bookingDetailItem?.boPayment}">결제수단</span></strong>
-<!-- 												<strong>&nbsp;&nbsp;<span th:if="${bookingDetailItem?.boPayment != null}" th:text="${@codeService.selectOneCachedCode(bookingDetailItem.boPayment)}"}">결제수단</span></strong> -->
-<!-- 												<strong>&nbsp;&nbsp;<span th:unless="${bookingDetailItem?.boPayment != null}">결제수단</span></strong> -->
+<!-- 												<strong>&nbsp;&nbsp;<span th:text="${bookingDetailItem?.boPayment}">결제수단</span></strong> -->
+												<strong th:text="${@codeService.selectOneCachedCode(bookingDetailItem?.boPayment)}">결제수단</strong>
 											</div>
 											<div class="col-md-12">
 												<label for="text" class="form-label"> 
