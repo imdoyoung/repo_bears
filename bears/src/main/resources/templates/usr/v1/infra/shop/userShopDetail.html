@@ -543,12 +543,12 @@
 	            document.getElementById("reStarInput").value = selectedValue;
 	        });
 	    });
-	 // ========== 리뷰 별 END ========== //
+	// ========== 리뷰 별 END ========== //
 	 
 	 
 	 
 	 
-	 // ========== 리뷰 insert START ========== //
+	// ========== 리뷰 insert START ========== //
 	// nsSeq 값 전달
 	document.addEventListener('DOMContentLoaded', () => {
 		const urlParams = new URLSearchParams(window.location.search);
@@ -581,7 +581,7 @@
 				},
 				success : function(response) { // 요청이 성공적으로 완료되면 실행될 함수
 					if (response.rt == "success") {
-						alert("리뷰저장성공");
+// 						alert("리뷰저장성공");
 						// append 추가
 						let target = '';
 						target += '<div class="col-md-12 mb-5">';
@@ -604,8 +604,8 @@
 						target += '	</div>';
 						target += '</div>';
 							
-// 						$("#target").append(target);	// 시작점 위치 다시 찾기
-						$("#target").prepend(target);	// 일단 임시방편
+						$("#target").append(target);	// 시작점 위치 다시 찾기
+// 						$("#target").prepend(target);	// 일단 임시방편
 						
 						// 입력창초기화
 		                $("#reTitle").val('');
