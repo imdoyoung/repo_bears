@@ -52,9 +52,9 @@ public class ShopService {
 		        metadata.setContentLength(shopDto.getUploadFiles()[i].getSize());
 		        metadata.setContentType(shopDto.getUploadFiles()[i].getContentType());
 		        
-		        amazonS3Client.putObject("lovelybears", path + uuidFileName, shopDto.getUploadFiles()[i].getInputStream(), metadata);
+		        amazonS3Client.putObject("sweetybears", path + uuidFileName, shopDto.getUploadFiles()[i].getInputStream(), metadata);
 				
-		        String objectUrl = amazonS3Client.getUrl("lovelybears", path + uuidFileName).toString();
+		        String objectUrl = amazonS3Client.getUrl("sweetybears", path + uuidFileName).toString();
 		        System.out.println("objectUrl 확인 : "+ objectUrl);
 		        shopDto.setNsfPath(objectUrl);
 		        shopDto.setNsfOriginalName(fileName);
@@ -66,7 +66,7 @@ public class ShopService {
 		        shopDto.setNsfType(type);
 //				shopDto.setNsfDefaultNy();
 //		        shopDto.setNsfSort(maxNumber + i);
-		        shopDto.setNsfPseq(shopDto.getNsSeq());		
+		        shopDto.setNsfPseq(shopDto.getNsSeq());
 				
 		        shopDao.insertUploaded(shopDto);
 			}
@@ -113,9 +113,9 @@ public class ShopService {
 		        metadata.setContentLength(shopDto.getUploadFiles()[i].getSize());
 		        metadata.setContentType(shopDto.getUploadFiles()[i].getContentType());
 		        
-		        amazonS3Client.putObject("lovelybears", path + uuidFileName, shopDto.getUploadFiles()[i].getInputStream(), metadata);
+		        amazonS3Client.putObject("sweetybears", path + uuidFileName, shopDto.getUploadFiles()[i].getInputStream(), metadata);
 				
-		        String objectUrl = amazonS3Client.getUrl("lovelybears", path + uuidFileName).toString();
+		        String objectUrl = amazonS3Client.getUrl("sweetybears", path + uuidFileName).toString();
 		        System.out.println("objectUrl 확인 : "+ objectUrl);
 		        shopDto.setNsfPath(objectUrl);
 		        shopDto.setNsfOriginalName(fileName);
