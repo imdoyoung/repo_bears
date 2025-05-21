@@ -445,8 +445,7 @@
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.12/clipboard.min.js"></script>
 
-	<!-- Theme JS -->
-	<script src="/usr/v1/template/NailForest/assets/js/theme.min.js"></script>
+	
 
 	<!-- by developer -->
 	<script src="/xdm/v1/jquery/jquery-3.7.1.min.js"></script>
@@ -457,7 +456,7 @@
 
 	<!-- KAKAO MAP API services 라이브러리 불러오기 -->
 	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e7a4c61c5d2d5eec0befbefd5116181&libraries=services"></script>
+		src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=4e7a4c61c5d2d5eec0befbefd5116181&libraries=services"></script>
 
 	<script type="text/javascript">
 	// ========== 카카오 지도 API START ========== //
@@ -623,34 +622,34 @@
 	 
 	 
  	
-	 // ========== Datetimepicker START ========== //
-		// 예약 날짜,시간 검색 - datetimepicker
-	    window.addEventListener('load', function () {
-	        $.datetimepicker.setLocale('ko');
+	// ========== Datetimepicker START ========== //
+	// 예약 날짜,시간 검색 - datetimepicker
+	window.addEventListener('load', function () {
+		$.datetimepicker.setLocale('ko');
 	        
-	        // 날짜 선택 필드 초기화
-	        $("#boDate").datetimepicker({ 
-	            timepicker: false,    // 시간 선택 비활성화
-	            format: 'Y-m-d'      // 날짜 형식
-	        }).on('change', function () {
-	            // 날짜 선택 시 rvDate에 값 반영
-	            const selectedDate = $(this).val();
-	            $('#rvDate').text(selectedDate);
-	        });
+		// 날짜 선택 필드 초기화
+		$("#boDate").datetimepicker({ 
+			timepicker: false,    // 시간 선택 비활성화
+			format: 'Y-m-d'      // 날짜 형식
+		}).on('change', function () {
+			// 날짜 선택 시 rvDate에 값 반영
+			const selectedDate = $(this).val();
+			$('#rvDate').text(selectedDate);
+		});
 	
-	        // 시간 선택 필드 초기화
-	        $("#boTime").datetimepicker({ 
-	            datepicker: false,    // 날짜 선택 비활성화
-	            timepicker: true,     // 시간 선택 활성화
-	            format: 'H:i',        // 시간 형식 (24시간제)
-	            step: 30              // 30분 단위
-	        }).on('change', function () {
-	            // 시간 선택 시 rvTime에 값 반영
-	            const selectedTime = $(this).val();
-	            $('#rvTime').text(selectedTime);
-	        });
-    	});
-	 // ========== Datetimepicker END ========== //
+		// 시간 선택 필드 초기화
+		$("#boTime").datetimepicker({ 
+			datepicker: false,    // 날짜 선택 비활성화
+			timepicker: true,     // 시간 선택 활성화
+			format: 'H:i',        // 시간 형식 (24시간제)
+			step: 30              // 30분 단위
+		}).on('change', function () {
+			// 시간 선택 시 rvTime에 값 반영
+			const selectedTime = $(this).val();
+			$('#rvTime').text(selectedTime);
+		});
+	});
+	// ========== Datetimepicker END ========== //
 		
 	 
 	 // ========== 메뉴 가격합산, seq 처리 START ========== //
@@ -731,5 +730,7 @@
 			});
 		}
 	</script>
+	<!-- Theme JS -->
+	<script src="/usr/v1/template/NailForest/assets/js/theme.min.js"></script>
 </body>
 </html>
