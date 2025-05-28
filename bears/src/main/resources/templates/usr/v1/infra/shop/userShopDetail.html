@@ -663,7 +663,7 @@
 		        const price = checkbox.getAttribute('data-price'); // data-price 읽기
 		        console.log('data-price:', price); // 디버깅 출력
 		
-		        const priceValue = isNaN(price) || price === null || price === '' ? 0 : parseInt(price, 10);	// Nan  방지
+		        const priceValue = isNaN(price) || price === null || price === '' ? 0 : parseInt(price, 10);	// Nan 방지
 		
 		        total += priceValue; // 총 금액 합산
 		        selectedMenuSeqs.push(checkbox.value); // 메뉴 seq 저장
