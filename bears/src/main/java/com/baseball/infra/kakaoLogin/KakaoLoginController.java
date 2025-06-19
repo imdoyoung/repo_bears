@@ -9,4 +9,5 @@ public class KakaoLoginController {
 	
 	//	@Autowired
 	//	private KakaoLoginService kakaoLoginService;
+	//
 }
