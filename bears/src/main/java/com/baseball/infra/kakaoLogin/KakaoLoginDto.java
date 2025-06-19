@@ -27,7 +27,7 @@ public class KakaoLoginDto {
 		this.email = email;
 	}
 
-	// 생성자
+//	----- 생성자 -----
 	public KakaoLoginDto(String id, String nickname, String email) {
 		this.id = id;
 		this.nickname = nickname;
